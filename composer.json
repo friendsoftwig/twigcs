@@ -1,5 +1,5 @@
 {
-    "name": "allocine/twig-linter",
+    "name": "allocine/twigcs",
     "description": "Checkstyle automation for Twig",
     "license": "MIT",
     "authors": [
