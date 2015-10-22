@@ -1,0 +1,28 @@
+{
+    "name": "allocine/twig-linter",
+    "description": "Checkstyle automation for Twig",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "OwlyCode",
+            "email": "tmaindron@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "~1.0",
+        "symfony/console": "~2.7",
+        "symfony/finder": "~2.7",
+        "pimple/pimple": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}

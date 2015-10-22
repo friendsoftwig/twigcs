@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+use Allocine\TwigLinter\Console\Application;
+use Allocine\TwigLinter\LintCommand;
+
+require 'vendor/autoload.php';
+
+(new Application())->run();
