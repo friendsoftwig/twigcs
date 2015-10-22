@@ -9,7 +9,7 @@ Please note that the project is still in early development stage and is subject 
 ## How to install
 
 ```bash
-composer global require allocine/twig-linter
+composer global require allocine/twigcs
 ```
 
 ## How to run
