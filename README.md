@@ -17,20 +17,20 @@ composer global require allocine/twigcs
 Basically, just run :
 
 ```bash
-twigcs /path/to/views
+twigcs lint /path/to/views
 ```
 
 On Symfony projects, you can run, for instance :
 
 ```bash
-twigcs /project/dir/app/Resources/views
+twigcs lint /project/dir/app/Resources/views
 ```
 
 You will get a summary of the violations in the console. The exit code of the command is based on the severity
 of any violation found. By default, twigcs won't even tolerate a notice, this can be changed at run time :
 
 ```bash
-twigcs /path/to/views --severity warning # Allow notices
+twigcs lint /path/to/views --severity warning # Allow notices
 ```
 
 With the example above, notices are still displayed but not altering the exit code.
