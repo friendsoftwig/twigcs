@@ -24,5 +24,8 @@
     },
     "config": {
         "bin-dir": "bin"
-    }
+    },
+    "bin": [
+        "bin/twigcs"
+    ]
 }
