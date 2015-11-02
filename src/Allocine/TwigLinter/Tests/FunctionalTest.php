@@ -88,13 +88,21 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ 1 ? "foo" :"bar" }}', 'There should be 1 space(s) after ":".'],
             ['{{ 1 ?: "foo" }}', null],
 
-            // @TODO: Use lower cased and underscored variable names.
-            ['{% set foo = 1 %}', null],
-            ['{% set fooBar = 1 %}', 'The "fooBar" variable should be in lower case (use _ as a separator).'],
+            // Use lower cased and underscored variable names.
+            ['{% set foo = 1 %}{{ foo }}', null],
+            ['{% set fooBar = 1 %}{{ fooBar }}', 'The "fooBar" variable should be in lower case (use _ as a separator).'],
+
+            // Unused variables
+            ['{% set foo = 1 %}', 'Unused variable "foo".'],
+
+            // Unused macros
+            ['{% import "foo.html.twig" as foo %}{{ foo() }}', null],
+            ['{% import "foo.html.twig" as foo %}', 'Unused macro "foo".'],
+            ['{% import "foo.html.twig" as foo, bar %}{{ foo() ~ bar() }}', null],
+            ['{% import "foo.html.twig" as foo, bar %}{{ foo() }}', 'Unused macro "bar".'],
 
             // @TODO: Not in spec : one space separated arguments
             // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
-            // @TODO: unused variables and macros
         ];
     }
 }
