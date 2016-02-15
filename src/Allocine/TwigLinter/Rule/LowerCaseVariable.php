@@ -17,7 +17,7 @@ class LowerCaseVariable extends AbstractRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getType() === \Twig_Token::NAME_TYPE && !ctype_lower($token->getValue())) {
+            if ($token->getType() === \Twig_Token::NAME_TYPE && preg_match('/[A-Z]/', $token->getValue())) {
                 if ($tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Lexer::WHITESPACE_TYPE && $tokens->look(-2)->getValue() === 'set') {
                     $this->addViolation($tokens->getFilename(), $token->getLine(), sprintf('The "%s" variable should be in lower case (use _ as a separator).', $token->getValue()));
                 }
