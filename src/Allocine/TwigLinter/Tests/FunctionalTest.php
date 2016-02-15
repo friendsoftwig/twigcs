@@ -90,6 +90,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
             // Use lower cased and underscored variable names.
             ['{% set foo = 1 %}{{ foo }}', null],
+            ['{% set foo_bar = 1 %}{{ foo_bar }}', null],
             ['{% set fooBar = 1 %}{{ fooBar }}', 'The "fooBar" variable should be in lower case (use _ as a separator).'],
 
             // Unused variables
