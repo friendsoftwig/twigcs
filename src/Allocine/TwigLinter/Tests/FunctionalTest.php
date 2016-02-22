@@ -68,6 +68,8 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ {foo: 1} }}', null],
             ['{{ {foo:  1} }}', 'More than 1 space(s) found after ":".'],
             ['{{ [1, 2, 3] }}', null],
+            ["{{ [1,\n2] }}", null],
+            ["{{ [1\n, 2] }}", 'There should be no new line before ",".'],
             ['{{ [1, 2,3] }}', 'There should be 1 space(s) after ",".'],
             ['{{ [1, 2 , 3] }}', 'There should be no space before ",".'],
             ['{{ [1, 2,     3] }}', 'More than 1 space(s) found after ",".'],

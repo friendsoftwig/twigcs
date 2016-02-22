@@ -16,16 +16,15 @@ class Lexer extends \Twig_Lexer
         // collect whitespaces and new lines
         if (preg_match('/\s+/A', $this->code, $match, null, $this->cursor)) {
             $emptyLines = explode("\n", $match[0]);
-            $first = true;
 
             foreach ($emptyLines as $line) {
-                if (!$first) {
+                if (strlen($line) == 0) {
                     $this->pushToken(self::NEWLINE_TYPE);
+                } else {
+                    $this->pushToken(self::WHITESPACE_TYPE, $line);
                 }
-                $this->pushToken(self::WHITESPACE_TYPE, $line);
-
-                $first = false;
             }
+
         }
 
         parent::lexExpression();
