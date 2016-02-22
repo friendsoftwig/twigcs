@@ -50,7 +50,7 @@ class ArraySeparatorSpacing extends AbstractSpacingRule implements RuleInterface
 
             if ($arrayDepth > 0 && in_array($token->getValue(), [':', ','], true)) {
                 $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spaceAfter);
-                $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spaceBefore);
+                $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spaceBefore, false);
             }
 
             $tokens->next();

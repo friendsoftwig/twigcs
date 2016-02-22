@@ -28,8 +28,9 @@ class AbstractSpacingRule extends AbstractRule
      * @param \Twig_TokenStream $tokens
      * @param integer           $position
      * @param message           $target
+     * @param boolean           $acceptNewLines
      */
-    protected function assertSpacing(\Twig_TokenStream $tokens, $position, $spacing)
+    protected function assertSpacing(\Twig_TokenStream $tokens, $position, $spacing, $acceptNewLines = true)
     {
         $current = $tokens->getCurrent();
         $token = $tokens->look($position);
@@ -40,6 +41,10 @@ class AbstractSpacingRule extends AbstractRule
             return;
         }
 
+        if ($acceptNewLines && $token->getType() == Lexer::NEWLINE_TYPE) {
+            return;
+        }
+
         // special case of no spaces allowed.
         if ($spacing === 0) {
             if ($token->getType() === Lexer::WHITESPACE_TYPE) {
@@ -47,6 +52,14 @@ class AbstractSpacingRule extends AbstractRule
                     $tokens->getFilename(),
                     $token->getLine(),
                     sprintf('There should be no space %s "%s".', $positionName, $current->getValue())
+                );
+            }
+
+            if ($token->getType() === Lexer::NEWLINE_TYPE) {
+                $this->addViolation(
+                    $tokens->getFilename(),
+                    $token->getLine(),
+                    sprintf('There should be no new line %s "%s".', $positionName, $current->getValue())
                 );
             }
 
