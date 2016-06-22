@@ -15,7 +15,7 @@ class Official implements RulesetInterface
     {
         return [
             new Rule\DelimiterSpacing(Violation::SEVERITY_WARNING, 1),
-            new Rule\ParenthesisSpacing(Violation::SEVERITY_WARNING, 0),
+            new Rule\ParenthesisSpacing(Violation::SEVERITY_WARNING, 0, 1),
             new Rule\ArraySeparatorSpacing(Violation::SEVERITY_WARNING, 0, 1),
             new Rule\OperatorSpacing(Violation::SEVERITY_WARNING, [
                 '==', '!=', '<', '>', '>=', '<=',
