@@ -49,6 +49,12 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ ( 1) }}',    'There should be no space after "(".'],
             ['{{ (1 ) }}',    'There should be no space before ")".'],
 
+            // Parenthesis spacing is not appliable to control structures.
+            ['{% if (1 + 2) == 3 %}', null],
+            ['{% for i in (some_array) %}', null],
+            ['{% for i in  (some_array) %}', 'More than 1 space(s) found after "in".'],
+            ['{% if  (1 + 2) == 3 %}', 'More than 1 space(s) found before "(".'],
+
             // Do not put any spaces before and after the following operators: |, ., .., [].
             ['{{ foo|baz }}', null],
             ['{{ foo[0] }}', null],
