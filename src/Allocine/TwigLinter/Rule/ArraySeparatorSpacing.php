@@ -41,6 +41,10 @@ class ArraySeparatorSpacing extends AbstractSpacingRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if (in_array($token->getValue(), ['[', '{'])) {
+                if ($tokens->look(-1)->getType() === \Twig_Token::NAME_TYPE) {
+                    break; // This is not an array declaration, but an array access ( eg. : foo[1] )
+                }
+
                 $arrayDepth++;
             }
 
