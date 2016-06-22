@@ -38,7 +38,8 @@ class Official implements RulesetInterface
             new Rule\TernarySpacing(Violation::SEVERITY_WARNING, 1),
             new Rule\LowerCaseVariable(Violation::SEVERITY_WARNING),
             new Rule\UnusedVariable(Violation::SEVERITY_NOTICE),
-            new Rule\UnusedMacro(Violation::SEVERITY_NOTICE)
+            new Rule\UnusedMacro(Violation::SEVERITY_NOTICE),
+            new Rule\SliceShorthandSpacing(Violation::SEVERITY_NOTICE),
         ];
     }
 }
