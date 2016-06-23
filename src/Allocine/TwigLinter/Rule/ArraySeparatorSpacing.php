@@ -36,9 +36,15 @@ class ArraySeparatorSpacing extends AbstractSpacingRule implements RuleInterface
     {
         $this->violations = [];
         $arrayDepth = 0;
+        $skip = false;
 
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
+
+            if ($token->getValue() === '(') {
+                $skip = true; // Ignore function arguments or embedded expressions (eg. [ func(1, 2) ]  )
+                              // This prevents this rule from having influence on arguments spacing.
+            }
 
             if (in_array($token->getValue(), ['[', '{'])) {
                 if ($tokens->look(-1)->getType() === \Twig_Token::NAME_TYPE) {
@@ -46,13 +52,14 @@ class ArraySeparatorSpacing extends AbstractSpacingRule implements RuleInterface
                 }
 
                 $arrayDepth++;
+                $skip = false; // We entered a new array or hash, from now on do not skip anything.
             }
 
             if (in_array($token->getValue(), [']', '}'])) {
                 $arrayDepth--;
             }
 
-            if ($arrayDepth > 0 && in_array($token->getValue(), [':', ','], true)) {
+            if (!$skip && $arrayDepth > 0 && $token->getType() === \Twig_Token::PUNCTUATION_TYPE && in_array($token->getValue(), [':', ','], true)) {
                 $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spaceAfter);
                 $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spaceBefore, false);
             }

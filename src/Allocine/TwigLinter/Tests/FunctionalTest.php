@@ -75,6 +75,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ {foo:  1} }}', 'More than 1 space(s) found after ":".'],
             ['{{ [1, 2, 3] }}', null],
             ["{{ [1,\n2] }}", null],
+            ['{{ { hash: "," } }}', null],
+            ['{{ [","] }}', null],
+            ['{{ [func(1, 2)] }}', null],
             ["{{ [1\n, 2] }}", 'There should be no new line before ",".'],
             ['{{ [1, 2,3] }}', 'There should be 1 space(s) after ",".'],
             ['{{ [1, 2 , 3] }}', 'There should be no space before ",".'],
@@ -87,7 +90,6 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ sliced_array[0 :4] }}', 'There should be no space before ":".'],
             ['{{ sliced_array[0:4 ] }}', 'There should be no space before "]".'],
             ['{{ sliced_array[ 0:4] }}', 'There should be no space after "[".'],
-
 
             // Put one (and only one) space before and after the following operators: comparison operators (==, !=, <, >, >=, <=), math operators (+, -, /, *, %, //, **), logic operators (not, and, or), ~, is, in, and the ternary operator (?:).
             ['{{ 1 + 2 }}', null],
