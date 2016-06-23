@@ -35,6 +35,15 @@ twigcs lint /path/to/views --severity warning # Allow notices
 
 With the example above, notices are still displayed but not altering the exit code.
 
+### Continuous Integration
+
+Twigcs can be used with your favorite CI server. The command itself will return a consistent exit code telling
+the CI job if it failed or succeeded. You can also have a nice xml report (checkstyle format) :
+
+```bash
+twigcs lint /path/to/views --reporter checkstyle > /path/to/report.xml
+```
+
 ### Coding standard
 
 At the moment the only supported standard is the [official one from twig](http://twig.sensiolabs.org/doc/coding_standards.html).
@@ -42,8 +51,6 @@ At the moment the only supported standard is the [official one from twig](http:/
 ### Coming features
 
 - Indentation checking
-- Unused variables/macros checking
-- CI-friendly reporter (creating file-based checkstyle reports)
 - Configurable coding standards
 
 ### Contributing

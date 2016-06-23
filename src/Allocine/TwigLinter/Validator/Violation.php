@@ -9,9 +9,14 @@ class Violation
     const SEVERITY_FATAL   = 3;
 
     /**
-     * @var integer
+     * @var int
      */
     private $line;
+
+    /**
+     * @var int
+     */
+    private $column;
 
     /**
      * @var string
@@ -24,29 +29,44 @@ class Violation
     private $filename;
 
     /**
-     * @var integer
+     * @var int
      */
     private $severity;
 
     /**
+     * @var string
+     */
+    private $source;
+
+    /**
      * @param string  $filename
-     * @param integer $line
+     * @param int     $line
      * @param string  $reason
      */
-    public function __construct($filename, $line, $reason, $severity = Violation::SEVERITY_FATAL)
+    public function __construct($filename, $line, $column, $reason, $severity = Violation::SEVERITY_FATAL, $source = 'unknown')
     {
         $this->filename = $filename;
         $this->line     = $line;
+        $this->column   = $column;
         $this->reason   = $reason;
         $this->severity = $severity;
+        $this->source   = $source;
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getLine()
     {
         return $this->line;
+    }
+
+    /**
+     * @return int
+     */
+    public function getColumn()
+    {
+        return $this->column;
     }
 
     /**
@@ -66,7 +86,7 @@ class Violation
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getSeverity()
     {
@@ -79,5 +99,13 @@ class Violation
     public function getSeverityAsString()
     {
         return ['NOTICE', 'WARNING', 'FATAL'][$this->severity - 1];
+    }
+
+    /**
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
     }
 }

@@ -3,6 +3,7 @@
 namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Token;
 use Allocine\TwigLinter\Validator\Violation;
 
 class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
@@ -51,7 +52,7 @@ class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
                 }
             }
 
-            if ($token->getValue() === ')' && $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Lexer::WHITESPACE_TYPE) {
+            if ($token->getValue() === ')' && $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Token::WHITESPACE_TYPE) {
                 $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
             }
 

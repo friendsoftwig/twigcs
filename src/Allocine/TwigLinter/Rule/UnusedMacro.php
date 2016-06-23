@@ -2,7 +2,7 @@
 
 namespace Allocine\TwigLinter\Rule;
 
-use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Token;
 
 class UnusedMacro extends AbstractRule implements RuleInterface
 {
@@ -25,10 +25,10 @@ class UnusedMacro extends AbstractRule implements RuleInterface
 
                 $tokens->next();
 
-                while (in_array($tokens->getCurrent()->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::PUNCTUATION_TYPE, Lexer::WHITESPACE_TYPE])) {
+                while (in_array($tokens->getCurrent()->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::PUNCTUATION_TYPE, Token::WHITESPACE_TYPE])) {
                     $next = $tokens->getCurrent();
                     if ($next->getType() === \Twig_Token::NAME_TYPE) {
-                        $macros[$next->getValue()] = $next->getLine();
+                        $macros[$next->getValue()] = $next;
                     }
 
                     $tokens->next();
@@ -41,10 +41,11 @@ class UnusedMacro extends AbstractRule implements RuleInterface
         }
 
 
-        foreach ($macros as $name => $line) {
+        foreach ($macros as $name => $originalToken) {
             $this->addViolation(
                 $tokens->getFilename(),
-                $token->getLine(),
+                $originalToken->getLine(),
+                $originalToken->getColumn(),
                 sprintf('Unused macro "%s".', $name)
             );
         }

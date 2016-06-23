@@ -3,6 +3,7 @@
 namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Token;
 use Allocine\TwigLinter\Validator\Violation;
 
 class DelimiterSpacing extends AbstractRule implements RuleInterface
@@ -57,18 +58,20 @@ class DelimiterSpacing extends AbstractRule implements RuleInterface
     {
         $token = $tokens->look($position);
 
-        if ($token->getType() !== Lexer::WHITESPACE_TYPE || strlen($token->getValue()) < $this->spacing) {
+        if ($token->getType() !== Token::WHITESPACE_TYPE || strlen($token->getValue()) < $this->spacing) {
             $this->addViolation(
                 $tokens->getFilename(),
                 $token->getLine(),
+                $token->getColumn(),
                 sprintf('There should be %d space(s) %s.', $this->spacing, $target)
             );
         }
 
-        if ($token->getType() === Lexer::WHITESPACE_TYPE && strlen($token->getValue()) > $this->spacing) {
+        if ($token->getType() === Token::WHITESPACE_TYPE && strlen($token->getValue()) > $this->spacing) {
             $this->addViolation(
                 $tokens->getFilename(),
                 $token->getLine(),
+                $token->getColumn(),
                 sprintf('More than %d space(s) found %s.', $this->spacing, $target)
             );
         }
