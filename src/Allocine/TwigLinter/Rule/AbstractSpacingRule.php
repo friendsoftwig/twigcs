@@ -2,7 +2,7 @@
 
 namespace Allocine\TwigLinter\Rule;
 
-use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Token;
 use Allocine\TwigLinter\Validator\Violation;
 use Allocine\TwigLinter\Whistelist\WhitelistInterface;
 
@@ -41,24 +41,26 @@ class AbstractSpacingRule extends AbstractRule
             return;
         }
 
-        if ($acceptNewLines && $token->getType() == Lexer::NEWLINE_TYPE) {
+        if ($acceptNewLines && $token->getType() == Token::NEWLINE_TYPE) {
             return;
         }
 
         // special case of no spaces allowed.
         if ($spacing === 0) {
-            if ($token->getType() === Lexer::WHITESPACE_TYPE) {
+            if ($token->getType() === Token::WHITESPACE_TYPE) {
                 $this->addViolation(
                     $tokens->getFilename(),
-                    $token->getLine(),
+                    $current->getLine(),
+                    $current->getColumn(),
                     sprintf('There should be no space %s "%s".', $positionName, $current->getValue())
                 );
             }
 
-            if ($token->getType() === Lexer::NEWLINE_TYPE) {
+            if ($token->getType() === Token::NEWLINE_TYPE) {
                 $this->addViolation(
                     $tokens->getFilename(),
-                    $token->getLine(),
+                    $current->getLine(),
+                    $current->getColumn(),
                     sprintf('There should be no new line %s "%s".', $positionName, $current->getValue())
                 );
             }
@@ -66,18 +68,20 @@ class AbstractSpacingRule extends AbstractRule
             return;
         }
 
-        if ($token->getType() !== Lexer::WHITESPACE_TYPE || strlen($token->getValue()) < $spacing) {
+        if ($token->getType() !== Token::WHITESPACE_TYPE || strlen($token->getValue()) < $spacing) {
             $this->addViolation(
                 $tokens->getFilename(),
-                $token->getLine(),
+                $current->getLine(),
+                $current->getColumn(),
                 sprintf('There should be %d space(s) %s "%s".', $spacing, $positionName, $current->getValue())
             );
         }
 
-        if ($token->getType() === Lexer::WHITESPACE_TYPE && strlen($token->getValue()) > $spacing) {
+        if ($token->getType() === Token::WHITESPACE_TYPE && strlen($token->getValue()) > $spacing) {
             $this->addViolation(
                 $tokens->getFilename(),
-                $token->getLine(),
+                $current->getLine(),
+                $current->getColumn(),
                 sprintf('More than %d space(s) found %s "%s".', $spacing, $positionName, $current->getValue())
             );
         }

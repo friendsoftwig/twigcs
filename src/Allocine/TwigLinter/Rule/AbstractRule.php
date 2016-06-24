@@ -34,8 +34,8 @@ class AbstractRule
      * @param integer $line
      * @param string $reason
      */
-    public function addViolation($filename, $line, $reason)
+    public function addViolation($filename, $line, $column, $reason)
     {
-        $this->violations[] = new Violation($filename, $line, $reason, $this->severity);
+        $this->violations[] = new Violation($filename, $line, $column, $reason, $this->severity, get_called_class());
     }
 }

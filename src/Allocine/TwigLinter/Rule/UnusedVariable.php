@@ -3,6 +3,7 @@
 namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Token;
 
 class UnusedVariable extends AbstractRule implements RuleInterface
 {
@@ -19,8 +20,8 @@ class UnusedVariable extends AbstractRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if ($token->getType() === \Twig_Token::NAME_TYPE) {
-                if ($tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Lexer::WHITESPACE_TYPE && $tokens->look(-2)->getValue() === 'set') {
-                    $variables[$token->getValue()] = $token->getLine();
+                if ($tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Token::WHITESPACE_TYPE && $tokens->look(-2)->getValue() === 'set') {
+                    $variables[$token->getValue()] = $token;
                 } else {
                     unset($variables[$token->getValue()]);
                 }
@@ -29,10 +30,11 @@ class UnusedVariable extends AbstractRule implements RuleInterface
             $tokens->next();
         }
 
-        foreach ($variables as $name => $line) {
+        foreach ($variables as $name => $originalToken) {
             $this->addViolation(
                 $tokens->getFilename(),
-                $token->getLine(),
+                $originalToken->getLine(),
+                $originalToken->getColumn(),
                 sprintf('Unused variable "%s".', $name)
             );
         }

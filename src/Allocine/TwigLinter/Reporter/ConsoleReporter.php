@@ -20,8 +20,9 @@ class ConsoleReporter implements ReporterInterface
             }
 
             $output->writeln(sprintf(
-                '<comment>l.%d</comment> : %s %s',
+                '<comment>l.%d c.%d</comment> : %s %s',
                 $violation->getLine(),
+                $violation->getColumn(),
                 $violation->getSeverityAsString(),
                 $violation->getReason()
             ));

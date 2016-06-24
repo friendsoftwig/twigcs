@@ -3,6 +3,7 @@
 namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Token;
 use Allocine\TwigLinter\Validator\Violation;
 
 class LowerCaseVariable extends AbstractRule implements RuleInterface
@@ -18,8 +19,8 @@ class LowerCaseVariable extends AbstractRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if ($token->getType() === \Twig_Token::NAME_TYPE && preg_match('/[A-Z]/', $token->getValue())) {
-                if ($tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Lexer::WHITESPACE_TYPE && $tokens->look(-2)->getValue() === 'set') {
-                    $this->addViolation($tokens->getFilename(), $token->getLine(), sprintf('The "%s" variable should be in lower case (use _ as a separator).', $token->getValue()));
+                if ($tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Token::WHITESPACE_TYPE && $tokens->look(-2)->getValue() === 'set') {
+                    $this->addViolation($tokens->getFilename(), $token->getLine(), $token->getColumn(), sprintf('The "%s" variable should be in lower case (use _ as a separator).', $token->getValue()));
                 }
             }
 

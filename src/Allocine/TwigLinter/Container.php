@@ -3,6 +3,7 @@
 namespace Allocine\TwigLinter;
 
 use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Reporter\CheckstyleReporter;
 use Allocine\TwigLinter\Reporter\ConsoleReporter;
 use Allocine\TwigLinter\Validator\Validator;
 use Pimple\Container as BaseContainer;
@@ -13,6 +14,10 @@ class Container extends BaseContainer
     {
         $this['reporter.console'] = function () {
             return new ConsoleReporter();
+        };
+
+        $this['reporter.checkstyle'] = function () {
+            return new CheckstyleReporter();
         };
 
         $this['twig'] = function ($container) {
