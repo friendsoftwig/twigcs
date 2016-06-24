@@ -57,3 +57,5 @@ At the moment the only supported standard is the [official one from twig](http:/
 
 The master is the development branch, if you find any bug or false positive during style checking, please
 open an issue or submit a pull request.
+
+When creating or changing a class, don't forget to add you as an `@author` at the top of the file.

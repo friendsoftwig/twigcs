@@ -6,6 +6,17 @@ use Allocine\TwigLinter\Lexer;
 use Allocine\TwigLinter\Token;
 use Allocine\TwigLinter\Validator\Violation;
 
+/**
+ * This rule enforces spacing around parenthesis. The expected spacing
+ * can be tweaked in case of control structure.
+ *
+ * By default, the following are considered valids :
+ * - {{ (1 + 2) }}
+ * - {{ func(1) }}
+ * - {% if (1 > 2) %}
+ *
+ * @author Tristan Maindron <tmaindron@gmail.com>
+ */
 class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
 {
     /**
@@ -40,7 +51,7 @@ class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getValue() === '(') {
+            if ($token->getValue() === '(' && $token->getType() === \Twig_Token::PUNCTUATION_TYPE) {
                 $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spacing);
 
                 // Space allowed if previous token is not a function name.
@@ -52,7 +63,7 @@ class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
                 }
             }
 
-            if ($token->getValue() === ')' && $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Token::WHITESPACE_TYPE) {
+            if ($token->getValue() === ')' && $token->getType() === \Twig_Token::PUNCTUATION_TYPE && $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Token::WHITESPACE_TYPE) {
                 $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
             }
 

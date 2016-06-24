@@ -6,6 +6,11 @@ use Allocine\TwigLinter\Rule;
 use Allocine\TwigLinter\Validator\Violation;
 use Allocine\TwigLinter\Whistelist\TokenWhitelist;
 
+/**
+ * The official twigcs ruleset, based on http://twig.sensiolabs.org/doc/coding_standards.html
+ *
+ * @author Tristan Maindron <tmaindron@gmail.com>
+ */
 class Official implements RulesetInterface
 {
     /**
@@ -17,6 +22,7 @@ class Official implements RulesetInterface
             new Rule\DelimiterSpacing(Violation::SEVERITY_WARNING, 1),
             new Rule\ParenthesisSpacing(Violation::SEVERITY_WARNING, 0, 1),
             new Rule\ArraySeparatorSpacing(Violation::SEVERITY_WARNING, 0, 1),
+            new Rule\HashSeparatorSpacing(Violation::SEVERITY_WARNING, 0, 1),
             new Rule\OperatorSpacing(Violation::SEVERITY_WARNING, [
                 '==', '!=', '<', '>', '>=', '<=',
                 '+', '-', '/', '*', '%', '//', '**',
