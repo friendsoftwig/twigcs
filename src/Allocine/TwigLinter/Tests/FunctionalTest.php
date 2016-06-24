@@ -6,6 +6,11 @@ use Allocine\TwigLinter\Lexer;
 use Allocine\TwigLinter\Ruleset\Official;
 use Allocine\TwigLinter\Validator\Validator;
 
+/**
+ * Twigcs' main functional tests
+ *
+ * @author Tristan Maindron <tmaindron@gmail.com>
+ */
 class FunctionalTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -17,7 +22,6 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $twig->setLexer(new Lexer($twig));
 
         $validator = new Validator();
-
 
         $violations = $validator->validate(new Official(), $twig->tokenize($expression));
 
@@ -105,6 +109,11 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ 1 ? "foo": "bar" }}', 'There should be 1 space(s) before ":".'],
             ['{{ 1 ? "foo" :"bar" }}', 'There should be 1 space(s) after ":".'],
             ['{{ 1 ?: "foo" }}', null],
+            ['{{ test ? { foo: bar } : 1 }}', null],
+            ['{{ test ? 1 }}', null],
+            ['{{ {foo: test ? path({bar: baz}) : null} }}', null],
+            ['{{ [test ? path({bar: baz}) : null] }}', null],
+            ['{{ { prop1: foo ? "bar", prop2: true } }}', null],
 
             // Use lower cased and underscored variable names.
             ['{% set foo = 1 %}{{ foo }}', null],
@@ -119,6 +128,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{% import "foo.html.twig" as foo %}', 'Unused macro "foo".'],
             ['{% import "foo.html.twig" as foo, bar %}{{ foo() ~ bar() }}', null],
             ['{% import "foo.html.twig" as foo, bar %}{{ foo() }}', 'Unused macro "bar".'],
+
+            // Complex encountered cases
+            ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
 
             // @TODO: Not in spec : one space separated arguments
             // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
