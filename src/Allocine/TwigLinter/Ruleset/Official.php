@@ -19,11 +19,11 @@ class Official implements RulesetInterface
     public function getRules()
     {
         return [
-            new Rule\DelimiterSpacing(Violation::SEVERITY_WARNING, 1),
-            new Rule\ParenthesisSpacing(Violation::SEVERITY_WARNING, 0, 1),
-            new Rule\ArraySeparatorSpacing(Violation::SEVERITY_WARNING, 0, 1),
-            new Rule\HashSeparatorSpacing(Violation::SEVERITY_WARNING, 0, 1),
-            new Rule\OperatorSpacing(Violation::SEVERITY_WARNING, [
+            new Rule\DelimiterSpacing(Violation::SEVERITY_ERROR, 1),
+            new Rule\ParenthesisSpacing(Violation::SEVERITY_ERROR, 0, 1),
+            new Rule\ArraySeparatorSpacing(Violation::SEVERITY_ERROR, 0, 1),
+            new Rule\HashSeparatorSpacing(Violation::SEVERITY_ERROR, 0, 1),
+            new Rule\OperatorSpacing(Violation::SEVERITY_ERROR, [
                 '==', '!=', '<', '>', '>=', '<=',
                 '+', '-', '/', '*', '%', '//', '**',
                 'not', 'and', 'or',
@@ -31,7 +31,7 @@ class Official implements RulesetInterface
                 'is', 'in'
             ], 1),
             new Rule\PunctuationSpacing(
-                Violation::SEVERITY_WARNING,
+                Violation::SEVERITY_ERROR,
                 ['|', '.', '..', '[', ']'],
                 0,
                 new TokenWhitelist([
@@ -41,11 +41,11 @@ class Official implements RulesetInterface
                     \Twig_Token::STRING_TYPE
                 ], [2])
             ),
-            new Rule\TernarySpacing(Violation::SEVERITY_WARNING, 1),
-            new Rule\LowerCaseVariable(Violation::SEVERITY_WARNING),
-            new Rule\UnusedVariable(Violation::SEVERITY_NOTICE),
-            new Rule\UnusedMacro(Violation::SEVERITY_NOTICE),
-            new Rule\SliceShorthandSpacing(Violation::SEVERITY_NOTICE),
+            new Rule\TernarySpacing(Violation::SEVERITY_ERROR, 1),
+            new Rule\LowerCaseVariable(Violation::SEVERITY_ERROR),
+            new Rule\UnusedVariable(Violation::SEVERITY_WARNING),
+            new Rule\UnusedMacro(Violation::SEVERITY_WARNING),
+            new Rule\SliceShorthandSpacing(Violation::SEVERITY_ERROR),
         ];
     }
 }

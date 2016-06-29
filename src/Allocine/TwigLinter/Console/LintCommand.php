@@ -16,7 +16,7 @@ class LintCommand extends ContainerAwareCommand
         $this
             ->setName('lint')
             ->addArgument('path')
-            ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'notice')
+            ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
         ;
     }
@@ -52,12 +52,14 @@ class LintCommand extends ContainerAwareCommand
     private function getSeverityLimit(InputInterface $input)
     {
         switch ($input->getOption('severity')) {
-            case 'notice':
-                return Violation::SEVERITY_NOTICE - 1;
+            case 'ignore':
+                return Violation::SEVERITY_IGNORE - 1;
+            case 'info':
+                return Violation::SEVERITY_INFO - 1;
             case 'warning':
                 return Violation::SEVERITY_WARNING - 1;
-            case 'fatal':
-                return Violation::SEVERITY_FATAL - 1;
+            case 'error':
+                return Violation::SEVERITY_ERROR - 1;
             default:
                 throw new \InvalidArgumentException('Invalid severity limit provided.');
         }

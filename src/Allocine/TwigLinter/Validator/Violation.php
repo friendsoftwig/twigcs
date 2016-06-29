@@ -4,9 +4,10 @@ namespace Allocine\TwigLinter\Validator;
 
 class Violation
 {
-    const SEVERITY_NOTICE  = 1;
+    const SEVERITY_IGNORE  = 0;
+    const SEVERITY_INFO    = 1;
     const SEVERITY_WARNING = 2;
-    const SEVERITY_FATAL   = 3;
+    const SEVERITY_ERROR   = 3;
 
     /**
      * @var int
@@ -43,7 +44,7 @@ class Violation
      * @param int     $line
      * @param string  $reason
      */
-    public function __construct($filename, $line, $column, $reason, $severity = Violation::SEVERITY_FATAL, $source = 'unknown')
+    public function __construct($filename, $line, $column, $reason, $severity = Violation::SEVERITY_ERROR, $source = 'unknown')
     {
         $this->filename = $filename;
         $this->line     = $line;
@@ -98,7 +99,7 @@ class Violation
      */
     public function getSeverityAsString()
     {
-        return ['NOTICE', 'WARNING', 'FATAL'][$this->severity - 1];
+        return ['IGNORE', 'INFO', 'WARNING', 'ERROR'][$this->severity];
     }
 
     /**
