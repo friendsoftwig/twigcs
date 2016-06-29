@@ -20,7 +20,7 @@ class CheckstyleReporter implements ReporterInterface
             if ($filename != $violation->getFilename()) {
                 $filename = $violation->getFilename();
                 $filenode = $checkstyle->addChild('file');
-                $filenode->addAttribute('path', $filename);
+                $filenode->addAttribute('name', $filename);
             }
 
             $error = $filenode->addChild('error');
