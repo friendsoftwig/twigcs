@@ -132,6 +132,11 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
 
+            // Spaces
+            ["{{ foo }}    \n", "A line should not end with blank space(s)."],
+            ["{{ foo }}\t\n", "A line should not end with blank space(s)."],
+            ["{{ foo }}\r\n\r\n", null],
+
             // @TODO: Not in spec : one space separated arguments
             // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
         ];

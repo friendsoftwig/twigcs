@@ -2,6 +2,12 @@
 
 namespace Allocine\TwigLinter;
 
+/**
+ * An override of Twig's Lexer to add whitespace and new line detection.
+ * It also populates a column number property on tokens.
+ *
+ * @author Tristan Maindron <tmaindron@gmail.com>
+ */
 class Lexer extends \Twig_Lexer
 {
     const PREVIOUS_TOKEN = -1;
@@ -25,7 +31,6 @@ class Lexer extends \Twig_Lexer
                     $this->pushToken(Token::WHITESPACE_TYPE, $line);
                 }
             }
-
         }
 
         parent::lexExpression();
