@@ -3,6 +3,7 @@
 namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Lexer;
+use Allocine\TwigLinter\Token;
 use Allocine\TwigLinter\Whistelist\WhitelistInterface;
 
 class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
@@ -42,7 +43,11 @@ class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if ($token->getType() === \Twig_Token::OPERATOR_TYPE && in_array($token->getValue(), $this->operators)) {
-                $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
+                // allows unary operators to be next to an opening parenthesis.
+                if (!($this->isUnary($token->getValue()) && $tokens->look(-1)->getValue() == '(')) {
+                    $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
+                }
+
                 $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spacing);
             }
 
@@ -50,5 +55,15 @@ class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
         }
 
         return $this->violations;
+    }
+
+    /**
+     * @param int $operator
+     *
+     * @return bool
+     */
+    private function isUnary($operator)
+    {
+        return in_array($operator, ['-', 'not']);
     }
 }
