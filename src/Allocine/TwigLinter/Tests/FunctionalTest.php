@@ -56,6 +56,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             // Parenthesis spacing is not appliable to control structures.
             ['{% if (1 + 2) == 3 %}', null],
             ['{% for i in (some_array) %}', null],
+            ['{% if (foo and (not bar or baz)) %}', null],
             ['{% for i in  (some_array) %}', 'More than 1 space(s) found after "in".'],
             ['{% if  (1 + 2) == 3 %}', 'More than 1 space(s) found before "(".'],
 
