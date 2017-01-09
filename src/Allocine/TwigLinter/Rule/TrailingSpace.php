@@ -23,13 +23,13 @@ class TrailingSpace extends AbstractRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if ($token->getType() === Token::NEWLINE_TYPE && $tokens->look(-1)->getType() === Token::WHITESPACE_TYPE ||
-                $token->getType() === Token::TEXT_TYPE
+                $token->getType() === \Twig_Token::TEXT_TYPE
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
                     $this->addViolation(
-                        $tokens->getFilename(),
+                        $tokens->getSourceContext()->getPath(),
                         $token->getLine(),
-                        $token->getColumn(),
+                        $token->columnno,
                         'A line should not end with blank space(s).'
                     );
                 }

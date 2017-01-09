@@ -29,7 +29,6 @@ class CheckstyleReporter implements ReporterInterface
             $error->addAttribute('severity', strtolower($violation->getSeverityAsString()));
             $error->addAttribute('message', $violation->getReason());
             $error->addAttribute('source', $violation->getSource());
-
         }
 
         $output->writeln($checkstyle->asXML());

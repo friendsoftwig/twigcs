@@ -60,18 +60,18 @@ class DelimiterSpacing extends AbstractRule implements RuleInterface
 
         if ($token->getType() !== Token::WHITESPACE_TYPE || strlen($token->getValue()) < $this->spacing) {
             $this->addViolation(
-                $tokens->getFilename(),
+                $tokens->getSourceContext()->getPath(),
                 $token->getLine(),
-                $token->getColumn(),
+                $token->columnno,
                 sprintf('There should be %d space(s) %s.', $this->spacing, $target)
             );
         }
 
         if ($token->getType() === Token::WHITESPACE_TYPE && strlen($token->getValue()) > $this->spacing) {
             $this->addViolation(
-                $tokens->getFilename(),
+                $tokens->getSourceContext()->getPath(),
                 $token->getLine(),
-                $token->getColumn(),
+                $token->columnno,
                 sprintf('More than %d space(s) found %s.', $this->spacing, $target)
             );
         }

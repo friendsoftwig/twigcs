@@ -32,9 +32,9 @@ class UnusedVariable extends AbstractRule implements RuleInterface
 
         foreach ($variables as $name => $originalToken) {
             $this->addViolation(
-                $tokens->getFilename(),
+                $tokens->getSourceContext()->getPath(),
                 $originalToken->getLine(),
-                $originalToken->getColumn(),
+                $originalToken->columnno,
                 sprintf('Unused variable "%s".', $name)
             );
         }
