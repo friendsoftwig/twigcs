@@ -2,36 +2,10 @@
 
 namespace Allocine\TwigLinter;
 
-class Token extends \Twig_Token
+class Token
 {
     const WHITESPACE_TYPE = 12;
     const NEWLINE_TYPE    = 13;
-
-    /**
-     * @var int
-     */
-    private $columnno;
-
-    /**
-     * @param int    $type
-     * @param string $value
-     * @param int    $lineno
-     * @param int    $columnno
-     */
-    public function __construct($type, $value, $lineno, $columnno)
-    {
-        parent::__construct($type, $value, $lineno);
-
-        $this->columnno = $columnno;
-    }
-
-    /**
-     * @return int
-     */
-    public function getColumn()
-    {
-        return $this->columnno;
-    }
 
     /**
      * @param string  $type

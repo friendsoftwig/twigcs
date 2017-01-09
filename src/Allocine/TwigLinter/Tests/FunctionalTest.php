@@ -18,12 +18,12 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
      */
     public function testExpressions($expression, $expectedViolation)
     {
-        $twig = new \Twig_Environment();
+        $twig = new \Twig_Environment(new \Twig_Loader_Array());
         $twig->setLexer(new Lexer($twig));
 
         $validator = new Validator();
 
-        $violations = $validator->validate(new Official(), $twig->tokenize($expression));
+        $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')));
 
         if ($expectedViolation) {
             $this->assertSame(1, count($violations));

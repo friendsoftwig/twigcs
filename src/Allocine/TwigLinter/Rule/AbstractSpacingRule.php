@@ -49,18 +49,18 @@ class AbstractSpacingRule extends AbstractRule
         if ($spacing === 0) {
             if ($token->getType() === Token::WHITESPACE_TYPE) {
                 $this->addViolation(
-                    $tokens->getFilename(),
+                    $tokens->getSourceContext()->getPath(),
                     $current->getLine(),
-                    $current->getColumn(),
+                    $current->columnno,
                     sprintf('There should be no space %s "%s".', $positionName, $current->getValue())
                 );
             }
 
             if ($token->getType() === Token::NEWLINE_TYPE) {
                 $this->addViolation(
-                    $tokens->getFilename(),
+                    $tokens->getSourceContext()->getPath(),
                     $current->getLine(),
-                    $current->getColumn(),
+                    $current->columnno,
                     sprintf('There should be no new line %s "%s".', $positionName, $current->getValue())
                 );
             }
@@ -70,18 +70,18 @@ class AbstractSpacingRule extends AbstractRule
 
         if ($token->getType() !== Token::WHITESPACE_TYPE || strlen($token->getValue()) < $spacing) {
             $this->addViolation(
-                $tokens->getFilename(),
+                $tokens->getSourceContext()->getPath(),
                 $current->getLine(),
-                $current->getColumn(),
+                $current->columnno,
                 sprintf('There should be %d space(s) %s "%s".', $spacing, $positionName, $current->getValue())
             );
         }
 
         if ($token->getType() === Token::WHITESPACE_TYPE && strlen($token->getValue()) > $spacing) {
             $this->addViolation(
-                $tokens->getFilename(),
+                $tokens->getSourceContext()->getPath(),
                 $current->getLine(),
-                $current->getColumn(),
+                $current->columnno,
                 sprintf('More than %d space(s) found %s "%s".', $spacing, $positionName, $current->getValue())
             );
         }

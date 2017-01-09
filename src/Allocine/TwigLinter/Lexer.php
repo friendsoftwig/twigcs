@@ -2,13 +2,15 @@
 
 namespace Allocine\TwigLinter;
 
+use Allocine\TwigLinter\Compatibility\TwigLexer;
+
 /**
  * An override of Twig's Lexer to add whitespace and new line detection.
  * It also populates a column number property on tokens.
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class Lexer extends \Twig_Lexer
+class Lexer extends TwigLexer
 {
     const PREVIOUS_TOKEN = -1;
     const NEXT_TOKEN     = 1;
@@ -75,7 +77,7 @@ class Lexer extends \Twig_Lexer
     protected function pushToken($type, $value = '')
     {
         // do not push empty text tokens
-        if (Token::TEXT_TYPE === $type && '' === $value) {
+        if (\Twig_Token::TEXT_TYPE === $type && '' === $value) {
             return;
         }
 
@@ -84,7 +86,13 @@ class Lexer extends \Twig_Lexer
             $this->columnno++;
         }
 
-        $this->tokens[] = new Token($type, $value, $this->lineno, $this->columnno);
+        $token = new \Twig_Token($type, $value, $this->lineno);
+
+        // Twig tokens cannot be extended anymore since 2.0, so a dynamic attribute
+        // is the only way to store the column number.
+        $token->columnno = $this->columnno;
+
+        $this->tokens[] = $token;
     }
 
     /**

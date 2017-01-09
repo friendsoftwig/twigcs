@@ -43,9 +43,9 @@ class UnusedMacro extends AbstractRule implements RuleInterface
 
         foreach ($macros as $name => $originalToken) {
             $this->addViolation(
-                $tokens->getFilename(),
+                $tokens->getSourceContext()->getPath(),
                 $originalToken->getLine(),
-                $originalToken->getColumn(),
+                $originalToken->columnno,
                 sprintf('Unused macro "%s".', $name)
             );
         }
