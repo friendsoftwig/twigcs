@@ -32,10 +32,11 @@ class LintCommand extends ContainerAwareCommand
         $violations = [];
 
         foreach ($files as $file) {
-            $violations = array_merge($violations, $container['validator']->validate(new Official(), $container['twig']->tokenize(
+            $violations = array_merge($violations, $container['validator']->validate(new Official(), $container['twig']->tokenize(new \Twig_Source(
                 file_get_contents($file->getRealPath()),
+                $file->getRealPath(),
                 str_replace(realpath($input->getArgument('path')), $input->getArgument('path'), $file->getRealPath())
-            )));
+            ))));
         }
 
         $container[sprintf('reporter.%s', $input->getOption('reporter'))]->report($output, $violations);
