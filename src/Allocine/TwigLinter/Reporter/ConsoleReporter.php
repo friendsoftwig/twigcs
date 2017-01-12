@@ -22,14 +22,14 @@ class ConsoleReporter implements ReporterInterface
             $output->writeln(sprintf(
                 '<comment>l.%d c.%d</comment> : %s %s',
                 $violation->getLine(),
-                $violation->columnno,
+                $violation->getColumn(),
                 $violation->getSeverityAsString(),
                 $violation->getReason()
             ));
         }
 
         if ($count = count($violations)) {
-            $output->writeln(sprintf('<error>%d violations found</error>', $count));
+            $output->writeln(sprintf('<error>%d violation(s) found</error>', $count));
         } else {
             $output->writeln('<info>No violation found.</info>');
         }
