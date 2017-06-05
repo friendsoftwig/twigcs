@@ -4,7 +4,7 @@ namespace Allocine\TwigLinter\Ruleset;
 
 use Allocine\TwigLinter\Rule;
 use Allocine\TwigLinter\Validator\Violation;
-use Allocine\TwigLinter\Whistelist\TokenWhitelist;
+use Allocine\TwigLinter\Whitelist\TokenWhitelist;
 
 /**
  * The official twigcs ruleset, based on http://twig.sensiolabs.org/doc/coding_standards.html

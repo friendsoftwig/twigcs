@@ -4,7 +4,7 @@ namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Token;
 use Allocine\TwigLinter\Validator\Violation;
-use Allocine\TwigLinter\Whistelist\WhitelistInterface;
+use Allocine\TwigLinter\Whitelist\WhitelistInterface;
 
 class AbstractSpacingRule extends AbstractRule
 {
