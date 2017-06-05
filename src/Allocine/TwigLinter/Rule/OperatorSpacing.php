@@ -48,13 +48,36 @@ class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
                     $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
                 }
 
-                $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spacing);
+                // Don't mark values like "-1" as a violation.
+                if (!$this->canBeCloseOnRight($token, $tokens)) {
+                    $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spacing);
+                }
             }
 
             $tokens->next();
         }
 
         return $this->violations;
+    }
+
+    /**
+     * Allows the "-" unary operator to be close to its value on particular expressions
+     * like: "{{ -1 }}" or "{{ var == -1 }}"
+     *
+     * @param \Twig_Token       $token
+     * @param \Twig_TokenStream $tokens
+     *
+     * @return bool
+     */
+    private function canBeCloseOnRight(\Twig_Token $token, \Twig_TokenStream $tokens)
+    {
+        $forbiddenTokens = [\Twig_Token::NAME_TYPE, \Twig_Token::NUMBER_TYPE, \Twig_Token::STRING_TYPE ];
+
+        return
+            ($token->getValue() === '-') &&
+            !in_array($tokens->look(-1)->getType(), $forbiddenTokens) &&
+            !in_array($tokens->look(-2)->getType(), $forbiddenTokens)
+        ;
     }
 
     /**

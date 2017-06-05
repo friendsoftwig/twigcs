@@ -100,6 +100,8 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ 1 + 2 }}', null],
             ['{{ 1+ 2 }}', 'There should be 1 space(s) before "+".'],
             ['{{ 1 +2 }}', 'There should be 1 space(s) after "+".'],
+            ['{{ 1- 2 }}', 'There should be 1 space(s) before "-".'],
+            ['{{ 1 -2 }}', 'There should be 1 space(s) after "-".'],
             ['{{ 1  + 2 }}', 'More than 1 space(s) found before "+".'],
             ['{{ 1 +  2 }}', 'More than 1 space(s) found after "+".'],
             ['{{ 1 ? "foo" : "bar" }}', null],
@@ -115,6 +117,10 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ['{{ {foo: test ? path({bar: baz}) : null} }}', null],
             ['{{ [test ? path({bar: baz}) : null] }}', null],
             ['{{ { prop1: foo ? "bar", prop2: true } }}', null],
+            ['{% foo == -1 %}', null],
+            ['{{ -1 }}', null],
+            ['{{ -10 }}', null],
+            ['{{ (-10) }}', null],
 
             // Use lower cased and underscored variable names.
             ['{% set foo = 1 %}{{ foo }}', null],
