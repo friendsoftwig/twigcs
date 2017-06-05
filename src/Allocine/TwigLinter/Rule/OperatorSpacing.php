@@ -4,7 +4,7 @@ namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Lexer;
 use Allocine\TwigLinter\Token;
-use Allocine\TwigLinter\Whistelist\WhitelistInterface;
+use Allocine\TwigLinter\Whitelist\WhitelistInterface;
 
 class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
 {

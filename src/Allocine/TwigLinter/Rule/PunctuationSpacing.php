@@ -3,7 +3,7 @@
 namespace Allocine\TwigLinter\Rule;
 
 use Allocine\TwigLinter\Lexer;
-use Allocine\TwigLinter\Whistelist\WhitelistInterface;
+use Allocine\TwigLinter\Whitelist\WhitelistInterface;
 
 class PunctuationSpacing extends AbstractSpacingRule implements RuleInterface
 {

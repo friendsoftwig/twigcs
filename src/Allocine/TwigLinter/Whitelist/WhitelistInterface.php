@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\TwigLinter\Whistelist;
+namespace Allocine\TwigLinter\Whitelist;
 
 interface WhitelistInterface
 {
