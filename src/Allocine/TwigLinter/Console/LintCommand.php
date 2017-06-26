@@ -26,8 +26,14 @@ class LintCommand extends ContainerAwareCommand
         $container = $this->getContainer();
         $limit = $this->getSeverityLimit($input);
 
-        $finder = new Finder();
-        $files = $finder->in($input->getArgument('path'))->name('*.twig');
+        $path = $input->getArgument('path');
+
+        if (is_file($path)) {
+            $files = [new \SplFileInfo($input->getArgument('path'))];
+        } else {
+            $finder = new Finder();
+            $files = $finder->in($path)->name('*.twig');
+        }
 
         $violations = [];
 
@@ -35,7 +41,7 @@ class LintCommand extends ContainerAwareCommand
             $violations = array_merge($violations, $container['validator']->validate(new Official(), $container['twig']->tokenize(new \Twig_Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
-                str_replace(realpath($input->getArgument('path')), $input->getArgument('path'), $file->getRealPath())
+                str_replace(realpath($path), $path, $file->getRealPath())
             ))));
         }
 
