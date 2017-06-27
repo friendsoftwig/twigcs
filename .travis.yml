@@ -1,0 +1,8 @@
+language: php
+php:
+  - 7.0
+  - 7.1
+before_install:
+    - composer self-update
+install:
+    - composer --prefer-source -n install
