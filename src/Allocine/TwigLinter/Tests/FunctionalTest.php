@@ -144,6 +144,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ["{{ foo }}\t\n", "A line should not end with blank space(s)."],
             ["{{ foo }}\r\n\r\n", null],
 
+            // Check regression of https://github.com/allocine/twigcs/issues/23
+            ['{% from _self import folder_breadcrumb %}', 'Unused macro "folder_breadcrumb".'],
+
             // @TODO: Not in spec : one space separated arguments
             // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
         ];

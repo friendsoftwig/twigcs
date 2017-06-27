@@ -19,18 +19,24 @@ class UnusedMacro extends AbstractRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if ($token->getType() === \Twig_Token::NAME_TYPE && $token->getValue() === 'import') {
-                while ($tokens->getCurrent()->getValue() !== 'as') {
+                if ($tokens->look(4)->getValue() == 'as') {
+                    $forward = 6; // Extracts token position from block of form {% import foo as bar %}
+                } else {
+                    $forward = 2; // Extracts token position from block of form {% import foo %}
+                }
+
+                $macroToken = $tokens->look($forward);
+
+                for ($i=0; $i<$forward; $i++) {
                     $tokens->next();
                 }
 
-                $tokens->next();
-
+                // Handles single or multiple imports ( {% import foo as bar, baz %} )
                 while (in_array($tokens->getCurrent()->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::PUNCTUATION_TYPE, Token::WHITESPACE_TYPE])) {
                     $next = $tokens->getCurrent();
                     if ($next->getType() === \Twig_Token::NAME_TYPE) {
                         $macros[$next->getValue()] = $next;
                     }
-
                     $tokens->next();
                 }
             } elseif ($token->getType() === \Twig_Token::NAME_TYPE && array_key_exists($token->getValue(), $macros)) {
