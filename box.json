@@ -1,0 +1,6 @@
+{
+    "directories": ["src", "vendor"],
+    "main": "bin/twigcs",
+    "output": "build/twigcs.phar",
+    "stub": true
+}
