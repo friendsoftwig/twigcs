@@ -139,6 +139,9 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
 
+            // Wrapped call for better readability
+            ["\t<meta property=\"og:url\" content=\"{{ url(\n\t\tapp.request.attributes.get('_route'),\n\t\tapp.request.attributes.get('_route_params')\n\t) }}\">", null],
+
             // Spaces
             ["{{ foo }}    \n", "A line should not end with blank space(s)."],
             ["{{ foo }}\t\n", "A line should not end with blank space(s)."],
