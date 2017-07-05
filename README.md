@@ -46,7 +46,17 @@ twigcs lint /path/to/views --reporter checkstyle > /path/to/report.xml
 
 ### Coding standard
 
-At the moment the only supported standard is the [official one from twig](http://twig.sensiolabs.org/doc/coding_standards.html).
+At the moment the only available standard is the [official one from twig](http://twig.sensiolabs.org/doc/coding_standards.html). 
+
+#### Custom coding standard
+
+You can create a class implementing `RulesetInterface` and supply it as a `--ruleset` option to the CLI script: 
+
+```bash
+twigcs lint /path/to/views --ruleset \MyApp\TwigCsRuleset
+```
+
+*Note:* `twigcs` needs to be used via composer and the ruleset class must be reachable via composer's autoloader for this feature to work.
 
 ### Coming features
 
