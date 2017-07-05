@@ -26,10 +26,10 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')));
 
         if ($expectedViolation) {
-            $this->assertSame(1, count($violations));
+            $this->assertCount(1, $violations, sprintf("There should be exactly one violation in:\n %s", $expression));
             $this->assertSame($expectedViolation, $violations[0]->getReason());
         } else {
-            $this->assertSame(0, count($violations));
+            $this->assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
         }
     }
 
