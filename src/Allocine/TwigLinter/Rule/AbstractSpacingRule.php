@@ -30,7 +30,7 @@ class AbstractSpacingRule extends AbstractRule
      * @param message           $target
      * @param boolean           $acceptNewLines
      */
-    protected function assertSpacing(\Twig_TokenStream $tokens, $position, $spacing, $acceptNewLines = true)
+    protected function assertSpacing(\Twig_TokenStream $tokens, $position, $spacing, $acceptNewLines = true, $allowIndentation = false)
     {
         $current = $tokens->getCurrent();
         $token = $tokens->look($position);
@@ -48,6 +48,10 @@ class AbstractSpacingRule extends AbstractRule
         // special case of no spaces allowed.
         if ($spacing === 0) {
             if ($token->getType() === Token::WHITESPACE_TYPE) {
+                if ($allowIndentation && $this->isPreviousWhitespaceTokenOnlyIndentation($tokens)) {
+                    return;
+                }
+
                 $this->addViolation(
                     $tokens->getSourceContext()->getPath(),
                     $current->getLine(),
@@ -85,5 +89,22 @@ class AbstractSpacingRule extends AbstractRule
                 sprintf('More than %d space(s) found %s "%s".', $spacing, $positionName, $current->getValue())
             );
         }
+    }
+
+    private function isPreviousWhitespaceTokenOnlyIndentation($tokens)
+    {
+        $lookBehind = 0;
+
+        // look behind until you find anything non-whitespace-ish
+        do {
+            $whitespaceToken = $tokens->look(--$lookBehind);
+        } while ($whitespaceToken->getType() === Token::WHITESPACE_TYPE);
+
+        $firstNonWhitespaceTokenBehind = $tokens->look($lookBehind);
+        if ($firstNonWhitespaceTokenBehind->getType() === Token::NEWLINE_TYPE) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -64,7 +64,7 @@ class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
             }
 
             if ($token->getValue() === ')' && $token->getType() === \Twig_Token::PUNCTUATION_TYPE && $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() === Token::WHITESPACE_TYPE) {
-                $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
+                $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing, true, true);
             }
 
             $tokens->next();
