@@ -19,8 +19,9 @@
         "phpunit/phpunit": "~4.7"
     },
     "autoload": {
-        "psr-0": {
-            "": "src/"
+        "psr-4": {
+            "Allocine\\Twigcs\\": "src/",
+            "Allocine\\Twigcs\\Tests\\": "tests/"
         }
     },
     "config": {
