@@ -2,6 +2,7 @@
 
 namespace Allocine\TwigLinter\Console;
 
+use Allocine\TwigLinter\Rule\RuleInterface;
 use Allocine\TwigLinter\Ruleset\Official;
 use Allocine\TwigLinter\Validator\Violation;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,6 +19,7 @@ class LintCommand extends ContainerAwareCommand
             ->addArgument('path')
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
+            ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
         ;
     }
 
@@ -37,8 +39,14 @@ class LintCommand extends ContainerAwareCommand
 
         $violations = [];
 
+        $ruleset = $input->getOption('ruleset');
+
+        if (!is_subclass_of($ruleset, RulesetInterface::class)) {
+            throw new \InvalidArgumentException('Ruleset class must implement ' . RuleInterface::class);
+        }
+
         foreach ($files as $file) {
-            $violations = array_merge($violations, $container['validator']->validate(new Official(), $container['twig']->tokenize(new \Twig_Source(
+            $violations = array_merge($violations, $container['validator']->validate(new $ruleset(), $container['twig']->tokenize(new \Twig_Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
                 str_replace(realpath($path), $path, $file->getRealPath())
