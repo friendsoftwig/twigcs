@@ -5,7 +5,7 @@ namespace Allocine\Twigcs\Rule;
 use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Token;
 
-class UnusedVariable extends AbstractRule implements RuleInterface
+class UnusedVariable extends AbstractRule
 {
     /**
      * {@inheritdoc}
@@ -38,7 +38,5 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                 sprintf('Unused variable "%s".', $name)
             );
         }
-
-        return $this->violations;
     }
 }

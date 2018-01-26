@@ -4,9 +4,8 @@ namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Token;
-use Allocine\Twigcs\Validator\Violation;
 
-class LowerCaseVariable extends AbstractRule implements RuleInterface
+class LowerCaseVariable extends AbstractRule
 {
     /**
      * {@inheritdoc}
@@ -26,7 +25,5 @@ class LowerCaseVariable extends AbstractRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }

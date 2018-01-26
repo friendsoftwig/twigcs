@@ -11,7 +11,7 @@ use Allocine\Twigcs\Validator\Violation;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-abstract class AbstractRule
+abstract class AbstractRule implements RuleInterface
 {
     /**
      * @var integer
@@ -19,7 +19,7 @@ abstract class AbstractRule
     protected $severity;
 
     /**
-     * @var Violations[]
+     * @var Violation[]
      */
     protected $violations;
 
@@ -48,9 +48,23 @@ abstract class AbstractRule
 
     /**
      * @param \Twig_TokenStream $tokens
+     */
+    public function check(\Twig_TokenStream $tokens) {}
+
+    /**
+     * @return Violation[]
+     */
+    public function getViolations()
+    {
+        return $this->violations;
+    }
+
+    /**
+     * @param \Twig_TokenStream $tokens
      * @param integer           $skip
      *
      * @return null|Token
+     * @throws \Twig_Error_Syntax
      */
     protected function getPreviousSignicantToken(\Twig_TokenStream $tokens, $skip = 0)
     {

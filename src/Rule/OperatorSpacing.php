@@ -3,10 +3,9 @@
 namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Token;
 use Allocine\Twigcs\Whitelist\WhitelistInterface;
 
-class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
+class OperatorSpacing extends AbstractSpacingRule
 {
     /**
      * @var string[]
@@ -56,8 +55,6 @@ class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 
     /**
@@ -68,6 +65,7 @@ class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
      * @param \Twig_TokenStream $tokens
      *
      * @return bool
+     * @throws \Twig_Error_Syntax
      */
     private function canBeCloseOnRight(\Twig_Token $token, \Twig_TokenStream $tokens)
     {

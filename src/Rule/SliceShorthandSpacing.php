@@ -3,9 +3,8 @@
 namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Validator\Violation;
 
-class SliceShorthandSpacing extends AbstractSpacingRule implements RuleInterface
+class SliceShorthandSpacing extends AbstractSpacingRule
 {
     /**
      * @var integer

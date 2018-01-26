@@ -2,6 +2,7 @@
 
 namespace Allocine\Twigcs\Reporter;
 
+use Allocine\Twigcs\Validator\Violation;
 use Symfony\Component\Console\Output\OutputInterface;
 
 interface ReporterInterface

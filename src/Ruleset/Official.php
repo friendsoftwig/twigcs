@@ -14,11 +14,21 @@ use Allocine\Twigcs\Whitelist\TokenWhitelist;
 class Official implements RulesetInterface
 {
     /**
-     * {@inheritdoc}
+     * @var array
      */
-    public function getRules()
+    private $rules = [];
+
+    public function __construct()
     {
-        return [
+        $this->initRules();
+    }
+
+    /**
+     * @return Official
+     */
+    public function initRules(): RulesetInterface
+    {
+        $this->rules = [
             new Rule\DelimiterSpacing(Violation::SEVERITY_ERROR, 1),
             new Rule\ParenthesisSpacing(Violation::SEVERITY_ERROR, 0, 1),
             new Rule\ArraySeparatorSpacing(Violation::SEVERITY_ERROR, 0, 1),
@@ -48,5 +58,15 @@ class Official implements RulesetInterface
             new Rule\SliceShorthandSpacing(Violation::SEVERITY_ERROR),
             new Rule\TrailingSpace(Violation::SEVERITY_ERROR),
         ];
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRules(): array
+    {
+        return $this->rules;
     }
 }

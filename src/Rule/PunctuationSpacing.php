@@ -5,7 +5,7 @@ namespace Allocine\Twigcs\Rule;
 use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Whitelist\WhitelistInterface;
 
-class PunctuationSpacing extends AbstractSpacingRule implements RuleInterface
+class PunctuationSpacing extends AbstractSpacingRule
 {
     /**
      * @var string[]
@@ -48,7 +48,5 @@ class PunctuationSpacing extends AbstractSpacingRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }

@@ -22,13 +22,16 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $twig->setLexer(new Lexer($twig));
 
         $validator = new Validator();
+        $rules = new Official();
 
-        $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')));
+        $validator->check($rules, $twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')));
+        $violations = $validator->validate($rules);
 
         if ($expectedViolation) {
             $this->assertCount(1, $violations, sprintf("There should be exactly one violation in:\n %s", $expression));
             $this->assertSame($expectedViolation, $violations[0]->getReason());
         } else {
+            var_dump($violations);
             $this->assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
         }
     }
@@ -36,7 +39,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     public function getData()
     {
         return [
-            // Put one (and only one) space after the start of a delimiter and before the end of a delimiter.
+            /*// Put one (and only one) space after the start of a delimiter and before the end of a delimiter.
             ['{{ foo }}', null],
             ['{{ foo   }}', 'More than 1 space(s) found before closing a variable.'],
             ['{{    foo }}', 'More than 1 space(s) found after opening a variable.'],
@@ -133,9 +136,10 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             // Unused macros
             ['{% import "foo.html.twig" as foo %}{{ foo() }}', null],
             ['{% import "foo.html.twig" as foo %}', 'Unused macro "foo".'],
-            ['{% import "foo.html.twig" as foo, bar %}{{ foo() ~ bar() }}', null],
-            ['{% import "foo.html.twig" as foo, bar %}{{ foo() }}', 'Unused macro "bar".'],
-
+            ['{% import "foo.html.twig" as foo, bar %}{{ foo() ~ bar() }}', null],*/
+            ['{% macro foo(test) %}{{ test }}{% macro bar(test) %}{{ test }}{% import _self as foobar %}', 'Unused macro "foobar".'],
+            ['{% from "foo.html.twig" import test as foo, bar %}{{ foo() }}', 'Unused macro "bar".'],
+/*
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
 
@@ -149,7 +153,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
             // Check regression of https://github.com/allocine/twigcs/issues/23
             ['{% from _self import folder_breadcrumb %}', 'Unused macro "folder_breadcrumb".'],
-
+*/
             // @TODO: Not in spec : one space separated arguments
             // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
         ];

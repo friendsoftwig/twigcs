@@ -3,8 +3,6 @@
 namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Token;
-use Allocine\Twigcs\Validator\Violation;
 
 /**
  * This rule enforces spacing in hashes. Concerned spaces are the ones surrounding
@@ -14,7 +12,7 @@ use Allocine\Twigcs\Validator\Violation;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class HashSeparatorSpacing extends AbstractSpacingRule implements RuleInterface
+class HashSeparatorSpacing extends AbstractSpacingRule
 {
     /**
      * @var int
@@ -87,7 +85,5 @@ class HashSeparatorSpacing extends AbstractSpacingRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Allocine\Twigcs;
 
-use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Reporter\CheckstyleReporter;
 use Allocine\Twigcs\Reporter\ConsoleReporter;
 use Allocine\Twigcs\Validator\Validator;

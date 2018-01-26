@@ -10,7 +10,7 @@ use Allocine\Twigcs\Token;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class TrailingSpace extends AbstractRule implements RuleInterface
+class TrailingSpace extends AbstractRule
 {
     /**
      * {@inheritdoc}
@@ -37,7 +37,5 @@ class TrailingSpace extends AbstractRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }
