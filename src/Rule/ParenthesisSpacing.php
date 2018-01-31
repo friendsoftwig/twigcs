@@ -4,7 +4,6 @@ namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Token;
-use Allocine\Twigcs\Validator\Violation;
 
 /**
  * This rule enforces spacing around parenthesis. The expected spacing
@@ -17,7 +16,7 @@ use Allocine\Twigcs\Validator\Violation;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
+class ParenthesisSpacing extends AbstractSpacingRule
 {
     /**
      * @var integer
@@ -69,7 +68,5 @@ class ParenthesisSpacing extends AbstractSpacingRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }

@@ -37,21 +37,25 @@ class LintCommand extends ContainerAwareCommand
             $files = $finder->in($path)->name('*.twig');
         }
 
-        $violations = [];
-
         $ruleset = $input->getOption('ruleset');
 
         if (!is_subclass_of($ruleset, RulesetInterface::class)) {
             throw new \InvalidArgumentException('Ruleset class must implement ' . RulesetInterface::class);
         }
 
+        $ruleset = new $ruleset();
+        $container['validator']->setRuleset($ruleset);
+
         foreach ($files as $file) {
-            $violations = array_merge($violations, $container['validator']->validate(new $ruleset(), $container['twig']->tokenize(new \Twig_Source(
+            $container['validator']->addFile($container['twig']->tokenize(new \Twig_Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
                 str_replace(realpath($path), $path, $file->getRealPath())
-            ))));
+            )));
         }
+
+        $violations = $container['validator']->check()
+            ->validate();
 
         $container[sprintf('reporter.%s', $input->getOption('reporter'))]->report($output, $violations);
 

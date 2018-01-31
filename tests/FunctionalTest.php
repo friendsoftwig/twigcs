@@ -15,22 +15,70 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider getData
+     *
+     * @throws \Twig_Error_Syntax
      */
-    public function testExpressions($expression, $expectedViolation)
+    public function testExpressions($expression, $expectedViolation, $expectedCountError = 1)
+    {
+        if (is_null($expectedViolation)) {
+            $expectedCountError = 0;
+        }
+        $twig = new \Twig_Environment(new \Twig_Loader_Array());
+        $twig->setLexer(new Lexer($twig));
+
+        $validator = new Validator();
+        $violations = $validator->addFile($twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')))
+            ->check()
+            ->validate();
+
+        if ($expectedViolation) {
+            $this->assertCount($expectedCountError, $violations, sprintf("There should be exactly %d violation in:\n %s", $expectedCountError, $expression));
+            $this->assertSame($expectedViolation, $violations[0]->getReason());
+        } else {
+            $this->assertCount($expectedCountError, $violations, sprintf("There should be no violations in:\n %s", $expression));
+        }
+    }
+
+    /**
+     * @throws \Twig_Error_Syntax
+     */
+    public function testMacroImport()
     {
         $twig = new \Twig_Environment(new \Twig_Loader_Array());
         $twig->setLexer(new Lexer($twig));
 
         $validator = new Validator();
+        $violations = $validator->addFile(
+                $twig->tokenize(new \Twig_Source('{% macro used(value) %}{{ value }}{% endmacro %}{% macro unused(value) %}{{ value }}{% endmacro %}', 'src', 'macro.html.twig'))
+            )->addFile(
+                $twig->tokenize(new \Twig_Source('{% import "macro.html.twig" as function %} {{ function.used(value) }}', 'src', 'main.html.twig'))
+            )
+            ->check()
+            ->validate();
 
-        $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')));
+        $this->assertCount(1, $violations, "There should be exactly one violation in macro.html.twig");
+        $this->assertSame('Unused global macro "unused".', $violations[0]->getReason(), "There should be violation on macro 'unused'");
+    }
 
-        if ($expectedViolation) {
-            $this->assertCount(1, $violations, sprintf("There should be exactly one violation in:\n %s", $expression));
-            $this->assertSame($expectedViolation, $violations[0]->getReason());
-        } else {
-            $this->assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
-        }
+    /**
+     * @throws \Twig_Error_Syntax
+     */
+    public function testMacroFrom()
+    {
+        $twig = new \Twig_Environment(new \Twig_Loader_Array());
+        $twig->setLexer(new Lexer($twig));
+
+        $validator = new Validator();
+        $violations = $validator->addFile(
+                $twig->tokenize(new \Twig_Source('{% macro used(value) %}{{ value }}{% endmacro %}{% macro unused(value) %}{{ value }}{% endmacro %}', 'src', 'macro.html.twig'))
+            )->addFile(
+                $twig->tokenize(new \Twig_Source('{% from "macro.html.twig" import used as function %} {{ function(value) }}', 'src', 'main.html.twig'))
+            )
+            ->check()
+            ->validate();
+
+        $this->assertCount(1, $violations, "There should be exactly one violation in macro.html.twig");
+        $this->assertSame('Unused global macro "unused".', $violations[0]->getReason(), "There should be violation on macro 'unused'");
     }
 
     public function getData()
@@ -132,9 +180,10 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
 
             // Unused macros
             ['{% import "foo.html.twig" as foo %}{{ foo() }}', null],
-            ['{% import "foo.html.twig" as foo %}', 'Unused macro "foo".'],
+            ['{% import "foo.html.twig" as foo %}', 'Unused local macro "foo".'],
             ['{% import "foo.html.twig" as foo, bar %}{{ foo() ~ bar() }}', null],
-            ['{% import "foo.html.twig" as foo, bar %}{{ foo() }}', 'Unused macro "bar".'],
+            ['{% macro foo(test) %}{{ test }}{% macro bar(test) %}{{ test }}{% import _self as foobar %}{{ foobar.foo }}', 'Unused global macro "bar".'],
+            ['{% from "foo.html.twig" import test as foo, bar, baz as bbb %}{{ foo() }}', 'Unused local macro "bar".', 2],
 
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
@@ -148,8 +197,10 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
             ["{{ foo }}\r\n\r\n", null],
 
             // Check regression of https://github.com/allocine/twigcs/issues/23
-            ['{% from _self import folder_breadcrumb %}', 'Unused macro "folder_breadcrumb".'],
+            ['{% from _self import folder_breadcrumb %}', 'Unused local macro "folder_breadcrumb".'],
 
+            // Check macro of https://github.com/allocine/twigcs/issues/27
+            ['{% macro foo(test) %}{{ test }}{% macro bar(test) %}{{ test }}{% from _self import foo as foobar, bar %}{{ bar(test) }}', 'Unused global macro "foo".', 2],
             // @TODO: Not in spec : one space separated arguments
             // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
         ];

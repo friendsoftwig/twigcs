@@ -25,10 +25,34 @@ class AbstractSpacingRule extends AbstractRule
     }
 
     /**
+     * @return Violation[]
+     */
+    public function getViolations()
+    {
+        $violations = $this->violations;
+        $this->reset();
+
+        return $violations;
+    }
+
+    /**
+     * @param \Twig_TokenStream $tokens
+     */
+    public function prepare(\Twig_TokenStream $tokens) {}
+
+    /**
+     * @param \Twig_TokenStream $tokens
+     */
+    public function check(\Twig_TokenStream $tokens) {}
+
+    /**
      * @param \Twig_TokenStream $tokens
      * @param integer           $position
-     * @param message           $target
+     * @param string            $spacing
      * @param boolean           $acceptNewLines
+     * @param boolean           $allowIndentation
+     *
+     * @throws \Twig_Error_Syntax
      */
     protected function assertSpacing(\Twig_TokenStream $tokens, $position, $spacing, $acceptNewLines = true, $allowIndentation = false)
     {
@@ -91,7 +115,13 @@ class AbstractSpacingRule extends AbstractRule
         }
     }
 
-    private function isPreviousWhitespaceTokenOnlyIndentation($tokens)
+    /**
+     * @param \Twig_TokenStream $tokens
+     *
+     * @return bool
+     * @throws \Twig_Error_Syntax
+     */
+    private function isPreviousWhitespaceTokenOnlyIndentation(\Twig_TokenStream $tokens)
     {
         $lookBehind = 0;
 

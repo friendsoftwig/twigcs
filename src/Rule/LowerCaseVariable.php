@@ -4,17 +4,14 @@ namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Token;
-use Allocine\Twigcs\Validator\Violation;
 
-class LowerCaseVariable extends AbstractRule implements RuleInterface
+class LowerCaseVariable extends AbstractRule
 {
     /**
      * {@inheritdoc}
      */
     public function check(\Twig_TokenStream $tokens)
     {
-        $this->reset();
-
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
@@ -26,7 +23,5 @@ class LowerCaseVariable extends AbstractRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }

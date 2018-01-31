@@ -1,0 +1,9 @@
+{% import 'macro.html.twig' as forms %}
+
+<dl>
+    <dt>Username</dt>
+    <dd>{{ forms.input('username') }}</dd>
+    <dt>Password</dt>
+    <dd>{{ forms.input('password', null, 'password') }}</dd>
+</dl>
+<p>{{ forms.textarea('comment') }}</p>

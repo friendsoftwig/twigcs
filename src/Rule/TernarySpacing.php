@@ -3,7 +3,6 @@
 namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Validator\Violation;
 
 /**
  * This rule enforces spacing inside ternaries.
@@ -12,7 +11,7 @@ use Allocine\Twigcs\Validator\Violation;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class TernarySpacing extends AbstractSpacingRule implements RuleInterface
+class TernarySpacing extends AbstractSpacingRule
 {
     /**
      * @var integer
@@ -36,7 +35,6 @@ class TernarySpacing extends AbstractSpacingRule implements RuleInterface
     public function check(\Twig_TokenStream $tokens)
     {
         $this->violations = [];
-        $ternaryDepth = 0;
 
         $closingTokens = [];
 
@@ -68,14 +66,13 @@ class TernarySpacing extends AbstractSpacingRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 
     /**
      * @param \Twig_TokenStream $tokens
      *
      * @return \Twig_Token
+     * @throws \Twig_Error_Syntax
      */
     protected function seekTernaryElse(\Twig_TokenStream $tokens)
     {

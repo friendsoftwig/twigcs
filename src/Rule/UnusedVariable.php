@@ -5,15 +5,13 @@ namespace Allocine\Twigcs\Rule;
 use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Token;
 
-class UnusedVariable extends AbstractRule implements RuleInterface
+class UnusedVariable extends AbstractRule
 {
     /**
      * {@inheritdoc}
      */
     public function check(\Twig_TokenStream $tokens)
     {
-        $this->reset();
-
         $variables = [];
 
         while (!$tokens->isEOF()) {
@@ -38,7 +36,5 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                 sprintf('Unused variable "%s".', $name)
             );
         }
-
-        return $this->violations;
     }
 }

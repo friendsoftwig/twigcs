@@ -3,7 +3,6 @@
 namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Validator\Violation;
 
 /**
  * This rule enforces spacing in arrays. Concerned spaces are the ones surrounding
@@ -13,7 +12,7 @@ use Allocine\Twigcs\Validator\Violation;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class ArraySeparatorSpacing extends AbstractSpacingRule implements RuleInterface
+class ArraySeparatorSpacing extends AbstractSpacingRule
 {
     /**
      * @var integer
@@ -78,7 +77,5 @@ class ArraySeparatorSpacing extends AbstractSpacingRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }

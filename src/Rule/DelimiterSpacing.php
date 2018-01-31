@@ -4,9 +4,8 @@ namespace Allocine\Twigcs\Rule;
 
 use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Token;
-use Allocine\Twigcs\Validator\Violation;
 
-class DelimiterSpacing extends AbstractRule implements RuleInterface
+class DelimiterSpacing extends AbstractRule
 {
     const CHECKS = [
         \Twig_Token::BLOCK_START_TYPE => [Lexer::NEXT_TOKEN,     'after opening a block'],
@@ -45,14 +44,14 @@ class DelimiterSpacing extends AbstractRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 
     /**
      * @param \Twig_TokenStream $tokens
      * @param integer           $position
-     * @param message           $target
+     * @param string            $target
+     *
+     * @throws \Twig_Error_Syntax
      */
     private function assertSpacing(\Twig_TokenStream $tokens, $position, $target)
     {

@@ -10,15 +10,13 @@ use Allocine\Twigcs\Token;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class TrailingSpace extends AbstractRule implements RuleInterface
+class TrailingSpace extends AbstractRule
 {
     /**
      * {@inheritdoc}
      */
     public function check(\Twig_TokenStream $tokens)
     {
-        $this->reset();
-
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
@@ -37,7 +35,5 @@ class TrailingSpace extends AbstractRule implements RuleInterface
 
             $tokens->next();
         }
-
-        return $this->violations;
     }
 }
