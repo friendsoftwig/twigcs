@@ -29,8 +29,16 @@ class AbstractSpacingRule extends AbstractRule
      */
     public function getViolations()
     {
-        return $this->violations;
+        $violations = $this->violations;
+        $this->reset();
+
+        return $violations;
     }
+
+    /**
+     * @param \Twig_TokenStream $tokens
+     */
+    public function prepare(\Twig_TokenStream $tokens) {}
 
     /**
      * @param \Twig_TokenStream $tokens

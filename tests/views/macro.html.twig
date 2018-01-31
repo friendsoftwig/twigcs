@@ -5,3 +5,9 @@
 {% macro textarea(name, value, rows, cols) %}
     <textarea name="{{ name }}" rows="{{ rows|default(10) }}" cols="{{ cols|default(40) }}">{{ value|e }}</textarea>
 {% endmacro %}
+
+{% macro test_self(name) %}
+    {% from _self import input as test, textarea %}
+    {{ test(name) }}
+    {{ textarea(name) }}
+{% endmacro %}

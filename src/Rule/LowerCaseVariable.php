@@ -12,8 +12,6 @@ class LowerCaseVariable extends AbstractRule
      */
     public function check(\Twig_TokenStream $tokens)
     {
-        $this->reset();
-
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 

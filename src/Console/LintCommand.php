@@ -44,16 +44,18 @@ class LintCommand extends ContainerAwareCommand
         }
 
         $ruleset = new $ruleset();
+        $container['validator']->setRuleset($ruleset);
 
         foreach ($files as $file) {
-            $container['validator']->check($ruleset, $container['twig']->tokenize(new \Twig_Source(
+            $container['validator']->addFile($container['twig']->tokenize(new \Twig_Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
                 str_replace(realpath($path), $path, $file->getRealPath())
             )));
         }
 
-        $violations = $container['validator']->validate($ruleset);
+        $violations = $container['validator']->check()
+            ->validate();
 
         $container[sprintf('reporter.%s', $input->getOption('reporter'))]->report($output, $violations);
 

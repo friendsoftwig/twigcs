@@ -21,7 +21,7 @@ abstract class AbstractRule implements RuleInterface
     /**
      * @var Violation[]
      */
-    protected $violations;
+    protected $violations = [];
 
     /**
      * @param integer $severity
@@ -49,6 +49,11 @@ abstract class AbstractRule implements RuleInterface
     /**
      * @param \Twig_TokenStream $tokens
      */
+    public function prepare(\Twig_TokenStream $tokens) {}
+
+    /**
+     * @param \Twig_TokenStream $tokens
+     */
     public function check(\Twig_TokenStream $tokens) {}
 
     /**
@@ -56,7 +61,10 @@ abstract class AbstractRule implements RuleInterface
      */
     public function getViolations()
     {
-        return $this->violations;
+        $violations = $this->violations;
+        $this->reset();
+
+        return $violations;
     }
 
     /**

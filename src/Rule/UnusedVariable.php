@@ -12,8 +12,6 @@ class UnusedVariable extends AbstractRule
      */
     public function check(\Twig_TokenStream $tokens)
     {
-        $this->reset();
-
         $variables = [];
 
         while (!$tokens->isEOF()) {
