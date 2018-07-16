@@ -17,20 +17,20 @@ composer global require allocine/twigcs
 Basically, just run :
 
 ```bash
-twigcs lint /path/to/views
+twigcs /path/to/views
 ```
 
 On Symfony projects, you can run, for instance :
 
 ```bash
-twigcs lint /project/dir/app/Resources/views
+twigcs /project/dir/app/Resources/views
 ```
 
 You will get a summary of the violations in the console. The exit code of the command is based on the severity
 of any violation found. By default, twigcs won't even tolerate a notice, this can be changed at run time :
 
 ```bash
-twigcs lint /path/to/views --severity warning # Allow notices
+twigcs /path/to/views --severity warning # Allow notices
 ```
 
 With the example above, notices are still displayed but not altering the exit code.
@@ -41,7 +41,7 @@ Twigcs can be used with your favorite CI server. The command itself will return 
 the CI job if it failed or succeeded. You can also have a nice xml report (checkstyle format) :
 
 ```bash
-twigcs lint /path/to/views --reporter checkstyle > /path/to/report.xml
+twigcs /path/to/views --reporter checkstyle > /path/to/report.xml
 ```
 
 ### Coding standard
@@ -53,7 +53,7 @@ At the moment the only available standard is the [official one from twig](http:/
 You can create a class implementing `RulesetInterface` and supply it as a `--ruleset` option to the CLI script: 
 
 ```bash
-twigcs lint /path/to/views --ruleset \MyApp\TwigCsRuleset
+twigcs /path/to/views --ruleset \MyApp\TwigCsRuleset
 ```
 
 *Note:* `twigcs` needs to be used via composer and the ruleset class must be reachable via composer's autoloader for this feature to work.
