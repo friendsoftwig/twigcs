@@ -4,8 +4,9 @@ namespace Allocine\Twigcs\Tests\Reporter;
 
 use Allocine\Twigcs\Reporter\ConsoleReporter;
 use Allocine\Twigcs\Validator\Violation;
+use PHPUnit\Framework\TestCase;
 
-class ConsoleReporterTest extends \PHPUnit_Framework_TestCase
+class ConsoleReporterTest extends TestCase
 {
     public function testReport()
     {

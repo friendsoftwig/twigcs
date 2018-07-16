@@ -4,8 +4,9 @@ namespace Allocine\Twigcs\Tests\Reporter;
 
 use Allocine\Twigcs\Reporter\CheckstyleReporter;
 use Allocine\Twigcs\Validator\Violation;
+use PHPUnit\Framework\TestCase;
 
-class CheckstyleReporterTest extends \PHPUnit_Framework_TestCase
+class CheckstyleReporterTest extends TestCase
 {
     const EXPECTED_REPORT = <<<EOF
 <?xml version="1.0"?>
