@@ -130,12 +130,32 @@ class FunctionalTest extends TestCase
 
             // Unused variables
             ['{% set foo = 1 %}', 'Unused variable "foo".'],
+            ['{% set foo = 1 %}{{ { foo: 1} }}', 'Unused variable "foo".'],
+            ['{% set foo = 1 %}{{ foo ? foo : 0 }}', null],
+            ['{% set foo = 1 %}{% macro toto() %}{{ foo }}{% endmacro %}', 'Unused variable "foo".'], // https://github.com/allocine/twigcs/issues/27
+            ['{% set foo = 1 %}{% if foo %}{% endif %}', null],
+            ['{% set foo = [] %}{% for bar in foo %}{% endfor %}', null],
+            ['{% set is = 1 %}{% if 1 is 1 %}{% endif %}', 'Unused variable "is".'],
+            ['{% set uppercase = 1 %}{% filter uppercase %}{% endfilter %}', 'Unused variable "uppercase".'],
+            ['{% set uppercase = 1 %}{% if "a"|uppercase %}{% endif %}', 'Unused variable "uppercase".'],
+            ['{% set uppercase = 1 %}{% if "a"|uppercase(uppercase) %}{% endif %}', null],
+            ['{% set bar = 1 %}{% set foo = bar %}{{ foo }}', null],
+            ['{% set bar = 1 %}{# twigcs use-var bar #}', null],
+            ['{% set bar = 1 %}{% set foo = 1 %}{# twigcs use-var foo, bar #}', null],
+            ['{% set foo = 1 %}{# twigcs use-var bar #}', 'Unused variable "foo".'],
 
-            // Unused macros
+            // Unused macros import
             ['{% import "foo.html.twig" as foo %}{{ foo() }}', null],
-            ['{% import "foo.html.twig" as foo %}', 'Unused macro "foo".'],
+            ['{% import "foo.html.twig" as foo %}', 'Unused macro import "foo".'],
             ['{% import "foo.html.twig" as foo, bar %}{{ foo() ~ bar() }}', null],
-            ['{% import "foo.html.twig" as foo, bar %}{{ foo() }}', 'Unused macro "bar".'],
+            ['{% import "foo.html.twig" as foo, bar %}{{ foo() }}', 'Unused macro import "bar".'],
+            ['{% import "foo.html.twig" as import %}', 'Unused macro import "import".'],
+            ['{% import "foo.html.twig" as if %}{% if (true) %}{% endif %}', 'Unused macro import "if".'],
+            ['{% import "foo.html.twig" as uppercase %}{% filter uppercase %}{% endfilter %}', 'Unused macro import "uppercase".'],
+            ['{% import "foo.html.twig" as uppercase %}{% if "a"|uppercase %}{% endif %}', 'Unused macro import "uppercase".'],
+            ['{% from _self import foo as bar %}', 'Unused macro import "bar".'],
+            ['{% from _self import foo as request %}{{ app.request.uri }}', 'Unused macro import "request".'],
+            ['{% from _self import foo as macro %}{% macro foo() %}{% endmacro %}', 'Unused macro import "macro".'], // https://github.com/allocine/twigcs/issues/28
 
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
@@ -149,7 +169,7 @@ class FunctionalTest extends TestCase
             ["{{ foo }}\r\n\r\n", null],
 
             // Check regression of https://github.com/allocine/twigcs/issues/23
-            ['{% from _self import folder_breadcrumb %}', 'Unused macro "folder_breadcrumb".'],
+            ['{% from _self import folder_breadcrumb %}', 'Unused macro import "folder_breadcrumb".'],
 
             // @TODO: Not in spec : one space separated arguments
             // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
