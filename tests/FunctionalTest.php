@@ -122,6 +122,7 @@ class FunctionalTest extends TestCase
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],
+            ['{% include "file" with {foo: bar ? baz } %}', null],
 
             // Use lower cased and underscored variable names.
             ['{% set foo = 1 %}{{ foo }}', null],
