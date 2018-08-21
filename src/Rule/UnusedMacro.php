@@ -78,8 +78,8 @@ class UnusedMacro extends AbstractRule implements RuleInterface
                         $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
                 }
             } elseif ($token->getType() === \Twig_Token::NAME_TYPE) {
-                $previous = $this->getPreviousSignicantToken($tokens);
-                $next = $this->getNextSignicantToken($tokens);
+                $previous = $this->getPreviousSignificantToken($tokens);
+                $next = $this->getNextSignificantToken($tokens);
 
                 if (!in_array($previous->getValue(), ['.', '|']) && in_array($next->getValue(), ['('])) {
                     $scope->use($token->getValue());

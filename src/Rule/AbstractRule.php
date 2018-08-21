@@ -52,7 +52,7 @@ abstract class AbstractRule
      *
      * @return null|Token
      */
-    protected function getPreviousSignicantToken(\Twig_TokenStream $tokens, $skip = 0)
+    protected function getPreviousSignificantToken(\Twig_TokenStream $tokens, $skip = 0)
     {
         $i = 1;
         $token = null;
@@ -78,7 +78,7 @@ abstract class AbstractRule
      *
      * @return null|Token
      */
-    protected function getNextSignicantToken(\Twig_TokenStream $tokens, $skip = 0)
+    protected function getNextSignificantToken(\Twig_TokenStream $tokens, $skip = 0)
     {
         $i = 1;
         $token = null;

@@ -5,6 +5,7 @@ namespace Allocine\Twigcs\Console;
 use Allocine\Twigcs\Ruleset\Official;
 use Allocine\Twigcs\Ruleset\RulesetInterface;
 use Allocine\Twigcs\Validator\Violation;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,7 +17,7 @@ class LintCommand extends ContainerAwareCommand
     {
         $this
             ->setName('lint')
-            ->addArgument('path')
+            ->addArgument('path', null, 'The path to scan for twig files.', '.')
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
