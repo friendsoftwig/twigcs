@@ -87,7 +87,7 @@ class TernarySpacing extends AbstractSpacingRule implements RuleInterface
         while ($depth || !$found) {
             $token = $tokens->look($i);
 
-            if ($token->getType() === \Twig_Token::VAR_END_TYPE || $token->getType() === \Twig_Token::INTERPOLATION_END_TYPE) {
+            if (in_array($token->getType(), [\Twig_Token::BLOCK_END_TYPE, \Twig_Token::VAR_END_TYPE, \Twig_Token::INTERPOLATION_END_TYPE])) {
                 return;
             }
 
