@@ -70,6 +70,19 @@ class Lexer extends TwigLexer
         }
     }
 
+    protected function lexComment()
+    {
+        if (!preg_match($this->regexes['lex_comment'], $this->code, $match, PREG_OFFSET_CAPTURE, $this->cursor)) {
+            throw new \Twig_Error_Syntax('Unclosed comment.', $this->lineno, $this->source);
+        }
+
+        $content = substr($this->code, $this->cursor, $match[0][1] - $this->cursor);
+
+        $this->pushToken(Token::COMMENT_TYPE, trim($content));
+
+        $this->moveCursor($content.$match[0][0]);
+    }
+
     /**
      * @param int    $type
      * @param string $value
