@@ -60,8 +60,8 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                         $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
                 }
             } elseif ($token->getType() === \Twig_Token::NAME_TYPE) {
-                $previous = $this->getPreviousSignicantToken($tokens);
-                $next = $this->getNextSignicantToken($tokens);
+                $previous = $this->getPreviousSignificantToken($tokens);
+                $next = $this->getNextSignificantToken($tokens);
 
                 $isHashKey = in_array($previous->getValue(), [',', '{']) && $next->getValue() === ':';
                 $isFilter = $previous->getValue() === '|';

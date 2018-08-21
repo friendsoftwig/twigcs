@@ -78,7 +78,7 @@ class HashSeparatorSpacing extends AbstractSpacingRule implements RuleInterface
                 $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spaceBefore, false);
             }
 
-            if ($arrayDepth > 0 && in_array($this->getPreviousSignicantToken($tokens)->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::STRING_TYPE])) {
+            if ($arrayDepth > 0 && in_array($this->getPreviousSignificantToken($tokens)->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::STRING_TYPE])) {
                 if (!$skip && $token->getType() === \Twig_Token::PUNCTUATION_TYPE && $token->getValue() === ':') {
                     $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spaceAfter);
                     $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spaceBefore, false);
