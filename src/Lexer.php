@@ -2,7 +2,14 @@
 
 namespace Allocine\Twigcs;
 
-use Allocine\Twigcs\Compatibility\TwigLexer;
+/**
+ * Backward compatibility with Twig 1.X
+ */
+if (\Twig_Environment::MAJOR_VERSION > 1) {
+    class_alias(\Allocine\Twigcs\Compatibility\TwigLexer::class, 'Allocine\Twigcs\BaseLexer');
+} else {
+    class_alias(\Twig_Lexer::class, 'Allocine\Twigcs\BaseLexer');
+}
 
 /**
  * An override of Twig's Lexer to add whitespace and new line detection.
@@ -10,7 +17,7 @@ use Allocine\Twigcs\Compatibility\TwigLexer;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class Lexer extends TwigLexer
+class Lexer extends BaseLexer
 {
     const PREVIOUS_TOKEN = -1;
     const NEXT_TOKEN     = 1;
