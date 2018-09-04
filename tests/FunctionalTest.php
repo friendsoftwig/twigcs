@@ -157,6 +157,7 @@ class FunctionalTest extends TestCase
             ['{% from _self import foo as bar %}', 'Unused macro import "bar".'],
             ['{% from _self import foo as request %}{{ app.request.uri }}', 'Unused macro import "request".'],
             ['{% from _self import foo as macro %}{% macro foo() %}{% endmacro %}', 'Unused macro import "macro".'], // https://github.com/allocine/twigcs/issues/28
+            ['{% import "macros.html.twig" as macros %} {{ macros.stuff() }}', null],
 
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],

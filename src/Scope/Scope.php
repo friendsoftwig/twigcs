@@ -137,4 +137,25 @@ class Scope
 
         return false;
     }
+
+    /**
+     * @param int $tab
+     *
+     * @return string
+     */
+    public function dump(int $tab = 0): string
+    {
+        $declarations = implode(', ', array_keys($this->declarations));
+        $usages = implode(', ', $this->usages);
+
+        $self = sprintf("%s : {D : %s} {U : %s} \n", $name ?? 'noname', $declarations, $usages);
+
+        $children = "";
+
+        foreach ($this->children as $child) {
+            $children .= str_repeat(" ", $tab) . $child->dump($tab + 4) . "\n";
+        }
+
+        return $self . $children;
+    }
 }
