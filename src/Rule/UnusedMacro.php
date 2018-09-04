@@ -81,7 +81,11 @@ class UnusedMacro extends AbstractRule implements RuleInterface
                 $previous = $this->getPreviousSignificantToken($tokens);
                 $next = $this->getNextSignificantToken($tokens);
 
-                if (!in_array($previous->getValue(), ['.', '|']) && in_array($next->getValue(), ['('])) {
+                $isSubProperty = in_array($previous->getValue(), ['.', '|']);
+                $directUsage = in_array($next->getValue(), ['(']);
+                $dotUsage = ($this->getNextSignificantToken($tokens, 1)->getType() === \Twig_Token::NAME_TYPE) && in_array($this->getNextSignificantToken($tokens, 2)->getValue(), ['(']);
+
+                if (!$isSubProperty && ($directUsage || $dotUsage)) {
                     $scope->use($token->getValue());
                 }
 
