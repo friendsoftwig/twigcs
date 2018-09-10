@@ -50,7 +50,7 @@ class LintCommand extends ContainerAwareCommand
             $violations = array_merge($violations, $container['validator']->validate(new $ruleset(), $container['twig']->tokenize(new \Twig_Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
-                str_replace(realpath($path), $path, $file->getRealPath())
+                str_replace(realpath($path), rtrim($path, '/'), $file->getRealPath())
             ))));
         }
 
