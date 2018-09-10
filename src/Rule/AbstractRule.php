@@ -121,6 +121,35 @@ abstract class AbstractRule
 
     /**
      * @param \Twig_TokenStream $tokens
+     * @param array             $possibilities
+     */
+    protected function skipToOneOf(\Twig_TokenStream $tokens, array $possibilities)
+    {
+        while (!$tokens->isEOF()) {
+            foreach ($possibilities as $possibility) {
+                $tokenValue = $possibility['value'] ?? null;
+                $tokenType = $possibility['type'] ?? null;
+                $found = true;
+
+                if ($tokenType) {
+                    $found &= $tokenType === $tokens->getCurrent()->getType();
+                }
+
+                if ($tokenValue) {
+                    $found &= $tokenValue === $tokens->getCurrent()->getValue();
+                }
+
+                if ($found) {
+                    return;
+                }
+            }
+
+            $tokens->next();
+        }
+    }
+
+    /**
+     * @param \Twig_TokenStream $tokens
      * @param int               $amount
      */
     protected function skip(\Twig_TokenStream $tokens, int $amount)

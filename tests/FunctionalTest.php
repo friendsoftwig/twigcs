@@ -144,6 +144,10 @@ class FunctionalTest extends TestCase
             ['{% set bar = 1 %}{# twigcs use-var bar #}', null],
             ['{% set bar = 1 %}{% set foo = 1 %}{# twigcs use-var foo, bar #}', null],
             ['{% set foo = 1 %}{# twigcs use-var bar #}', 'Unused variable "foo".'],
+            ['{% set foo = 1 %}{{ foo }}', null],
+            ['{% set foo %}1{% endset %}{{ foo }}', null],
+            ['{% set foo %}1{% endset %}{{ include("foo.html.twig", {foo: foo}) }}', null],
+
 
             // Unused macros import
             ['{% import "foo.html.twig" as foo %}{{ foo() }}', null],

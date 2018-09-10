@@ -50,7 +50,10 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                         break;
                     case 'set':
                         $scope->declare($tokens->look(4)->getValue(), $tokens->look(4));
-                        $this->skipTo($tokens, \Twig_Token::OPERATOR_TYPE, '=');
+                        $this->skipToOneOf($tokens, [
+                            ['type' => \Twig_Token::OPERATOR_TYPE, 'value' => '='],
+                            ['type' => \Twig_Token::BLOCK_END_TYPE],
+                        ]);
                         break;
                     case 'if':
                     case 'for':
