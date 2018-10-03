@@ -29,7 +29,7 @@ class JUnitReporter implements ReporterInterface
             $testcase->addAttribute('name', $violation->getSource());
             $failure = $testcase->addChild('failure');
             $failure[0] = $violation->getReason()  . ' at (' . $violation->getLine() . ':' . $violation->getColumn() . ')';
-            $failure->addAttribute('type', 'error');
+            $failure->addAttribute('type', strtolower($violation->getSeverityAsString()));
             $failure->addAttribute('message', $failure[0]);
         }
 
