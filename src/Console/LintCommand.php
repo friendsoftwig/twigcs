@@ -17,7 +17,7 @@ class LintCommand extends ContainerAwareCommand
     {
         $this
             ->setName('lint')
-            ->addArgument('path', null, 'The path to scan for twig files.', '.')
+            ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', ['.'])
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
@@ -29,13 +29,20 @@ class LintCommand extends ContainerAwareCommand
         $container = $this->getContainer();
         $limit = $this->getSeverityLimit($input);
 
-        $path = $input->getArgument('path');
 
-        if (is_file($path)) {
-            $files = [new \SplFileInfo($input->getArgument('path'))];
-        } else {
-            $finder = new Finder();
-            $files = $finder->in($path)->name('*.twig');
+        $paths = $input->getArgument('paths');
+
+        $files = [];
+        foreach ($paths as $path) {
+            if (is_file($path)) {
+                $files[] = new \SplFileInfo($path);
+            } else {
+                $finder = new Finder();
+                $found = iterator_to_array($finder->in($path)->name('*.twig'));
+                if (!empty($found)) {
+                  $files = array_merge($files, $found);
+                }
+            }
         }
 
         $violations = [];
