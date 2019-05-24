@@ -27,7 +27,7 @@ class PunctuationSpacing extends AbstractSpacingRule implements RuleInterface
     {
         parent::__construct($severity, $whitelist);
 
-        $this->spacing   = $spacing;
+        $this->spacing = $spacing;
         $this->punctuations = $punctuations;
     }
 
