@@ -74,14 +74,13 @@ class FunctionalTest extends TestCase
             ['{{ foo .baz }}', 'There should be no space before ".".'],
             ['{{ foo. baz }}', 'There should be no space after ".".'],
             ['{{ foo() .baz }}', 'There should be no space before ".".'],
-            ['{{ foo() * 2 .baz }}', 'There should be no space before ".".'],
 
             // Put one (and only one) space after the : sign in hashes and , in arrays and hashes:
             ['{{ {foo: 1} }}', null],
             ['{{ {foo:  1} }}', 'More than 1 space(s) found after ":".'],
             ['{{ [1, 2, 3] }}', null],
             ["{{ [1,\n2] }}", null],
-            ['{{ { hash: "," } }}', null],
+            ['{{ {hash: ","} }}', null],
             ['{{ [","] }}', null],
             ['{{ [func(1, 2)] }}', null],
             ["{{ [1\n, 2] }}", 'There should be no new line before ",".'],

@@ -74,11 +74,17 @@ class DefaultRuleset
         $expr[] = [self::OP_VARS, '$ ~ $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ - $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ \+ $', $binaryOpHandler];
-        // @todo: better ternary handling
         $expr[] = [self::OP_VARS, '$ \? $ \: $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ \?: $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ \? $', $binaryOpHandler];
-        $expr[] = [self::OP_VARS, '$ \: $', $binaryOpHandler];
+        // filters
+        $expr[] = [self::OP_VARS, '$ \| $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space allowed before and after filters')];
+        // slices
+        $expr[] = [self::OP_VARS, '$ \[ : $ \]', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space allowed on slices')];
+        $expr[] = [self::OP_VARS, '$ \[ $ : \]', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space allowed on slices')];
+        $expr[] = [self::OP_VARS, '$ \[ $ : $ \]', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space allowed on slices')];
+        // property
+        $expr[] = [self::OP_VARS, '$ \. $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space allowed on properties')];
 
         $list = [];
         $list[] = [self::LIST_VARS, ' ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')];
