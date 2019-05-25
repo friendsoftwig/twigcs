@@ -47,7 +47,7 @@ class RuleChecker
 
     public function collectError(string $error, $matcher)
     {
-        $this->errors[]= $error . ' at col ' . $matcher->offset . '. Matched by: '.$matcher->source->rule;
+        $this->errors[]= new RuleError($error, $matcher->offset, $matcher->source);
     }
 
     public function subCheck(string $ruleset, Capture $capture)

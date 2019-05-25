@@ -31,7 +31,11 @@ class Lexer extends BaseLexer
     {
         // collect whitespaces and new lines
         if (preg_match('/\s+/A', $this->code, $match, null, $this->cursor)) {
-            $emptyLines = explode("\n", $match[0]);
+            if ($match[0] === "\n") {
+                $emptyLines = [''];
+            } else {
+                $emptyLines = explode("\n", $match[0]);
+            }
 
             foreach ($emptyLines as $line) {
                 if (strlen($line) == 0) {
