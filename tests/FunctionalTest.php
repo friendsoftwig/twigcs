@@ -113,7 +113,7 @@ class FunctionalTest extends TestCase
             ['{{ 1 ? "foo": "bar" }}', 'There should be 1 space(s) before ":".'],
             ['{{ 1 ? "foo" :"bar" }}', 'There should be 1 space(s) after ":".'],
             ['{{ 1 ?: "foo" }}', null],
-            ['{{ test ? { foo: bar } : 1 }}', null],
+            ['{{ test ? {foo: bar} : 1 }}', null],
             ['{{ test ? 1 }}', null],
             ['{{ {foo: test ? path({bar: baz}) : null} }}', null],
             ['{{ [test ? path({bar: baz}) : null] }}', null],
@@ -122,7 +122,7 @@ class FunctionalTest extends TestCase
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],
-            ['{% include "file" with {foo: bar ? baz } %}', null],
+            ['{% include "file" with {foo: bar ? baz} %}', null],
 
             // Use lower cased and underscored variable names.
             ['{% set foo = 1 %}{{ foo }}', null],

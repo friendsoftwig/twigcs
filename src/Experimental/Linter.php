@@ -9,6 +9,7 @@ class Linter
         $this->ruleChecker = new RuleChecker($ruleset);
         $this->stringSanitizer = new StringSanitizer();
         $this->parenthesesExtractor = new ParenthesesExtractor();
+        $this->hashExtractor = new HashExtractor();
     }
 
     public function explain()
@@ -19,7 +20,14 @@ class Linter
     public function lint(string $expr): array
     {
         $expr = $this->stringSanitizer->sanitize($expr);
-        $nodes = $this->parenthesesExtractor->extract($expr)->flatten();
+
+        $rootNode = new ExpressionNode($expr, 0);
+        $this->parenthesesExtractor->extract($rootNode);
+        $this->hashExtractor->extract($rootNode);
+
+        var_dump($rootNode);
+
+        $nodes = $rootNode->flatten();
         $errors = [];
 
         foreach ($nodes as $node) {
