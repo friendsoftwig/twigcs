@@ -4,20 +4,28 @@ namespace Allocine\Twigcs\Experimental;
 
 class Linter
 {
-    private $rules;
+    public $rules;
 
     public $errors;
+
+    private $explain;
 
     public function __construct(array $rulesets)
     {
         $this->rules = [];
         $this->errors = [];
+        $this->explain = false;
 
         foreach ($rulesets as $key => $ruleset) {
             foreach ($ruleset as $rule) {
                 $this->rules[$key][] = $this->compute($rule[0], $rule[1], $rule[2]);
             }
         }
+    }
+
+    public function explain()
+    {
+        $this->explain = true;
     }
 
     private function compute(array $vars, string $rule, callable $callback)
@@ -34,12 +42,12 @@ class Linter
             }
         }
 
-        return new Regex('#^'.$regex.'$#', $types, $callback);
+        return new Regex($rule, '#^'.$regex.'$#', $types, $callback);
     }
 
     public function collectError(string $error, $matcher)
     {
-        $this->errors[]= $error . ' at col ' . $matcher->offset;
+        $this->errors[]= $error . ' at col ' . $matcher->offset . '. Matched by: '.$matcher->source->rule;
     }
 
     public function subLint(string $ruleset, Capture $capture)
@@ -57,8 +65,16 @@ class Linter
                     $grouped[$match->type][] = $match;
                 }
 
+                if ($this->explain) {
+                    echo "$text matched by #$rule->rule#.\n";
+                }
+
                 return call_user_func($rule->callback, $this, $grouped);
             }
+        }
+
+        if ($this->explain) {
+            echo "$text did not match.\n";
         }
     }
 }

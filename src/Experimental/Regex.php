@@ -4,12 +4,14 @@ namespace Allocine\Twigcs\Experimental;
 
 class Regex
 {
+    public $rule;
     public $regex;
     public $captureTypes;
     public $callback;
 
-    public function __construct(string $regex, array $captureTypes, callable $callback)
+    public function __construct(string $rule, string $regex, array $captureTypes, callable $callback)
     {
+        $this->rule = $rule;
         $this->regex = $regex;
         $this->captureTypes = $captureTypes;
         $this->callback = $callback;
@@ -23,7 +25,7 @@ class Regex
             $whole = array_shift($matches);
             $captures = [];
             foreach (array_values($matches) as $key => $match) {
-                $captures[]= new Capture($this->captureTypes[$key], $match[0], $match[1]);
+                $captures[]= new Capture($this->captureTypes[$key], $match[0], $match[1], $this);
             }
         }
 
