@@ -2,6 +2,7 @@
 
 use Allocine\Twigcs\Experimental\Handler;
 use Allocine\Twigcs\Experimental\Linter;
+use Allocine\Twigcs\Experimental\StringSanitizer;
 
 require_once __DIR__.'/vendor/autoload.php';
 
@@ -33,6 +34,8 @@ $rules[] = [BLOCK_VARS, '{% set @ = $ %}', Handler::create()->delegate('$', 'exp
 $expr = [];
 $expr[] = [OP_VARS, '@ \( \)', Handler::create()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')];
 $expr[] = [OP_VARS, '@ \( $ \)', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
+//$expr[] = [OP_VARS, '\( \)', Handler::create()->enforceSize(' ', 0, 'No space should be used inside empty parenthesis.')];
+//$expr[] = [OP_VARS, '\( $ \)', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space should be used')];
 $expr[] = [OP_VARS, '\[ \]', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty arrays.')];
 $expr[] = [OP_VARS, '\[ $ \]', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
 $expr[] = [OP_VARS, '\{ \}', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty hashes.')];
@@ -105,9 +108,23 @@ $linter = new Linter($rules);
 $linter->explain();
 $linter->lint('root', '{% set foo = toto(1 +  (2 * 5)) %}');
 print_r($linter->errors);
-*/
 
 $linter = new Linter($rules);
 $linter->explain();
 $linter->lint('root', '{% set foo = {  toto : { tata:  1 } } %}');
+print_r($linter->errors);
+*/
+
+$s = new StringSanitizer();
+
+echo $s->sanitize('"hello"') . "\n";
+echo $s->sanitize("'hello'") . "\n";
+echo $s->sanitize('foo = "hello"') . "\n";
+echo $s->sanitize('foo = "hello\'s"') . "\n";
+echo $s->sanitize('foo = "hello\"skipped" ~ "test"') . "\n";
+
+
+$linter = new Linter($rules);
+$linter->explain();
+$linter->lint('root', '{% set foo = (1 + (2 * 3)) %}');
 print_r($linter->errors);
