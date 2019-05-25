@@ -2,7 +2,7 @@
 
 namespace Allocine\Twigcs\Experimental;
 
-class Linter
+class RuleChecker
 {
     public $rules;
 
@@ -50,12 +50,12 @@ class Linter
         $this->errors[]= $error . ' at col ' . $matcher->offset . '. Matched by: '.$matcher->source->rule;
     }
 
-    public function subLint(string $ruleset, Capture $capture)
+    public function subCheck(string $ruleset, Capture $capture)
     {
-        return $this->lint($ruleset, $capture->text, $capture->offset);
+        return $this->check($ruleset, $capture->text, $capture->offset);
     }
 
-    public function lint(string $ruleset, string $text, int $offset = 0)
+    public function check(string $ruleset, string $text, int $offset = 0)
     {
         foreach ($this->rules[$ruleset] as $rule) {
             if ($matches = $rule->match($text)) {

@@ -1,7 +1,7 @@
 <?php
 
 use Allocine\Twigcs\Experimental\Handler;
-use Allocine\Twigcs\Experimental\Linter;
+use Allocine\Twigcs\Experimental\RuleChecker;
 use Allocine\Twigcs\Experimental\StringSanitizer;
 
 require_once __DIR__.'/vendor/autoload.php';
@@ -124,7 +124,7 @@ echo $s->sanitize('foo = "hello\'s"') . "\n";
 echo $s->sanitize('foo = "hello\"skipped" ~ "test"') . "\n";
 
 
-$linter = new Linter($rules);
+$linter = new RuleChecker($rules);
 $linter->explain();
-$linter->lint('root', '{% set foo = (1 + (2 * 3)) %}');
+$linter->check('root', '{% set foo = (1 + (2 * 3)) %}');
 print_r($linter->errors);

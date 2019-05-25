@@ -20,17 +20,17 @@ class Handler
 
     public function debug()
     {
-        return $this->attach(function (Linter $linter, array $captures) {
+        return $this->attach(function (RuleChecker $ruleChecker, array $captures) {
             var_dump($captures);
         });
     }
 
     public function enforceSize(string $type, int $size, string $message): self
     {
-        return $this->attach(function (Linter $linter, array $captures) use ($type, $size, $message) {
+        return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $size, $message) {
             foreach ($captures[$type] as $capture) {
                 if (strlen($capture->text) != $size) {
-                    $linter->collectError($message, $capture);
+                    $ruleChecker->collectError($message, $capture);
                 }
             }
         });
@@ -38,19 +38,19 @@ class Handler
 
     public function delegate(string $type, string $ruleset): self
     {
-        return $this->attach(function (Linter $linter, array $captures) use ($type, $ruleset) {
+        return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $ruleset) {
             foreach ($captures[$type] as $subExpr) {
-                $linter->subLint($ruleset, $subExpr);
+                $ruleChecker->subCheck($ruleset, $subExpr);
             }
         });
     }
 
-    public function __invoke(Linter $linter, array $captures)
+    public function __invoke(RuleChecker $ruleChecker, array $captures)
     {
-        call_user_func($this->callback, $linter, $captures);
+        call_user_func($this->callback, $ruleChecker, $captures);
 
         if ($this->parent) {
-            call_user_func($this->parent, $linter, $captures);
+            call_user_func($this->parent, $ruleChecker, $captures);
         }
     }
 
