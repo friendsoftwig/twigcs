@@ -5,23 +5,23 @@ namespace Allocine\Twigcs\Experimental;
 class DefaultRuleset
 {
     const OP_VARS = [
-        ' ' => ' *',
-        '$' => '.+?',
+        ' ' => '\s*',
+        '$' => '(?:.|\n|\r)+?',
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
     const BLOCK_VARS = [
-        ' ' => ' +',
-        '_' => ' *',
-        '$' => '.+?',
+        ' ' => '\s+',
+        '_' => '\s*',
+        '$' => '(?:.|\n|\r)+?',
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
     const LIST_VARS = [
-        ' ' => ' *',
-        '_' => ' *',
-        '$' => '.+?',
-        '%' => '.+?',
+        ' ' => '\s*',
+        '_' => '\s*',
+        '$' => '(?:.|\n|\r)+?',
+        '%' => '(?:.|\n|\r)+?',
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
@@ -40,7 +40,8 @@ class DefaultRuleset
         $expr[] = [self::OP_VARS, '\[ \]', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty arrays.')];
         $expr[] = [self::OP_VARS, '\[ $ \]', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
         $expr[] = [self::OP_VARS, '\{ \}', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty hashes.')];
-        $expr[] = [self::OP_VARS, '\{ $ \}', Handler::create()->delegate('$', 'hash')->enforceSize(' ', 1, 'One space should be used')];
+        $expr[] = [self::OP_VARS, "\{\n $ \n\}", Handler::create()->delegate('$', 'hash')]; // @todo
+        $expr[] = [self::OP_VARS, "\{ $ \}", Handler::create()->delegate('$', 'hash')->enforceSize(' ', 1, 'One space should be used')];
         $expr[] = [self::OP_VARS, '$ \.\. $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ \?\? $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ \*\* $', $binaryOpHandler];
