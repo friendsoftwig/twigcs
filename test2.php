@@ -1,6 +1,7 @@
 <?php
 
 use Allocine\Twigcs\Experimental\Handler;
+use Allocine\Twigcs\Experimental\Linter;
 use Allocine\Twigcs\Experimental\RuleChecker;
 use Allocine\Twigcs\Experimental\StringSanitizer;
 
@@ -27,15 +28,11 @@ const LIST_VARS = [
     '%' => '.+?',
 ];
 
-$rules = [];
-$rules[] = [BLOCK_VARS, '{% for @ in $ if $ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
-$rules[] = [BLOCK_VARS, '{% set @ = $ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
-
 $expr = [];
+$expr[] = [BLOCK_VARS, '{% for @ in $ if $ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
+$expr[] = [BLOCK_VARS, '{% set @ = $ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
 $expr[] = [OP_VARS, '@ \( \)', Handler::create()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')];
 $expr[] = [OP_VARS, '@ \( $ \)', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
-//$expr[] = [OP_VARS, '\( \)', Handler::create()->enforceSize(' ', 0, 'No space should be used inside empty parenthesis.')];
-//$expr[] = [OP_VARS, '\( $ \)', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space should be used')];
 $expr[] = [OP_VARS, '\[ \]', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty arrays.')];
 $expr[] = [OP_VARS, '\[ $ \]', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
 $expr[] = [OP_VARS, '\{ \}', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty hashes.')];
@@ -53,7 +50,7 @@ $expr[] = [OP_VARS, '$ \+ $', Handler::create()->delegate('$', 'expr')->enforceS
 
 $list = [];
 $list[] = [LIST_VARS, ' ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')];
-$list[] = [LIST_VARS, '$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')];
+$list[] = [LIST_VARS, '$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'Empty list should have no whitespace')->enforceSize(' ', 1, 'Requires a space for the following list value.')];
 $list[] = [LIST_VARS, ' @ ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')];
 $list[] = [LIST_VARS, ' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'Empty list should have no whitespace')];
 
@@ -65,7 +62,6 @@ $hash[] = [LIST_VARS, '@ :_$', Handler::create()->delegate('$', 'expr')->enforce
 $hash[] = [LIST_VARS, '"@" :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space should be used')->enforceSize('_', 1, 'One space should be used')];
 
 $rules = [
-    'root' => $rules,
     'expr' => $expr,
     'list' => $list,
     'hash' => $hash,
@@ -115,16 +111,7 @@ $linter->lint('root', '{% set foo = {  toto : { tata:  1 } } %}');
 print_r($linter->errors);
 */
 
-$s = new StringSanitizer();
-
-echo $s->sanitize('"hello"') . "\n";
-echo $s->sanitize("'hello'") . "\n";
-echo $s->sanitize('foo = "hello"') . "\n";
-echo $s->sanitize('foo = "hello\'s"') . "\n";
-echo $s->sanitize('foo = "hello\"skipped" ~ "test"') . "\n";
-
-
-$linter = new RuleChecker($rules);
+$linter = new Linter($rules);
 $linter->explain();
-$linter->check('root', '{% set foo = (1 + (2 * 3)) %}');
-print_r($linter->errors);
+print_r($linter->lint('{% set foo = (1 + (2 * foo(3,  5))) %}'));
+//print_r($linter->lint('1 + (1+ 2)'));

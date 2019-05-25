@@ -8,9 +8,9 @@ class ParenthesesNode
     public $children;
     public $offset;
 
-    public function flatten()
+    public function flatten(): array
     {
-        $result = [$this->expr];
+        $result = [$this];
 
         foreach ($this->children as $children) {
             foreach ($children->flatten() as $expressions) {
