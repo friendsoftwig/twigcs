@@ -43,10 +43,10 @@ class CheckstyleRule extends AbstractRule implements RuleInterface
             } elseif ($token->getType() === 13) {
                 $toAppend = "\n";
             } elseif ($token->getType() !== Token::TEXT_TYPE) {
-                $toAppend = $token->getValue();
+                $toAppend = (string)$token->getValue();
             }
 
-            if ($toAppend) {
+            if ($toAppend !== null) {
                 $currentExpression['value'] .= $toAppend;
 
                 $col = 0;

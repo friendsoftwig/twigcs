@@ -1,14 +1,1 @@
-{% set toto = true %}
-
-{% for var in 1..3 %}
-    LEL
-{% endfor %}
-
-{% set hash = {
-    "spire": "zoo",
-} %}
-
-
-{% set uppercase = 1 %}{% filter uppercase %}{% endfilter %}
-{% set uppercase = 1 %}{% if "a"|uppercase %}{% endif %}
-{% set uppercase = 1 %}{% if "a"|uppercase(uppercase) %}{% endif %}
+{{ [test ? path({bar: baz}) : null] }}

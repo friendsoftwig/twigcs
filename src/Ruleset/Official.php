@@ -23,6 +23,7 @@ class Official implements RulesetInterface
             new Rule\UnusedVariable(Violation::SEVERITY_WARNING),
             new Rule\UnusedMacro(Violation::SEVERITY_WARNING),
             new Rule\CheckstyleRule(Violation::SEVERITY_ERROR),
+            new Rule\TrailingSpace(Violation::SEVERITY_ERROR),
         ];
     }
 }

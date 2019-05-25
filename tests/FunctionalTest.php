@@ -41,8 +41,8 @@ class FunctionalTest extends TestCase
             ['{{ foo }}', null],
             ['{{ foo   }}', 'More than 1 space(s) found before closing a variable.'],
             ['{{    foo }}', 'More than 1 space(s) found after opening a variable.'],
-            ['{% foo   %}', 'More than 1 space(s) found before closing a block.'],
-            ['{%    foo %}', 'More than 1 space(s) found after opening a block.'],
+            ['{% block foo   %}', 'More than 1 space(s) found before closing a block.'],
+            ['{%    block foo %}', 'More than 1 space(s) found after opening a block.'],
 
             // Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions.
             // Do not put any spaces before and after the parenthesis used for filter and function calls.
@@ -117,7 +117,7 @@ class FunctionalTest extends TestCase
             ['{{ test ? 1 }}', null],
             ['{{ {foo: test ? path({bar: baz}) : null} }}', null],
             ['{{ [test ? path({bar: baz}) : null] }}', null],
-            ['{{ { prop1: foo ? "bar", prop2: true } }}', null],
+            ['{{ {prop1: foo ? "bar", prop2: true} }}', null],
             ['{% foo == -1 %}', null],
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
@@ -131,7 +131,7 @@ class FunctionalTest extends TestCase
 
             // Unused variables
             ['{% set foo = 1 %}', 'Unused variable "foo".'],
-            ['{% set foo = 1 %}{{ { foo: 1} }}', 'Unused variable "foo".'],
+            ['{% set foo = 1 %}{{ {foo: 1} }}', 'Unused variable "foo".'],
             ['{% set foo = 1 %}{{ foo ? foo : 0 }}', null],
             ['{% set foo = 1 %}{% macro toto() %}{{ foo }}{% endmacro %}', 'Unused variable "foo".'], // https://github.com/allocine/twigcs/issues/27
             ['{% set foo = 1 %}{% if foo %}{% endif %}', null],
