@@ -7,3 +7,8 @@
 {% set hash = {
     "spire": "zoo",
 } %}
+
+
+{% set uppercase = 1 %}{% filter uppercase %}{% endfilter %}
+{% set uppercase = 1 %}{% if "a"|uppercase %}{% endif %}
+{% set uppercase = 1 %}{% if "a"|uppercase(uppercase) %}{% endif %}

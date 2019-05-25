@@ -29,9 +29,11 @@ class CheckstyleRule extends AbstractRule implements RuleInterface
             $clear = false;
 
             if ($token->getType() === Token::BLOCK_START_TYPE) {
-                $currentExpression = ['value' => '{%', 'map' => [], 'offset' => $token->columnno];
+                $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->columnno];
+                $toAppend = '{%';
             } elseif ($token->getType() === Token::VAR_START_TYPE) {
-                $currentExpression = ['value' => '{{', 'map' => [], 'offset' => $token->columnno];
+                $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->columnno];
+                $toAppend = '{{';
             } elseif ($token->getType() === Token::BLOCK_END_TYPE) {
                 $toAppend = '%}';
                 $clear = true;
@@ -69,8 +71,8 @@ class CheckstyleRule extends AbstractRule implements RuleInterface
             foreach ($errors as $error) {
                 $this->addViolation(
                     $tokens->getSourceContext()->getPath(),
-                    $expression['map'][$error->column]['line'],
-                    $expression['map'][$error->column]['column'],
+                    $expression['map'][$error->column]['line'] ?? 0,
+                    $expression['map'][$error->column]['column'] ?? 0,
                     $error->reason,
                 );
             }

@@ -31,6 +31,13 @@ class DefaultRuleset
 
         $binaryOpHandler = Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be exactly one space between binary operator and its operand.');
 
+        $expr[] = [self::BLOCK_VARS, '{% filter @ %}', Handler::create()->enforceSize(' ', 1, 'More than one space used')];
+        $expr[] = [self::BLOCK_VARS, '{% endfilter %}', Handler::create()->enforceSize(' ', 1, 'More than one space used')];
+        $expr[] = [self::BLOCK_VARS, '{% import $ as @ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
+        $expr[] = [self::BLOCK_VARS, '{% from $ import @ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
+        $expr[] = [self::BLOCK_VARS, '{{ $ }}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
+        $expr[] = [self::BLOCK_VARS, '{% if \(_$_\) %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
+        $expr[] = [self::BLOCK_VARS, '{% endif %}', Handler::create()->enforceSize(' ', 1, 'More than one space used')];
         $expr[] = [self::BLOCK_VARS, '{% endfor %}', Handler::create()->enforceSize(' ', 1, 'More than one space used')];
         $expr[] = [self::BLOCK_VARS, '{% for @ in $ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
         $expr[] = [self::BLOCK_VARS, '{% for @ in $ if $ %}', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')];
@@ -44,6 +51,7 @@ class DefaultRuleset
         $expr[] = [self::OP_VARS, "\{ $ \}", Handler::create()->delegate('$', 'hash')->enforceSize(' ', 1, 'One space should be used')];
         $expr[] = [self::OP_VARS, '$ \.\. $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ \?\? $', $binaryOpHandler];
+        $expr[] = [self::OP_VARS, '$ is $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ \*\* $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ % $', $binaryOpHandler];
         $expr[] = [self::OP_VARS, '$ // $', $binaryOpHandler];
