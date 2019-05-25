@@ -57,7 +57,7 @@ class DefaultRuleset
         $expr[] = [self::OP_VARS, '\( \)', Handler::create()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')];
         $expr[] = [self::OP_VARS, '\( $ \)', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
         $expr[] = [self::OP_VARS, '@ \( \)', Handler::create()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')];
-        $expr[] = [self::OP_VARS, '@ \( $ \)', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
+        $expr[] = [self::OP_VARS, '@ \( $ \)', Handler::create()->delegate('$', 'list')->enforceSpaceOrLineBreak(' ', 0, 'No space should be used')];
         $expr[] = [self::OP_VARS, '\[ \]', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty arrays.')];
         $expr[] = [self::OP_VARS, '\[ $ \]', Handler::create()->delegate('$', 'list')->enforceSize(' ', 0, 'No space should be used')];
         $expr[] = [self::OP_VARS, '\{ \}', Handler::create()->enforceSize(' ', 0, 'No space should be used for empty hashes.')];
@@ -88,7 +88,8 @@ class DefaultRuleset
 
         $list = [];
         $list[] = [self::LIST_VARS, ' ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')];
-        $list[] = [self::LIST_VARS, '$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'Empty list should have no whitespace')->enforceSize(' ', 1, 'Requires a space for the following list value.')];
+        $list[] = [self::LIST_VARS, '$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'Empty list should have no whitespace')->enforceSpaceOrLineBreak(' ', 1, 'Requires a space for the following list value.')];
+        $list[] = [self::LIST_VARS, '$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'Empty list should have no whitespace')->enforceSpaceOrLineBreak(' ', 1, 'Requires a space for the following list value.')];
         $list[] = [self::LIST_VARS, ' @ ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')];
         $list[] = [self::LIST_VARS, ' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'Empty list should have no whitespace')];
 

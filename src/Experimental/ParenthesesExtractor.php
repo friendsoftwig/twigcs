@@ -63,7 +63,7 @@ class ParenthesesExtractor
                 }
             }
 
-            if ($char != ' ') {
+            if (!in_array($char, [' ', '.', '|'])) {
                 if ($resetWord) {
                     $resetWord = false;
                     $previousWord = '';

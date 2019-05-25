@@ -25,6 +25,17 @@ class Handler
         });
     }
 
+    public function enforceSpaceOrLineBreak(string $type, int $size, string $message)
+    {
+        return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $size, $message) {
+            foreach ($captures[$type] as $capture) {
+                if ("\n" !== ($capture->text[0] ?? '') && strlen($capture->text) != $size) {
+                    $ruleChecker->collectError($message, $capture);
+                }
+            }
+        });
+    }
+
     public function enforceSize(string $type, int $size, string $message): self
     {
         return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $size, $message) {

@@ -21,11 +21,10 @@ class Linter
     {
         $expr = $this->stringSanitizer->sanitize($expr);
 
+
         $rootNode = new ExpressionNode($expr, 0);
         $this->parenthesesExtractor->extract($rootNode);
         $this->hashExtractor->extract($rootNode);
-
-        var_dump($rootNode);
 
         $nodes = $rootNode->flatten();
         $errors = [];
