@@ -4,6 +4,11 @@ namespace Allocine\Twigcs\Experimental;
 
 class ParenthesesExtractor
 {
+    const PARENTHESES = 0;
+    const FUNCTION_CALL = 1;
+
+    const VARIABLE_PATTERN = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/';
+
     public function extract(string $expr, int $offset = 0)
     {
         $parenthesesDepth = 0;
@@ -19,17 +24,17 @@ class ParenthesesExtractor
         $stack = [];
 
         foreach (str_split($expr) as $char) {
-            $lastSymbolIsName = preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $previousWord);
+            $lastSymbolIsName = preg_match(self::VARIABLE_PATTERN, $previousWord);
             $consumeChar = false;
 
             if ($char === '(') {
-                $type = $lastSymbolIsName ? 'f' : 'p';
+                $type = $lastSymbolIsName ? self::FUNCTION_CALL : self::PARENTHESES;
 
-                if ($type === 'p') {
+                if ($type === self::PARENTHESES) {
                     $parenthesesDepth++;
                 }
 
-                if ($parenthesesDepth === 1 && $type === 'p') {
+                if ($parenthesesDepth === 1 && $type === self::PARENTHESES) {
                     $capturesOffsets[]= $counter + $offset + 1;
                     $consumeChar = true;
                 }
@@ -38,7 +43,7 @@ class ParenthesesExtractor
             } elseif ($char === ')') {
                 $type = array_pop($stack);
 
-                if ($type === 'p') {
+                if ($type === self::PARENTHESES) {
                     $parenthesesDepth--;
 
                     if ($parenthesesDepth === 0) {
