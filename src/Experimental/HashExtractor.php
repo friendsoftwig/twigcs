@@ -35,7 +35,7 @@ class HashExtractor
                 if ($depth === 0) {
                     $captures[]= $currentCapture;
                     $currentCapture = '';
-                    $collectedExpr .= 'EXPR';
+                    $collectedExpr .= '__HASH__';
                     $consumeChar = true;
                 }
             }

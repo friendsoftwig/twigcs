@@ -65,7 +65,7 @@ class Handler
         }
     }
 
-    private function attach(callable $callback)
+    public function attach(callable $callback)
     {
         if (!$this->callback) {
             $this->callback = $callback;
