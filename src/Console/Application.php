@@ -5,7 +5,6 @@ namespace Allocine\Twigcs\Console;
 use Allocine\Twigcs\Container;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\ArgvInput;
 
 class Application extends BaseApplication
 {
@@ -14,31 +13,18 @@ class Application extends BaseApplication
      */
     private $container;
 
-    /**
-     * @param string $name
-     * @param string $version
-     */
-    public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN')
+    public function __construct(string $name = 'UNKNOWN', string $version = 'UNKNOWN', bool $singleCommand = true)
     {
         parent::__construct($name, $version);
 
         $this->container = new Container();
         $command = new LintCommand();
         $this->add($command);
-        // Support old way to execute linter (`twigcs lint <path>`) to preserve
-        // backward compatibility.
-        if ((new ArgvInput())->getFirstArgument() == 'lint') {
-            @trigger_error("Calling 'lint' command is deprecated. Run `twigs <path>` instead.", E_USER_DEPRECATED);
-        }
-        else {
-            $this->setDefaultCommand($command->getName(), true);
-        }
+        $this->add(new RegDebugCommand());
 
+        $this->setDefaultCommand($command->getName(), $singleCommand);
     }
 
-    /**
-     * @param Command $command
-     */
     public function add(Command $command)
     {
         parent::add($command);

@@ -10,11 +10,14 @@ class RuleChecker
 
     private $explain;
 
+    private $log;
+
     public function __construct(array $rulesets)
     {
         $this->rules = [];
         $this->errors = [];
         $this->explain = false;
+        $this->log = [];
 
         foreach ($rulesets as $key => $ruleset) {
             foreach ($ruleset as $rule) {
@@ -28,6 +31,11 @@ class RuleChecker
         $this->explain = true;
     }
 
+    public function getLog()
+    {
+        return $this->log;
+    }
+
     private function compute(array $vars, string $rule, callable $callback)
     {
         $regex = '';
@@ -36,9 +44,9 @@ class RuleChecker
         foreach (str_split($rule) as $char) {
             if ($vars[$char] ?? false) {
                 $regex .= '('.$vars[$char].')';
-                $types[]= $char;
+                $types[] = $char;
             } else {
-                $regex.=$char;
+                $regex .= $char;
             }
         }
 
@@ -47,7 +55,7 @@ class RuleChecker
 
     public function collectError(string $error, $matcher)
     {
-        $this->errors[]= new RuleError($error, $matcher->offset, $matcher->source);
+        $this->errors[] = new RuleError($error, $matcher->offset, $matcher->source);
     }
 
     public function subCheck(string $ruleset, Capture $capture)
@@ -66,7 +74,7 @@ class RuleChecker
                 }
 
                 if ($this->explain) {
-                    echo "$text matched by #$rule->rule#.\n";
+                    $this->log[] = "$text matched by #$rule->rule#.\n";
                 }
 
                 return call_user_func($rule->callback, $this, $grouped);
@@ -74,7 +82,7 @@ class RuleChecker
         }
 
         if ($this->explain) {
-            echo "$text did not match.\n";
+            $this->log[] = "$text did not match.\n";
         }
     }
 }

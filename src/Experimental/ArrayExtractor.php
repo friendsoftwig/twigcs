@@ -2,7 +2,7 @@
 
 namespace Allocine\Twigcs\Experimental;
 
-class HashExtractor
+class ArrayExtractor
 {
     public function extract(ExpressionNode $node)
     {
@@ -14,11 +14,9 @@ class HashExtractor
         $counter = 0;
 
         foreach (str_split($node->expr) as $char) {
-            $prevChar = $node->expr[$counter - 1] ?? null;
-            $nextChar = $node->expr[$counter + 1] ?? null;
             $consumeChar = false;
 
-            if ($char === '{' && $prevChar != '{' && $nextChar != '{') {
+            if ($char === '[') {
                 $depth++;
 
                 if ($depth === 1) {
@@ -27,13 +25,13 @@ class HashExtractor
                 }
             }
 
-            if ($char === '}' && (($depth > 0) || ($prevChar != '}' && $nextChar != '}'))) {
+            if ($char === ']' && ($depth > 0)) {
                 $depth--;
 
                 if ($depth === 0) {
                     $captures[]= $currentCapture;
                     $currentCapture = '';
-                    $collectedExpr .= '__HASH__';
+                    $collectedExpr .= '__ARRAY__';
                     $consumeChar = true;
                 }
             }
@@ -59,7 +57,7 @@ class HashExtractor
             $child = new ExpressionNode($capture, $capturesOffsets[$key], 'expr');
             $node->addChild($child);
             $this->extract($child);
-            $child->replaceExpr('{' . $child->expr . '}');
+            $child->replaceExpr('[' . $child->expr . ']');
         }
 
         return $node;

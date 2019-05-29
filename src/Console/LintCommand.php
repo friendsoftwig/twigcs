@@ -9,9 +9,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
 
-class LintCommand extends ContainerAwareCommand
+class LintCommand extends AbstractCommand
 {
     public function configure()
     {
@@ -29,28 +28,16 @@ class LintCommand extends ContainerAwareCommand
         $container = $this->getContainer();
         $limit = $this->getSeverityLimit($input);
 
-
         $paths = $input->getArgument('paths');
 
-        $files = [];
-        foreach ($paths as $path) {
-            if (is_file($path)) {
-                $files[] = new \SplFileInfo($path);
-            } else {
-                $finder = new Finder();
-                $found = iterator_to_array($finder->in($path)->name('*.twig'));
-                if (!empty($found)) {
-                  $files = array_merge($files, $found);
-                }
-            }
-        }
+        $files = $this->getFiles($paths);
 
         $violations = [];
 
         $ruleset = $input->getOption('ruleset');
 
         if (!is_subclass_of($ruleset, RulesetInterface::class)) {
-            throw new \InvalidArgumentException('Ruleset class must implement ' . RulesetInterface::class);
+            throw new \InvalidArgumentException('Ruleset class must implement '.RulesetInterface::class);
         }
 
         foreach ($files as $file) {

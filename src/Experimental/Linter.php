@@ -10,6 +10,7 @@ class Linter
         $this->stringSanitizer = new StringSanitizer();
         $this->parenthesesExtractor = new ParenthesesExtractor();
         $this->hashExtractor = new HashExtractor();
+        $this->arrayExtractor = new ArrayExtractor();
     }
 
     public function explain()
@@ -21,16 +22,16 @@ class Linter
     {
         $expr = $this->stringSanitizer->sanitize($expr);
 
-
         $rootNode = new ExpressionNode($expr, 0);
         $this->parenthesesExtractor->extract($rootNode);
         $this->hashExtractor->extract($rootNode);
+        $this->arrayExtractor->extract($rootNode);
 
         $nodes = $rootNode->flatten();
         $errors = [];
 
         foreach ($nodes as $node) {
-            $this->ruleChecker->check('expr', $node->expr, $node->offset);
+            $this->ruleChecker->check($node->type, $node->expr, $node->offset);
         }
 
         return $this->ruleChecker->errors;

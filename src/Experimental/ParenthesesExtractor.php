@@ -13,8 +13,6 @@ class ParenthesesExtractor
         $capturesOffsets = [];
         $counter = 0;
 
-        $stack = [];
-
         foreach (str_split($node->expr) as $char) {
             $consumeChar = false;
 
@@ -25,11 +23,7 @@ class ParenthesesExtractor
                     $capturesOffsets[]= $counter + $node->offset + 1;
                     $consumeChar = true;
                 }
-
-                $stack[]= $type;
             } elseif ($char === ')') {
-                $type = array_pop($stack);
-
                 $parenthesesDepth--;
 
                 if ($parenthesesDepth === 0) {
@@ -58,7 +52,7 @@ class ParenthesesExtractor
         }
 
         foreach ($captures as $key => $capture) {
-            $child = new ExpressionNode($capture, $capturesOffsets[$key]);
+            $child = new ExpressionNode($capture, $capturesOffsets[$key], 'expr');
             $node->addChild($child);
             $this->extract($child);
             $child->replaceExpr('(' . $child->expr . ')');

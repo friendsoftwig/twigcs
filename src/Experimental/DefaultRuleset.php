@@ -34,7 +34,6 @@ class DefaultRuleset
         /*
          * TODO:
          *
-         * [] extractor.
          * Extracted nodes can switch from expr in the rulechecker.
          * Test that tricky expressions with () {} and [] are well sorted.
          */
