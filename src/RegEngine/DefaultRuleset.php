@@ -120,9 +120,9 @@ class DefaultRuleset
             ['{%~for @, @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['{%~for @ in $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['{%~for @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
-            ['{%~set @ = $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')],
-            ['{%~@~%}', self::handle()->enforceSize('~', 1, 'More than one space used')],
-            ['{%~@ &~%}', self::handle()->delegate('&', 'list')->enforceSize('~', 1, 'More than one space used')->enforceSize(' ', 1, 'More than one space used')],
+            ['{%~set @ = $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each part of the set.')],
+            ['{%~@~%}', self::noArgBlock()],
+            ['{%~@ &~%}', self::argBlock()->delegate('&', 'list')],
         ]);
 
         $ops = self::using(self::OP_VARS, [

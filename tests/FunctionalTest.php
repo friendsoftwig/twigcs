@@ -183,6 +183,7 @@ class FunctionalTest extends TestCase
             ['{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} %}', null],
             ['{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} only %}', null],
             ['{% set bar %}1{% endset %}{% include "foo.html.twig" with {bar: foo} only %}', 'Unused variable "bar".'],
+            ['{% include "foo.html.twig" %}', null],
 
             // Check regression of https://github.com/allocine/twigcs/issues/62
             ['{%~ if foo ~%}', null],

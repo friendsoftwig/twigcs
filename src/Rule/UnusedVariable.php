@@ -42,6 +42,8 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                     case 'include':
                         if ('with' === $tokens->look(6)->getValue()) {
                             $this->skip($tokens, 8);
+                        } else {
+                            $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
                         }
                         break;
                     case 'from':
