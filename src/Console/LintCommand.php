@@ -9,8 +9,9 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 
-class LintCommand extends AbstractCommand
+class LintCommand extends ContainerAwareCommand
 {
     public function configure()
     {
@@ -30,7 +31,18 @@ class LintCommand extends AbstractCommand
 
         $paths = $input->getArgument('paths');
 
-        $files = $this->getFiles($paths);
+        $files = [];
+        foreach ($paths as $path) {
+            if (is_file($path)) {
+                $files[] = new \SplFileInfo($path);
+            } else {
+                $finder = new Finder();
+                $found = iterator_to_array($finder->in($path)->name('*.twig'));
+                if (!empty($found)) {
+                    $files = array_merge($files, $found);
+                }
+            }
+        }
 
         $violations = [];
 

@@ -75,7 +75,7 @@ class DefaultRuleset
     {
         return self::handle()
             ->delegate('$', 'expr')
-            ->enforceSize(' ', 0, 'There should be no space inside slices.')
+            ->enforceSize(' ', 0, 'There should be no space inside an array slice short notation.')
         ;
     }
 
@@ -121,6 +121,7 @@ class DefaultRuleset
         ]);
 
         $ops = self::using(self::OP_VARS, [
+            ['@ __PARENTHESES__', self::handle()->enforceSize(' ', 0, 'There should be no space between a function name and its opening parentheses.')],
             ['\( \)', self::handle()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')],
             ['\( $ \)', self::handle()->delegate('$', 'list')->enforceSize(' ', 0, 'There should be no space before and after the function argument list.')],
             ['@ \( \)', self::handle()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')],
@@ -152,33 +153,37 @@ class DefaultRuleset
             ['$ \.\. $', self::binaryOpSpace('..')],
             ['not $', self::unaryOpSpace('not')],
             ['$ \| $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space before and after filters.')],
-            ['$ \[ : $ \]', self::slice()],
-            ['$ \[ $ : \]', self::slice()],
-            ['$ \[ $ : $ \]', self::slice()],
-            ['$ \[ $ \]', self::slice()],
             ['$ \. $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space before and after the dot when accessing a property.')],
         ]);
 
         $list = self::using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')],
-            ['$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'Empty list should have no whitespace')->enforceSpaceOrLineBreak(' ', 1, 'Requires a space for the following list value.')],
-            ['$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'Empty list should have no whitespace')->enforceSpaceOrLineBreak(' ', 1, 'Requires a space for the following list value.')],
-            [' @ ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')],
-            [' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'Empty list should have no whitespace')],
+            ['$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'A list value should be immediately followed by a coma.')->enforceSpaceOrLineBreak(' ', 1, 'The next value of a list should be separated by one space.')],
+            ['$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'A list value should be immediately followed by a coma.')->enforceSpaceOrLineBreak(' ', 1, 'The next value of a list should be separated by one space.')],
+            [' @ ', Handler::create()->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
+            [' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
         ]);
 
         $hash = self::using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', 0, 'Empty hash should have no whitespace')],
-            ['@ :_$ ,_%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'No space should be used')->enforceSize('_', 1, 'One space should be used')],
-            ['"@" :_$ ,_%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'No space should be used')->enforceSize('_', 1, 'One space should be used')],
-            ['@ :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space should be used')->enforceSize('_', 1, 'One space should be used')],
-            ['"@" :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'No space should be used')->enforceSize('_', 1, 'One space should be used')],
+            ['@ :_$ ,_%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+            ['"@" :_$ ,_%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+            ['@ :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+            ['"@" :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+        ]);
+
+        $arrayOrSlice = self::using(self::OP_VARS, [
+            ['\[ : $ \]', self::slice()],
+            ['\[ $ : \]', self::slice()],
+            ['\[ $ : $ \]', self::slice()],
+            ['\[ $ \]', Handler::create()->delegate('$', 'list')], // Redirects to array checking
         ]);
 
         return [
             'expr' => array_merge($blocks, $ops),
             'list' => $list,
             'hash' => $hash,
+            'arrayOrSlice' => $arrayOrSlice,
         ];
     }
 }

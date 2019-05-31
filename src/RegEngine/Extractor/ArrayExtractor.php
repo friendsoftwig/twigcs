@@ -56,7 +56,7 @@ class ArrayExtractor
         }
 
         foreach ($captures as $key => $capture) {
-            $child = new ExpressionNode($capture, $capturesOffsets[$key], 'expr');
+            $child = new ExpressionNode($capture, $capturesOffsets[$key], 'arrayOrSlice');
             $node->addChild($child);
             $this->extract($child);
             $child->replaceExpr(sprintf('[%s]', $child->getExpr()));
