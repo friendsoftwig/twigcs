@@ -47,19 +47,19 @@ class FunctionalTest extends TestCase
             // Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions.
             // Do not put any spaces before and after the parenthesis used for filter and function calls.
             ['{{ foo(1) }}', null],
-            ['{{ foo( 1) }}', 'There should be no space before and after the function argument list.'],
-            ['{{ foo(1 ) }}', 'There should be no space before and after the function argument list.'],
+            ['{{ foo( 1) }}', 'There should be no space between parentheses and their content.'],
+            ['{{ foo(1 ) }}', 'There should be no space between parentheses and their content.'],
             ['{{ foo (1) }}', 'There should be no space between a function name and its opening parentheses.'],
             ['{{ (1) }}',     null],
-            ['{{ ( 1) }}',    'There should be no space after "(".'],
-            ['{{ (1 ) }}',    'There should be no space before ")".'],
+            ['{{ ( 1) }}',    'There should be no space between parentheses and their content.'],
+            ['{{ (1 ) }}',    'There should be no space between parentheses and their content.'],
 
             // Parenthesis spacing is not appliable to control structures.
             ['{% if (1 + 2) == 3 %}', null],
             ['{% for i in (some_array) %}', null],
             ['{% if (foo and (not bar or baz)) %}', null],
-            ['{% for i in  (some_array) %}', 'More than 1 space(s) found after "in".'],
-            ['{% if  (1 + 2) == 3 %}', 'More than 1 space(s) found before "(".'],
+            ['{% for i in  (some_array) %}', 'There should be one space between each for part.'],
+            ['{% if  (1 + 2) == 3 %}', 'There should be one space between the if keyword and its condition.'],
 
             // Do not put any spaces before and after the following operators: |, ., .., [].
             ['{{ foo|baz }}', null],
@@ -95,6 +95,7 @@ class FunctionalTest extends TestCase
             ['{{ sliced_array[0 :4] }}', 'There should be no space inside an array slice short notation.'],
             ['{{ sliced_array[0:4 ] }}', 'There should be no space inside an array slice short notation.'],
             ['{{ sliced_array[ 0:4] }}', 'There should be no space inside an array slice short notation.'],
+            ['{{ slice[true ? 0 : 1 :0] }}', 'There should be no space inside an array slice short notation.'],
 
             // Put one (and only one) space before and after the following operators: comparison operators (==, !=, <, >, >=, <=), math operators (+, -, /, *, %, //, **), logic operators (not, and, or), ~, is, in, and the ternary operator (?:).
             ['{{ 1 + 2 }}', null],

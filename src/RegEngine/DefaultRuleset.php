@@ -29,6 +29,11 @@ class DefaultRuleset
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
+    const SLICE_VARS = [
+        ' ' => '\s*',
+        '$' => '(?:[^\?]|\n|\r)+?', // Excludes ternary from slice detection
+    ];
+
     public static function handle()
     {
         return Handler::create();
@@ -108,13 +113,13 @@ class DefaultRuleset
             ['{%~from $ import @ as &~%}', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
             ['{%~from $ import &~%}', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
             ['{{~$~}}', self::handle()->delegate('$', 'expr')->enforceSize('~', 1, 'A print statement should start with one space and end with one space.')],
-            ['{%~if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')],
+            ['{%~if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between the if keyword and its condition.')],
             ['{%~endif~%}', self::noArgBlock()],
             ['{%~endfor~%}', self::noArgBlock()],
-            ['{%~for @, @ in $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')],
-            ['{%~for @, @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')],
-            ['{%~for @ in $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')],
-            ['{%~for @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')],
+            ['{%~for @, @ in $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['{%~for @, @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['{%~for @ in $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['{%~for @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['{%~set @ = $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'More than one space used')],
             ['{%~@~%}', self::handle()->enforceSize('~', 1, 'More than one space used')],
             ['{%~@ &~%}', self::handle()->delegate('&', 'list')->enforceSize('~', 1, 'More than one space used')->enforceSize(' ', 1, 'More than one space used')],
@@ -122,10 +127,9 @@ class DefaultRuleset
 
         $ops = self::using(self::OP_VARS, [
             ['@ __PARENTHESES__', self::handle()->enforceSize(' ', 0, 'There should be no space between a function name and its opening parentheses.')],
-            ['\( \)', self::handle()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')],
-            ['\( $ \)', self::handle()->delegate('$', 'list')->enforceSize(' ', 0, 'There should be no space before and after the function argument list.')],
-            ['@ \( \)', self::handle()->enforceSize(' ', 0, 'No space should be used inside function call with no argument.')],
-            ['@ \( $ \)', self::handle()->delegate('$', 'list')->enforceSpaceOrLineBreak(' ', 0, 'There should be no space before and after the function argument list.')],
+            ['\( \)', self::handle()->enforceSize(' ', 0, 'No space should be used inside empty parentheses.')],
+            ["\(\n $\n \)", self::handle()->delegate('$', 'list')], // Multiline function call
+            ['\( $ \)', self::handle()->delegate('$', 'list')->enforceSize(' ', 0, 'There should be no space between parentheses and their content.')],
             ['\[ \]', self::handle()->enforceSize(' ', 0, 'No space should be used for empty arrays.')],
             ['\[ $ \]', self::handle()->delegate('$', 'list')->enforceSize(' ', 0, 'There should be no space before and after the array values.')],
             ['\{ \}', self::handle()->enforceSize(' ', 0, 'No space should be used for empty hashes.')],
@@ -137,9 +141,10 @@ class DefaultRuleset
             ['$ > $', self::binaryOpSpace('>')],
             ['$ != $', self::binaryOpSpace('!=')],
             ['$ == $', self::binaryOpSpace('==')],
-            ['$ \? $ \: $', self::ternaryOpSpace()],
+            ['$ __TERNARY__ $', self::ternaryOpSpace()],
             ['$ \?: $', self::ternaryOpSpace()],
             ['$ \? $', self::ternaryOpSpace()],
+            ['\? $ \:', self::ternaryOpSpace()],
             ['$ \+ $', self::binaryOpSpace('+')],
             ['$ - $', self::binaryOpSpace('-')],
             ['$ ~ $', self::binaryOpSpace('~')],
@@ -172,10 +177,13 @@ class DefaultRuleset
             ['"@" :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
         ]);
 
-        $arrayOrSlice = self::using(self::OP_VARS, [
+        $slice = self::using(self::SLICE_VARS, [
             ['\[ : $ \]', self::slice()],
             ['\[ $ : \]', self::slice()],
             ['\[ $ : $ \]', self::slice()],
+        ]);
+
+        $array = self::using(self::OP_VARS, [
             ['\[ $ \]', Handler::create()->delegate('$', 'list')], // Redirects to array checking
         ]);
 
@@ -183,7 +191,7 @@ class DefaultRuleset
             'expr' => array_merge($blocks, $ops),
             'list' => $list,
             'hash' => $hash,
-            'arrayOrSlice' => $arrayOrSlice,
+            'arrayOrSlice' => array_merge($slice, $array),
         ];
     }
 }

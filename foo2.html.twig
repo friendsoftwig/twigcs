@@ -1,1 +1,4 @@
-{{ foo (0) }}
+{{ url(
+    app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')
+) }}

@@ -8,6 +8,7 @@ use Allocine\Twigcs\RegEngine\ExpressionNode;
 use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
+use Allocine\Twigcs\RegEngine\Extractor\TernaryExtractor;
 use Allocine\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,6 +36,7 @@ class RegDebugCommand extends ContainerAwareCommand
         $parenthesesExtractor = new ParenthesesExtractor();
         $hashExtractor = new HashExtractor();
         $arrayExtractor = new ArrayExtractor();
+        $ternaryExtractor = new TernaryExtractor();
 
         $expr = trim(file_get_contents($path));
 
@@ -51,6 +53,7 @@ class RegDebugCommand extends ContainerAwareCommand
         $parenthesesExtractor->extract($rootNode);
         $hashExtractor->extract($rootNode);
         $arrayExtractor->extract($rootNode);
+        $ternaryExtractor->extract($rootNode);
 
         $io->title('Extracted node tree');
         $io->writeln($rootNode->getTrace());

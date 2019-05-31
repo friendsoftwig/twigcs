@@ -6,6 +6,7 @@ use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
 use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
+use Allocine\Twigcs\RegEngine\Extractor\TernaryExtractor;
 use Allocine\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 
 class Linter
@@ -17,6 +18,7 @@ class Linter
         $this->parenthesesExtractor = new ParenthesesExtractor();
         $this->hashExtractor = new HashExtractor();
         $this->arrayExtractor = new ArrayExtractor();
+        $this->ternaryExtractor = new TernaryExtractor();
     }
 
     public function explain()
@@ -32,6 +34,7 @@ class Linter
         $this->parenthesesExtractor->extract($rootNode);
         $this->hashExtractor->extract($rootNode);
         $this->arrayExtractor->extract($rootNode);
+        $this->ternaryExtractor->extract($rootNode);
 
         $nodes = $rootNode->flatten();
         $errors = [];
