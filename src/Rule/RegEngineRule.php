@@ -2,15 +2,11 @@
 
 namespace Allocine\Twigcs\Rule;
 
-use Allocine\Twigcs\Experimental\DefaultRuleset;
-use Allocine\Twigcs\Experimental\Linter;
-use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Rule\AbstractRule;
-use Allocine\Twigcs\Rule\RuleInterface;
-use Allocine\Twigcs\Validator\Violation;
+use Allocine\Twigcs\RegEngine\DefaultRuleset;
+use Allocine\Twigcs\RegEngine\Linter;
 use Twig\Token;
 
-class CheckstyleRule extends AbstractRule implements RuleInterface
+class RegEngineRule extends AbstractRule implements RuleInterface
 {
     /**
      * {@inheritdoc}
@@ -19,7 +15,7 @@ class CheckstyleRule extends AbstractRule implements RuleInterface
     {
         $this->reset();
 
-        $currentExpression = ['value' => '', 'map' => [], 'offset'=> 0];
+        $currentExpression = ['value' => '', 'map' => [], 'offset' => 0];
         $expressions = [];
 
         while (!$tokens->isEOF()) {
@@ -28,38 +24,38 @@ class CheckstyleRule extends AbstractRule implements RuleInterface
             $toAppend = '';
             $clear = false;
 
-            if ($token->getType() === Token::BLOCK_START_TYPE) {
+            if (Token::BLOCK_START_TYPE === $token->getType()) {
                 $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->columnno];
                 $toAppend = '{%';
-            } elseif ($token->getType() === Token::VAR_START_TYPE) {
+            } elseif (Token::VAR_START_TYPE === $token->getType()) {
                 $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->columnno];
                 $toAppend = '{{';
-            } elseif ($token->getType() === Token::BLOCK_END_TYPE) {
+            } elseif (Token::BLOCK_END_TYPE === $token->getType()) {
                 $toAppend = '%}';
                 $clear = true;
-            } elseif ($token->getType() === Token::VAR_END_TYPE) {
+            } elseif (Token::VAR_END_TYPE === $token->getType()) {
                 $toAppend = '}}';
                 $clear = true;
-            } elseif ($token->getType() === 13) {
+            } elseif (13 === $token->getType()) {
                 $toAppend = "\n";
-            } elseif ($token->getType() === Token::STRING_TYPE) {
+            } elseif (Token::STRING_TYPE === $token->getType()) {
                 $toAppend = '"'.$token->getValue().'"';
-            } elseif ($token->getType() !== Token::TEXT_TYPE) {
-                $toAppend = (string)$token->getValue();
+            } elseif (Token::TEXT_TYPE !== $token->getType()) {
+                $toAppend = (string) $token->getValue();
             }
 
-            if ($toAppend !== null) {
+            if (null !== $toAppend) {
                 $currentExpression['value'] .= $toAppend;
 
                 $col = 0;
                 foreach (str_split($toAppend) as $char) {
-                    $currentExpression['map'][]= ['line' => $token->getLine(), 'column' => $token->columnno + $col];
-                    $col++;
+                    $currentExpression['map'][] = ['line' => $token->getLine(), 'column' => $token->columnno + $col];
+                    ++$col;
                 }
             }
 
             if ($clear) {
-                $expressions[]= $currentExpression;
+                $expressions[] = $currentExpression;
             }
 
             $tokens->next();
@@ -73,13 +69,12 @@ class CheckstyleRule extends AbstractRule implements RuleInterface
             foreach ($errors as $error) {
                 $this->addViolation(
                     $tokens->getSourceContext()->getPath(),
-                    $expression['map'][$error->column]['line'] ?? 0,
-                    $expression['map'][$error->column]['column'] ?? 0,
-                    $error->reason,
+                    $expression['map'][$error->getColumn()]['line'] ?? 0,
+                    $expression['map'][$error->getColumn()]['column'] ?? 0,
+                    $error->getReason(),
                 );
             }
         }
-
 
         return $this->violations;
     }

@@ -1,6 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\Experimental;
+namespace Allocine\Twigcs\RegEngine\Extractor;
+
+use Allocine\Twigcs\RegEngine\ExpressionNode;
 
 class ParenthesesExtractor
 {
@@ -13,21 +15,21 @@ class ParenthesesExtractor
         $capturesOffsets = [];
         $counter = 0;
 
-        foreach (str_split($node->expr) as $char) {
+        foreach (str_split($node->getExpr()) as $char) {
             $consumeChar = false;
 
-            if ($char === '(') {
-                $parenthesesDepth++;
+            if ('(' === $char) {
+                ++$parenthesesDepth;
 
-                if ($parenthesesDepth === 1) {
-                    $capturesOffsets[]= $counter + $node->offset + 1;
+                if (1 === $parenthesesDepth) {
+                    $capturesOffsets[] = $counter + $node->getOffset() + 1;
                     $consumeChar = true;
                 }
-            } elseif ($char === ')') {
-                $parenthesesDepth--;
+            } elseif (')' === $char) {
+                --$parenthesesDepth;
 
-                if ($parenthesesDepth === 0) {
-                    $captures[]= $currentCapture;
+                if (0 === $parenthesesDepth) {
+                    $captures[] = $currentCapture;
                     $currentCapture = '';
                     $collectedExpr .= '__PARENTHESES__';
                     $consumeChar = true;
@@ -42,12 +44,12 @@ class ParenthesesExtractor
                 }
             }
 
-            $counter++;
+            ++$counter;
         }
 
         $node->replaceExpr($collectedExpr);
 
-        foreach ($node->children as $child) {
+        foreach ($node->getChildren() as $child) {
             $this->extract($child);
         }
 
@@ -55,7 +57,7 @@ class ParenthesesExtractor
             $child = new ExpressionNode($capture, $capturesOffsets[$key], 'expr');
             $node->addChild($child);
             $this->extract($child);
-            $child->replaceExpr('(' . $child->expr . ')');
+            $child->replaceExpr(sprintf('(%s)', $child->getExpr()));
         }
 
         return $node;

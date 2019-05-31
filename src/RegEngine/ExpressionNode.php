@@ -1,13 +1,28 @@
 <?php
 
-namespace Allocine\Twigcs\Experimental;
+namespace Allocine\Twigcs\RegEngine;
 
 class ExpressionNode
 {
-    public $expr;
-    public $children;
-    public $offset;
-    public $type;
+    /**
+     * @var string
+     */
+    private $expr;
+
+    /**
+     * @var array
+     */
+    private $children;
+
+    /**
+     * @var int
+     */
+    private $offset;
+
+    /**
+     * @var string
+     */
+    private $type;
 
     public function __construct(string $expr, int $offset, string $type = 'expr')
     {
@@ -17,9 +32,31 @@ class ExpressionNode
         $this->type = $type;
     }
 
-    public function replaceExpr(string $expr)
+    public function getChildren(): array
+    {
+        return $this->children;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getExpr(): string
+    {
+        return $this->expr;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function replaceExpr(string $expr): self
     {
         $this->expr = $expr;
+
+        return $this;
     }
 
     public function addChild(self $child)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\Twigcs\Experimental;
+namespace Allocine\Twigcs\RegEngine\Sanitizer;
 
 class StringSanitizer
 {
@@ -14,14 +14,14 @@ class StringSanitizer
         $escaped = false;
 
         foreach (str_split($expr) as $char) {
-            if ($char === '\\') {
+            if ('\\' === $char) {
                 $escaped = true;
                 $result .= self::NEUTRAL_CHAR;
                 continue;
             }
 
             if (!$insideString) {
-                if (in_array($char, ['"', "'"]) && !$escaped) {
+                if (in_array($char, ['"', "'"], true) && !$escaped) {
                     $insideString = true;
                     $stringOpener = $char;
                     $result .= $char;

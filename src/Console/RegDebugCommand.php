@@ -2,13 +2,13 @@
 
 namespace Allocine\Twigcs\Console;
 
-use Allocine\Twigcs\Experimental\ArrayExtractor;
-use Allocine\Twigcs\Experimental\DefaultRuleset;
-use Allocine\Twigcs\Experimental\ExpressionNode;
-use Allocine\Twigcs\Experimental\HashExtractor;
-use Allocine\Twigcs\Experimental\ParenthesesExtractor;
-use Allocine\Twigcs\Experimental\RuleChecker;
-use Allocine\Twigcs\Experimental\StringSanitizer;
+use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
+use Allocine\Twigcs\RegEngine\DefaultRuleset;
+use Allocine\Twigcs\RegEngine\ExpressionNode;
+use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
+use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
+use Allocine\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
+use Allocine\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -62,14 +62,14 @@ class RegDebugCommand extends AbstractCommand
         foreach ($nodes as $node) {
             $ruleChecker = new RuleChecker(DefaultRuleset::get());
             $ruleChecker->explain();
-            $ruleChecker->check($node->type, $node->expr, $node->offset);
-            $io->writeln('<info>EXPR : '.$node->expr.' offset : '.$node->offset."</info>\n");
+            $ruleChecker->check($node->getType(), $node->getExpr(), $node->getOffset());
+            $io->writeln(sprintf("<info>EXPR : %s offset : %s</info>\n", $node->getExpr(), $node->getOffset()));
             $io->listing($ruleChecker->getLog());
 
-            if (count($ruleChecker->errors)) {
+            if (count($ruleChecker->getErrors())) {
                 $io->listing(array_map(function ($error) {
-                    return '<error>'.$error->reason.' at col '.$error->column.'</error>';
-                }, $ruleChecker->errors));
+                    return sprintf('<error>%s at col %s</error>', $error->getReason(), $error->getColumn());
+                }, $ruleChecker->getErrors()));
             }
         }
 

@@ -1,15 +1,27 @@
 <?php
 
-namespace Allocine\Twigcs\Experimental;
+namespace Allocine\Twigcs\RegEngine\Checker;
 
 class RuleChecker
 {
-    public $rules;
+    /**
+     * @var array
+     */
+    private $rules;
 
-    public $errors;
+    /**
+     * @var array
+     */
+    private $errors;
 
+    /**
+     * @var bool
+     */
     private $explain;
 
+    /**
+     * @var array
+     */
     private $log;
 
     public function __construct(array $rulesets)
@@ -55,12 +67,12 @@ class RuleChecker
 
     public function collectError(string $error, $matcher)
     {
-        $this->errors[] = new RuleError($error, $matcher->offset, $matcher->source);
+        $this->errors[] = new RuleError($error, $matcher->getOffset(), $matcher->getSource());
     }
 
     public function subCheck(string $ruleset, Capture $capture)
     {
-        return $this->check($ruleset, $capture->text, $capture->offset);
+        return $this->check($ruleset, $capture->getText(), $capture->getOffset());
     }
 
     public function check(string $ruleset, string $text, int $offset = 0)
@@ -69,20 +81,63 @@ class RuleChecker
             if ($matches = $rule->match($text)) {
                 $grouped = [];
                 foreach ($matches as $match) {
-                    $match->offset += $offset;
-                    $grouped[$match->type][] = $match;
+                    $match->increaseOffset($offset);
+                    $grouped[$match->getType()][] = $match;
                 }
 
                 if ($this->explain) {
-                    $this->log[] = "$text matched by #$rule->rule#.\n";
+                    $this->log[] = sprintf("%s matched by #%s#.\n", $text, $rule->getRule());
                 }
 
-                return call_user_func($rule->callback, $this, $grouped);
+                return call_user_func($rule->getCallback(), $this, $grouped);
             }
         }
 
         if ($this->explain) {
-            $this->log[] = "$text did not match.\n";
+            $this->log[] = sprintf("%s did not match.\n", $text);
         }
+    }
+
+    public function getRules(): array
+    {
+        return $this->rules;
+    }
+
+    public function setRules(array $rules): self
+    {
+        $this->rules = $rules;
+
+        return $this;
+    }
+
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
+
+    public function setErrors(array $errors): self
+    {
+        $this->errors = $errors;
+
+        return $this;
+    }
+
+    public function isExplain(): bool
+    {
+        return $this->explain;
+    }
+
+    public function setExplain(bool $explain): self
+    {
+        $this->explain = $explain;
+
+        return $this;
+    }
+
+    public function setLog(array $log): self
+    {
+        $this->log = $log;
+
+        return $this;
     }
 }

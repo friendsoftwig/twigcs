@@ -8,7 +8,7 @@ use Allocine\Twigcs\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Twigcs' main functional tests
+ * Twigcs' main functional tests.
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
@@ -39,16 +39,16 @@ class FunctionalTest extends TestCase
         return [
             // Put one (and only one) space after the start of a delimiter and before the end of a delimiter.
             ['{{ foo }}', null],
-            ['{{ foo   }}', 'More than 1 space(s) found before closing a variable.'],
-            ['{{    foo }}', 'More than 1 space(s) found after opening a variable.'],
-            ['{% block foo   %}', 'More than 1 space(s) found before closing a block.'],
-            ['{%    block foo %}', 'More than 1 space(s) found after opening a block.'],
+            ['{{ foo   }}', 'A print statement should start with one space and end with one space.'],
+            ['{{    foo }}', 'A print statement should start with one space and end with one space.'],
+            ['{% block foo   %}', 'A block statement should start with one space and end with one space.'],
+            ['{%    block foo %}', 'A block statement should start with one space and end with one space.'],
 
             // Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions.
             // Do not put any spaces before and after the parenthesis used for filter and function calls.
             ['{{ foo(1) }}', null],
-            ['{{ foo( 1) }}', 'There should be no space after "(".'],
-            ['{{ foo(1 ) }}', 'There should be no space before ")".'],
+            ['{{ foo( 1) }}', 'There should be no space before and after the function argument list.'],
+            ['{{ foo(1 ) }}', 'There should be no space before and after the function argument list.'],
             ['{{ foo (1) }}', 'There should be no space before "(".'],
             ['{{ (1) }}',     null],
             ['{{ ( 1) }}',    'There should be no space after "(".'],
@@ -66,14 +66,14 @@ class FunctionalTest extends TestCase
             ['{{ foo[0] }}', null],
             ['{{ foo[0].bar }}', null],
             ['{{ foo[0]|bar }}', null],
-            ['{{ foo |baz }}', 'There should be no space before "|".'],
-            ['{{ foo| baz }}', 'There should be no space after "|".'],
-            ['{{ foo() |baz }}', 'There should be no space before "|".'],
-            ['{{ foo() * 2 |baz }}', 'There should be no space before "|".'],
+            ['{{ foo |baz }}', 'There should be no space before and after filters.'],
+            ['{{ foo| baz }}', 'There should be no space before and after filters.'],
+            ['{{ foo() |baz }}', 'There should be no space before and after filters.'],
+            ['{{ foo() * 2 |baz }}', 'There should be no space before and after filters.'],
             ['{{ foo.baz }}', null],
-            ['{{ foo .baz }}', 'There should be no space before ".".'],
-            ['{{ foo. baz }}', 'There should be no space after ".".'],
-            ['{{ foo() .baz }}', 'There should be no space before ".".'],
+            ['{{ foo .baz }}', 'There should be no space before and after the dot when accessing a property.'],
+            ['{{ foo. baz }}', 'There should be no space before and after the dot when accessing a property.'],
+            ['{{ foo() .baz }}', 'There should be no space before and after the dot when accessing a property.'],
 
             // Put one (and only one) space after the : sign in hashes and , in arrays and hashes:
             ['{{ {foo: 1} }}', null],
@@ -98,26 +98,26 @@ class FunctionalTest extends TestCase
 
             // Put one (and only one) space before and after the following operators: comparison operators (==, !=, <, >, >=, <=), math operators (+, -, /, *, %, //, **), logic operators (not, and, or), ~, is, in, and the ternary operator (?:).
             ['{{ 1 + 2 }}', null],
-            ['{{ 1+ 2 }}', 'There should be 1 space(s) before "+".'],
-            ['{{ 1 +2 }}', 'There should be 1 space(s) after "+".'],
-            ['{{ 1- 2 }}', 'There should be 1 space(s) before "-".'],
-            ['{{ 1 -2 }}', 'There should be 1 space(s) after "-".'],
-            ['{{ 1  + 2 }}', 'More than 1 space(s) found before "+".'],
-            ['{{ 1 +  2 }}', 'More than 1 space(s) found after "+".'],
+            ['{{ 1+ 2 }}', 'There should be exactly one space between the "+" operator and its values.'],
+            ['{{ 1 +2 }}', 'There should be exactly one space between the "+" operator and its values.'],
+            ['{{ 1- 2 }}', 'There should be exactly one space between the "-" operator and its values.'],
+            ['{{ 1 -2 }}', 'There should be exactly one space between the "-" operator and its values.'],
+            ['{{ 1  + 2 }}', 'There should be exactly one space between the "+" operator and its values.'],
+            ['{{ 1 +  2 }}', 'There should be exactly one space between the "+" operator and its values.'],
             ['{{ 1 ? "foo" : "bar" }}', null],
             ['{{ 1 ? "foo" : "bar" ? "baz" : "foobar" }}', null],
-            ['{{ 1 ? "foo" : "bar" ? "baz" :"foobar" }}', 'There should be 1 space(s) after ":".'],
-            ['{{ 1? "foo" : "bar" }}', 'There should be 1 space(s) before "?".'],
-            ['{{ 1 ?"foo" : "bar" }}', 'There should be 1 space(s) after "?".'],
-            ['{{ 1 ? "foo": "bar" }}', 'There should be 1 space(s) before ":".'],
-            ['{{ 1 ? "foo" :"bar" }}', 'There should be 1 space(s) after ":".'],
+            ['{{ 1 ? "foo" : "bar" ? "baz" :"foobar" }}', 'There should be exactly one space between each part of the ternary operator.'],
+            ['{{ 1? "foo" : "bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
+            ['{{ 1 ?"foo" : "bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
+            ['{{ 1 ? "foo": "bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
+            ['{{ 1 ? "foo" :"bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
             ['{{ 1 ?: "foo" }}', null],
             ['{{ test ? {foo: bar} : 1 }}', null],
             ['{{ test ? 1 }}', null],
             ['{{ {foo: test ? path({bar: baz}) : null} }}', null],
             ['{{ [test ? path({bar: baz}) : null] }}', null],
             ['{{ {prop1: foo ? "bar", prop2: true} }}', null],
-            ['{% foo == -1 %}', null],
+            ['{{ foo == -1 }}', null],
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],
@@ -147,7 +147,6 @@ class FunctionalTest extends TestCase
             ['{% set foo %}1{% endset %}{{ foo }}', null],
             ['{% set foo %}1{% endset %}{{ include("foo.html.twig", {foo: foo}) }}', null],
 
-
             // Unused macros import
             ['{% import "foo.html.twig" as foo %}{{ foo() }}', null],
             ['{% import "foo.html.twig" as foo %}', 'Unused macro import "foo".'],
@@ -169,8 +168,8 @@ class FunctionalTest extends TestCase
             ["\t<meta property=\"og:url\" content=\"{{ url(\n\t\tapp.request.attributes.get('_route'),\n\t\tapp.request.attributes.get('_route_params')\n\t) }}\">", null],
 
             // Spaces
-            ["{{ foo }}    \n", "A line should not end with blank space(s)."],
-            ["{{ foo }}\t\n", "A line should not end with blank space(s)."],
+            ["{{ foo }}    \n", 'A line should not end with blank space(s).'],
+            ["{{ foo }}\t\n", 'A line should not end with blank space(s).'],
             ["{{ foo }}\r\n\r\n", null],
 
             // Check regression of https://github.com/allocine/twigcs/issues/23
@@ -178,9 +177,6 @@ class FunctionalTest extends TestCase
 
             // Check regression of https://github.com/allocine/twigcs/issues/56
             ["{% for item in ['one', 'two'] if attribute(_context, item) is not empty %}\n{% endfor %}", null],
-
-            // @TODO: Not in spec : one space separated arguments
-            // @TODO: Indent your code inside tags (use the same indentation as the one used for the target language of the rendered template):
         ];
     }
 }

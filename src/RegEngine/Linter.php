@@ -1,6 +1,12 @@
 <?php
 
-namespace Allocine\Twigcs\Experimental;
+namespace Allocine\Twigcs\RegEngine;
+
+use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
+use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
+use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
+use Allocine\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
+use Allocine\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 
 class Linter
 {
@@ -31,9 +37,9 @@ class Linter
         $errors = [];
 
         foreach ($nodes as $node) {
-            $this->ruleChecker->check($node->type, $node->expr, $node->offset);
+            $this->ruleChecker->check($node->getType(), $node->getExpr(), $node->getOffset());
         }
 
-        return $this->ruleChecker->errors;
+        return $this->ruleChecker->getErrors();
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
-namespace Allocine\Twigcs\Experimental;
+namespace Allocine\Twigcs\RegEngine\Extractor;
 
-class ArrayExtractor
+use Allocine\Twigcs\RegEngine\ExpressionNode;
+
+class HashExtractor
 {
     public function extract(ExpressionNode $node)
     {
@@ -13,25 +15,28 @@ class ArrayExtractor
         $depth = 0;
         $counter = 0;
 
-        foreach (str_split($node->expr) as $char) {
+        foreach (str_split($node->getExpr()) as $char) {
+            $expr = $node->getExpr();
+            $prevChar = $expr[$counter - 1] ?? null;
+            $nextChar = $expr[$counter + 1] ?? null;
             $consumeChar = false;
 
-            if ($char === '[') {
-                $depth++;
+            if ('{' === $char && '{' !== $prevChar && '{' !== $nextChar) {
+                ++$depth;
 
-                if ($depth === 1) {
-                    $capturesOffsets[]= $counter + $node->offset + 1;
+                if (1 === $depth) {
+                    $capturesOffsets[] = $counter + $node->getOffset() + 1;
                     $consumeChar = true;
                 }
             }
 
-            if ($char === ']' && ($depth > 0)) {
-                $depth--;
+            if ('}' === $char && (($depth > 0) || ('}' !== $prevChar && '}' !== $nextChar))) {
+                --$depth;
 
-                if ($depth === 0) {
-                    $captures[]= $currentCapture;
+                if (0 === $depth) {
+                    $captures[] = $currentCapture;
                     $currentCapture = '';
-                    $collectedExpr .= '__ARRAY__';
+                    $collectedExpr .= '__HASH__';
                     $consumeChar = true;
                 }
             }
@@ -44,12 +49,12 @@ class ArrayExtractor
                 }
             }
 
-            $counter++;
+            ++$counter;
         }
 
         $node->replaceExpr($collectedExpr);
 
-        foreach ($node->children as $child) {
+        foreach ($node->getChildren() as $child) {
             $this->extract($child);
         }
 
@@ -57,7 +62,7 @@ class ArrayExtractor
             $child = new ExpressionNode($capture, $capturesOffsets[$key], 'expr');
             $node->addChild($child);
             $this->extract($child);
-            $child->replaceExpr('[' . $child->expr . ']');
+            $child->replaceExpr(sprintf('{%s}', $child->getExpr()));
         }
 
         return $node;

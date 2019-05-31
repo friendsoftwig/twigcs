@@ -1,35 +1,43 @@
 <?php
 
-namespace Allocine\Twigcs\Experimental;
+namespace Allocine\Twigcs\RegEngine\Checker;
 
 class Handler
 {
+    /**
+     * @var callable
+     */
     private $callback;
 
+    /**
+     * @var Handler
+     */
     private $parent;
 
-    public static function create()
+    public static function create(): self
     {
-        return new Handler();
+        return new self();
     }
 
-    public function __construct(Handler $parent = null)
+    public function __construct(self $parent = null)
     {
         $this->parent = $parent;
     }
 
-    public function debug()
+    public function debug(): self
     {
         return $this->attach(function (RuleChecker $ruleChecker, array $captures) {
             var_dump($captures);
         });
     }
 
-    public function enforceSpaceOrLineBreak(string $type, int $size, string $message)
+    public function enforceSpaceOrLineBreak(string $type, int $size, string $message): self
     {
         return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $size, $message) {
             foreach ($captures[$type] as $capture) {
-                if ("\n" !== ($capture->text[0] ?? '') && strlen($capture->text) != $size) {
+                $text = $capture->getText();
+
+                if ("\n" !== ($text[0] ?? '') && strlen($text) !== $size) {
                     $ruleChecker->collectError($message, $capture);
                 }
             }
@@ -40,7 +48,7 @@ class Handler
     {
         return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $size, $message) {
             foreach ($captures[$type] as $capture) {
-                if (strlen($capture->text) != $size) {
+                if (strlen($capture->getText()) !== $size) {
                     $ruleChecker->collectError($message, $capture);
                 }
             }
@@ -65,7 +73,7 @@ class Handler
         }
     }
 
-    public function attach(callable $callback)
+    public function attach(callable $callback): self
     {
         if (!$this->callback) {
             $this->callback = $callback;
@@ -73,7 +81,7 @@ class Handler
             return $this;
         }
 
-        $child = new Handler($this);
+        $child = new self($this);
         $child->attach($callback);
 
         return $child;
