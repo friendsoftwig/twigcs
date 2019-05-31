@@ -2,7 +2,6 @@
 
 namespace Allocine\Twigcs\Rule;
 
-use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Scope\Scope;
 use Allocine\Twigcs\Token;
 
@@ -21,29 +20,34 @@ class UnusedVariable extends AbstractRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getType() === \Twig_Token::BLOCK_START_TYPE) {
+            if (\Twig_Token::BLOCK_START_TYPE === $token->getType()) {
                 $blockType = $tokens->look(2)->getValue();
 
-                if (in_array($blockType, ['block', 'for', 'embed', 'macro'])) {
+                if (in_array($blockType, ['block', 'for', 'embed', 'macro'], true)) {
                     $scope = $scope->spawn($blockType);
-                    if ($blockType === 'macro') {
+                    if ('macro' === $blockType) {
                         $scope->isolate();
                     }
                 }
 
-                if (in_array($blockType, ['endblock', 'endfor', 'endembed', 'endmacro'])) {
+                if (in_array($blockType, ['endblock', 'endfor', 'endembed', 'endmacro'], true)) {
                     $scope = $scope->leave();
                 }
             }
 
-            if ($token->getType() === \Twig_Token::BLOCK_START_TYPE) {
+            if (\Twig_Token::BLOCK_START_TYPE === $token->getType()) {
                 $blockType = $tokens->look(2)->getValue();
 
                 switch ($blockType) {
+                    case 'include':
+                        if ('with' === $tokens->look(6)->getValue()) {
+                            $this->skip($tokens, 8);
+                        }
+                        break;
                     case 'from':
                         $from = $tokens->look(4);
 
-                        if ($from->getType() === \Twig_Token::NAME_TYPE) { // {% from varName import ... %}
+                        if (\Twig_Token::NAME_TYPE === $from->getType()) { // {% from varName import ... %}
                             $scope->use($from->getValue());
                         }
                         $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
@@ -62,24 +66,24 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                     default:
                         $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
                 }
-            } elseif ($token->getType() === \Twig_Token::NAME_TYPE) {
+            } elseif (\Twig_Token::NAME_TYPE === $token->getType()) {
                 $previous = $this->getPreviousSignificantToken($tokens);
                 $next = $this->getNextSignificantToken($tokens);
 
-                $isHashKey = in_array($previous->getValue(), [',', '{']) && $next->getValue() === ':';
-                $isFilter = $previous->getValue() === '|';
-                $isProperty = $previous->getValue() === '.';
-                $isFunctionCall = $next->getValue() === '(';
-                $isTest = ($previous->getValue() === 'is') || ($previous->getValue() === 'is not');
-                $isReserved = in_array($token->getValue(), ['null', 'true', 'false']);
+                $isHashKey = in_array($previous->getValue(), [',', '{'], true) && ':' === $next->getValue();
+                $isFilter = '|' === $previous->getValue();
+                $isProperty = '.' === $previous->getValue();
+                $isFunctionCall = '(' === $next->getValue();
+                $isTest = ('is' === $previous->getValue()) || ('is not' === $previous->getValue());
+                $isReserved = in_array($token->getValue(), ['null', 'true', 'false'], true);
 
                 if (!$isHashKey && !$isFilter && !$isProperty && !$isFunctionCall && !$isTest && !$isReserved) {
                     $scope->use($token->getValue());
                 }
 
                 $tokens->next();
-            } elseif ($token->getType() === Token::COMMENT_TYPE) {
-                if (strpos($token->getValue(), 'twigcs use-var ') === 0) {
+            } elseif (Token::COMMENT_TYPE === $token->getType()) {
+                if (0 === strpos($token->getValue(), 'twigcs use-var ')) {
                     $names = explode(',', str_replace('twigcs use-var ', '', $token->getValue()));
 
                     foreach ($names as $name) {

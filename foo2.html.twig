@@ -1,4 +1,2 @@
-{{ url(
-    app.request.attributes.get('_route'),
-    app.request.attributes.get('_route_params')
-) }}
+{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} %}
+{% set bar %}1{% endset %}{% include "foo.html.twig" with {bar: foo} %}

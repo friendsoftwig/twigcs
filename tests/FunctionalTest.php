@@ -178,6 +178,21 @@ class FunctionalTest extends TestCase
 
             // Check regression of https://github.com/allocine/twigcs/issues/56
             ["{% for item in ['one', 'two'] if attribute(_context, item) is not empty %}\n{% endfor %}", null],
+
+            // Check regression of https://github.com/allocine/twigcs/issues/60
+            ['{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} %}', null],
+            ['{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} only %}', null],
+            ['{% set bar %}1{% endset %}{% include "foo.html.twig" with {bar: foo} only %}', 'Unused variable "bar".'],
+
+            // Check regression of https://github.com/allocine/twigcs/issues/62
+            ['{%~ if foo ~%}', null],
+            ['{%~ if  foo ~%}', 'There should be one space between the if keyword and its condition.'],
+
+            // Check regression of https://github.com/allocine/twigcs/issues/63
+            ["{% block title ('page.title.' ~ type)|trans %}", null],
+
+            // Check regression of https://github.com/allocine/twigcs/issues/64
+            ['{% set sliced = and foo|slice(-12, 12) %}{{ sliced }}', null],
         ];
     }
 }
