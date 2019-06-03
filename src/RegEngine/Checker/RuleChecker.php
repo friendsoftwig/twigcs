@@ -2,6 +2,18 @@
 
 namespace Allocine\Twigcs\RegEngine\Checker;
 
+function split($str, $len = 1)
+{
+    $arr = [];
+    $length = mb_strlen($str, 'UTF-8');
+
+    for ($i = 0; $i < $length; $i += $len) {
+        $arr[] = mb_substr($str, $i, $len, 'UTF-8');
+    }
+
+    return $arr;
+}
+
 class RuleChecker
 {
     /**
@@ -53,7 +65,7 @@ class RuleChecker
         $regex = '';
         $types = [];
 
-        foreach (str_split($rule) as $char) {
+        foreach (split($rule) as $char) {
             if ($vars[$char] ?? false) {
                 $regex .= '('.$vars[$char].')';
                 $types[] = $char;

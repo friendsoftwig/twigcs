@@ -187,7 +187,16 @@ class FunctionalTest extends TestCase
 
             // Check regression of https://github.com/allocine/twigcs/issues/62
             ['{%~ if foo ~%}', null],
-            ['{%~ if  foo ~%}', 'There should be one space between the if keyword and its condition.'],
+            ['{%~ if foo ~%}', null],
+            ['{%~ if foo %}', null],
+            ['{%- if foo -%}', null],
+            ['{%- if foo %}', null],
+            ['{%- if  foo ~%}', 'There should be one space between the if keyword and its condition.'],
+            ['{{- foo ~}}', null],
+            ['{{- foo -}}', null],
+            ['{{- foo }}', null],
+            ['{{ foo ~}}', null],
+            ['{{ foo  ~}}', 'A print statement should start with one space and end with one space.'],
 
             // Check regression of https://github.com/allocine/twigcs/issues/63
             ["{% block title ('page.title.' ~ type)|trans %}", null],

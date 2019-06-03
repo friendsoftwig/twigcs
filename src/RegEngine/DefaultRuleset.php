@@ -15,10 +15,14 @@ class DefaultRuleset
     const BLOCK_VARS = [
         ' ' => '\s+',
         '_' => '\s*',
-        '~' => '\s*',
+        '…' => '\s*',
         '$' => '(?:.|\n|\r)+?',
         '&' => '(?:.|\n|\r)+?',
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
+        '<' => '{%[~-]?',
+        '>' => '[~-]?%}',
+        '{' => '{{[~-]?',
+        '}' => '[~-]?}}',
     ];
 
     const LIST_VARS = [
@@ -65,14 +69,14 @@ class DefaultRuleset
 
     public static function noArgBlock()
     {
-        return self::handle()->enforceSize('~', 1, 'A block statement should start with one space and end with one space.');
+        return self::handle()->enforceSize('…', 1, 'A block statement should start with one space and end with one space.');
     }
 
     public static function argBlock()
     {
         return self::handle()
             ->enforceSize(' ', 1, 'Block arguments should be separated by one space.')
-            ->enforceSize('~', 1, 'A block statement should start with one space and end with one space.')
+            ->enforceSize('…', 1, 'A block statement should start with one space and end with one space.')
         ;
     }
 
@@ -89,40 +93,40 @@ class DefaultRuleset
         $expr = [];
 
         $blocks = self::using(self::BLOCK_VARS, [
-            ['{%~spaceless~%}', self::noArgBlock()],
-            ['{%~endspaceless~%}', self::noArgBlock()],
-            ['{%~extends $~%}', self::argBlock()->delegate('$', 'expr')],
-            ['{%~embed $~%}', self::argBlock()->delegate('$', 'expr')],
-            ['{%~endembed~%}', self::noArgBlock()],
-            ['{%~elseif $~%}', self::argBlock()->delegate('$', 'expr')],
-            ['{%~else~%}', self::noArgBlock()],
-            ['{%~include $ with &~%}', self::argBlock()->delegate('$', 'expr')->delegate('&', 'hash')],
-            ['{%~include $ with & only~%}', self::argBlock()->delegate('$', 'expr')->delegate('&', 'hash')],
-            ['{%~include $~%}', self::argBlock()->delegate('$', 'expr')],
-            ['{%~set @~%}', self::argBlock()],
-            ['{%~endset~%}', self::noArgBlock()],
-            ['{%~macro @_@~%}', self::handle()->enforceSize('~', 1, 'A block statement should start with one space and end with one space.')->enforceSize('_', 0, 'No space between macro name and args.')],
-            ['{%~endmacro~%}', self::noArgBlock()],
-            ['{%~block @~%}', self::argBlock()],
-            ['{%~block @ $~%}', self::argBlock()->delegate('$', 'expr')],
-            ['{%~endblock~%}', self::noArgBlock()],
-            ['{%~filter @~%}', self::argBlock()],
-            ['{%~endfilter~%}', self::noArgBlock()],
-            ['{%~import $ as &~%}', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
-            ['{%~from $ import @~%}', self::argBlock()->delegate('$', 'expr')],
-            ['{%~from $ import @ as &~%}', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
-            ['{%~from $ import &~%}', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
-            ['{{~$~}}', self::handle()->delegate('$', 'expr')->enforceSize('~', 1, 'A print statement should start with one space and end with one space.')],
-            ['{%~if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between the if keyword and its condition.')],
-            ['{%~endif~%}', self::noArgBlock()],
-            ['{%~endfor~%}', self::noArgBlock()],
-            ['{%~for @, @ in $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
-            ['{%~for @, @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
-            ['{%~for @ in $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
-            ['{%~for @ in $ if $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
-            ['{%~set @ = $~%}', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each part of the set.')],
-            ['{%~@~%}', self::noArgBlock()],
-            ['{%~@ &~%}', self::argBlock()->delegate('&', 'list')],
+            ['<…spaceless…>', self::noArgBlock()],
+            ['<…endspaceless…>', self::noArgBlock()],
+            ['<…extends $…>', self::argBlock()->delegate('$', 'expr')],
+            ['<…embed $…>', self::argBlock()->delegate('$', 'expr')],
+            ['<…endembed…>', self::noArgBlock()],
+            ['<…elseif $…>', self::argBlock()->delegate('$', 'expr')],
+            ['<…else…>', self::noArgBlock()],
+            ['<…include $ with &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…include $ with & only…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…include $…>', self::argBlock()->delegate('$', 'expr')],
+            ['<…set @…>', self::argBlock()],
+            ['<…endset…>', self::noArgBlock()],
+            ['<…macro @_@…>', self::handle()->enforceSize('…', 1, 'A block statement should start with one space and end with one space.')->enforceSize('_', 0, 'No space between macro name and args.')],
+            ['<…endmacro…>', self::noArgBlock()],
+            ['<…block @…>', self::argBlock()],
+            ['<…block @ $…>', self::argBlock()->delegate('$', 'expr')],
+            ['<…endblock…>', self::noArgBlock()],
+            ['<…filter @…>', self::argBlock()],
+            ['<…endfilter…>', self::noArgBlock()],
+            ['<…import $ as &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
+            ['<…from $ import @…>', self::argBlock()->delegate('$', 'expr')],
+            ['<…from $ import @ as &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
+            ['<…from $ import &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
+            ['{…$…}', self::handle()->delegate('$', 'expr')->enforceSize('…', 1, 'A print statement should start with one space and end with one space.')],
+            ['<…if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between the if keyword and its condition.')],
+            ['<…endif…>', self::noArgBlock()],
+            ['<…endfor…>', self::noArgBlock()],
+            ['<…for @, @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['<…for @, @ in $ if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['<…for @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['<…for @ in $ if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['<…set @ = $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each part of the set.')],
+            ['<…@…>', self::noArgBlock()],
+            ['<…@ &…>', self::argBlock()->delegate('&', 'list')],
         ]);
 
         $ops = self::using(self::OP_VARS, [
