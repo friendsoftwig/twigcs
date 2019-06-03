@@ -41,8 +41,8 @@ class FunctionalTest extends TestCase
             ['{{ foo }}', null],
             ['{{ foo   }}', 'A print statement should start with one space and end with one space.'],
             ['{{    foo }}', 'A print statement should start with one space and end with one space.'],
-            ['{% block foo   %}', 'A block statement should start with one space and end with one space.'],
-            ['{%    block foo %}', 'A block statement should start with one space and end with one space.'],
+            ['{% block foo   %}', 'A tag statement should start with one space and end with one space.'],
+            ['{%    block foo %}', 'A tag statement should start with one space and end with one space.'],
 
             // Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions.
             // Do not put any spaces before and after the parenthesis used for filter and function calls.
@@ -161,6 +161,20 @@ class FunctionalTest extends TestCase
             ['{% from _self import foo as request %}{{ app.request.uri }}', 'Unused macro import "request".'],
             ['{% from _self import foo as macro %}{% macro foo() %}{% endmacro %}', 'Unused macro import "macro".'], // https://github.com/allocine/twigcs/issues/28
             ['{% import "macros.html.twig" as macros %} {{ macros.stuff() }}', null],
+
+            // Complex include/embed spacing
+            ['{% include "macros.html.twig"  ignore missing %}', 'Tag arguments should be separated by one space.'],
+            ['{% include "macros.html.twig"  ignore missing only %}', 'Tag arguments should be separated by one space.'],
+            ['{% include "macros.html.twig"  ignore missing with {foo: 1} only %}', 'Tag arguments should be separated by one space.'],
+            ['{% embed "macros.html.twig"  ignore missing %}', 'Tag arguments should be separated by one space.'],
+            ['{% embed "macros.html.twig"  ignore missing only %}', 'Tag arguments should be separated by one space.'],
+            ['{% embed "macros.html.twig"  ignore missing with {foo: 1} only %}', 'Tag arguments should be separated by one space.'],
+
+            // include ignore missing
+            // embed ignore missing
+            // {% include 'sidebar.html' ignore missing only %}
+            // {% use "blocks.html" with sidebar as base_sidebar, title as base_title %}
+            // {% use "blocks.html" %}
 
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],

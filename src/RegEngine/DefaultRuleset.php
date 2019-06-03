@@ -12,7 +12,7 @@ class DefaultRuleset
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
-    const BLOCK_VARS = [
+    const TAGS_VARS = [
         ' ' => '\s+',
         '_' => '\s*',
         '…' => '\s*',
@@ -67,16 +67,16 @@ class DefaultRuleset
         return self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be exactly one space between each part of the ternary operator.');
     }
 
-    public static function noArgBlock()
+    public static function noArgTag()
     {
-        return self::handle()->enforceSize('…', 1, 'A block statement should start with one space and end with one space.');
+        return self::handle()->enforceSize('…', 1, 'A tag statement should start with one space and end with one space.');
     }
 
-    public static function argBlock()
+    public static function argTag()
     {
         return self::handle()
-            ->enforceSize(' ', 1, 'Block arguments should be separated by one space.')
-            ->enforceSize('…', 1, 'A block statement should start with one space and end with one space.')
+            ->enforceSize(' ', 1, 'Tag arguments should be separated by one space.')
+            ->enforceSize('…', 1, 'A tag statement should start with one space and end with one space.')
         ;
     }
 
@@ -92,41 +92,68 @@ class DefaultRuleset
     {
         $expr = [];
 
-        $blocks = self::using(self::BLOCK_VARS, [
-            ['<…spaceless…>', self::noArgBlock()],
-            ['<…endspaceless…>', self::noArgBlock()],
-            ['<…extends $…>', self::argBlock()->delegate('$', 'expr')],
-            ['<…embed $…>', self::argBlock()->delegate('$', 'expr')],
-            ['<…endembed…>', self::noArgBlock()],
-            ['<…elseif $…>', self::argBlock()->delegate('$', 'expr')],
-            ['<…else…>', self::noArgBlock()],
-            ['<…include $ with &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'hash')],
-            ['<…include $ with & only…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'hash')],
-            ['<…include $…>', self::argBlock()->delegate('$', 'expr')],
-            ['<…set @…>', self::argBlock()],
-            ['<…endset…>', self::noArgBlock()],
-            ['<…macro @_@…>', self::handle()->enforceSize('…', 1, 'A block statement should start with one space and end with one space.')->enforceSize('_', 0, 'No space between macro name and args.')],
-            ['<…endmacro…>', self::noArgBlock()],
-            ['<…block @…>', self::argBlock()],
-            ['<…block @ $…>', self::argBlock()->delegate('$', 'expr')],
-            ['<…endblock…>', self::noArgBlock()],
-            ['<…filter @…>', self::argBlock()],
-            ['<…endfilter…>', self::noArgBlock()],
-            ['<…import $ as &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
-            ['<…from $ import @…>', self::argBlock()->delegate('$', 'expr')],
-            ['<…from $ import @ as &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
-            ['<…from $ import &…>', self::argBlock()->delegate('$', 'expr')->delegate('&', 'list')],
+        $tags = self::using(self::TAGS_VARS, [
+            ['<…use $ with $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…use $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…apply $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…endapply…>', self::noArgTag()],
+            ['<…autoescape $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…endautoescape…>', self::noArgTag()],
+            ['<…deprecated $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…do $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…flush…>', self::noArgTag()],
+            ['<…sandbox…>', self::noArgTag()],
+            ['<…endsandbox…>', self::noArgTag()],
+            ['<…verbatim…>', self::noArgTag()],
+            ['<…endverbatim…>', self::noArgTag()],
+            ['<…with…>', self::noArgTag()],
+            ['<…with only…>', self::noArgTag()],
+            ['<…with $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…with $ only…>', self::argTag()->delegate('$', 'expr')],
+            ['<…endwith…>', self::noArgTag()],
+            ['<…spaceless…>', self::noArgTag()],
+            ['<…endspaceless…>', self::noArgTag()],
+            ['<…extends $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…embed $ ignore missing with & only…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…embed $ ignore missing only…>', self::argTag()->delegate('$', 'expr')],
+            ['<…embed $ ignore missing…>', self::argTag()->delegate('$', 'expr')],
+            ['<…embed $ with & only…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…embed $ with &…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…embed $ only…>', self::argTag()->delegate('$', 'expr')],
+            ['<…embed $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…elseif $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…else…>', self::noArgTag()],
+            ['<…include $ ignore missing with & only…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…include $ ignore missing only…>', self::argTag()->delegate('$', 'expr')],
+            ['<…include $ ignore missing…>', self::argTag()->delegate('$', 'expr')],
+            ['<…include $ with & only…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…include $ with &…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'hash')],
+            ['<…include $ only…>', self::argTag()->delegate('$', 'expr')],
+            ['<…include $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…set @…>', self::argTag()],
+            ['<…endset…>', self::noArgTag()],
+            ['<…macro @_@…>', self::handle()->enforceSize('…', 1, 'A tag statement should start with one space and end with one space.')->enforceSize('_', 0, 'No space between macro name and args.')],
+            ['<…endmacro…>', self::noArgTag()],
+            ['<…block @…>', self::argTag()],
+            ['<…block @ $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…endblock…>', self::noArgTag()],
+            ['<…filter @…>', self::argTag()],
+            ['<…endfilter…>', self::noArgTag()],
+            ['<…import $ as &…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'list')],
+            ['<…from $ import @…>', self::argTag()->delegate('$', 'expr')],
+            ['<…from $ import @ as &…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'list')],
+            ['<…from $ import &…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'list')],
             ['{…$…}', self::handle()->delegate('$', 'expr')->enforceSize('…', 1, 'A print statement should start with one space and end with one space.')],
             ['<…if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between the if keyword and its condition.')],
-            ['<…endif…>', self::noArgBlock()],
-            ['<…endfor…>', self::noArgBlock()],
+            ['<…endif…>', self::noArgTag()],
+            ['<…endfor…>', self::noArgTag()],
             ['<…for @, @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['<…for @, @ in $ if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['<…for @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['<…for @ in $ if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['<…set @ = $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each part of the set.')],
-            ['<…@…>', self::noArgBlock()],
-            ['<…@ &…>', self::argBlock()->delegate('&', 'list')],
+            ['<…@…>', self::noArgTag()],
+            ['<…@ &…>', self::argTag()->delegate('&', 'list')],
         ]);
 
         $ops = self::using(self::OP_VARS, [
@@ -192,7 +219,7 @@ class DefaultRuleset
         ]);
 
         return [
-            'expr' => array_merge($blocks, $ops),
+            'expr' => array_merge($tags, $ops),
             'list' => $list,
             'hash' => $hash,
             'arrayOrSlice' => array_merge($slice, $array),
