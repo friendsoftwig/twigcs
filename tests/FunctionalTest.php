@@ -170,11 +170,14 @@ class FunctionalTest extends TestCase
             ['{% embed "macros.html.twig"  ignore missing only %}', 'Tag arguments should be separated by one space.'],
             ['{% embed "macros.html.twig"  ignore missing with {foo: 1} only %}', 'Tag arguments should be separated by one space.'],
 
-            // include ignore missing
-            // embed ignore missing
-            // {% include 'sidebar.html' ignore missing only %}
-            // {% use "blocks.html" with sidebar as base_sidebar, title as base_title %}
-            // {% use "blocks.html" %}
+            ['{{ not  loop.first ? \',\' }}', 'There should be exactly one space between the "not" operator and its value.'],
+            ['{{ label  ? label ~ \':\' }}', 'There should be exactly one space between each part of the ternary operator.'],
+
+            ['{% use  "blocks.html" %}', 'Tag arguments should be separated by one space.'],
+            ['{% use "blocks.html" with sidebar as base_sidebar, title as base_title  %}', 'A tag statement should start with one space and end with one space.'],
+            ['{% use  "blocks.html" with sidebar as base_sidebar, title as base_title %}', 'Tag arguments should be separated by one space.'],
+            ['{% use "blocks.html" with sidebar as base_sidebar,  title as base_title %}', 'There should be one space after the previous import.'],
+            ['{% use "blocks.html" with sidebar as     base_sidebar, title as base_title %}', 'There should be one space between the as operator and its operands.'],
 
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],

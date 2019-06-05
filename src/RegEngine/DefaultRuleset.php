@@ -33,6 +33,15 @@ class DefaultRuleset
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
+    const IMPORTS_VARS = [
+        ' ' => '\s*',
+        '_' => '\s*',
+        '…' => '\s*',
+        '$' => '(?:.|\n|\r)+?',
+        '%' => '(?:.|\n|\r)+?',
+        '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
+    ];
+
     const SLICE_VARS = [
         ' ' => '\s*',
         '$' => '(?:[^\?]|\n|\r)+?', // Excludes ternary from slice detection
@@ -93,7 +102,7 @@ class DefaultRuleset
         $expr = [];
 
         $tags = self::using(self::TAGS_VARS, [
-            ['<…use $ with $…>', self::argTag()->delegate('$', 'expr')],
+            ['<…use $ with &…>', self::argTag()->delegate('$', 'expr')->delegate('&', 'imports')],
             ['<…use $…>', self::argTag()->delegate('$', 'expr')],
             ['<…apply $…>', self::argTag()->delegate('$', 'expr')],
             ['<…endapply…>', self::noArgTag()],
@@ -200,6 +209,13 @@ class DefaultRuleset
             [' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
         ]);
 
+        $imports = self::using(self::IMPORTS_VARS, [
+            ['@ as @_,…%', Handler::create()->delegate('%', 'imports')->enforceSize('_', 0, 'An import with alias should be immediately followed by a coma.')->enforceSize('…', 1, 'There should be one space after the previous import.')->enforceSize(' ', 1, 'There should be one space between the as operator and its operands.')],
+            ['@ as @', Handler::create()->enforceSize(' ', 1, 'There should be one space between the as operator and its operands.')],
+            [' @ ', Handler::create()->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
+            [' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
+        ]);
+
         $hash = self::using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', 0, 'Empty hash should have no whitespace')],
             ['@ :_$ ,_%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
@@ -222,6 +238,7 @@ class DefaultRuleset
             'expr' => array_merge($tags, $ops),
             'list' => $list,
             'hash' => $hash,
+            'imports' => $imports,
             'arrayOrSlice' => array_merge($slice, $array),
         ];
     }

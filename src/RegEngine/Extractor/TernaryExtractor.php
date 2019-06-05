@@ -14,9 +14,14 @@ class TernaryExtractor
         $capturesOffsets = [];
         $depth = 0;
         $counter = 0;
+        $i = 0;
 
-        foreach (str_split($node->getExpr()) as $char) {
+        $expr = str_split($node->getExpr());
+
+        foreach ($expr as $char) {
             $consumeChar = false;
+            $nextChar = $expr[$i + 1] ?? null;
+            ++$i;
 
             if ('?' === $char) {
                 ++$depth;
@@ -35,7 +40,7 @@ class TernaryExtractor
                 $collectedExpr .= '?'.$currentCapture;
             }
 
-            if (':' === $char && ($depth > 0)) {
+            if ((':' === $char) && ($depth > 0)) {
                 --$depth;
 
                 if (0 === $depth) {
@@ -55,6 +60,12 @@ class TernaryExtractor
             }
 
             ++$counter;
+        }
+
+        if ($depth > 0) {
+            $collectedExpr .= '?'.$currentCapture;
+            $currentCapture = '';
+            $consumeChar = false;
         }
 
         $node->replaceExpr($collectedExpr);
