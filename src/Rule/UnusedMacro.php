@@ -20,27 +20,27 @@ class UnusedMacro extends AbstractRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getType() === \Twig_Token::BLOCK_START_TYPE) {
+            if (\Twig_Token::BLOCK_START_TYPE === $token->getType()) {
                 $blockType = $tokens->look(2)->getValue();
 
-                if (in_array($blockType, ['block', 'for', 'embed', 'macro'])) {
+                if (in_array($blockType, ['block', 'for', 'embed', 'macro'], true)) {
                     $scope = $scope->spawn($blockType);
-                    if ($blockType === 'macro') {
+                    if ('macro' === $blockType) {
                         $scope->isolate();
                     }
                 }
 
-                if (in_array($blockType, ['endblock', 'endfor', 'endembed', 'endmacro'])) {
+                if (in_array($blockType, ['endblock', 'endfor', 'endembed', 'endmacro'], true)) {
                     $scope = $scope->leave();
                 }
             }
 
-            if ($token->getType() === \Twig_Token::BLOCK_START_TYPE) {
+            if (\Twig_Token::BLOCK_START_TYPE === $token->getType()) {
                 $blockType = $tokens->look(2)->getValue();
 
                 switch ($blockType) {
                     case 'from':
-                        if ($tokens->look(10)->getValue() == 'as') {
+                        if ('as' === $tokens->look(10)->getValue()) {
                             $forward = 12; // Extracts token position from block of form {% import foo as bar %}
                         } else {
                             $forward = 8; // Extracts token position from block of form {% import foo %}
@@ -49,9 +49,9 @@ class UnusedMacro extends AbstractRule implements RuleInterface
                         $this->skip($tokens, $forward);
 
                         // Handles single or multiple imports ( {% from "file.twig" import foo as bar, baz %} )
-                        while (in_array($tokens->getCurrent()->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::PUNCTUATION_TYPE, Token::WHITESPACE_TYPE])) {
+                        while (in_array($tokens->getCurrent()->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::PUNCTUATION_TYPE, Token::WHITESPACE_TYPE], true)) {
                             $next = $tokens->getCurrent();
-                            if ($next->getType() === \Twig_Token::NAME_TYPE) {
+                            if (\Twig_Token::NAME_TYPE === $next->getType()) {
                                 $scope->declare($next->getValue(), $next);
                             }
                             $tokens->next();
@@ -62,9 +62,9 @@ class UnusedMacro extends AbstractRule implements RuleInterface
                         $this->skip($tokens, 2);
 
                         // Handles single or multiple imports ( {% import foo as bar, baz %} )
-                        while (in_array($tokens->getCurrent()->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::PUNCTUATION_TYPE, Token::WHITESPACE_TYPE])) {
+                        while (in_array($tokens->getCurrent()->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::PUNCTUATION_TYPE, Token::WHITESPACE_TYPE], true)) {
                             $next = $tokens->getCurrent();
-                            if ($next->getType() === \Twig_Token::NAME_TYPE) {
+                            if (\Twig_Token::NAME_TYPE === $next->getType()) {
                                 $scope->declare($next->getValue(), $next);
                             }
                             $tokens->next();
@@ -74,16 +74,22 @@ class UnusedMacro extends AbstractRule implements RuleInterface
                     case 'for':
                         $this->skip($tokens, 3);
                         break;
+                    case 'set':
+                        $this->skipToOneOf($tokens, [
+                            ['type' => \Twig_Token::OPERATOR_TYPE, 'value' => '='],
+                            ['type' => \Twig_Token::BLOCK_END_TYPE],
+                        ]);
+                        break;
                     default:
                         $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
                 }
-            } elseif ($token->getType() === \Twig_Token::NAME_TYPE) {
+            } elseif (\Twig_Token::NAME_TYPE === $token->getType()) {
                 $previous = $this->getPreviousSignificantToken($tokens);
                 $next = $this->getNextSignificantToken($tokens);
 
-                $isSubProperty = in_array($previous->getValue(), ['.', '|']);
-                $directUsage = in_array($next->getValue(), ['(']);
-                $dotUsage = ($this->getNextSignificantToken($tokens, 1)->getType() === \Twig_Token::NAME_TYPE) && in_array($this->getNextSignificantToken($tokens, 2)->getValue(), ['(']);
+                $isSubProperty = in_array($previous->getValue(), ['.', '|'], true);
+                $directUsage = in_array($next->getValue(), ['('], true);
+                $dotUsage = (\Twig_Token::NAME_TYPE === $this->getNextSignificantToken($tokens, 1)->getType()) && in_array($this->getNextSignificantToken($tokens, 2)->getValue(), ['('], true);
 
                 if (!$isSubProperty && ($directUsage || $dotUsage)) {
                     $scope->use($token->getValue());

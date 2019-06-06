@@ -212,6 +212,19 @@ class FunctionalTest extends TestCase
                 },
             } }}', 'There should be one space between ":" and the value.'],
 
+            // Recursive macro
+            ['{% macro recursion(item) %}
+                {% from _self import recursion %}
+
+                {% if item.parent %}
+                    {% set a = recursion(item.parent) %}
+                    {{ a }}
+                {% endif %}
+            {% endmacro %}
+            ', null],
+
+            ['{% set a = 1 %} {% set b = a %} {{ b }}', null],
+
             // Wrapped call for better readability
             ["\t<meta property=\"og:url\" content=\"{{ url(\n\t\tapp.request.attributes.get('_route'),\n\t\tapp.request.attributes.get('_route_params')\n\t) }}\">", null],
 
