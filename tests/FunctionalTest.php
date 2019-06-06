@@ -181,6 +181,36 @@ class FunctionalTest extends TestCase
 
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
+            ['{{ a_is_b }}}', null], // Checks that it does not split on the "is" as an operator.
+
+            // Nested hashes
+            ['{{ {
+                A: "",
+                B: {
+                    foo: {
+                        A: 1
+                    },
+                    bar: baz
+                },
+            } }}', null],
+            ['{{ {
+                A: "",
+                B:  {
+                    foo: {
+                        A: 1
+                    },
+                    bar: baz
+                },
+            } }}', 'There should be one space between ":" and the value.'],
+            ['{{ {
+                A: "",
+                B: {
+                    foo: {
+                        A: 1
+                    },
+                    bar:   baz
+                },
+            } }}', 'There should be one space between ":" and the value.'],
 
             // Wrapped call for better readability
             ["\t<meta property=\"og:url\" content=\"{{ url(\n\t\tapp.request.attributes.get('_route'),\n\t\tapp.request.attributes.get('_route_params')\n\t) }}\">", null],

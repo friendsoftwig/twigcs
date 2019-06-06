@@ -8,6 +8,7 @@ class DefaultRuleset
 {
     const OP_VARS = [
         ' ' => '\s*',
+        '…' => '\s+',
         '$' => '(?:.|\n|\r)+?',
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
@@ -28,6 +29,7 @@ class DefaultRuleset
     const LIST_VARS = [
         ' ' => '\s*',
         '_' => '\s*',
+        '…' => '\s*',
         '$' => '(?:.|\n|\r)+?',
         '%' => '(?:.|\n|\r)+?',
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
@@ -61,14 +63,14 @@ class DefaultRuleset
         }, $rules);
     }
 
-    public static function unaryOpSpace($opName)
+    public static function unaryOpSpace($opName, $spaceChar = ' ')
     {
-        return self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, sprintf('There should be exactly one space between the "%s" operator and its value.', $opName));
+        return self::handle()->delegate('$', 'expr')->enforceSize($spaceChar, 1, sprintf('There should be exactly one space between the "%s" operator and its value.', $opName));
     }
 
-    public static function binaryOpSpace($opName)
+    public static function binaryOpSpace($opName, $spaceChar = ' ')
     {
-        return self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, sprintf('There should be exactly one space between the "%s" operator and its values.', $opName));
+        return self::handle()->delegate('$', 'expr')->enforceSize($spaceChar, 1, sprintf('There should be exactly one space between the "%s" operator and its values.', $opName));
     }
 
     public static function ternaryOpSpace()
@@ -174,7 +176,7 @@ class DefaultRuleset
             ['\[ $ \]', self::handle()->delegate('$', 'list')->enforceSize(' ', 0, 'There should be no space before and after the array values.')],
             ['\{ \}', self::handle()->enforceSize(' ', 0, 'No space should be used for empty hashes.')],
             ["\{\n $ \n\}", self::handle()->delegate('$', 'hash')],
-            ["\{ $ \}", self::handle()->delegate('$', 'hash')->enforceSize(' ', 0, 'There should be no space before and after the hash values.')],
+            ["\{ $ \}", self::handle()->delegate('$', 'hash')->enforceSpaceOrLineBreak(' ', 0, 'There should be no space before and after the hash values.')],
             ['$ <= $', self::binaryOpSpace('<=')],
             ['$ >= $', self::binaryOpSpace('>=')],
             ['$ < $', self::binaryOpSpace('<')],
@@ -193,10 +195,10 @@ class DefaultRuleset
             ['$ // $', self::binaryOpSpace('//')],
             ['$ % $', self::binaryOpSpace('%')],
             ['$ \*\* $', self::binaryOpSpace('**')],
-            ['$ is $', self::binaryOpSpace('is')],
+            ['$…is…$', self::binaryOpSpace('is', '…')],
             ['$ \?\? $', self::binaryOpSpace('??')],
             ['$ \.\. $', self::binaryOpSpace('..')],
-            ['not $', self::unaryOpSpace('not')],
+            ['not…$', self::unaryOpSpace('not', '…')],
             ['$ \| $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space before and after filters.')],
             ['$ \. $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space before and after the dot when accessing a property.')],
         ]);
@@ -218,8 +220,9 @@ class DefaultRuleset
 
         $hash = self::using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', 0, 'Empty hash should have no whitespace')],
-            ['@ :_$ ,_%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
-            ['"@" :_$ ,_%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+            ['@ :_$ ,…%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')->enforceSpaceOrLineBreak('_', 1, 'The next value of a hash should be separated by one space.')],
+            ['"@" :_$ ,…%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')->enforceSpaceOrLineBreak('_', 1, 'The next value of a hash should be separated by one space.')],
+            ['@ :_$,', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
             ['@ :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
             ['"@" :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
         ]);
