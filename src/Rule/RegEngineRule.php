@@ -2,12 +2,23 @@
 
 namespace Allocine\Twigcs\Rule;
 
-use Allocine\Twigcs\RegEngine\DefaultRuleset;
 use Allocine\Twigcs\RegEngine\Linter;
 use Twig\Token;
 
 class RegEngineRule extends AbstractRule implements RuleInterface
 {
+    /**
+     * @var array
+     */
+    private $ruleset;
+
+    public function __construct(int $severity, array $ruleset)
+    {
+        $this->ruleset = $ruleset;
+
+        parent::__construct($severity);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -62,7 +73,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
         }
 
         foreach ($expressions as $expression) {
-            $linter = new Linter(DefaultRuleset::get());
+            $linter = new Linter($this->ruleset);
             $linter->explain();
             $errors = $linter->lint($expression['value']);
 

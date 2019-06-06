@@ -3,13 +3,13 @@
 namespace Allocine\Twigcs\Console;
 
 use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
-use Allocine\Twigcs\RegEngine\DefaultRuleset;
 use Allocine\Twigcs\RegEngine\ExpressionNode;
 use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\TernaryExtractor;
 use Allocine\Twigcs\RegEngine\Sanitizer\StringSanitizer;
+use Allocine\Twigcs\Ruleset\Official;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -63,7 +63,7 @@ class RegDebugCommand extends ContainerAwareCommand
         $nodes = $rootNode->flatten();
 
         foreach ($nodes as $node) {
-            $ruleChecker = new RuleChecker(DefaultRuleset::get());
+            $ruleChecker = new RuleChecker(Official::getRegEngineRuleset());
             $ruleChecker->explain();
             $ruleChecker->check($node->getType(), $node->getExpr(), $node->getOffset());
             $io->writeln(sprintf("<info>EXPR : %s offset : %s</info>\n", $node->getExpr(), $node->getOffset()));
