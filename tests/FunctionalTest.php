@@ -3,6 +3,7 @@
 namespace Allocine\Twigcs\Test;
 
 use Allocine\Twigcs\Lexer;
+use Allocine\Twigcs\Rule\RegEngineRule;
 use Allocine\Twigcs\Ruleset\Official;
 use Allocine\Twigcs\Validator\Validator;
 use PHPUnit\Framework\TestCase;
@@ -25,6 +26,7 @@ class FunctionalTest extends TestCase
         $validator = new Validator();
 
         $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')));
+        $this->assertCount(0, $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []);
 
         if ($expectedViolation) {
             $this->assertCount(1, $violations, sprintf("There should be exactly one violation in:\n %s", $expression));
@@ -113,6 +115,7 @@ class FunctionalTest extends TestCase
             ['{{ 1 ? "foo": "bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
             ['{{ 1 ? "foo" :"bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
             ['{{ 1 ?: "foo" }}', null],
+            ['{{ 1 ?:  "foo" }}', 'There should be exactly one space between each part of the ternary operator.'],
             ['{{ test ? {foo: bar} : 1 }}', null],
             ['{{ test ? 1 }}', null],
             ['{{ {foo: test ? path({bar: baz}) : null} }}', null],
@@ -262,10 +265,31 @@ class FunctionalTest extends TestCase
             ["{% block title ('page.title.' ~ type)|trans %}", null],
 
             // Check regression of https://github.com/allocine/twigcs/issues/64
-            ['{% set sliced = and foo|slice(-12, 12) %}{{ sliced }}', null],
+            ['{% set sliced = foo|slice(-12, 12) %}{{ sliced }}', null],
+
+            // Regressions from the official examples
+            ['{% if \'Fabien\' starts with \'F\' %}', null],
+            ['{% if \'Fabien\' ends with \'F\' %}', null],
+            ['{% if \'Fabien\' matches \'regex\' %}', null],
 
             // Regressions from the Prestashop corpus
             ['{{ \'If not,[1][2] please click here[/1]!\'|trans({\'[1]\': \' <a href="\' ~ downloadFile.url ~ \'" class="btn btn-outline-primary btn-sm">\', \'[/1]\': \'</a> \', \'[2]\': \'<i class="icon-download"></i>\'}, \'Admin.Advparameters.Notification\')|raw }}', null],
+            ['{% set dimension_unit, weight_unit = \'PS_DIMENSION_UNIT\'|configuration, \'PS_WEIGHT_UNIT\'|configuration %}{{ dimension_unit }}', null],
+            ['{{ collector.symfonystate in [\'eom\', \'eol\'] ? \'were\' : \'are\' }}', null],
+            ['{% if limit not in limit_choices %}', null],
+            ['{{ [] }}', null],
+            ['{% for module in hook[\'modules\'] if modules[module[\'id_module\']] is defined %}', null],
+            ['{% set bar %}1{% endset %}{% include "foo.html.twig" with {foo: bar} only %}', null],
+            ['{% if (quotation.data[field]|default(null) is same as(0) or quotation.data[field]|default(false)) %}', null],
+            ['{{ ps.form_group_row(taxForm.rate, {}, {
+                \'label\': \'Rate\'|trans({}, \'Admin.International.Feature\'),
+                \'help\': rateHint,
+            }) }}', null],
+            ['{% set columns = [
+                1,
+                2,
+                3,
+            ] %}{{ columns }}', null],
         ];
     }
 }

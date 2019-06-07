@@ -22,14 +22,14 @@ class RuleChecker
     private $rules;
 
     /**
-     * @var array
-     */
-    private $errors;
-
-    /**
      * @var bool
      */
     private $explain;
+
+    /**
+     * @var array
+     */
+    private $unrecognizedExpressions;
 
     /**
      * @var array
@@ -39,9 +39,9 @@ class RuleChecker
     public function __construct(array $rulesets)
     {
         $this->rules = [];
-        $this->errors = [];
         $this->explain = false;
         $this->log = [];
+        $this->unrecognizedExpressions = [];
 
         foreach ($rulesets as $key => $ruleset) {
             foreach ($ruleset as $rule) {
@@ -77,17 +77,12 @@ class RuleChecker
         return new Regex($rule, '#^'.$regex.'$#', $types, $callback);
     }
 
-    public function collectError(string $error, $matcher)
+    public function subCheck(Report $report, string $ruleset, Capture $capture)
     {
-        $this->errors[] = new RuleError($error, $matcher->getOffset(), $matcher->getSource());
+        $this->check($report, $ruleset, $capture->getText(), $capture->getOffset());
     }
 
-    public function subCheck(string $ruleset, Capture $capture)
-    {
-        return $this->check($ruleset, $capture->getText(), $capture->getOffset());
-    }
-
-    public function check(string $ruleset, string $text, int $offset = 0)
+    public function check(Report $report, string $ruleset, string $text, int $offset = 0)
     {
         foreach ($this->rules[$ruleset] as $rule) {
             if ($matches = $rule->match($text)) {
@@ -101,13 +96,17 @@ class RuleChecker
                     $this->log[] = sprintf("%s matched by #%s#.\n", $text, $rule->getRule());
                 }
 
-                return call_user_func($rule->getCallback(), $this, $grouped);
+                return call_user_func($rule->getCallback(), $this, $report, $grouped);
             }
         }
 
+        $report->addUnrecognizedExpression($text);
+
         if ($this->explain) {
-            $this->log[] = sprintf("%s did not match.\n", $text);
+            $this->log[] = sprintf("%s did not match in ruleset \"%s\".\n", $text, $ruleset);
         }
+
+        return [];
     }
 
     public function getRules(): array
@@ -122,16 +121,9 @@ class RuleChecker
         return $this;
     }
 
-    public function getErrors(): array
+    public function getUnrecognizedExpressions(): array
     {
-        return $this->errors;
-    }
-
-    public function setErrors(array $errors): self
-    {
-        $this->errors = $errors;
-
-        return $this;
+        return $this->unrecognizedExpressions;
     }
 
     public function isExplain(): bool

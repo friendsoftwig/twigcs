@@ -56,6 +56,13 @@ class Official implements RulesetInterface
         '$' => '(?:[^\?]|\n|\r)+?', // Excludes ternary from slice detection
     ];
 
+    const FALLBACK_VARS = [
+        ' ' => '\s*',
+        '$' => '(?:.|\n|\r)+?',
+        '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
+        '&' => '-?[0-9]+',
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -129,10 +136,10 @@ class Official implements RulesetInterface
             ['<…if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between the if keyword and its condition.')],
             ['<…endif…>', self::noArgTag()],
             ['<…endfor…>', self::noArgTag()],
-            ['<…for @, @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['<…for @, @ in $ if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
-            ['<…for @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['<…for @, @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['<…for @ in $ if $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
+            ['<…for @ in $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each for part.')],
             ['<…set @ = $…>', self::handle()->delegate('$', 'expr')->enforceSize(' ', 1, 'There should be one space between each part of the set.')],
             ['<…@…>', self::noArgTag()],
             ['<…@ &…>', self::argTag()->delegate('&', 'list')],
@@ -154,6 +161,9 @@ class Official implements RulesetInterface
             ['$ > $', self::binaryOpSpace('>')],
             ['$ != $', self::binaryOpSpace('!=')],
             ['$ == $', self::binaryOpSpace('==')],
+            ['$ = $', self::binaryOpSpace('=')],
+            ['$…and…$', self::binaryOpSpace('and', '…')],
+            ['$…or…$', self::binaryOpSpace('or', '…')],
             ['$ __TERNARY__ $', self::ternaryOpSpace()],
             ['$ \?: $', self::ternaryOpSpace()],
             ['$ \? $', self::ternaryOpSpace()],
@@ -166,19 +176,35 @@ class Official implements RulesetInterface
             ['$ // $', self::binaryOpSpace('//')],
             ['$ % $', self::binaryOpSpace('%')],
             ['$ \*\* $', self::binaryOpSpace('**')],
+            ['$…is not…$', self::binaryOpSpace('is', '…')],
             ['$…is…$', self::binaryOpSpace('is', '…')],
+            ['$…not in…$', self::binaryOpSpace('in', '…')],
+            ['$…in…$', self::binaryOpSpace('in', '…')],
+            ['$…matches…$', self::binaryOpSpace('matches', '…')],
+            ['$…starts with…$', self::binaryOpSpace('starts with', '…')],
+            ['$…ends with…$', self::binaryOpSpace('ends with', '…')],
             ['$ \?\? $', self::binaryOpSpace('??')],
             ['$ \.\. $', self::binaryOpSpace('..')],
+            ['same as$', self::unaryOpSpace('same as', ' ')],
             ['not…$', self::unaryOpSpace('not', '…')],
             ['$ \| $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space before and after filters.')],
             ['$ \. $', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space before and after the dot when accessing a property.')],
         ]);
 
+        $fallback = self::using(self::FALLBACK_VARS, [
+            [' "" ', Handler::create()->noop()],
+            [' "$" ', Handler::create()->noop()],
+            [' @ ', Handler::create()->noop()],
+            [' & ', Handler::create()->noop()],
+            [' \[\] ', Handler::create()->noop()],
+            [' \?\: ', Handler::create()->noop()],
+        ]);
+
         $list = self::using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', 0, 'Empty list should have no whitespace')],
             ['$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'A list value should be immediately followed by a coma.')->enforceSpaceOrLineBreak(' ', 1, 'The next value of a list should be separated by one space.')],
-            ['$_, %', Handler::create()->delegate('$', 'expr')->delegate('%', 'list')->enforceSize('_', 0, 'A list value should be immediately followed by a coma.')->enforceSpaceOrLineBreak(' ', 1, 'The next value of a list should be separated by one space.')],
             [' @ ', Handler::create()->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
+            [' $, ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
             [' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
         ]);
 
@@ -195,13 +221,19 @@ class Official implements RulesetInterface
             ['"@" :_$ ,…%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')->enforceSpaceOrLineBreak('_', 1, 'The next value of a hash should be separated by one space.')],
             ['@ :_$,', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
             ['@ :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+            ['"@" :_$,', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
             ['"@" :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+        ]);
+
+        $hashFallback = self::using(self::FALLBACK_VARS, [
+            [' __HASH__ ', Handler::create()->noop()],
         ]);
 
         $slice = self::using(self::SLICE_VARS, [
             ['\[ : $ \]', self::slice()],
             ['\[ $ : \]', self::slice()],
             ['\[ $ : $ \]', self::slice()],
+            ['\[ \]', Handler::create()->enforceSize(' ', 0, 'There should be no space inside an empty array.')],
         ]);
 
         $array = self::using(self::OP_VARS, [
@@ -209,9 +241,9 @@ class Official implements RulesetInterface
         ]);
 
         return [
-            'expr' => array_merge($tags, $ops),
+            'expr' => array_merge($tags, $ops, $fallback),
             'list' => $list,
-            'hash' => $hash,
+            'hash' => array_merge($hash, $hashFallback),
             'imports' => $imports,
             'arrayOrSlice' => array_merge($slice, $array),
         ];

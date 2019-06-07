@@ -2,6 +2,7 @@
 
 namespace Allocine\Twigcs\RegEngine;
 
+use Allocine\Twigcs\RegEngine\Checker\Report;
 use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
 use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
 use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
@@ -26,8 +27,10 @@ class Linter
         $this->ruleChecker->explain();
     }
 
-    public function lint(string $expr): array
+    public function lint(string $expr): Report
     {
+        $report = new Report();
+
         $expr = $this->stringSanitizer->sanitize($expr);
 
         $rootNode = new ExpressionNode($expr, 0);
@@ -37,12 +40,11 @@ class Linter
         $this->ternaryExtractor->extract($rootNode);
 
         $nodes = $rootNode->flatten();
-        $errors = [];
 
         foreach ($nodes as $node) {
-            $this->ruleChecker->check($node->getType(), $node->getExpr(), $node->getOffset());
+            $this->ruleChecker->check($report, $node->getType(), $node->getExpr(), $node->getOffset());
         }
 
-        return $this->ruleChecker->getErrors();
+        return $report;
     }
 }

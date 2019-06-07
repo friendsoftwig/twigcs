@@ -12,9 +12,21 @@ class RegEngineRule extends AbstractRule implements RuleInterface
      */
     private $ruleset;
 
+    /**
+     * @var array
+     */
+    private $unrecognizedExpressions;
+
+    /**
+     * @var Linter
+     */
+    private $linter;
+
     public function __construct(int $severity, array $ruleset)
     {
         $this->ruleset = $ruleset;
+        $this->linter = new Linter($ruleset);
+        $this->unrecognizedExpressions = [];
 
         parent::__construct($severity);
     }
@@ -73,11 +85,11 @@ class RegEngineRule extends AbstractRule implements RuleInterface
         }
 
         foreach ($expressions as $expression) {
-            $linter = new Linter($this->ruleset);
-            $linter->explain();
-            $errors = $linter->lint($expression['value']);
+            $report = $this->linter->lint($expression['value']);
 
-            foreach ($errors as $error) {
+            $this->unrecognizedExpressions = array_merge($this->unrecognizedExpressions, $report->getUnrecognizedExpressions());
+
+            foreach ($report->getErrors() as $error) {
                 $this->addViolation(
                     $tokens->getSourceContext()->getPath(),
                     $expression['map'][$error->getColumn()]['line'] ?? 0,
@@ -88,5 +100,12 @@ class RegEngineRule extends AbstractRule implements RuleInterface
         }
 
         return $this->violations;
+    }
+
+    public function collect(): array
+    {
+        return [
+            'unrecognized_expressions' => $this->unrecognizedExpressions,
+        ];
     }
 }

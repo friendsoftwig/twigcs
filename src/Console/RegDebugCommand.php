@@ -2,6 +2,7 @@
 
 namespace Allocine\Twigcs\Console;
 
+use Allocine\Twigcs\RegEngine\Checker\Report;
 use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
 use Allocine\Twigcs\RegEngine\ExpressionNode;
 use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
@@ -62,17 +63,19 @@ class RegDebugCommand extends ContainerAwareCommand
 
         $nodes = $rootNode->flatten();
 
+        $report = new Report();
+
         foreach ($nodes as $node) {
             $ruleChecker = new RuleChecker(Official::getRegEngineRuleset());
             $ruleChecker->explain();
-            $ruleChecker->check($node->getType(), $node->getExpr(), $node->getOffset());
+            $ruleChecker->check($report, $node->getType(), $node->getExpr(), $node->getOffset());
             $io->writeln(sprintf("<info>EXPR : %s offset : %s</info>\n", $node->getExpr(), $node->getOffset()));
             $io->listing($ruleChecker->getLog());
 
-            if (count($ruleChecker->getErrors())) {
+            if (count($report->getErrors())) {
                 $io->listing(array_map(function ($error) {
                     return sprintf('<error>%s at col %s</error>', $error->getReason(), $error->getColumn());
-                }, $ruleChecker->getErrors()));
+                }, $report->getErrors()));
             }
         }
 

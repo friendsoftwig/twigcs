@@ -24,21 +24,20 @@ class Handler
         $this->parent = $parent;
     }
 
-    public function debug(): self
+    public function noop(): self
     {
-        return $this->attach(function (RuleChecker $ruleChecker, array $captures) {
-            var_dump($captures);
+        return $this->attach(function () {
         });
     }
 
     public function enforceSpaceOrLineBreak(string $type, int $size, string $message): self
     {
-        return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $size, $message) {
+        return $this->attach(function (RuleChecker $ruleChecker, Report $report, array $captures) use ($type, $size, $message) {
             foreach ($captures[$type] as $capture) {
                 $text = $capture->getText();
 
                 if ("\n" !== ($text[0] ?? '') && strlen($text) !== $size) {
-                    $ruleChecker->collectError($message, $capture);
+                    $report->addError(new RuleError($message, $capture->getOffset(), $capture->getSource()));
                 }
             }
         });
@@ -46,10 +45,10 @@ class Handler
 
     public function enforceSize(string $type, int $size, string $message): self
     {
-        return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $size, $message) {
+        return $this->attach(function (RuleChecker $ruleChecker, Report $report, array $captures) use ($type, $size, $message) {
             foreach ($captures[$type] as $capture) {
                 if (strlen($capture->getText()) !== $size) {
-                    $ruleChecker->collectError($message, $capture);
+                    $report->addError(new RuleError($message, $capture->getOffset(), $capture->getSource()));
                 }
             }
         });
@@ -57,20 +56,22 @@ class Handler
 
     public function delegate(string $type, string $ruleset): self
     {
-        return $this->attach(function (RuleChecker $ruleChecker, array $captures) use ($type, $ruleset) {
+        return $this->attach(function (RuleChecker $ruleChecker, Report $report, array $captures) use ($type, $ruleset) {
             foreach ($captures[$type] as $subExpr) {
-                $ruleChecker->subCheck($ruleset, $subExpr);
+                $ruleChecker->subCheck($report, $ruleset, $subExpr);
             }
         });
     }
 
-    public function __invoke(RuleChecker $ruleChecker, array $captures)
+    public function __invoke(RuleChecker $ruleChecker, Report $report, array $captures)
     {
-        call_user_func($this->callback, $ruleChecker, $captures);
+        $errors = call_user_func($this->callback, $ruleChecker, $report, $captures);
 
-        if ($this->parent) {
-            call_user_func($this->parent, $ruleChecker, $captures);
+        if (!$this->parent) {
+            return;
         }
+
+        call_user_func($this->parent, $ruleChecker, $report, $captures);
     }
 
     public function attach(callable $callback): self

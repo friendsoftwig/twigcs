@@ -2,14 +2,23 @@
 
 namespace Allocine\Twigcs\Validator;
 
-use Allocine\Twigcs\Lexer;
 use Allocine\Twigcs\Ruleset\RulesetInterface;
 
 class Validator
 {
+    private $collectedData;
+
+    public function __construct()
+    {
+        $this->collectedData = [];
+    }
+
+    public function getCollectedData(): array
+    {
+        return $this->collectedData;
+    }
+
     /**
-     * @param \Twig_TokenStream $tokens
-     *
      * @return Violation[]
      */
     public function validate(RulesetInterface $ruleset, \Twig_TokenStream $tokens)
@@ -17,6 +26,8 @@ class Validator
         $violations = [];
         foreach ($ruleset->getRules() as $rule) {
             $violations = array_merge($violations, $rule->check(clone $tokens));
+
+            $this->collectedData[get_class($rule)] = $rule->collect();
         }
 
         usort($violations, function (Violation $a, Violation $b) {

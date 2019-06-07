@@ -14,7 +14,7 @@ use Allocine\Twigcs\Validator\Violation;
 abstract class AbstractRule
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $severity;
 
@@ -24,7 +24,7 @@ abstract class AbstractRule
     protected $violations;
 
     /**
-     * @param integer $severity
+     * @param int $severity
      */
     public function __construct($severity)
     {
@@ -36,9 +36,14 @@ abstract class AbstractRule
         $this->violations = [];
     }
 
+    public function collect(): array
+    {
+        return [];
+    }
+
     /**
      * @param string $filename
-     * @param integer $line
+     * @param int    $line
      * @param string $reason
      */
     public function addViolation($filename, $line, $column, $reason)
@@ -47,10 +52,9 @@ abstract class AbstractRule
     }
 
     /**
-     * @param \Twig_TokenStream $tokens
-     * @param integer           $skip
+     * @param int $skip
      *
-     * @return null|Token
+     * @return Token|null
      */
     protected function getPreviousSignificantToken(\Twig_TokenStream $tokens, $skip = 0)
     {
@@ -58,25 +62,24 @@ abstract class AbstractRule
         $token = null;
 
         while ($token = $tokens->look(-$i)) {
-            if (!in_array($token->getType(), [Token::WHITESPACE_TYPE, Token::NEWLINE_TYPE])) {
-                if ($skip === 0) {
+            if (!in_array($token->getType(), [Token::WHITESPACE_TYPE, Token::NEWLINE_TYPE], true)) {
+                if (0 === $skip) {
                     return $token;
                 }
 
-                $skip--;
+                --$skip;
             }
 
-            $i++;
+            ++$i;
         }
 
         return null;
     }
 
     /**
-     * @param \Twig_TokenStream $tokens
-     * @param integer           $skip
+     * @param int $skip
      *
-     * @return null|Token
+     * @return Token|null
      */
     protected function getNextSignificantToken(\Twig_TokenStream $tokens, $skip = 0)
     {
@@ -84,30 +87,26 @@ abstract class AbstractRule
         $token = null;
 
         while ($token = $tokens->look($i)) {
-            if (!in_array($token->getType(), [Token::WHITESPACE_TYPE, Token::NEWLINE_TYPE])) {
-                if ($skip === 0) {
+            if (!in_array($token->getType(), [Token::WHITESPACE_TYPE, Token::NEWLINE_TYPE], true)) {
+                if (0 === $skip) {
                     return $token;
                 }
 
-                $skip--;
+                --$skip;
             }
 
-            $i++;
+            ++$i;
         }
 
         return null;
     }
 
-    /**
-     * @param \Twig_TokenStream $tokens
-     * @param int               $tokenType
-     */
     protected function skipTo(\Twig_TokenStream $tokens, int $tokenType, string $tokenValue = null)
     {
         while (!$tokens->isEOF()) {
             $continue = $tokens->getCurrent()->getType() !== $tokenType;
 
-            if ($tokenValue !== null) {
+            if (null !== $tokenValue) {
                 $continue |= $tokens->getCurrent()->getValue() !== $tokenValue;
             }
 
@@ -119,10 +118,6 @@ abstract class AbstractRule
         }
     }
 
-    /**
-     * @param \Twig_TokenStream $tokens
-     * @param array             $possibilities
-     */
     protected function skipToOneOf(\Twig_TokenStream $tokens, array $possibilities)
     {
         while (!$tokens->isEOF()) {
@@ -148,16 +143,12 @@ abstract class AbstractRule
         }
     }
 
-    /**
-     * @param \Twig_TokenStream $tokens
-     * @param int               $amount
-     */
     protected function skip(\Twig_TokenStream $tokens, int $amount)
     {
         while (!$tokens->isEOF()) {
-            $amount--;
+            --$amount;
             $tokens->next();
-            if ($amount === 0) {
+            if (0 === $amount) {
                 return;
             }
         }
