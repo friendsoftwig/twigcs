@@ -263,6 +263,9 @@ class FunctionalTest extends TestCase
 
             // Check regression of https://github.com/allocine/twigcs/issues/64
             ['{% set sliced = and foo|slice(-12, 12) %}{{ sliced }}', null],
+
+            // Regressions from the Prestashop corpus
+            ['{{ \'If not,[1][2] please click here[/1]!\'|trans({\'[1]\': \' <a href="\' ~ downloadFile.url ~ \'" class="btn btn-outline-primary btn-sm">\', \'[/1]\': \'</a> \', \'[2]\': \'<i class="icon-download"></i>\'}, \'Admin.Advparameters.Notification\')|raw }}', null],
         ];
     }
 }

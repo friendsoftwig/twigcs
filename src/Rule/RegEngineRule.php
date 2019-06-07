@@ -50,7 +50,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
             } elseif (13 === $token->getType()) {
                 $toAppend = "\n";
             } elseif (Token::STRING_TYPE === $token->getType()) {
-                $toAppend = '"'.$token->getValue().'"';
+                $toAppend = '"'.str_pad('', mb_strlen($token->getValue()), 'A').'"';
             } elseif (Token::TEXT_TYPE !== $token->getType()) {
                 $toAppend = (string) $token->getValue();
             }
