@@ -2,6 +2,7 @@
     "name": "allocine/twigcs",
     "description": "Checkstyle automation for Twig",
     "license": "MIT",
+    "abandoned": "friendsoftwig/twigcs",
     "authors": [
         {
             "name": "OwlyCode",
