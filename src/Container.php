@@ -1,12 +1,11 @@
 <?php
 
-namespace Allocine\Twigcs;
+namespace FriendsOfTwig\Twigcs;
 
-use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Reporter\CheckstyleReporter;
-use Allocine\Twigcs\Reporter\ConsoleReporter;
-use Allocine\Twigcs\Reporter\JUnitReporter;
-use Allocine\Twigcs\Validator\Validator;
+use FriendsOfTwig\Twigcs\Reporter\CheckstyleReporter;
+use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
+use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
+use FriendsOfTwig\Twigcs\Validator\Validator;
 use Pimple\Container as BaseContainer;
 
 class Container extends BaseContainer

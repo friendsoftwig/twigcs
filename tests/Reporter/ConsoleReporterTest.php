@@ -1,9 +1,9 @@
 <?php
 
-namespace Allocine\Twigcs\Tests\Reporter;
+namespace FriendsOfTwig\Twigcs\Tests\Reporter;
 
-use Allocine\Twigcs\Reporter\ConsoleReporter;
-use Allocine\Twigcs\Validator\Violation;
+use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
+use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
 class ConsoleReporterTest extends TestCase
@@ -30,7 +30,7 @@ class ConsoleReporterTest extends TestCase
         ;
 
         $reporter->report($output, [
-            new Violation('template.twig', 10, 20, 'You are not allowed to do that.')
+            new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
         ]);
     }
 }

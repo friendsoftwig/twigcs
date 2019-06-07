@@ -1,8 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\Rule;
+namespace FriendsOfTwig\Twigcs\Rule;
 
-use Allocine\Twigcs\RegEngine\Linter;
+use FriendsOfTwig\Twigcs\RegEngine\Linter;
 use Twig\Token;
 
 class RegEngineRule extends AbstractRule implements RuleInterface

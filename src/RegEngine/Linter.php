@@ -1,14 +1,14 @@
 <?php
 
-namespace Allocine\Twigcs\RegEngine;
+namespace FriendsOfTwig\Twigcs\RegEngine;
 
-use Allocine\Twigcs\RegEngine\Checker\Report;
-use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
-use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
-use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
-use Allocine\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
-use Allocine\Twigcs\RegEngine\Extractor\TernaryExtractor;
-use Allocine\Twigcs\RegEngine\Sanitizer\StringSanitizer;
+use FriendsOfTwig\Twigcs\RegEngine\Checker\Report;
+use FriendsOfTwig\Twigcs\RegEngine\Checker\RuleChecker;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\ArrayExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\HashExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\TernaryExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 
 class Linter
 {

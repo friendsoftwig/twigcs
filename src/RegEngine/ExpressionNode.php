@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\Twigcs\RegEngine;
+namespace FriendsOfTwig\Twigcs\RegEngine;
 
 class ExpressionNode
 {

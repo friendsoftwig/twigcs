@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\Twigcs\Scope;
+namespace FriendsOfTwig\Twigcs\Scope;
 
 class Scope
 {
@@ -34,9 +34,6 @@ class Scope
      */
     private $isolated;
 
-    /**
-     * @param string $name
-     */
     public function __construct(string $name)
     {
         $this->name = $name;
@@ -59,55 +56,40 @@ class Scope
         return $this->isolated;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return Scope
-     */
-    public function spawn(string $name): Scope
+    public function spawn(string $name): self
     {
-        $scope = new Scope($name);
+        $scope = new self($name);
         $scope->parent = $this;
-        $this->children[]= $scope;
+        $this->children[] = $scope;
 
         return $scope;
     }
 
-    /**
-     * @return Scope
-     */
-    public function leave(): Scope
+    public function leave(): self
     {
         return $this->parent ?? $this;
     }
 
     /**
-     * @param string $name
-     * @param Token  $token
+     * @param Token $token
      */
     public function declare(string $name, \Twig_Token $token)
     {
-        $this->declarations[$name]= $token;
+        $this->declarations[$name] = $token;
     }
 
-    /**
-     * @param string $name
-     */
     public function use(string $name)
     {
-        $this->usages[]= $name;
+        $this->usages[] = $name;
     }
 
-    /**
-     * @return array
-     */
     public function getUnused(): array
     {
         $unused = [];
 
         foreach ($this->declarations as $name => $token) {
             if (!$this->isUsed($name)) {
-                $unused[]= $token;
+                $unused[] = $token;
             }
         }
 
@@ -118,14 +100,9 @@ class Scope
         return $unused;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
     public function isUsed(string $name): bool
     {
-        if (in_array($name, $this->usages)) {
+        if (in_array($name, $this->usages, true)) {
             return true;
         }
 
@@ -138,11 +115,6 @@ class Scope
         return false;
     }
 
-    /**
-     * @param int $tab
-     *
-     * @return string
-     */
     public function dump(int $tab = 0): string
     {
         $declarations = implode(', ', array_keys($this->declarations));
@@ -150,12 +122,12 @@ class Scope
 
         $self = sprintf("%s : {D : %s} {U : %s} \n", $name ?? 'noname', $declarations, $usages);
 
-        $children = "";
+        $children = '';
 
         foreach ($this->children as $child) {
-            $children .= str_repeat(" ", $tab) . $child->dump($tab + 4) . "\n";
+            $children .= str_repeat(' ', $tab).$child->dump($tab + 4)."\n";
         }
 
-        return $self . $children;
+        return $self.$children;
     }
 }

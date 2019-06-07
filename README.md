@@ -9,7 +9,7 @@ Please note that the project is still in early development stage and is subject 
 ## How to install
 
 ```bash
-composer global require allocine/twigcs
+composer global require friendsoftwig/twigcs
 ```
 
 ## How to run
@@ -61,7 +61,7 @@ twigcs /path/to/views --ruleset \MyApp\TwigCsRuleset
 ### Coming features
 
 - Indentation checking
-- Configurable coding standards
+- Forbidden functions detection (a dump() in production for instance)
 
 ### Contributing
 

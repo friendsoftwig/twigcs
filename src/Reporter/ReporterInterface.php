@@ -1,14 +1,13 @@
 <?php
 
-namespace Allocine\Twigcs\Reporter;
+namespace FriendsOfTwig\Twigcs\Reporter;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
 interface ReporterInterface
 {
     /**
-     * @param OutputInterface $output
-     * @param Violation[]     $violations
+     * @param Violation[] $violations
      */
     public function report(OutputInterface $output, array $violations);
 }

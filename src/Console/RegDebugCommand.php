@@ -1,16 +1,16 @@
 <?php
 
-namespace Allocine\Twigcs\Console;
+namespace FriendsOfTwig\Twigcs\Console;
 
-use Allocine\Twigcs\RegEngine\Checker\Report;
-use Allocine\Twigcs\RegEngine\Checker\RuleChecker;
-use Allocine\Twigcs\RegEngine\ExpressionNode;
-use Allocine\Twigcs\RegEngine\Extractor\ArrayExtractor;
-use Allocine\Twigcs\RegEngine\Extractor\HashExtractor;
-use Allocine\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
-use Allocine\Twigcs\RegEngine\Extractor\TernaryExtractor;
-use Allocine\Twigcs\RegEngine\Sanitizer\StringSanitizer;
-use Allocine\Twigcs\Ruleset\Official;
+use FriendsOfTwig\Twigcs\RegEngine\Checker\Report;
+use FriendsOfTwig\Twigcs\RegEngine\Checker\RuleChecker;
+use FriendsOfTwig\Twigcs\RegEngine\ExpressionNode;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\ArrayExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\HashExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Extractor\TernaryExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\Sanitizer\StringSanitizer;
+use FriendsOfTwig\Twigcs\Ruleset\Official;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

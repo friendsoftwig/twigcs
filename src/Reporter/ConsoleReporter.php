@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\Twigcs\Reporter;
+namespace FriendsOfTwig\Twigcs\Reporter;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -14,7 +14,7 @@ class ConsoleReporter implements ReporterInterface
         $filename = null;
 
         foreach ($violations as $violation) {
-            if ($filename != $violation->getFilename()) {
+            if ($filename !== $violation->getFilename()) {
                 $filename = $violation->getFilename();
                 $output->writeln(sprintf('<comment>%s</comment>', $filename));
             }

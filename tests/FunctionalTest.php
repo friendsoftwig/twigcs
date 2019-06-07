@@ -1,11 +1,11 @@
 <?php
 
-namespace Allocine\Twigcs\Test;
+namespace FriendsOfTwig\Twigcs\Test;
 
-use Allocine\Twigcs\Lexer;
-use Allocine\Twigcs\Rule\RegEngineRule;
-use Allocine\Twigcs\Ruleset\Official;
-use Allocine\Twigcs\Validator\Validator;
+use FriendsOfTwig\Twigcs\Lexer;
+use FriendsOfTwig\Twigcs\Rule\RegEngineRule;
+use FriendsOfTwig\Twigcs\Ruleset\Official;
+use FriendsOfTwig\Twigcs\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
 /**

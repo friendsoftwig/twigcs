@@ -1,8 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\RegEngine\Extractor;
+namespace FriendsOfTwig\Twigcs\RegEngine\Extractor;
 
-use Allocine\Twigcs\RegEngine\ExpressionNode;
+use FriendsOfTwig\Twigcs\RegEngine\ExpressionNode;
 
 class ArrayExtractor
 {

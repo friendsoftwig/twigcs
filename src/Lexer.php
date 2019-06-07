@@ -1,14 +1,14 @@
 <?php
 
-namespace Allocine\Twigcs;
+namespace FriendsOfTwig\Twigcs;
 
-/**
+/*
  * Backward compatibility with Twig 1.X
  */
 if (\Twig_Environment::MAJOR_VERSION > 1) {
-    class_alias(\Allocine\Twigcs\Compatibility\TwigLexer::class, 'Allocine\Twigcs\BaseLexer');
+    class_alias(\FriendsOfTwig\Twigcs\Compatibility\TwigLexer::class, 'FriendsOfTwig\Twigcs\BaseLexer');
 } else {
-    class_alias(\Twig_Lexer::class, 'Allocine\Twigcs\BaseLexer');
+    class_alias(\Twig_Lexer::class, 'FriendsOfTwig\Twigcs\BaseLexer');
 }
 
 /**
@@ -20,10 +20,10 @@ if (\Twig_Environment::MAJOR_VERSION > 1) {
 class Lexer extends BaseLexer
 {
     const PREVIOUS_TOKEN = -1;
-    const NEXT_TOKEN     = 1;
+    const NEXT_TOKEN = 1;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $columnno = 0;
 
@@ -31,14 +31,14 @@ class Lexer extends BaseLexer
     {
         // collect whitespaces and new lines
         if (preg_match('/\s+/A', $this->code, $match, null, $this->cursor)) {
-            if ($match[0] === "\n") {
+            if ("\n" === $match[0]) {
                 $emptyLines = [''];
             } else {
                 $emptyLines = explode("\n", $match[0]);
             }
 
             foreach ($emptyLines as $line) {
-                if (strlen($line) == 0) {
+                if (0 === strlen($line)) {
                     $this->pushToken(Token::NEWLINE_TYPE);
                 } else {
                     $this->pushToken(Token::WHITESPACE_TYPE, $line);
@@ -106,8 +106,8 @@ class Lexer extends BaseLexer
         }
 
         // The base lexer doesn't call moveCursor when encountering punctuations. (See class \Twig_Lexer line 269)
-        if ($type == \Twig_Token::PUNCTUATION_TYPE) {
-            $this->columnno++;
+        if (\Twig_Token::PUNCTUATION_TYPE === $type) {
+            ++$this->columnno;
         }
 
         $token = new \Twig_Token($type, $value, $this->lineno);

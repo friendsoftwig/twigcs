@@ -1,8 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\Ruleset;
+namespace FriendsOfTwig\Twigcs\Ruleset;
 
-use Allocine\Twigcs\Rule\RuleInterface;
+use FriendsOfTwig\Twigcs\Rule\RuleInterface;
 
 interface RulesetInterface
 {

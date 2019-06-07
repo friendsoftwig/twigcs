@@ -1,8 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\Rule;
+namespace FriendsOfTwig\Twigcs\Rule;
 
-use Allocine\Twigcs\Validator\Violation;
+use FriendsOfTwig\Twigcs\Validator\Violation;
 
 interface RuleInterface
 {

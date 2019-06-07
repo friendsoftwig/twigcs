@@ -1,8 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\Rule;
+namespace FriendsOfTwig\Twigcs\Rule;
 
-use Allocine\Twigcs\Token;
+use FriendsOfTwig\Twigcs\Token;
 
 /**
  * Checks for trailing spaces and triggers a violation when one
@@ -22,8 +22,8 @@ class TrailingSpace extends AbstractRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getType() === Token::NEWLINE_TYPE && $tokens->look(-1)->getType() === Token::WHITESPACE_TYPE ||
-                $token->getType() === \Twig_Token::TEXT_TYPE
+            if (Token::NEWLINE_TYPE === $token->getType() && Token::WHITESPACE_TYPE === $tokens->look(-1)->getType() ||
+                \Twig_Token::TEXT_TYPE === $token->getType()
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
                     $this->addViolation(

@@ -1,10 +1,10 @@
 <?php
 
-namespace Allocine\Twigcs\Ruleset;
+namespace FriendsOfTwig\Twigcs\Ruleset;
 
-use Allocine\Twigcs\RegEngine\Checker\Handler;
-use Allocine\Twigcs\Rule;
-use Allocine\Twigcs\Validator\Violation;
+use FriendsOfTwig\Twigcs\RegEngine\Checker\Handler;
+use FriendsOfTwig\Twigcs\Rule;
+use FriendsOfTwig\Twigcs\Validator\Violation;
 
 /**
  * The official twigcs ruleset, based on http://twig.sensiolabs.org/doc/coding_standards.html.

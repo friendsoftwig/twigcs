@@ -1,10 +1,10 @@
 {
-    "name": "allocine/twigcs",
+    "name": "friendsoftwig/twigcs",
     "description": "Checkstyle automation for Twig",
     "license": "MIT",
     "authors": [
         {
-            "name": "OwlyCode",
+            "name": "Tristan Maindron",
             "email": "tmaindron@gmail.com"
         }
     ],
@@ -20,8 +20,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Allocine\\Twigcs\\": "src/",
-            "Allocine\\Twigcs\\Tests\\": "tests/"
+            "FriendsOfTwig\\Twigcs\\": "src/",
+            "FriendsOfTwig\\Twigcs\\Tests\\": "tests/"
         }
     },
     "config": {

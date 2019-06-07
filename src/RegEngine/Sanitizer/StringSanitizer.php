@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\Twigcs\RegEngine\Sanitizer;
+namespace FriendsOfTwig\Twigcs\RegEngine\Sanitizer;
 
 class StringSanitizer
 {

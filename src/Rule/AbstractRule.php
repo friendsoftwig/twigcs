@@ -1,9 +1,9 @@
 <?php
 
-namespace Allocine\Twigcs\Rule;
+namespace FriendsOfTwig\Twigcs\Rule;
 
-use Allocine\Twigcs\Token;
-use Allocine\Twigcs\Validator\Violation;
+use FriendsOfTwig\Twigcs\Token;
+use FriendsOfTwig\Twigcs\Validator\Violation;
 
 /**
  * This is an utility class that provides some common functionnalities

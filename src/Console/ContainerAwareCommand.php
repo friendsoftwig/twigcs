@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\Twigcs\Console;
+namespace FriendsOfTwig\Twigcs\Console;
 
 use Pimple\Container;
 use Symfony\Component\Console\Command\Command;
@@ -12,9 +12,6 @@ class ContainerAwareCommand extends Command
      */
     private $container;
 
-    /**
-     * @param Container $container
-     */
     public function setContainer(Container $container)
     {
         $this->container = $container;

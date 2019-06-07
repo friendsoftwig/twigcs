@@ -1,8 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\Validator;
+namespace FriendsOfTwig\Twigcs\Validator;
 
-use Allocine\Twigcs\Ruleset\RulesetInterface;
+use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
 
 class Validator
 {

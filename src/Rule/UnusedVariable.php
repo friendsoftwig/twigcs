@@ -1,9 +1,9 @@
 <?php
 
-namespace Allocine\Twigcs\Rule;
+namespace FriendsOfTwig\Twigcs\Rule;
 
-use Allocine\Twigcs\Scope\Scope;
-use Allocine\Twigcs\Token;
+use FriendsOfTwig\Twigcs\Scope\Scope;
+use FriendsOfTwig\Twigcs\Token;
 
 class UnusedVariable extends AbstractRule implements RuleInterface
 {

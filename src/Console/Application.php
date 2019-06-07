@@ -1,8 +1,8 @@
 <?php
 
-namespace Allocine\Twigcs\Console;
+namespace FriendsOfTwig\Twigcs\Console;
 
-use Allocine\Twigcs\Container;
+use FriendsOfTwig\Twigcs\Container;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Command\Command;
 

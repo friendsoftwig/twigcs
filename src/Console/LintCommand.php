@@ -1,10 +1,10 @@
 <?php
 
-namespace Allocine\Twigcs\Console;
+namespace FriendsOfTwig\Twigcs\Console;
 
-use Allocine\Twigcs\Ruleset\Official;
-use Allocine\Twigcs\Ruleset\RulesetInterface;
-use Allocine\Twigcs\Validator\Violation;
+use FriendsOfTwig\Twigcs\Ruleset\Official;
+use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
+use FriendsOfTwig\Twigcs\Validator\Violation;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

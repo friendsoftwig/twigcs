@@ -1,6 +1,6 @@
 <?php
 
-namespace Allocine\Twigcs\RegEngine\Checker;
+namespace FriendsOfTwig\Twigcs\RegEngine\Checker;
 
 class Capture
 {
