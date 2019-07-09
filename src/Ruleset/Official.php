@@ -37,6 +37,7 @@ class Official implements RulesetInterface
         ' ' => '\s*',
         '_' => '\s*',
         '…' => '\s*',
+        '•' => '\s*',
         '$' => '(?:.|\n|\r)+?',
         '%' => '(?:.|\n|\r)+?',
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
@@ -217,8 +218,8 @@ class Official implements RulesetInterface
 
         $hash = self::using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', 0, 'Empty hash should have no whitespace')],
-            ['@ :_$ ,…%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')->enforceSpaceOrLineBreak('_', 1, 'The next value of a hash should be separated by one space.')],
-            ['"@" :_$ ,…%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')->enforceSpaceOrLineBreak('_', 1, 'The next value of a hash should be separated by one space.')],
+            ['@ :_$•,…%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('•', 0, 'There should be no space between the value and the following ",".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
+            ['"@" :_$•,…%', Handler::create()->delegate('$', 'expr')->delegate('%', 'hash')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('•', 0, 'There should be no space between the value and the following ",".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
             ['@ :_$,', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
             ['@ :_$', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],
             ['"@" :_$,', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'There should be no space between the key and ":".')->enforceSize('_', 1, 'There should be one space between ":" and the value.')],

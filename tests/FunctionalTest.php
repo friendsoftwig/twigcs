@@ -290,6 +290,7 @@ class FunctionalTest extends TestCase
                 2,
                 3,
             ] %}{{ columns }}', null],
+            ['{% set foo = {a: 1 , b: 2} %}{{ foo }}', 'There should be no space between the value and the following ",".'],
         ];
     }
 }
