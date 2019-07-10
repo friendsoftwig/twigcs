@@ -94,7 +94,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
                     $tokens->getSourceContext()->getPath(),
                     $expression['map'][$error->getColumn()]['line'] ?? 0,
                     $expression['map'][$error->getColumn()]['column'] ?? 0,
-                    $error->getReason(),
+                    $error->getReason()
                 );
             }
         }
