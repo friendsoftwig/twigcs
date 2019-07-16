@@ -136,7 +136,7 @@ class FunctionalTest extends TestCase
             ['{% set foo = 1 %}', 'Unused variable "foo".'],
             ['{% set foo = 1 %}{{ {foo: 1} }}', 'Unused variable "foo".'],
             ['{% set foo = 1 %}{{ foo ? foo : 0 }}', null],
-            ['{% set foo = 1 %}{% macro toto() %}{{ foo }}{% endmacro %}', 'Unused variable "foo".'], // https://github.com/allocine/twigcs/issues/27
+            ['{% set foo = 1 %}{% macro toto() %}{{ foo }}{% endmacro %}', 'Unused variable "foo".'], // https://github.com/friendsoftwig/twigcs/issues/27
             ['{% set foo = 1 %}{% if foo %}{% endif %}', null],
             ['{% set foo = [] %}{% for bar in foo %}{% endfor %}', null],
             ['{% set is = 1 %}{% if 1 is 1 %}{% endif %}', 'Unused variable "is".'],
@@ -162,7 +162,7 @@ class FunctionalTest extends TestCase
             ['{% import "foo.html.twig" as uppercase %}{% if "a"|uppercase %}{% endif %}', 'Unused macro import "uppercase".'],
             ['{% from _self import foo as bar %}', 'Unused macro import "bar".'],
             ['{% from _self import foo as request %}{{ app.request.uri }}', 'Unused macro import "request".'],
-            ['{% from _self import foo as macro %}{% macro foo() %}{% endmacro %}', 'Unused macro import "macro".'], // https://github.com/allocine/twigcs/issues/28
+            ['{% from _self import foo as macro %}{% macro foo() %}{% endmacro %}', 'Unused macro import "macro".'], // https://github.com/friendsoftwig/twigcs/issues/28
             ['{% import "macros.html.twig" as macros %} {{ macros.stuff() }}', null],
 
             // Complex include/embed spacing
@@ -236,19 +236,19 @@ class FunctionalTest extends TestCase
             ["{{ foo }}\t\n", 'A line should not end with blank space(s).'],
             ["{{ foo }}\r\n\r\n", null],
 
-            // Check regression of https://github.com/allocine/twigcs/issues/23
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/23
             ['{% from _self import folder_breadcrumb %}', 'Unused macro import "folder_breadcrumb".'],
 
-            // Check regression of https://github.com/allocine/twigcs/issues/56
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/56
             ["{% for item in ['one', 'two'] if attribute(_context, item) is not empty %}\n{% endfor %}", null],
 
-            // Check regression of https://github.com/allocine/twigcs/issues/60
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/60
             ['{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} %}', null],
             ['{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} only %}', null],
             ['{% set bar %}1{% endset %}{% include "foo.html.twig" with {bar: foo} only %}', 'Unused variable "bar".'],
             ['{% include "foo.html.twig" %}', null],
 
-            // Check regression of https://github.com/allocine/twigcs/issues/62
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/62
             ['{%~ if foo ~%}', null],
             ['{%~ if foo ~%}', null],
             ['{%~ if foo %}', null],
@@ -261,10 +261,10 @@ class FunctionalTest extends TestCase
             ['{{ foo ~}}', null],
             ['{{ foo  ~}}', 'A print statement should start with one space and end with one space.'],
 
-            // Check regression of https://github.com/allocine/twigcs/issues/63
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/63
             ["{% block title ('page.title.' ~ type)|trans %}", null],
 
-            // Check regression of https://github.com/allocine/twigcs/issues/64
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/64
             ['{% set sliced = foo|slice(-12, 12) %}{{ sliced }}', null],
 
             // Regressions from the official examples

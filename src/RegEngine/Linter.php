@@ -12,6 +12,36 @@ use FriendsOfTwig\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 
 class Linter
 {
+    /**
+     * @var ArrayExtractor
+     */
+    private $arrayExtractor;
+
+    /**
+     * @var HashExtractor
+     */
+    private $hashExtractor;
+
+    /**
+     * @var ParenthesesExtractor
+     */
+    private $parenthesesExtractor;
+
+    /**
+     * @var RuleChecker
+     */
+    private $ruleChecker;
+
+    /**
+     * @var StringSanitizer
+     */
+    private $stringSanitizer;
+
+    /**
+     * @var TernaryExtractor
+     */
+    private $ternaryExtractor;
+
     public function __construct(array $ruleset)
     {
         $this->ruleChecker = new RuleChecker($ruleset);

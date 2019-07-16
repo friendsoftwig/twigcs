@@ -19,7 +19,7 @@ abstract class AbstractRule
     protected $severity;
 
     /**
-     * @var Violations[]
+     * @var Violation[]
      */
     protected $violations;
 
