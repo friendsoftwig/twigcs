@@ -29,7 +29,7 @@ class FunctionalTest extends TestCase
         $this->assertCount(0, $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []);
 
         if ($expectedViolation) {
-            $this->assertCount(1, $violations, sprintf("There should be exactly one violation in:\n %s", $expression));
+            $this->assertCount(1, $violations, sprintf("There should be one violation in:\n %s", $expression));
             $this->assertSame($expectedViolation, $violations[0]->getReason());
         } else {
             $this->assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
@@ -41,81 +41,93 @@ class FunctionalTest extends TestCase
         return [
             // Put one (and only one) space after the start of a delimiter and before the end of a delimiter.
             ['{{ foo }}', null],
-            ['{{ foo   }}', 'A print statement should start with one space and end with one space.'],
-            ['{{    foo }}', 'A print statement should start with one space and end with one space.'],
-            ['{% block foo   %}', 'A tag statement should start with one space and end with one space.'],
-            ['{%    block foo %}', 'A tag statement should start with one space and end with one space.'],
+            ['{{ foo   }}', 'A print statement should end with 1 space.'],
+            ['{{    foo }}', 'A print statement should start with 1 space.'],
+            ['{% block foo   %}', 'A tag statement should end with 1 space.'],
+            ['{%    block foo %}', 'A tag statement should start with 1 space.'],
 
-            // Do not put any spaces after an opening parenthesis and before a closing parenthesis in expressions.
-            // Do not put any spaces before and after the parenthesis used for filter and function calls.
+            // Do not put any spaces after an opening parentheses and before a closing parentheses in expressions.
+            // Do not put any spaces before and after the parentheses used for filter and function calls.
             ['{{ foo(1) }}', null],
-            ['{{ foo( 1) }}', 'There should be no space between parentheses and their content.'],
-            ['{{ foo(1 ) }}', 'There should be no space between parentheses and their content.'],
-            ['{{ foo (1) }}', 'There should be no space between a function name and its opening parentheses.'],
+            ['{{ foo(1,  2) }}', 'The next value of a list should be separated by 1 space.'],
+            ['{{ foo( ) }}', 'There should be 0 space inside empty parentheses.'],
+            ['{{ foo( 1) }}', 'There should be 0 space between the opening parenthese and its content.'],
+            ['{{ foo(1 ) }}', 'There should be 0 space between the closing parenthese and its content.'],
+            ['{{ foo (1) }}', 'There should be 0 space between a function name and its opening parentheses.'],
             ['{{ (1) }}',     null],
-            ['{{ ( 1) }}',    'There should be no space between parentheses and their content.'],
-            ['{{ (1 ) }}',    'There should be no space between parentheses and their content.'],
+            ['{{ ( 1) }}',    'There should be 0 space between the opening parenthese and its content.'],
+            ['{{ (1 ) }}',    'There should be 0 space between the closing parenthese and its content.'],
 
-            // Parenthesis spacing is not appliable to control structures.
+            // parentheses spacing is not appliable to control structures.
             ['{% if (1 + 2) == 3 %}', null],
             ['{% for i in (some_array) %}', null],
             ['{% if (foo and (not bar or baz)) %}', null],
-            ['{% for i in  (some_array) %}', 'There should be one space between each for part.'],
-            ['{% if  (1 + 2) == 3 %}', 'There should be one space between the if keyword and its condition.'],
+            ['{% for i in  (some_array) %}', 'There should be 1 space after the in operator.'],
+            ['{% for  i in (some_array) %}', 'There should be 1 space between for and the local variables.'],
+            ['{% for i  in (some_array) %}', 'There should be 1 space after the local variable.'],
+            ['{% for i in (some_array) if  foo %}', 'There should be 1 space between the if and its expression.'],
+            ['{% for i in (some_array)  if foo %}', 'There should be 1 space before the if part of the loop.'],
+            ['{% if  (1 + 2) == 3 %}', 'There should be 1 space between the if keyword and its condition.'],
 
             // Do not put any spaces before and after the following operators: |, ., .., [].
             ['{{ foo|baz }}', null],
             ['{{ foo[0] }}', null],
             ['{{ foo[0].bar }}', null],
             ['{{ foo[0]|bar }}', null],
-            ['{{ foo |baz }}', 'There should be no space before and after filters.'],
-            ['{{ foo| baz }}', 'There should be no space before and after filters.'],
-            ['{{ foo() |baz }}', 'There should be no space before and after filters.'],
-            ['{{ foo() * 2 |baz }}', 'There should be no space before and after filters.'],
+            ['{{ foo |baz }}', 'There should be 0 space before the "|".'],
+            ['{{ foo| baz }}', 'There should be 0 space after the "|".'],
+            ['{{ foo() |baz }}', 'There should be 0 space before the "|".'],
+            ['{{ foo() * 2 |baz }}', 'There should be 0 space before the "|".'],
             ['{{ foo.baz }}', null],
-            ['{{ foo .baz }}', 'There should be no space before and after the dot when accessing a property.'],
-            ['{{ foo. baz }}', 'There should be no space before and after the dot when accessing a property.'],
-            ['{{ foo() .baz }}', 'There should be no space before and after the dot when accessing a property.'],
+            ['{{ foo .baz }}', 'There should be 0 space before the ".".'],
+            ['{{ foo. baz }}', 'There should be 0 space after the ".".'],
+            ['{{ foo() .baz }}', 'There should be 0 space before the ".".'],
 
             // Put one (and only one) space after the : sign in hashes and , in arrays and hashes:
             ['{{ {foo: 1} }}', null],
-            ['{{ {foo:  1} }}', 'There should be one space between ":" and the value.'],
+            ['{{ {  foo: 1} }}', 'There should be 0 space before the hash values.'],
+            ['{{ {foo: 1 } }}', 'There should be 0 space after the hash values.'],
+            ['{{ {foo:  1} }}', 'There should be 1 space between ":" and the value.'],
+            ['{{ {foo: 1,   bar: 2} }}', 'There should be 1 space between the , and the following hash key.'],
             ['{{ [1, 2, 3] }}', null],
             ["{{ [1,\n2] }}", null],
             ['{{ {hash: ","} }}', null],
             ['{{ [","] }}', null],
             ['{{ [func(1, 2)] }}', null],
-            ["{{ [1\n, 2] }}", 'A list value should be immediately followed by a coma.'],
-            ['{{ [1, 2,3] }}', 'The next value of a list should be separated by one space.'],
-            ['{{ [1, 2 , 3] }}', 'A list value should be immediately followed by a coma.'],
-            ['{{ [1, 2,     3] }}', 'The next value of a list should be separated by one space.'],
+            ['{{ [ ] }}', 'There should be 0 space inside an empty array.'],
+            ['{{ [ 1, 2] }}', 'There should be 0 space before the array values.'],
+            ['{{ [1, 2 ] }}', 'There should be 0 space after the array values.'],
+            ["{{ [1\n, 2] }}", 'There should be 0 space before the ",".'],
+            ['{{ [1, 2,3] }}', 'The next value of a list should be separated by 1 space.'],
+            ['{{ [1, 2 , 3] }}', 'There should be 0 space before the ",".'],
+            ['{{ [1, 2,     3] }}', 'The next value of a list should be separated by 1 space.'],
             ['{{ sliced_array[0:4] }}', null],
             ['{{ sliced_array[:4] }}', null],
             ['{{ sliced_array[0:] }}', null],
-            ['{{ sliced_array[: 4] }}', 'There should be no space inside an array slice short notation.'],
-            ['{{ sliced_array[0: 4] }}', 'There should be no space inside an array slice short notation.'],
-            ['{{ sliced_array[0 :4] }}', 'There should be no space inside an array slice short notation.'],
-            ['{{ sliced_array[0:4 ] }}', 'There should be no space inside an array slice short notation.'],
-            ['{{ sliced_array[ 0:4] }}', 'There should be no space inside an array slice short notation.'],
-            ['{{ slice[true ? 0 : 1 :0] }}', 'There should be no space inside an array slice short notation.'],
+            ['{{ sliced_array[: 4] }}', 'There should be 0 space after the middle ":" of a slice.'],
+            ['{{ sliced_array[0: 4] }}', 'There should be 0 space after the middle ":" of a slice.'],
+            ['{{ sliced_array[0 :4] }}', 'There should be 0 space before the middle ":" of a slice.'],
+            ['{{ sliced_array[0:4 ] }}', 'There should be 0 space right before the closing "]" of a slice.'],
+            ['{{ sliced_array[ 0:4] }}', 'There should be 0 space right after the opening "[" of a slice.'],
+            ['{{ slice[true ? 0 : 1 :0] }}', 'There should be 0 space before the middle ":" of a slice.'],
 
             // Put one (and only one) space before and after the following operators: comparison operators (==, !=, <, >, >=, <=), math operators (+, -, /, *, %, //, **), logic operators (not, and, or), ~, is, in, and the ternary operator (?:).
             ['{{ 1 + 2 }}', null],
-            ['{{ 1+ 2 }}', 'There should be exactly one space between the "+" operator and its values.'],
-            ['{{ 1 +2 }}', 'There should be exactly one space between the "+" operator and its values.'],
-            ['{{ 1- 2 }}', 'There should be exactly one space between the "-" operator and its values.'],
-            ['{{ 1 -2 }}', 'There should be exactly one space between the "-" operator and its values.'],
-            ['{{ 1  + 2 }}', 'There should be exactly one space between the "+" operator and its values.'],
-            ['{{ 1 +  2 }}', 'There should be exactly one space between the "+" operator and its values.'],
+            ['{{ 1+ 2 }}', 'There should be 1 space between the "+" operator and its left operand.'],
+            ['{{ 1 +2 }}', 'There should be 1 space between the "+" operator and its right operand.'],
+            ['{{ 1- 2 }}', 'There should be 1 space between the "-" operator and its left operand.'],
+            ['{{ 1 -2 }}', 'There should be 1 space between the "-" operator and its right operand.'],
+            ['{{ 1  + 2 }}', 'There should be 1 space between the "+" operator and its left operand.'],
+            ['{{ 1 +  2 }}', 'There should be 1 space between the "+" operator and its right operand.'],
             ['{{ 1 ? "foo" : "bar" }}', null],
             ['{{ 1 ? "foo" : "bar" ? "baz" : "foobar" }}', null],
-            ['{{ 1 ? "foo" : "bar" ? "baz" :"foobar" }}', 'There should be exactly one space between each part of the ternary operator.'],
-            ['{{ 1? "foo" : "bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
-            ['{{ 1 ?"foo" : "bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
-            ['{{ 1 ? "foo": "bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
-            ['{{ 1 ? "foo" :"bar" }}', 'There should be exactly one space between each part of the ternary operator.'],
+            ['{{ 1 ? "foo" : "bar" ? "baz" :"foobar" }}', 'There should be 1 space after the ":".'],
+            ['{{ 1? "foo" : "bar" }}', 'There should be 1 space before the "?".'],
+            ['{{ 1 ?"foo" : "bar" }}', 'There should be 1 space after the "?".'],
+            ['{{ 1 ? "foo": "bar" }}', 'There should be 1 space before the ":".'],
+            ['{{ 1 ? "foo" :"bar" }}', 'There should be 1 space after the ":".'],
             ['{{ 1 ?: "foo" }}', null],
-            ['{{ 1 ?:  "foo" }}', 'There should be exactly one space between each part of the ternary operator.'],
+            ['{{ 1 ?:  "foo" }}', 'There should be 1 space after the "?:".'],
             ['{{ test ? {foo: bar} : 1 }}', null],
             ['{{ test ? 1 }}', null],
             ['{{ {foo: test ? path({bar: baz}) : null} }}', null],
@@ -131,6 +143,11 @@ class FunctionalTest extends TestCase
             ['{% set foo = 1 %}{{ foo }}', null],
             ['{% set foo_bar = 1 %}{{ foo_bar }}', null],
             ['{% set fooBar = 1 %}{{ fooBar }}', 'The "fooBar" variable should be in lower case (use _ as a separator).'],
+
+            // var declaration spacing
+            ['{% set  foo = 1 %}{{ foo }}', 'There should be 1 space after the "set".'],
+            ['{% set foo  = 1 %}{{ foo }}', 'There should be 1 space before the "=".'],
+            ['{% set foo =  1 %}{{ foo }}', 'There should be 1 space after the "=".'],
 
             // Unused variables
             ['{% set foo = 1 %}', 'Unused variable "foo".'],
@@ -151,6 +168,19 @@ class FunctionalTest extends TestCase
             ['{% set foo %}1{% endset %}{{ foo }}', null],
             ['{% set foo %}1{% endset %}{{ include("foo.html.twig", {foo: foo}) }}', null],
 
+            // import spacing
+            ['{% import  "foo.html.twig" as foo %}{{ foo() }}', 'There should be 1 space before the source.'],
+            ['{% import "foo.html.twig"  as foo %}{{ foo() }}', 'There should be 1 space after the source.'],
+            ['{% import "foo.html.twig" as  foo %}{{ foo() }}', 'There should be 1 space after the "as".'],
+            ['{% import "foo.html.twig" as foo,  bar %}{{ foo() }}{{ bar() }}', 'The next value of a list should be separated by 1 space.'],
+
+            // from spacing
+            ['{% from  _self import foo as bar %}{{ bar() }}', 'There should be 1 space before the source.'],
+            ['{% from _self  import foo as bar %}{{ bar() }}', 'There should be 1 space after the source.'],
+            ['{% from _self import  foo as bar %}{{ bar() }}', 'There should be 1 space before the imported names.'],
+            ['{% from _self import foo  as bar %}{{ bar() }}', 'There should be 1 space before the "as".'],
+            ['{% from _self import foo as  bar %}{{ bar() }}', 'There should be 1 space after the "as".'],
+
             // Unused macros import
             ['{% import "foo.html.twig" as foo %}{{ foo() }}', null],
             ['{% import "foo.html.twig" as foo %}', 'Unused macro import "foo".'],
@@ -166,21 +196,31 @@ class FunctionalTest extends TestCase
             ['{% import "macros.html.twig" as macros %} {{ macros.stuff() }}', null],
 
             // Complex include/embed spacing
-            ['{% include "macros.html.twig"  ignore missing %}', 'Tag arguments should be separated by one space.'],
-            ['{% include "macros.html.twig"  ignore missing only %}', 'Tag arguments should be separated by one space.'],
-            ['{% include "macros.html.twig"  ignore missing with {foo: 1} only %}', 'Tag arguments should be separated by one space.'],
-            ['{% embed "macros.html.twig"  ignore missing %}', 'Tag arguments should be separated by one space.'],
-            ['{% embed "macros.html.twig"  ignore missing only %}', 'Tag arguments should be separated by one space.'],
-            ['{% embed "macros.html.twig"  ignore missing with {foo: 1} only %}', 'Tag arguments should be separated by one space.'],
+            ['{% include "macros.html.twig"  ignore missing %}', 'There should be 1 space before the "ignore missing".'],
+            ['{% include "macros.html.twig"  ignore missing only %}', 'There should be 1 space before the "ignore missing".'],
+            ['{% include "macros.html.twig"  ignore missing with {foo: 1} only %}', 'There should be 1 space before the "ignore missing".'],
+            ['{% embed "macros.html.twig"  ignore missing %}', 'There should be 1 space before the "ignore missing".'],
+            ['{% embed "macros.html.twig"  ignore missing only %}', 'There should be 1 space before the "ignore missing".'],
+            ['{% embed "macros.html.twig"  ignore missing with {foo: 1} only %}', 'There should be 1 space before the "ignore missing".'],
 
-            ['{{ not  loop.first ? \',\' }}', 'There should be exactly one space between the "not" operator and its value.'],
-            ['{{ label  ? label ~ \':\' }}', 'There should be exactly one space between each part of the ternary operator.'],
+            ['{{ not  loop.first ? \',\' }}', 'There should be 1 space between the "not" operator and its value.'],
+            ['{{ label  ? label ~ \':\' }}', 'There should be 1 space before the "?".'],
 
-            ['{% use  "blocks.html" %}', 'Tag arguments should be separated by one space.'],
-            ['{% use "blocks.html" with sidebar as base_sidebar, title as base_title  %}', 'A tag statement should start with one space and end with one space.'],
-            ['{% use  "blocks.html" with sidebar as base_sidebar, title as base_title %}', 'Tag arguments should be separated by one space.'],
-            ['{% use "blocks.html" with sidebar as base_sidebar,  title as base_title %}', 'There should be one space after the previous import.'],
-            ['{% use "blocks.html" with sidebar as     base_sidebar, title as base_title %}', 'There should be one space between the as operator and its operands.'],
+            ['{% use  "blocks.html" %}', 'Tag arguments should be separated by 1 space.'],
+            ['{% use "blocks.html" with sidebar as base_sidebar, title as base_title  %}', 'A tag statement should end with 1 space.'],
+            ['{% use  "blocks.html" with sidebar as base_sidebar, title as base_title %}', 'Tag arguments should be separated by 1 space.'],
+            ['{% use "blocks.html" with sidebar as base_sidebar,  title as base_title %}', 'There should be 1 space after the previous import.'],
+            ['{% use "blocks.html" with sidebar as     base_sidebar, title as base_title %}', 'There should be 1 space between the as operator and its operands.'],
+
+            // macros
+            ['{% macro toto(a, b, c) %}{% endmacro %}', null],
+            ['{% macro toto   (a, b, c) %}{% endmacro %}', 'There should be 0 space between macro name and args.'],
+            ['{% macro    toto(a, b, c) %}{% endmacro %}', 'There should be 1 space between macro keyword and its name.'],
+            ['{% macro toto( a, b, c) %}{% endmacro %}', 'There should be 0 space between the opening parenthese and its content.'],
+            ['{% macro toto(a,  b, c) %}{% endmacro %}', 'The next value of a list should be separated by 1 space.'],
+            ['{% macro toto(a, b , c) %}{% endmacro %}', 'There should be 0 space before the ",".'],
+            ['{% macro toto(a, b, c ) %}{% endmacro %}', 'There should be 0 space between the closing parenthese and its content.'],
+            ['{% macro toto(a, b,  c) %}{% endmacro %}', 'The next value of a list should be separated by 1 space.'],
 
             // Complex encountered cases
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
@@ -204,7 +244,7 @@ class FunctionalTest extends TestCase
                     },
                     bar: baz
                 },
-            } }}', 'There should be one space between ":" and the value.'],
+            } }}', 'There should be 1 space between ":" and the value.'],
             ['{{ {
                 A: "",
                 B: {
@@ -213,7 +253,7 @@ class FunctionalTest extends TestCase
                     },
                     bar:   baz
                 },
-            } }}', 'There should be one space between ":" and the value.'],
+            } }}', 'There should be 1 space between ":" and the value.'],
 
             // Recursive macro
             ['{% macro recursion(item) %}
@@ -254,12 +294,12 @@ class FunctionalTest extends TestCase
             ['{%~ if foo %}', null],
             ['{%- if foo -%}', null],
             ['{%- if foo %}', null],
-            ['{%- if  foo ~%}', 'There should be one space between the if keyword and its condition.'],
+            ['{%- if  foo ~%}', 'There should be 1 space between the if keyword and its condition.'],
             ['{{- foo ~}}', null],
             ['{{- foo -}}', null],
             ['{{- foo }}', null],
             ['{{ foo ~}}', null],
-            ['{{ foo  ~}}', 'A print statement should start with one space and end with one space.'],
+            ['{{ foo  ~}}', 'A print statement should end with 1 space.'],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/63
             ["{% block title ('page.title.' ~ type)|trans %}", null],
@@ -290,7 +330,7 @@ class FunctionalTest extends TestCase
                 2,
                 3,
             ] %}{{ columns }}', null],
-            ['{% set foo = {a: 1 , b: 2} %}{{ foo }}', 'There should be no space between the value and the following ",".'],
+            ['{% set foo = {a: 1 , b: 2} %}{{ foo }}', 'There should be 0 space between the value and the following ",".'],
         ];
     }
 }

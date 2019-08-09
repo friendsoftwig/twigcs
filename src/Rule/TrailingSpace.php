@@ -17,7 +17,7 @@ class TrailingSpace extends AbstractRule implements RuleInterface
      */
     public function check(\Twig_TokenStream $tokens)
     {
-        $this->reset();
+        $violations = [];
 
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
@@ -26,7 +26,7 @@ class TrailingSpace extends AbstractRule implements RuleInterface
                 \Twig_Token::TEXT_TYPE === $token->getType()
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
-                    $this->addViolation(
+                    $violations[] = $this->createViolation(
                         $tokens->getSourceContext()->getPath(),
                         $token->getLine(),
                         $token->columnno,
@@ -38,6 +38,6 @@ class TrailingSpace extends AbstractRule implements RuleInterface
             $tokens->next();
         }
 
-        return $this->violations;
+        return $violations;
     }
 }

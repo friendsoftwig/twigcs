@@ -9,8 +9,9 @@ use FriendsOfTwig\Twigcs\RegEngine\Extractor\ArrayExtractor;
 use FriendsOfTwig\Twigcs\RegEngine\Extractor\HashExtractor;
 use FriendsOfTwig\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
 use FriendsOfTwig\Twigcs\RegEngine\Extractor\TernaryExtractor;
+use FriendsOfTwig\Twigcs\RegEngine\RulesetBuilder;
+use FriendsOfTwig\Twigcs\RegEngine\RulesetConfigurator;
 use FriendsOfTwig\Twigcs\RegEngine\Sanitizer\StringSanitizer;
-use FriendsOfTwig\Twigcs\Ruleset\Official;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -66,7 +67,9 @@ class RegDebugCommand extends ContainerAwareCommand
         $report = new Report();
 
         foreach ($nodes as $node) {
-            $ruleChecker = new RuleChecker(Official::getRegEngineRuleset());
+            $builder = new RulesetBuilder(new RulesetConfigurator());
+
+            $ruleChecker = new RuleChecker($builder->build());
             $ruleChecker->explain();
             $ruleChecker->check($report, $node->getType(), $node->getExpr(), $node->getOffset());
             $io->writeln(sprintf("<info>EXPR : %s offset : %s</info>\n", $node->getExpr(), $node->getOffset()));

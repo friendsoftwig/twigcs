@@ -46,11 +46,11 @@ twigcs /path/to/views --reporter checkstyle > /path/to/report.xml
 
 ### Coding standard
 
-At the moment the only available standard is the [official one from twig](http://twig.sensiolabs.org/doc/coding_standards.html). 
+At the moment the only available standard is the [official one from twig](http://twig.sensiolabs.org/doc/coding_standards.html).
 
 #### Custom coding standard
 
-You can create a class implementing `RulesetInterface` and supply it as a `--ruleset` option to the CLI script: 
+You can create a class implementing `RulesetInterface` and supply it as a `--ruleset` option to the CLI script:
 
 ```bash
 twigcs /path/to/views --ruleset \MyApp\TwigCsRuleset
@@ -62,6 +62,8 @@ Also note that depending on your shell, you might need to escape backslashes in 
 ```bash
 twigcs /path/to/views --ruleset \\MyApp\\TwigCsRuleset
 ```
+
+For more complex needs, have a look at the [custom ruleset documentation](doc/ruleset.md).
 
 ### Coming features
 
