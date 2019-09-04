@@ -57,6 +57,11 @@ twigcs /path/to/views --ruleset \MyApp\TwigCsRuleset
 ```
 
 *Note:* `twigcs` needs to be used via composer and the ruleset class must be reachable via composer's autoloader for this feature to work.
+Also note that depending on your shell, you might need to escape backslashes in the fully qualified class name:
+
+```bash
+twigcs /path/to/views --ruleset \\MyApp\\TwigCsRuleset
+```
 
 ### Coming features
 

@@ -10,6 +10,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
+use function class_exists;
+use function sprintf;
 
 class LintCommand extends ContainerAwareCommand
 {
@@ -47,6 +49,10 @@ class LintCommand extends ContainerAwareCommand
         $violations = [];
 
         $ruleset = $input->getOption('ruleset');
+
+        if (!class_exists($ruleset)) {
+            throw new \InvalidArgumentException(sprintf('Ruleset class %s does not exist', $ruleset));
+        }
 
         if (!is_subclass_of($ruleset, RulesetInterface::class)) {
             throw new \InvalidArgumentException('Ruleset class must implement '.RulesetInterface::class);
