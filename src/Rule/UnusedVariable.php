@@ -39,6 +39,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                 $blockType = $tokens->look(2)->getValue();
 
                 switch ($blockType) {
+                    case 'embed':
                     case 'include':
                         if ('with' === $tokens->look(6)->getValue()) {
                             $this->skip($tokens, 8);
