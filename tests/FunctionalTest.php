@@ -248,6 +248,10 @@ class FunctionalTest extends TestCase
             ['{% set bar %}1{% endset %}{% include "foo.html.twig" with {bar: foo} only %}', 'Unused variable "bar".'],
             ['{% include "foo.html.twig" %}', null],
 
+            // Check unused for embed
+            ['{% set foo %}1{% endset %}{% embed "foo.html.twig" with {foo: foo} only %}{% endembed %}', null],
+            ['{% set bar %}1{% endset %}{% embed "foo.html.twig" with {bar: foo} only %}{% endembed %}', 'Unused variable "bar".'],
+
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/62
             ['{%~ if foo ~%}', null],
             ['{%~ if foo ~%}', null],
