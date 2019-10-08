@@ -35,7 +35,7 @@ twigcs /path/to/views --severity warning # Allow notices
 
 With the example above, notices are still displayed but not altering the exit code.
 
-You can also exclude subfolders of path like this :
+You can also exclude relative subfolders of path like this :
 
 ```bash
 twigcs /path/to/views --exclude vendor
