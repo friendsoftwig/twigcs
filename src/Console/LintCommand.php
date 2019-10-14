@@ -20,6 +20,7 @@ class LintCommand extends ContainerAwareCommand
         $this
             ->setName('lint')
             ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', ['.'])
+            ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
@@ -32,6 +33,7 @@ class LintCommand extends ContainerAwareCommand
         $limit = $this->getSeverityLimit($input);
 
         $paths = $input->getArgument('paths');
+        $exclude = $input->getOption('exclude');
 
         $files = [];
         foreach ($paths as $path) {
@@ -39,7 +41,7 @@ class LintCommand extends ContainerAwareCommand
                 $files[] = new \SplFileInfo($path);
             } else {
                 $finder = new Finder();
-                $found = iterator_to_array($finder->in($path)->name('*.twig'));
+                $found = iterator_to_array($finder->in($path)->exclude($exclude)->name('*.twig'));
                 if (!empty($found)) {
                     $files = array_merge($files, $found);
                 }
