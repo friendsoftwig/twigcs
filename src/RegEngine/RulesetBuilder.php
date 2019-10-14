@@ -511,6 +511,7 @@ class RulesetBuilder
                 ->enforceSpaceOrLineBreak('➀', $this->config['hash']['after_opening'], 'There should be %quantity% space(s) before the hash values.')
                 ->enforceSpaceOrLineBreak('➁', $this->config['hash']['before_closing'], 'There should be %quantity% space(s) after the hash values.'),
             ],
+            ['$➀\?\?➁$', $this->binaryOpSpace('??')],
             ['$➀<=➁$', $this->binaryOpSpace('<=')],
             ['$➀>=➁$', $this->binaryOpSpace('>=')],
             ['$➀<➁$', $this->binaryOpSpace('<')],

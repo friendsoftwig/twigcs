@@ -311,6 +311,10 @@ class FunctionalTest extends TestCase
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/64
             ['{% set sliced = foo|slice(-12, 12) %}{{ sliced }}', null],
 
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/77
+            ['{% set foo = bar ?? [] %}{{ foo }}', null],
+            ['{% set foo = baz ?? (bar ?? []) %}{{ foo }}', null],
+
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/78
             ['{% if not (foo and bar) %}', null],
             ['{% if not same as (foo and bar) %}', null],
