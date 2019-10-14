@@ -15,7 +15,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
         $scope = new Scope('file');
         $root = $scope;
 
-        $this->reset();
+        $violations = [];
 
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
@@ -101,7 +101,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
         }
 
         foreach ($root->getUnused() as $declarationToken) {
-            $this->addViolation(
+            $violations[] = $this->createViolation(
                 $tokens->getSourceContext()->getPath(),
                 $declarationToken->getLine(),
                 $declarationToken->columnno,
@@ -109,6 +109,6 @@ class UnusedVariable extends AbstractRule implements RuleInterface
             );
         }
 
-        return $this->violations;
+        return $violations;
     }
 }

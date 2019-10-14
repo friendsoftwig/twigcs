@@ -19,11 +19,6 @@ abstract class AbstractRule
     protected $severity;
 
     /**
-     * @var Violation[]
-     */
-    protected $violations;
-
-    /**
      * @param int $severity
      */
     public function __construct($severity)
@@ -31,24 +26,14 @@ abstract class AbstractRule
         $this->severity = $severity;
     }
 
-    public function reset()
-    {
-        $this->violations = [];
-    }
-
     public function collect(): array
     {
         return [];
     }
 
-    /**
-     * @param string $filename
-     * @param int    $line
-     * @param string $reason
-     */
-    public function addViolation($filename, $line, $column, $reason)
+    public function createViolation(string $filename, int $line, int $column, string $reason): Violation
     {
-        $this->violations[] = new Violation($filename, $line, $column, $reason, $this->severity, get_called_class());
+        return new Violation($filename, $line, $column, $reason, $this->severity, get_called_class());
     }
 
     /**

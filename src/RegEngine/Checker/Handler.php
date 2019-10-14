@@ -33,11 +33,14 @@ class Handler
     public function enforceSpaceOrLineBreak(string $type, int $size, string $message): self
     {
         return $this->attach(function (RuleChecker $ruleChecker, Report $report, array $captures) use ($type, $size, $message) {
-            foreach ($captures[$type] as $capture) {
+            foreach ($captures[$type] ?? [] as $capture) {
                 $text = $capture->getText();
 
                 if ("\n" !== ($text[0] ?? '') && strlen($text) !== $size) {
-                    $report->addError(new RuleError($message, $capture->getOffset(), $capture->getSource()));
+                    $replacedMessage = str_replace('%quantity%', $size, $message);
+                    $replacedMessage = str_replace('(s)', $size > 1 ? 's' : '', $replacedMessage);
+
+                    $report->addError(new RuleError($replacedMessage, $capture->getOffset(), $capture->getSource()));
                 }
             }
         });
@@ -46,9 +49,12 @@ class Handler
     public function enforceSize(string $type, int $size, string $message): self
     {
         return $this->attach(function (RuleChecker $ruleChecker, Report $report, array $captures) use ($type, $size, $message) {
-            foreach ($captures[$type] as $capture) {
+            foreach ($captures[$type] ?? [] as $capture) {
                 if (strlen($capture->getText()) !== $size) {
-                    $report->addError(new RuleError($message, $capture->getOffset(), $capture->getSource()));
+                    $replacedMessage = str_replace('%quantity%', $size, $message);
+                    $replacedMessage = str_replace('(s)', $size > 1 ? 's' : '', $replacedMessage);
+
+                    $report->addError(new RuleError($replacedMessage, $capture->getOffset(), $capture->getSource()));
                 }
             }
         });
@@ -57,7 +63,7 @@ class Handler
     public function delegate(string $type, string $ruleset): self
     {
         return $this->attach(function (RuleChecker $ruleChecker, Report $report, array $captures) use ($type, $ruleset) {
-            foreach ($captures[$type] as $subExpr) {
+            foreach ($captures[$type] ?? [] as $subExpr) {
                 $ruleChecker->subCheck($report, $ruleset, $subExpr);
             }
         });

@@ -36,7 +36,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
      */
     public function check(\Twig_TokenStream $tokens)
     {
-        $this->reset();
+        $violations = [];
 
         $currentExpression = ['value' => '', 'map' => [], 'offset' => 0];
         $expressions = [];
@@ -90,7 +90,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
             $this->unrecognizedExpressions = array_merge($this->unrecognizedExpressions, $report->getUnrecognizedExpressions());
 
             foreach ($report->getErrors() as $error) {
-                $this->addViolation(
+                $violations[] = $this->createViolation(
                     $tokens->getSourceContext()->getPath(),
                     $expression['map'][$error->getColumn()]['line'] ?? 0,
                     $expression['map'][$error->getColumn()]['column'] ?? 0,
@@ -99,7 +99,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
             }
         }
 
-        return $this->violations;
+        return $violations;
     }
 
     public function collect(): array

@@ -23,7 +23,7 @@ class TernaryExtractor
             $nextChar = $expr[$i + 1] ?? null;
             ++$i;
 
-            if ('?' === $char) {
+            if (('?' === $char) && (':' !== $nextChar)) { // Dont collect the "?:" operator
                 ++$depth;
 
                 if (1 === $depth) {
