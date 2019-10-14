@@ -488,6 +488,7 @@ class RulesetBuilder
         ]);
 
         $ops = $this->using(self::OP_VARS, [
+            ['not➊$', $this->unaryOpSpace('not', '➊')],
             ['@ __PARENTHESES__', $this->handle()->enforceSize(' ', $this->config['func']['before_parentheses'], 'There should be %quantity% space(s) between a function name and its opening parentheses.')],
             ['\( \)', $this->handle()->enforceSize(' ', $this->config['parentheses']['empty'], 'There should be %quantity% space(s) inside empty parentheses.')],
             ["\(\n $\n \)", $this->handle()->delegate('$', 'list')], // Multiline function call
@@ -541,7 +542,6 @@ class RulesetBuilder
             ['$➀\?\?➁$', $this->binaryOpSpace('??')],
             ['$➀\.\.➁$', $this->binaryOpSpace('..')],
             ['same➀as$', $this->unaryOpSpace('same as', '➀')],
-            ['not➊$', $this->unaryOpSpace('not', '➊')],
             ['$➀\|➁$', Handler::create()
                 ->delegate('$', 'expr')
                 ->enforceSize('➀', $this->config['property']['before_|'], 'There should be %quantity% space(s) before the "|".')
