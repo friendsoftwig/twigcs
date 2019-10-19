@@ -226,6 +226,13 @@ class FunctionalTest extends TestCase
             ['{% set baz = foo is defined ? object.property : default %}{{ baz }}', null],
             ['{{ a_is_b }}}', null], // Checks that it does not split on the "is" as an operator.
 
+            // Arrow functions
+            ['{% for a in b|filter(c => c > 10) %}', null],
+            ['{% for a in b|filter(c  => c > 10) %}', 'There should be 1 space between the arrow and its arguments.'],
+            ['{% for a in b|filter(c =>  c > 10) %}', 'There should be 1 space between the arrow and its body.'],
+            ['{% for a in b|filter((c ) => c > 10) %}', 'There should be 0 space between the closing parenthese and its content.'],
+            ['{% for a in b|filter(c => c >  10) %}', 'There should be 1 space between the ">" operator and its right operand.'],
+
             // Nested hashes
             ['{{ {
                 A: "",

@@ -72,6 +72,7 @@ $configurator->setTagDefaultArgSpacing(1);
 $configurator->setTagSpacingPattern('{% expr %}');
 $configurator->setTernarySpacingPattern('expr ? expr : expr||expr ?: expr');
 $configurator->setUnaryOpSpacingPattern('op expr');
+$configurator->setArrowFunctionSpacingPattern('args => expr');
 ```
 
 ## Fully custom rules : beware of the dragons !
