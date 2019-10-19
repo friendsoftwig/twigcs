@@ -79,16 +79,17 @@ class RuleChecker
 
     public function subCheck(Report $report, string $ruleset, Capture $capture)
     {
-        $this->check($report, $ruleset, $capture->getText(), $capture->getOffset());
+        $this->check($report, $ruleset, $capture->getText(), $capture->getOffsetsMap(), $capture->getOffset());
     }
 
-    public function check(Report $report, string $ruleset, string $text, int $offset = 0)
+    public function check(Report $report, string $ruleset, string $text, array $offsetsMap, int $offset = 0)
     {
         foreach ($this->rules[$ruleset] as $rule) {
             if ($matches = $rule->match($text)) {
                 $grouped = [];
                 foreach ($matches as $match) {
                     $match->increaseOffset($offset);
+                    $match->setOffsetsMap($offsetsMap);
                     $grouped[$match->getType()][] = $match;
                 }
 

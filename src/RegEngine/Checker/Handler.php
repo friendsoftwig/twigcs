@@ -40,7 +40,7 @@ class Handler
                     $replacedMessage = str_replace('%quantity%', $size, $message);
                     $replacedMessage = str_replace('(s)', $size > 1 ? 's' : '', $replacedMessage);
 
-                    $report->addError(new RuleError($replacedMessage, $capture->getOffset(), $capture->getSource()));
+                    $report->addError(new RuleError($replacedMessage, $capture->getRealOffset(), $capture->getSource()));
                 }
             }
         });
@@ -54,7 +54,7 @@ class Handler
                     $replacedMessage = str_replace('%quantity%', $size, $message);
                     $replacedMessage = str_replace('(s)', $size > 1 ? 's' : '', $replacedMessage);
 
-                    $report->addError(new RuleError($replacedMessage, $capture->getOffset(), $capture->getSource()));
+                    $report->addError(new RuleError($replacedMessage, $capture->getRealOffset(), $capture->getSource()));
                 }
             }
         });

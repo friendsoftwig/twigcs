@@ -24,12 +24,18 @@ class Capture
      */
     private $source;
 
+    /**
+     * @var array
+     */
+    private $offsetsMap;
+
     public function __construct(string $type, string $text, int $offset, Regex $source)
     {
         $this->type = $type;
         $this->text = $text;
         $this->offset = $offset;
         $this->source = $source;
+        $this->offsetsMap = [];
     }
 
     public function getType(): string
@@ -64,6 +70,23 @@ class Capture
     public function setOffset(int $offset): self
     {
         $this->offset = $offset;
+
+        return $this;
+    }
+
+    public function getRealOffset()
+    {
+        return $this->offsetsMap[$this->offset] ?? 0;
+    }
+
+    public function getOffsetsMap(): array
+    {
+        return $this->offsetsMap;
+    }
+
+    public function setOffsetsMap(array $offsetsMap): self
+    {
+        $this->offsetsMap = $offsetsMap;
 
         return $this;
     }

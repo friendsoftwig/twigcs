@@ -24,12 +24,66 @@ class ExpressionNode
      */
     private $type;
 
-    public function __construct(string $expr, int $offset, string $type = 'expr')
+    /**
+     * @var array
+     */
+    private $offsetsMap;
+
+    public static function fromString($expr)
     {
+        $scoped = new ScopedExression();
+        $scoped->enqueueString($expr);
+
+        return new self($scoped);
+    }
+
+    public function __construct(ScopedExression $scoped, $offset = 0)
+    {
+        $expr = '';
+        $offsets = [];
+        $offsetCounter = $offset;
+
+        $this->children = [];
+
+        foreach ($scoped->getContent() as $item) {
+            if (is_string($item)) {
+                $expr .= $item;
+                $offsets[] = $offsetCounter;
+                ++$offsetCounter;
+            } else {
+                $kind = $item->getKind();
+                for ($i = 0; $i < strlen($kind); ++$i) {
+                    $offsets[] = $offsetCounter;
+                }
+                $this->addChild(new self($item, $offsetCounter));
+                $expr .= $kind;
+                $offsetCounter += $item->strlen();
+            }
+        }
+
+        $this->offsetsMap = $offsets;
         $this->expr = $expr;
         $this->offset = $offset;
-        $this->children = [];
-        $this->type = $type;
+
+        switch ($scoped->getKind()) {
+            case '__ARRAY__':
+                $this->type = 'arrayOrSlice';
+                break;
+            case '__PARENTHESES__':
+            case '__HASH__':
+            default:
+                $this->type = 'expr';
+        }
+    }
+
+    public function getOffsetAt($i)
+    {
+        return $this->offsetsMap[$i] ?? null;
+    }
+
+    public function getOffsetsMap()
+    {
+        return $this->offsetsMap;
     }
 
     public function getChildren(): array
@@ -52,23 +106,18 @@ class ExpressionNode
         return $this->type;
     }
 
-    public function replaceExpr(string $expr): self
-    {
-        $this->expr = $expr;
-
-        return $this;
-    }
-
-    public function addChild(self $child)
+    public function addChild(self $child, $delegateChildren = true): self
     {
         $this->children[] = $child;
+
+        return $this;
     }
 
     public function getTrace(): string
     {
         $lines = [];
 
-        $lines[] = ' ↪ '.$this->expr.' (offset: '.$this->offset.')';
+        $lines[] = ' ↪ '.$this->expr.' (offset: '.$this->offset.', type: '.$this->type.')';
 
         foreach ($this->children as $child) {
             $childrenLines = explode("\n", $child->getTrace());
