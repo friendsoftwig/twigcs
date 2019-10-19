@@ -2,9 +2,8 @@
 
 The missing checkstyle for twig !
 
-Twigcs aims to be what phpcs is to php. It checks your codebase for violations on coding standards.
-
-Please note that the project is still in early development stage and is subject to heavy changes.
+Twigcs aims to be what [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) is to php. It checks your codebase for
+violations on coding standards.
 
 ## How to install
 
@@ -76,6 +75,10 @@ For more complex needs, have a look at the [custom ruleset documentation](doc/ru
 ### Upgrading
 
 If you're upgrading from 3.x to 4.x or later, please read the [upgrade guide](doc/upgrade.md).
+
+### Community
+
+Join us on [Symfony Devs](https://symfony.com/slack) via the **twigcs** channel.
 
 ### Contributing
 
