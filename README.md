@@ -73,10 +73,9 @@ twigcs /path/to/views --ruleset \\MyApp\\TwigCsRuleset
 
 For more complex needs, have a look at the [custom ruleset documentation](doc/ruleset.md).
 
-### Coming features
+### Upgrading
 
-- Indentation checking
-- Forbidden functions detection (a dump() in production for instance)
+If you're upgrading from 3.x to 4.x or later, please read the [upgrade guide](doc/upgrade.md).
 
 ### Contributing
 
