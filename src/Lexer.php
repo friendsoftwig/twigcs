@@ -2,10 +2,18 @@
 
 namespace FriendsOfTwig\Twigcs;
 
-/*
- * Backward compatibility with Twig 1.X
+/**
+ * Backward compatibility with Twig 1.X.
  */
-if (\Twig_Environment::MAJOR_VERSION > 1) {
+$majorVersion = \Twig_Environment::MAJOR_VERSION;
+
+// Detects this twig issue : https://github.com/twigphp/Twig/commit/cee29710248d27d881772a3a44517a97b7402c67
+// that causes twig 1.38.2 to 1.38.4 to be flagged as a twig 2.x
+if (in_array(\Twig_Environment::VERSION_ID, [13802, 13803, 13804], true)) {
+    $majorVersion = 1;
+}
+
+if ($majorVersion > 1) {
     class_alias(\FriendsOfTwig\Twigcs\Compatibility\TwigLexer::class, 'FriendsOfTwig\Twigcs\BaseLexer');
 } else {
     class_alias(\Twig_Lexer::class, 'FriendsOfTwig\Twigcs\BaseLexer');
