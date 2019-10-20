@@ -9,7 +9,7 @@ interface RuleInterface
     /**
      * @return Violation[]
      */
-    public function check(\Twig_TokenStream $tokens);
+    public function check(\Twig\TokenStream $tokens);
 
     public function collect(): array;
 }

@@ -10,7 +10,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $scope = new Scope('file');
         $root = $scope;
@@ -20,7 +20,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if (\Twig_Token::BLOCK_START_TYPE === $token->getType()) {
+            if (\Twig\Token::BLOCK_START_TYPE === $token->getType()) {
                 $blockType = $tokens->look(2)->getValue();
 
                 if (in_array($blockType, ['block', 'for', 'embed', 'macro'], true)) {
@@ -35,7 +35,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                 }
             }
 
-            if (\Twig_Token::BLOCK_START_TYPE === $token->getType()) {
+            if (\Twig\Token::BLOCK_START_TYPE === $token->getType()) {
                 $blockType = $tokens->look(2)->getValue();
 
                 switch ($blockType) {
@@ -44,22 +44,22 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                         if ('with' === $tokens->look(6)->getValue()) {
                             $this->skip($tokens, 8);
                         } else {
-                            $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
+                            $this->skipTo($tokens, \Twig\Token::BLOCK_END_TYPE);
                         }
                         break;
                     case 'from':
                         $from = $tokens->look(4);
 
-                        if (\Twig_Token::NAME_TYPE === $from->getType()) { // {% from varName import ... %}
+                        if (\Twig\Token::NAME_TYPE === $from->getType()) { // {% from varName import ... %}
                             $scope->use($from->getValue());
                         }
-                        $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
+                        $this->skipTo($tokens, \Twig\Token::BLOCK_END_TYPE);
                         break;
                     case 'set':
                         $scope->declare($tokens->look(4)->getValue(), $tokens->look(4));
                         $this->skipToOneOf($tokens, [
-                            ['type' => \Twig_Token::OPERATOR_TYPE, 'value' => '='],
-                            ['type' => \Twig_Token::BLOCK_END_TYPE],
+                            ['type' => \Twig\Token::OPERATOR_TYPE, 'value' => '='],
+                            ['type' => \Twig\Token::BLOCK_END_TYPE],
                         ]);
                         break;
                     case 'if':
@@ -67,9 +67,9 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                         $this->skip($tokens, 3);
                         break;
                     default:
-                        $this->skipTo($tokens, \Twig_Token::BLOCK_END_TYPE);
+                        $this->skipTo($tokens, \Twig\Token::BLOCK_END_TYPE);
                 }
-            } elseif (\Twig_Token::NAME_TYPE === $token->getType()) {
+            } elseif (\Twig\Token::NAME_TYPE === $token->getType()) {
                 $previous = $this->getPreviousSignificantToken($tokens);
                 $next = $this->getNextSignificantToken($tokens);
 

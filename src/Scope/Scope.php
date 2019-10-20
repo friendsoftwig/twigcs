@@ -73,7 +73,7 @@ class Scope
     /**
      * @param Token $token
      */
-    public function declare(string $name, \Twig_Token $token)
+    public function declare(string $name, \Twig\Token $token)
     {
         $this->declarations[$name] = $token;
     }

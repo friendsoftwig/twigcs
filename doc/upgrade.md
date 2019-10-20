@@ -94,9 +94,9 @@ new Rule\PunctuationSpacing(
     0,
     new TokenWhitelist([
         ')',
-        \Twig_Token::NAME_TYPE,
-        \Twig_Token::NUMBER_TYPE,
-        \Twig_Token::STRING_TYPE
+        \Twig\Token::NAME_TYPE,
+        \Twig\Token::NUMBER_TYPE,
+        \Twig\Token::STRING_TYPE
     ], [2])
 )
 ```

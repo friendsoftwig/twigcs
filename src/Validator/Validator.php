@@ -21,7 +21,7 @@ class Validator
     /**
      * @return Violation[]
      */
-    public function validate(RulesetInterface $ruleset, \Twig_TokenStream $tokens)
+    public function validate(RulesetInterface $ruleset, \Twig\TokenStream $tokens)
     {
         $violations = [];
         foreach ($ruleset->getRules() as $rule) {
