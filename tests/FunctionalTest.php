@@ -20,12 +20,12 @@ class FunctionalTest extends TestCase
      */
     public function testExpressions($expression, $expectedViolation, array $expectedViolationPosition = null)
     {
-        $twig = new \Twig_Environment(new \Twig_Loader_Array());
+        $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader());
         $twig->setLexer(new Lexer($twig));
 
         $validator = new Validator();
 
-        $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig_Source($expression, 'src', 'src.html.twig')));
+        $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig\Source($expression, 'src', 'src.html.twig')));
         $this->assertCount(0, $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []);
 
         if ($expectedViolation) {

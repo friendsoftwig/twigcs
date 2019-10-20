@@ -63,7 +63,7 @@ use FriendsOfTwig\Twigcs\Token;
 
 class LowerCaseVariable extends AbstractRule implements RuleInterface
 {
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $violations = [];
 
@@ -71,7 +71,7 @@ class LowerCaseVariable extends AbstractRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             // If the token is a name token and any uppercase letter is detected
-            if (\Twig_Token::NAME_TYPE === $token->getType() && preg_match('/[A-Z]/', $token->getValue())) {
+            if (\Twig\Token::NAME_TYPE === $token->getType() && preg_match('/[A-Z]/', $token->getValue())) {
 
                 // Then we look 2 tokens before to see if with find a "set" keyword, indicating it is a variable declaration
                 if (Token::WHITESPACE_TYPE === $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() && 'set' === $tokens->look(-2)->getValue()) {

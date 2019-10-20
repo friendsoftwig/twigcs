@@ -34,7 +34,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $violations = [];
 

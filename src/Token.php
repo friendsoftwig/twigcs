@@ -17,17 +17,17 @@ class Token
     public static function typeToString($type, $short = false)
     {
         if (self::WHITESPACE_TYPE === $type) {
-            return $short ? 'WHITESPACE_TYPE' : 'Twig_Token::WHITESPACE_TYPE';
+            return $short ? 'WHITESPACE_TYPE' : 'Twig\Token::WHITESPACE_TYPE';
         }
 
         if (self::NEWLINE_TYPE === $type) {
-            return $short ? 'NEWLINE_TYPE' : 'Twig_Token::NEWLINE_TYPE';
+            return $short ? 'NEWLINE_TYPE' : 'Twig\Token::NEWLINE_TYPE';
         }
 
         if (self::COMMENT_TYPE === $type) {
-            return $short ? 'COMMENT_TYPE' : 'Twig_Token::COMMENT_TYPE';
+            return $short ? 'COMMENT_TYPE' : 'Twig\Token::COMMENT_TYPE';
         }
 
-        return \Twig_Token::typeToString($type, $short);
+        return \Twig\Token::typeToString($type, $short);
     }
 }

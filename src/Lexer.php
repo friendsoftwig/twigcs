@@ -5,18 +5,18 @@ namespace FriendsOfTwig\Twigcs;
 /**
  * Backward compatibility with Twig 1.X.
  */
-$majorVersion = \Twig_Environment::MAJOR_VERSION;
+$majorVersion = \Twig\Environment::MAJOR_VERSION;
 
 // Detects this twig issue : https://github.com/twigphp/Twig/commit/cee29710248d27d881772a3a44517a97b7402c67
 // that causes twig 1.38.2 to 1.38.4 to be flagged as a twig 2.x
-if (in_array(\Twig_Environment::VERSION_ID, [13802, 13803, 13804], true)) {
+if (in_array(\Twig\Environment::VERSION_ID, [13802, 13803, 13804], true)) {
     $majorVersion = 1;
 }
 
 if ($majorVersion > 1) {
     class_alias(\FriendsOfTwig\Twigcs\Compatibility\TwigLexer::class, 'FriendsOfTwig\Twigcs\BaseLexer');
 } else {
-    class_alias(\Twig_Lexer::class, 'FriendsOfTwig\Twigcs\BaseLexer');
+    class_alias(\Twig\Lexer::class, 'FriendsOfTwig\Twigcs\BaseLexer');
 }
 
 /**
@@ -65,7 +65,7 @@ class Lexer extends BaseLexer
                 $this->pushToken(Token::WHITESPACE_TYPE, $spaces[0]);
             }
 
-            $this->pushToken(\Twig_Token::BLOCK_END_TYPE);
+            $this->pushToken(\Twig\Token::BLOCK_END_TYPE);
             $this->moveCursor($match[0]);
             $this->popState();
         } else {
@@ -81,7 +81,7 @@ class Lexer extends BaseLexer
                 $this->pushToken(Token::WHITESPACE_TYPE, $spaces[0]);
             }
 
-            $this->pushToken(\Twig_Token::VAR_END_TYPE);
+            $this->pushToken(\Twig\Token::VAR_END_TYPE);
             $this->moveCursor($match[0]);
             $this->popState();
         } else {
@@ -92,7 +92,7 @@ class Lexer extends BaseLexer
     protected function lexComment()
     {
         if (!preg_match($this->regexes['lex_comment'], $this->code, $match, PREG_OFFSET_CAPTURE, $this->cursor)) {
-            throw new \Twig_Error_Syntax('Unclosed comment.', $this->lineno, $this->source);
+            throw new \Twig\Error\SyntaxError('Unclosed comment.', $this->lineno, $this->source);
         }
 
         $content = substr($this->code, $this->cursor, $match[0][1] - $this->cursor);
@@ -109,16 +109,16 @@ class Lexer extends BaseLexer
     protected function pushToken($type, $value = '')
     {
         // do not push empty text tokens
-        if (\Twig_Token::TEXT_TYPE === $type && '' === $value) {
+        if (\Twig\Token::TEXT_TYPE === $type && '' === $value) {
             return;
         }
 
-        // The base lexer doesn't call moveCursor when encountering punctuations. (See class \Twig_Lexer line 269)
-        if (\Twig_Token::PUNCTUATION_TYPE === $type) {
+        // The base lexer doesn't call moveCursor when encountering punctuations. (See class \Twig\Lexer line 269)
+        if (\Twig\Token::PUNCTUATION_TYPE === $type) {
             ++$this->columnno;
         }
 
-        $token = new \Twig_Token($type, $value, $this->lineno);
+        $token = new \Twig\Token($type, $value, $this->lineno);
 
         // Twig tokens cannot be extended anymore since 2.0, so a dynamic attribute
         // is the only way to store the column number.
