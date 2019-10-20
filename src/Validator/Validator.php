@@ -8,11 +8,11 @@ use Allocine\Twigcs\Ruleset\RulesetInterface;
 class Validator
 {
     /**
-     * @param \Twig_TokenStream $tokens
+     * @param \Twig\TokenStream $tokens
      *
      * @return Violation[]
      */
-    public function validate(RulesetInterface $ruleset, \Twig_TokenStream $tokens)
+    public function validate(RulesetInterface $ruleset, \Twig\TokenStream $tokens)
     {
         $violations = [];
         foreach ($ruleset->getRules() as $rule) {

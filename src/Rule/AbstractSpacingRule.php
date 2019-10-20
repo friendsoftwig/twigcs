@@ -25,12 +25,12 @@ class AbstractSpacingRule extends AbstractRule
     }
 
     /**
-     * @param \Twig_TokenStream $tokens
+     * @param \Twig\TokenStream $tokens
      * @param integer           $position
      * @param message           $target
      * @param boolean           $acceptNewLines
      */
-    protected function assertSpacing(\Twig_TokenStream $tokens, $position, $spacing, $acceptNewLines = true, $allowIndentation = false)
+    protected function assertSpacing(\Twig\TokenStream $tokens, $position, $spacing, $acceptNewLines = true, $allowIndentation = false)
     {
         $current = $tokens->getCurrent();
         $token = $tokens->look($position);

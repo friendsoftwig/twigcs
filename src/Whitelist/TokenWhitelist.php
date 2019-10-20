@@ -21,7 +21,7 @@ class TokenWhitelist implements WhitelistInterface
     /**
      * {@inheritdoc}
      */
-    public function pass(\Twig_TokenStream $tokens, $orientation)
+    public function pass(\Twig\TokenStream $tokens, $orientation)
     {
         foreach ($this->offsets as $offset) {
             $token = $tokens->look($offset*$orientation);

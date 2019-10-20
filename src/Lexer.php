@@ -5,10 +5,10 @@ namespace Allocine\Twigcs;
 /**
  * Backward compatibility with Twig 1.X
  */
-if (\Twig_Environment::MAJOR_VERSION > 1) {
+if (\Twig\Environment::MAJOR_VERSION > 1) {
     class_alias(\Allocine\Twigcs\Compatibility\TwigLexer::class, 'Allocine\Twigcs\BaseLexer');
 } else {
-    class_alias(\Twig_Lexer::class, 'Allocine\Twigcs\BaseLexer');
+    class_alias(\Twig\Lexer::class, 'Allocine\Twigcs\BaseLexer');
 }
 
 /**
@@ -53,7 +53,7 @@ class Lexer extends BaseLexer
                 $this->pushToken(Token::WHITESPACE_TYPE, $spaces[0]);
             }
 
-            $this->pushToken(\Twig_Token::BLOCK_END_TYPE);
+            $this->pushToken(\Twig\Token::BLOCK_END_TYPE);
             $this->moveCursor($match[0]);
             $this->popState();
         } else {
@@ -69,7 +69,7 @@ class Lexer extends BaseLexer
                 $this->pushToken(Token::WHITESPACE_TYPE, $spaces[0]);
             }
 
-            $this->pushToken(\Twig_Token::VAR_END_TYPE);
+            $this->pushToken(\Twig\Token::VAR_END_TYPE);
             $this->moveCursor($match[0]);
             $this->popState();
         } else {
@@ -80,7 +80,7 @@ class Lexer extends BaseLexer
     protected function lexComment()
     {
         if (!preg_match($this->regexes['lex_comment'], $this->code, $match, PREG_OFFSET_CAPTURE, $this->cursor)) {
-            throw new \Twig_Error_Syntax('Unclosed comment.', $this->lineno, $this->source);
+            throw new \Twig\Error\SyntaxError('Unclosed comment.', $this->lineno, $this->source);
         }
 
         $content = substr($this->code, $this->cursor, $match[0][1] - $this->cursor);
@@ -97,16 +97,16 @@ class Lexer extends BaseLexer
     protected function pushToken($type, $value = '')
     {
         // do not push empty text tokens
-        if (\Twig_Token::TEXT_TYPE === $type && '' === $value) {
+        if (\Twig\Token::TEXT_TYPE === $type && '' === $value) {
             return;
         }
 
-        // The base lexer doesn't call moveCursor when encountering punctuations. (See class \Twig_Lexer line 269)
-        if ($type == \Twig_Token::PUNCTUATION_TYPE) {
+        // The base lexer doesn't call moveCursor when encountering punctuations. (See class \Twig\Lexer line 269)
+        if ($type == \Twig\Token::PUNCTUATION_TYPE) {
             $this->columnno++;
         }
 
-        $token = new \Twig_Token($type, $value, $this->lineno);
+        $token = new \Twig\Token($type, $value, $this->lineno);
 
         // Twig tokens cannot be extended anymore since 2.0, so a dynamic attribute
         // is the only way to store the column number.

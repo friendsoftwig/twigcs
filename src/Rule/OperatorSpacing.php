@@ -35,14 +35,14 @@ class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $this->violations = [];
 
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getType() === \Twig_Token::OPERATOR_TYPE && in_array($token->getValue(), $this->operators)) {
+            if ($token->getType() === \Twig\Token::OPERATOR_TYPE && in_array($token->getValue(), $this->operators)) {
                 // allows unary operators to be next to an opening parenthesis.
                 if (!($this->isUnary($token->getValue()) && $tokens->look(-1)->getValue() == '(')) {
                     $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
@@ -64,14 +64,14 @@ class OperatorSpacing extends AbstractSpacingRule implements RuleInterface
      * Allows the "-" unary operator to be close to its value on particular expressions
      * like: "{{ -1 }}" or "{{ var == -1 }}"
      *
-     * @param \Twig_Token       $token
-     * @param \Twig_TokenStream $tokens
+     * @param \Twig\Token       $token
+     * @param \Twig\TokenStream $tokens
      *
      * @return bool
      */
-    private function canBeCloseOnRight(\Twig_Token $token, \Twig_TokenStream $tokens)
+    private function canBeCloseOnRight(\Twig\Token $token, \Twig\TokenStream $tokens)
     {
-        $forbiddenTokens = [\Twig_Token::NAME_TYPE, \Twig_Token::NUMBER_TYPE, \Twig_Token::STRING_TYPE ];
+        $forbiddenTokens = [\Twig\Token::NAME_TYPE, \Twig\Token::NUMBER_TYPE, \Twig\Token::STRING_TYPE ];
 
         return
             ($token->getValue() === '-') &&

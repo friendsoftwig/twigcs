@@ -33,7 +33,7 @@ class TernarySpacing extends AbstractSpacingRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $this->violations = [];
         $ternaryDepth = 0;
@@ -43,7 +43,7 @@ class TernarySpacing extends AbstractSpacingRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getValue() === '?' && $token->getType() === \Twig_Token::PUNCTUATION_TYPE) {
+            if ($token->getValue() === '?' && $token->getType() === \Twig\Token::PUNCTUATION_TYPE) {
                 // Memorize where is the closing ":" punctuation to validate spacing later.
                 $closingTokens[] = $this->seekTernaryElse($tokens);
 
@@ -73,11 +73,11 @@ class TernarySpacing extends AbstractSpacingRule implements RuleInterface
     }
 
     /**
-     * @param \Twig_TokenStream $tokens
+     * @param \Twig\TokenStream $tokens
      *
-     * @return \Twig_Token
+     * @return \Twig\Token
      */
-    protected function seekTernaryElse(\Twig_TokenStream $tokens)
+    protected function seekTernaryElse(\Twig\TokenStream $tokens)
     {
         $i = 1;
         $depth = 0;
@@ -87,24 +87,24 @@ class TernarySpacing extends AbstractSpacingRule implements RuleInterface
         while ($depth || !$found) {
             $token = $tokens->look($i);
 
-            if (in_array($token->getType(), [\Twig_Token::BLOCK_END_TYPE, \Twig_Token::VAR_END_TYPE, \Twig_Token::INTERPOLATION_END_TYPE])) {
+            if (in_array($token->getType(), [\Twig\Token::BLOCK_END_TYPE, \Twig\Token::VAR_END_TYPE, \Twig\Token::INTERPOLATION_END_TYPE])) {
                 return;
             }
 
             // End of hash value means end of short ternary (eg. "foo ? bar" syntax)
-            if ($token->getType() === \Twig_Token::PUNCTUATION_TYPE && $token->getValue() === ',') {
+            if ($token->getType() === \Twig\Token::PUNCTUATION_TYPE && $token->getValue() === ',') {
                 return;
             }
 
-            if ($token->getType() === \Twig_Token::PUNCTUATION_TYPE && in_array($token->getValue(), ['(', '[', '{'])) {
+            if ($token->getType() === \Twig\Token::PUNCTUATION_TYPE && in_array($token->getValue(), ['(', '[', '{'])) {
                 $depth++;
             }
 
-            if ($depth && $token->getType() === \Twig_Token::PUNCTUATION_TYPE && in_array($token->getValue(), [')', ']', '}'])) {
+            if ($depth && $token->getType() === \Twig\Token::PUNCTUATION_TYPE && in_array($token->getValue(), [')', ']', '}'])) {
                 $depth--;
             }
 
-            $found = $token->getType() === \Twig_Token::PUNCTUATION_TYPE && $token->getValue() === ':';
+            $found = $token->getType() === \Twig\Token::PUNCTUATION_TYPE && $token->getValue() === ':';
             $i++;
         }
 

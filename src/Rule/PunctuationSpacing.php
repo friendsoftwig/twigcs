@@ -34,14 +34,14 @@ class PunctuationSpacing extends AbstractSpacingRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $this->violations = [];
 
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getType() === \Twig_Token::PUNCTUATION_TYPE && in_array($token->getValue(), $this->punctuations)) {
+            if ($token->getType() === \Twig\Token::PUNCTUATION_TYPE && in_array($token->getValue(), $this->punctuations)) {
                 $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spacing);
                 $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spacing);
             }

@@ -15,7 +15,7 @@ class TrailingSpace extends AbstractRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $this->reset();
 
@@ -23,7 +23,7 @@ class TrailingSpace extends AbstractRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if ($token->getType() === Token::NEWLINE_TYPE && $tokens->look(-1)->getType() === Token::WHITESPACE_TYPE ||
-                $token->getType() === \Twig_Token::TEXT_TYPE
+                $token->getType() === \Twig\Token::TEXT_TYPE
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
                     $this->addViolation(
