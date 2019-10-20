@@ -31,13 +31,13 @@ class ExpressionNode
 
     public static function fromString($expr)
     {
-        $scoped = new ScopedExression();
+        $scoped = new ScopedExpression();
         $scoped->enqueueString($expr);
 
         return new self($scoped);
     }
 
-    public function __construct(ScopedExression $scoped, $offset = 0)
+    public function __construct(ScopedExpression $scoped, $offset = 0)
     {
         $expr = '';
         $offsets = [];

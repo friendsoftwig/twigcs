@@ -2,7 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\RegEngine;
 
-class ScopedExression
+class ScopedExpression
 {
     /**
      * @var array
