@@ -42,7 +42,7 @@ class HashSeparatorSpacing extends AbstractSpacingRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $this->violations = [];
         $arrayDepth = 0;
@@ -51,17 +51,17 @@ class HashSeparatorSpacing extends AbstractSpacingRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getType() === \Twig_Token::PUNCTUATION_TYPE && $token->getValue() === '(') {
+            if ($token->getType() === \Twig\Token::PUNCTUATION_TYPE && $token->getValue() === '(') {
                 $skip = true; // Ignore function arguments or embedded expressions (eg. [ func(1, 2) ]  )
                               // This prevents this rule from having influence on arguments spacing.
             }
 
-            if ($token->getType() === \Twig_Token::PUNCTUATION_TYPE && $token->getValue() === '?') {
+            if ($token->getType() === \Twig\Token::PUNCTUATION_TYPE && $token->getValue() === '?') {
                 $skip = true;
             }
 
-            if ($token->getValue() === '{' && $token->getType() === \Twig_Token::PUNCTUATION_TYPE) {
-                if ($tokens->look(-1)->getType() === \Twig_Token::NAME_TYPE) {
+            if ($token->getValue() === '{' && $token->getType() === \Twig\Token::PUNCTUATION_TYPE) {
+                if ($tokens->look(-1)->getType() === \Twig\Token::NAME_TYPE) {
                     break; // This is not an array declaration, but an array access ( eg. : foo[1] )
                 }
 
@@ -69,17 +69,17 @@ class HashSeparatorSpacing extends AbstractSpacingRule implements RuleInterface
                 $skip = false; // We entered a new array or hash, from now on do not skip anything.
             }
 
-            if ($token->getValue() === '}' && $token->getType() === \Twig_Token::PUNCTUATION_TYPE) {
+            if ($token->getValue() === '}' && $token->getType() === \Twig\Token::PUNCTUATION_TYPE) {
                 $arrayDepth--;
             }
 
-            if (!$skip && $arrayDepth > 0 && $token->getType() === \Twig_Token::PUNCTUATION_TYPE && $token->getValue() === ',') {
+            if (!$skip && $arrayDepth > 0 && $token->getType() === \Twig\Token::PUNCTUATION_TYPE && $token->getValue() === ',') {
                 $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spaceAfter);
                 $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spaceBefore, false);
             }
 
-            if ($arrayDepth > 0 && in_array($this->getPreviousSignificantToken($tokens)->getType(), [\Twig_Token::NAME_TYPE, \Twig_Token::STRING_TYPE])) {
-                if (!$skip && $token->getType() === \Twig_Token::PUNCTUATION_TYPE && $token->getValue() === ':') {
+            if ($arrayDepth > 0 && in_array($this->getPreviousSignificantToken($tokens)->getType(), [\Twig\Token::NAME_TYPE, \Twig\Token::STRING_TYPE])) {
+                if (!$skip && $token->getType() === \Twig\Token::PUNCTUATION_TYPE && $token->getValue() === ':') {
                     $this->assertSpacing($tokens, Lexer::NEXT_TOKEN, $this->spaceAfter);
                     $this->assertSpacing($tokens, Lexer::PREVIOUS_TOKEN, $this->spaceBefore, false);
                 }

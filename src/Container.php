@@ -21,7 +21,7 @@ class Container extends BaseContainer
         };
 
         $this['twig'] = function ($container) {
-            $twig = new \Twig_Environment(new \Twig_Loader_Array());
+            $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader());
 
             $twig->setLexer(new Lexer($twig));
 

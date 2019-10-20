@@ -47,7 +47,7 @@ class LintCommand extends ContainerAwareCommand
         }
 
         foreach ($files as $file) {
-            $violations = array_merge($violations, $container['validator']->validate(new $ruleset(), $container['twig']->tokenize(new \Twig_Source(
+            $violations = array_merge($violations, $container['validator']->validate(new $ruleset(), $container['twig']->tokenize(new \Twig\Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
                 str_replace(realpath($path), rtrim($path, '/'), $file->getRealPath())

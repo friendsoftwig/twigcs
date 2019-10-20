@@ -9,10 +9,10 @@ use Allocine\Twigcs\Validator\Violation;
 class DelimiterSpacing extends AbstractRule implements RuleInterface
 {
     const CHECKS = [
-        \Twig_Token::BLOCK_START_TYPE => [Lexer::NEXT_TOKEN,     'after opening a block'],
-        \Twig_Token::BLOCK_END_TYPE   => [Lexer::PREVIOUS_TOKEN, 'before closing a block'],
-        \Twig_Token::VAR_START_TYPE   => [Lexer::NEXT_TOKEN,     'after opening a variable'],
-        \Twig_Token::VAR_END_TYPE     => [Lexer::PREVIOUS_TOKEN, 'before closing a variable'],
+        \Twig\Token::BLOCK_START_TYPE => [Lexer::NEXT_TOKEN,     'after opening a block'],
+        \Twig\Token::BLOCK_END_TYPE   => [Lexer::PREVIOUS_TOKEN, 'before closing a block'],
+        \Twig\Token::VAR_START_TYPE   => [Lexer::NEXT_TOKEN,     'after opening a variable'],
+        \Twig\Token::VAR_END_TYPE     => [Lexer::PREVIOUS_TOKEN, 'before closing a variable'],
     ];
 
     /**
@@ -29,7 +29,7 @@ class DelimiterSpacing extends AbstractRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $this->violations = [];
 
@@ -50,11 +50,11 @@ class DelimiterSpacing extends AbstractRule implements RuleInterface
     }
 
     /**
-     * @param \Twig_TokenStream $tokens
+     * @param \Twig\TokenStream $tokens
      * @param integer           $position
      * @param message           $target
      */
-    private function assertSpacing(\Twig_TokenStream $tokens, $position, $target)
+    private function assertSpacing(\Twig\TokenStream $tokens, $position, $target)
     {
         $token = $tokens->look($position);
 

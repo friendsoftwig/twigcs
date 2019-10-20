@@ -25,7 +25,7 @@ class SliceShorthandSpacing extends AbstractSpacingRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig_TokenStream $tokens)
+    public function check(\Twig\TokenStream $tokens)
     {
         $this->violations = [];
         $sliceOpened = false;
@@ -33,7 +33,7 @@ class SliceShorthandSpacing extends AbstractSpacingRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if ($token->getValue() === '[' && $tokens->look(-1)->getType() === \Twig_Token::NAME_TYPE) {
+            if ($token->getValue() === '[' && $tokens->look(-1)->getType() === \Twig\Token::NAME_TYPE) {
                 $sliceOpened = true;
             }
 

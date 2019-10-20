@@ -47,12 +47,12 @@ abstract class AbstractRule
     }
 
     /**
-     * @param \Twig_TokenStream $tokens
+     * @param \Twig\TokenStream $tokens
      * @param integer           $skip
      *
      * @return null|Token
      */
-    protected function getPreviousSignificantToken(\Twig_TokenStream $tokens, $skip = 0)
+    protected function getPreviousSignificantToken(\Twig\TokenStream $tokens, $skip = 0)
     {
         $i = 1;
         $token = null;
@@ -73,12 +73,12 @@ abstract class AbstractRule
     }
 
     /**
-     * @param \Twig_TokenStream $tokens
+     * @param \Twig\TokenStream $tokens
      * @param integer           $skip
      *
      * @return null|Token
      */
-    protected function getNextSignificantToken(\Twig_TokenStream $tokens, $skip = 0)
+    protected function getNextSignificantToken(\Twig\TokenStream $tokens, $skip = 0)
     {
         $i = 1;
         $token = null;
@@ -98,11 +98,7 @@ abstract class AbstractRule
         return null;
     }
 
-    /**
-     * @param \Twig_TokenStream $tokens
-     * @param int               $tokenType
-     */
-    protected function skipTo(\Twig_TokenStream $tokens, int $tokenType, string $tokenValue = null)
+    protected function skipTo(\Twig\TokenStream $tokens, int $tokenType, string $tokenValue = null)
     {
         while (!$tokens->isEOF()) {
             $continue = $tokens->getCurrent()->getType() !== $tokenType;
@@ -119,11 +115,7 @@ abstract class AbstractRule
         }
     }
 
-    /**
-     * @param \Twig_TokenStream $tokens
-     * @param array             $possibilities
-     */
-    protected function skipToOneOf(\Twig_TokenStream $tokens, array $possibilities)
+    protected function skipToOneOf(\Twig\TokenStream $tokens, array $possibilities)
     {
         while (!$tokens->isEOF()) {
             foreach ($possibilities as $possibility) {
@@ -148,11 +140,7 @@ abstract class AbstractRule
         }
     }
 
-    /**
-     * @param \Twig_TokenStream $tokens
-     * @param int               $amount
-     */
-    protected function skip(\Twig_TokenStream $tokens, int $amount)
+    protected function skip(\Twig\TokenStream $tokens, int $amount)
     {
         while (!$tokens->isEOF()) {
             $amount--;
