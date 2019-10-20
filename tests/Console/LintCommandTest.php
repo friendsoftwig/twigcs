@@ -24,7 +24,7 @@ class LintCommandTest extends TestCase
     public function testExecute()
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/good'],
+            'paths' => ['tests/data/exclusion/good'],
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -36,7 +36,7 @@ class LintCommandTest extends TestCase
     public function testExecuteWithError()
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data'],
+            'paths' => ['tests/data/exclusion'],
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -48,7 +48,7 @@ class LintCommandTest extends TestCase
     public function testExecuteWithExclude()
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data'],
+            'paths' => ['tests/data/exclusion'],
             '--exclude' => ['bad'],
         ]);
 
