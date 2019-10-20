@@ -511,6 +511,12 @@ class RulesetBuilder
                 ->enforceSpaceOrLineBreak('➀', $this->config['hash']['after_opening'], 'There should be %quantity% space(s) before the hash values.')
                 ->enforceSpaceOrLineBreak('➁', $this->config['hash']['before_closing'], 'There should be %quantity% space(s) after the hash values.'),
             ],
+            ['$➀=>➁$', $this
+                ->handle()
+                ->delegate('$', 'expr')
+                ->enforceSize('➀', $this->config['arrow_function']['before_arrow'], 'There should be %quantity% space(s) between the arrow and its arguments.')
+                ->enforceSize('➁', $this->config['arrow_function']['after_arrow'], 'There should be %quantity% space(s) between the arrow and its body.'),
+            ],
             ['$➀\?\?➁$', $this->binaryOpSpace('??')],
             ['$➀<=➁$', $this->binaryOpSpace('<=')],
             ['$➀>=➁$', $this->binaryOpSpace('>=')],

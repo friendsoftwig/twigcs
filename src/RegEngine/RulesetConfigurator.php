@@ -29,6 +29,7 @@ class RulesetConfigurator
     const INCLUDE_SPACING_PATTERN = '#^include( *)expr<( *)ignore missing><( *)with( *)list><( *)only>$#';
     const TERNARY_SPACING_PATTERN = '#^expr( *)\?( *)expr( *)\:( *)expr\|\|expr( *)\?\:( *)expr$#';
     const PROPERTY_SPACING_PATTERN = '#^expr( *)\.( *)expr( *)\|( *)filter$#';
+    const ARROW_FUNCTION_SPACING_PATTERN = '#^args( *)=>( *)expr$#';
 
     private $macroSpacingPattern = 'macro name(expr)';
     private $tagSpacingPattern = '{% expr %}';
@@ -56,6 +57,7 @@ class RulesetConfigurator
     private $propertySpacingPattern = 'expr.expr|filter';
     private $tagDefaultArgSpacing = 1; // Default space used between tag arguments : {% foo arg1 arg2 %}
     private $emptyListWhitespaces = 0;
+    private $arrowFunctionSpacingPattern = 'args => expr';
 
     public function getProcessedConfiguration()
     {
@@ -180,6 +182,10 @@ class RulesetConfigurator
         $config['property']['before_|'] = strlen($matches[3]);
         $config['property']['after_|'] = strlen($matches[4]);
 
+        preg_match(self::ARROW_FUNCTION_SPACING_PATTERN, $this->arrowFunctionSpacingPattern, $matches);
+        $config['arrow_function']['before_arrow'] = strlen($matches[1]);
+        $config['arrow_function']['after_arrow'] = strlen($matches[2]);
+
         $config['tag_default_arg_spacing'] = $this->tagDefaultArgSpacing;
         $config['empty_list_whitespaces'] = $this->emptyListWhitespaces;
 
@@ -287,6 +293,13 @@ class RulesetConfigurator
     public function setBinaryOpSpacingPattern(string $binaryOpSpacingPattern): self
     {
         $this->binaryOpSpacingPattern = $binaryOpSpacingPattern;
+
+        return $this;
+    }
+
+    public function setArrowFunctionSpacingPattern(string $arrowFunctionSpacingPattern): self
+    {
+        $this->arrowFunctionSpacingPattern = $arrowFunctionSpacingPattern;
 
         return $this;
     }
