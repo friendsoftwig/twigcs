@@ -23,6 +23,10 @@ class Report
 
     public function getErrors(): array
     {
+        usort($this->errors, function ($a, $b) {
+            return $a->getColumn() <=> $b->getColumn();
+        });
+
         return $this->errors;
     }
 

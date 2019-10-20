@@ -18,7 +18,7 @@ class FunctionalTest extends TestCase
     /**
      * @dataProvider getData
      */
-    public function testExpressions($expression, $expectedViolation)
+    public function testExpressions($expression, $expectedViolation, array $expectedViolationPosition = null)
     {
         $twig = new \Twig_Environment(new \Twig_Loader_Array());
         $twig->setLexer(new Lexer($twig));
@@ -31,6 +31,10 @@ class FunctionalTest extends TestCase
         if ($expectedViolation) {
             $this->assertCount(1, $violations, sprintf("There should be one violation in:\n %s", $expression));
             $this->assertSame($expectedViolation, $violations[0]->getReason());
+            if ($expectedViolationPosition) {
+                $this->assertSame($expectedViolationPosition[0], $violations[0]->getColumn());
+                $this->assertSame($expectedViolationPosition[1], $violations[0]->getLine());
+            }
         } else {
             $this->assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
         }
@@ -298,6 +302,11 @@ class FunctionalTest extends TestCase
             // Check unused for embed
             ['{% set foo %}1{% endset %}{% embed "foo.html.twig" with {foo: foo} only %}{% endembed %}', null],
             ['{% set bar %}1{% endset %}{% embed "foo.html.twig" with {bar: foo} only %}{% endembed %}', 'Unused variable "bar".'],
+
+            // Check for columns and lines numbers
+            ['        {%- set vars = widget == "text" ? {"attr": {"size": 1 }} : {} -%}{{ vars }}', 'There should be 0 space after the hash values.', [61, 1]],
+            ['{{ {foo: {bar: {baz: {foo: {bar: 1 }}}}} }}', 'There should be 0 space after the hash values.', [34, 1]],
+            ['{{ {foo: {bar: 1}}|agg + {baz: 2 }|agg }}', 'There should be 0 space after the hash values.', [32, 1]],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/62
             ['{%~ if foo ~%}', null],

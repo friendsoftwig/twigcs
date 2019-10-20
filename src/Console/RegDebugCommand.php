@@ -5,10 +5,6 @@ namespace FriendsOfTwig\Twigcs\Console;
 use FriendsOfTwig\Twigcs\RegEngine\Checker\Report;
 use FriendsOfTwig\Twigcs\RegEngine\Checker\RuleChecker;
 use FriendsOfTwig\Twigcs\RegEngine\ExpressionNode;
-use FriendsOfTwig\Twigcs\RegEngine\Extractor\ArrayExtractor;
-use FriendsOfTwig\Twigcs\RegEngine\Extractor\HashExtractor;
-use FriendsOfTwig\Twigcs\RegEngine\Extractor\ParenthesesExtractor;
-use FriendsOfTwig\Twigcs\RegEngine\Extractor\TernaryExtractor;
 use FriendsOfTwig\Twigcs\RegEngine\RulesetBuilder;
 use FriendsOfTwig\Twigcs\RegEngine\RulesetConfigurator;
 use FriendsOfTwig\Twigcs\RegEngine\Sanitizer\StringSanitizer;
@@ -35,11 +31,6 @@ class RegDebugCommand extends ContainerAwareCommand
 
         $stringSanitizer = new StringSanitizer();
 
-        $parenthesesExtractor = new ParenthesesExtractor();
-        $hashExtractor = new HashExtractor();
-        $arrayExtractor = new ArrayExtractor();
-        $ternaryExtractor = new TernaryExtractor();
-
         $expr = trim(file_get_contents($path));
 
         $io->title('Expr');
@@ -50,12 +41,7 @@ class RegDebugCommand extends ContainerAwareCommand
         $io->title('Sanitized expr');
         $io->writeln($expr);
 
-        $rootNode = new ExpressionNode($expr, 0);
-
-        $parenthesesExtractor->extract($rootNode);
-        $hashExtractor->extract($rootNode);
-        $arrayExtractor->extract($rootNode);
-        $ternaryExtractor->extract($rootNode);
+        $rootNode = ExpressionNode::fromString($expr);
 
         $io->title('Extracted node tree');
         $io->writeln($rootNode->getTrace());
@@ -71,7 +57,7 @@ class RegDebugCommand extends ContainerAwareCommand
 
             $ruleChecker = new RuleChecker($builder->build());
             $ruleChecker->explain();
-            $ruleChecker->check($report, $node->getType(), $node->getExpr(), $node->getOffset());
+            $ruleChecker->check($report, $node->getType(), $node->getExpr(), $node->getOffsetsMap(), $node->getOffset());
             $io->writeln(sprintf("<info>EXPR : %s offset : %s</info>\n", $node->getExpr(), $node->getOffset()));
             $io->listing($ruleChecker->getLog());
 
