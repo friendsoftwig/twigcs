@@ -20,7 +20,11 @@
     },
     "autoload": {
         "psr-4": {
-            "FriendsOfTwig\\Twigcs\\": "src/",
+            "FriendsOfTwig\\Twigcs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "FriendsOfTwig\\Twigcs\\Tests\\": "tests/"
         }
     },
