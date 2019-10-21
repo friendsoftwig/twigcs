@@ -8,6 +8,5 @@ php:
   - 7.2
 before_install:
     - composer require twig/twig:${TWIG_VERSION}
-    - composer self-update
 install:
     - composer --prefer-source -n install
