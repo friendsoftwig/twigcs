@@ -4,6 +4,7 @@ namespace FriendsOfTwig\Twigcs;
 
 use FriendsOfTwig\Twigcs\Reporter\CheckstyleReporter;
 use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
+use FriendsOfTwig\Twigcs\Reporter\EmacsReporter;
 use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
 use FriendsOfTwig\Twigcs\Validator\Validator;
 use Pimple\Container as BaseContainer;
@@ -22,6 +23,10 @@ class Container extends BaseContainer
 
         $this['reporter.junit'] = function () {
             return new JUnitReporter();
+        };
+
+        $this['reporter.emacs'] = function () {
+            return new EmacsReporter();
         };
 
         $this['twig'] = function ($container) {
