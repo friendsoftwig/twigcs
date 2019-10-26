@@ -26,12 +26,23 @@ class TrailingSpace extends AbstractRule implements RuleInterface
                 \Twig\Token::TEXT_TYPE === $token->getType()
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
-                    $violations[] = $this->createViolation(
-                        $tokens->getSourceContext()->getPath(),
-                        $token->getLine(),
-                        $token->columnno,
-                        'A line should not end with blank space(s).'
-                    );
+                    $line = $token->getLine();
+                    $column = $token->columnno;
+                    $values = explode("\n", $token->getValue());
+                    $counter = 0;
+
+                    foreach ($values as $value) {
+                        if (preg_match('/[[:blank:]]+$/', $value)) {
+                            $violations[] = $this->createViolation(
+                                $tokens->getSourceContext()->getPath(),
+                                $line + $counter,
+                                0 === $counter ? $column + strlen($value) : strlen($value),
+                                'A line should not end with blank space(s).'
+                            );
+                        }
+
+                        ++$counter;
+                    }
                 }
             }
 

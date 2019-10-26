@@ -285,9 +285,12 @@ class FunctionalTest extends TestCase
             ["\t<meta property=\"og:url\" content=\"{{ url(\n\t\tapp.request.attributes.get('_route'),\n\t\tapp.request.attributes.get('_route_params')\n\t) }}\">", null],
 
             // Spaces
-            ["{{ foo }}    \n", 'A line should not end with blank space(s).'],
-            ["{{ foo }}\t\n", 'A line should not end with blank space(s).'],
             ["{{ foo }}\r\n\r\n", null],
+            ["{{ foo }}    \n", 'A line should not end with blank space(s).', [13, 1]],
+            ["{{ foo }}\t\n", 'A line should not end with blank space(s).', [10, 1]],
+            ["str\nstr    \nstr", 'A line should not end with blank space(s).', [7, 2]],
+            ["{{ 1 }}str\nstr    \nstr", 'A line should not end with blank space(s).', [7, 2]],
+            ['{{ foo }}', null],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/23
             ['{% from _self import folder_breadcrumb %}', 'Unused macro import "folder_breadcrumb".'],
