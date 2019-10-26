@@ -17,7 +17,7 @@ class FunctionalTest extends TestCase
     /**
      * @dataProvider getData
      */
-    public function testExpressions($expression, $expectedViolation)
+    public function testExpressions($expression, $expectedViolation, array $expectedViolationPosition = null)
     {
         $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader());
         $twig->setLexer(new Lexer($twig));
@@ -27,8 +27,12 @@ class FunctionalTest extends TestCase
         $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig\Source($expression, 'src', 'src.html.twig')));
 
         if ($expectedViolation) {
-            $this->assertCount(1, $violations, sprintf("There should be exactly one violation in:\n %s", $expression));
+            $this->assertCount(1, $violations, sprintf("There should be one violation in:\n %s", $expression));
             $this->assertSame($expectedViolation, $violations[0]->getReason());
+            if ($expectedViolationPosition) {
+                $this->assertSame($expectedViolationPosition[0], $violations[0]->getColumn());
+                $this->assertSame($expectedViolationPosition[1], $violations[0]->getLine());
+            }
         } else {
             $this->assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
         }
@@ -170,9 +174,11 @@ class FunctionalTest extends TestCase
             ["\t<meta property=\"og:url\" content=\"{{ url(\n\t\tapp.request.attributes.get('_route'),\n\t\tapp.request.attributes.get('_route_params')\n\t) }}\">", null],
 
             // Spaces
-            ["{{ foo }}    \n", "A line should not end with blank space(s)."],
-            ["{{ foo }}\t\n", "A line should not end with blank space(s)."],
-            ["{{ foo }}\r\n\r\n", null],
+            ["{{ foo }}    \n", 'A line should not end with blank space(s).', [13, 1]],
+            ["{{ foo }}\t\n", 'A line should not end with blank space(s).', [10, 1]],
+            ["str\nstr    \nstr", 'A line should not end with blank space(s).', [7, 2]],
+            ["{{ 1 }}str\nstr    \nstr", 'A line should not end with blank space(s).', [7, 2]],
+            ['{{ foo }}', null],
 
             // Check regression of https://github.com/allocine/twigcs/issues/23
             ['{% from _self import folder_breadcrumb %}', 'Unused macro import "folder_breadcrumb".'],
