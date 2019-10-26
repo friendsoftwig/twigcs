@@ -48,6 +48,7 @@ enforced. Here's the list of expressions and their defaults:
 ```php
 $configurator->setArraySpacingPattern('[expr]');
 $configurator->setBinaryOpSpacingPattern('expr op expr');
+$configurator->setRangeOpSpacingPattern('expr..expr');
 $configurator->setElseifSpacingPattern('elseif expr');
 $configurator->setEmbedSpacingPattern('embed expr< ignore missing>< with list>< only>');
 $configurator->setEmptyArraySpacingPattern('[]');

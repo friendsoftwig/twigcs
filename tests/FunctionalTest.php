@@ -71,6 +71,8 @@ class FunctionalTest extends TestCase
             ['{% for i  in (some_array) %}', 'There should be 1 space after the local variable.'],
             ['{% for i in (some_array) if  foo %}', 'There should be 1 space between the if and its expression.'],
             ['{% for i in (some_array)  if foo %}', 'There should be 1 space before the if part of the loop.'],
+            ['{% for i in 1..10 %}', null],
+            ['{% for i in 1.. 10 %}', 'There should be 0 space between the ".." operator and its right operand.'],
             ['{% if  (1 + 2) == 3 %}', 'There should be 1 space between the if keyword and its condition.'],
 
             // Do not put any spaces before and after the following operators: |, ., .., [].
