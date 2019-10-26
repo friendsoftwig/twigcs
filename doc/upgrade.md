@@ -109,6 +109,7 @@ $builder = new RulesetBuilder($configurator);
 
 $configurator->setUnaryOpSpacingPattern('op expr');
 $configurator->setBinaryOpSpacingPattern('expr op expr');
+$configurator->setRangeOpSpacingPattern('expr..expr'); // Handles the special case of expressions like "range(1..10)"
 
 new Rule\RegEngineRule(Violation::SEVERITY_ERROR, $builder->build()),
 ```

@@ -19,6 +19,7 @@ class RulesetConfigurator
     const FOR_SPACING_PATTERN = '#^for( *)<key( *),( *)>item( *)in( *)expr<( *)if( *)expr>$#';
     const SET_SPACING_PATTERN = '#^set( *)expr( *)=( *)expr$#';
     const BINARY_OP_SPACING_PATTERN = '#^expr( *)op( *)expr$#';
+    const RANGE_OP_SPACING_PATTERN = '#^expr( *)\.\.( *)expr$#';
     const UNARY_OP_SPACING_PATTERN = '#^op( *)expr$#';
     const SLICE_SPACING_PATTERN = '#^\[( *)expr( *):( *)expr( *)\]$#';
     const LIST_SPACING_PATTERN = '#^expr( *),( *)expr$#';
@@ -46,6 +47,7 @@ class RulesetConfigurator
     private $forSpacingPattern = 'for <key, >item in expr< if expr>';
     private $setSpacingPattern = 'set expr = expr';
     private $binaryOpSpacingPattern = 'expr op expr';
+    private $rangeOpSpacingPattern = 'expr..expr';
     private $unaryOpSpacingPattern = 'op expr';
     private $sliceSpacingPattern = '[expr:expr]';
     private $listSpacingPattern = 'expr, expr';
@@ -130,6 +132,10 @@ class RulesetConfigurator
         preg_match(self::BINARY_OP_SPACING_PATTERN, $this->binaryOpSpacingPattern, $matches);
         $config['binary']['before_op'] = strlen($matches[1]);
         $config['binary']['after_op'] = strlen($matches[2]);
+
+        preg_match(self::RANGE_OP_SPACING_PATTERN, $this->rangeOpSpacingPattern, $matches);
+        $config['range']['before_op'] = strlen($matches[1]);
+        $config['range']['after_op'] = strlen($matches[2]);
 
         preg_match(self::UNARY_OP_SPACING_PATTERN, $this->unaryOpSpacingPattern, $matches);
         $config['unary']['between'] = strlen($matches[1]);
@@ -293,6 +299,13 @@ class RulesetConfigurator
     public function setBinaryOpSpacingPattern(string $binaryOpSpacingPattern): self
     {
         $this->binaryOpSpacingPattern = $binaryOpSpacingPattern;
+
+        return $this;
+    }
+
+    public function setRangeOpSpacingPattern(string $rangeOpSpacingPattern): self
+    {
+        $this->rangeOpSpacingPattern = $rangeOpSpacingPattern;
 
         return $this;
     }

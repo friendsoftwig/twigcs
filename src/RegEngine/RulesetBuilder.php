@@ -547,7 +547,12 @@ class RulesetBuilder
             ['$➊starts with➋$', $this->binaryOpSpace('starts with', '➊', '➋')],
             ['$➊ends with➋$', $this->binaryOpSpace('ends with', '➊', '➋')],
             ['$➀\?\?➁$', $this->binaryOpSpace('??')],
-            ['$➀\.\.➁$', $this->binaryOpSpace('..')],
+            ['$➀\.\.➁$', $this
+                ->handle()
+                ->delegate('$', 'expr')
+                ->enforceSize('➀', $this->config['range']['before_op'], 'There should be %quantity% space(s) between the ".." operator and its left operand.')
+                ->enforceSize('➁', $this->config['range']['after_op'], 'There should be %quantity% space(s) between the ".." operator and its right operand.'),
+            ],
             ['same➀as$', $this->unaryOpSpace('same as', '➀')],
             ['$➀\|➁$', Handler::create()
                 ->delegate('$', 'expr')
