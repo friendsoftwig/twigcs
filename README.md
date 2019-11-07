@@ -26,10 +26,12 @@ twigcs /project/dir/app/Resources/views
 ```
 
 You will get a summary of the violations in the console. The exit code of the command is based on the severity
-of any violation found. By default, twigcs won't even tolerate a notice, this can be changed at run time :
+of any violation found. By default, twigcs only tolerates notices, this can be changed at run time :
 
 ```bash
-twigcs /path/to/views --severity warning # Allow notices
+twigcs /path/to/views --severity error # Allows notices and warnings
+twigcs /path/to/views --severity notice # Disallows notices
+twigcs /path/to/views --severity ignore # Allows everything
 ```
 
 With the example above, notices are still displayed but not altering the exit code.

@@ -45,6 +45,42 @@ class LintCommandTest extends TestCase
         $this->assertContains('ERROR', $output);
     }
 
+    public function testExecuteWithIgnoredErrors()
+    {
+        $this->commandTester->execute([
+            '--severity' => 'ignore',
+            'paths' => ['tests/data/exclusion'],
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 0);
+        $this->assertContains('ERROR', $output);
+    }
+
+    public function testExecuteWithIgnoredWarnings()
+    {
+        $this->commandTester->execute([
+            '--severity' => 'error',
+            'paths' => ['tests/data/exclusion/bad/warning.html.twig'],
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 0);
+        $this->assertContains('WARNING', $output);
+
+        $this->commandTester->execute([
+            '--severity' => 'error',
+            'paths' => ['tests/data/exclusion/bad'],
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertContains('WARNING', $output);
+    }
+
     public function testExecuteWithExclude()
     {
         $this->commandTester->execute([
