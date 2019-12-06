@@ -340,6 +340,9 @@ class FunctionalTest extends TestCase
             ['{% if not (foo and bar) %}', null],
             ['{% if not same as (foo and bar) %}', null],
 
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/105
+            ['{% block block_name \'some-text\' ~ (not a_function() ? \' other other-text-2\') %}', null],
+
             // Regressions from the official examples
             ['{% if \'Fabien\' starts with \'F\' %}', null],
             ['{% if \'Fabien\' ends with \'F\' %}', null],

@@ -20,5 +20,21 @@ class ScopedExpressionTest extends TestCase
         $expr = new ScopedExpression();
         $expr->enqueueString('{{ {foo: a ? b, c}|sum }}');
         $this->assertSame('{{ [{foo: a ? b, c}]|sum }}', $expr->debug());
+
+        $expr = new ScopedExpression();
+        $expr->enqueueString('{{ [a ? b] }}');
+        $this->assertSame('{{ [[a ? b]] }}', $expr->debug());
+
+        $expr = new ScopedExpression();
+        $expr->enqueueString('{{ (a ? b) }}');
+        $this->assertSame('{{ [(a ? b)] }}', $expr->debug());
+
+        $expr = new ScopedExpression();
+        $expr->enqueueString('{{ (a ? b) + (c ? d : 1) }}');
+        $this->assertSame('{{ [(a ? b)] + [(c [? d :] 1)] }}', $expr->debug());
+
+        $expr = new ScopedExpression();
+        $expr->enqueueString('{{ (a ? foo()) }}');
+        $this->assertSame('{{ [(a ? foo[()])] }}', $expr->debug());
     }
 }
