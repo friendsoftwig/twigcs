@@ -81,7 +81,7 @@ class ScopedExpression
     {
         $head = $this->getHead();
 
-        return ($head instanceof self) && ('__TERNARY__' === $head->kind) && in_array($char, [',', '}'], true);
+        return ($head instanceof self) && ('__TERNARY__' === $head->kind) && in_array($char, [',', '}', ')', ']'], true);
     }
 
     public function shouldClose(string $char, $prev = null, $next = null)
@@ -145,7 +145,7 @@ class ScopedExpression
         $head = $this;
         $previousHead = null;
 
-        while ($head->head instanceof self) {
+        while ($head->head instanceof self && $head->head->open) {
             $previousHead = $head;
             $head = $head->head;
         }
