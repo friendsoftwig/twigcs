@@ -21,6 +21,7 @@ class LintCommand extends ContainerAwareCommand
         $this
             ->setName('lint')
             ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', ['.'])
+            ->addOption('twig-version', 't', InputOption::VALUE_REQUIRED, 'The major version of twig to use.', 3)
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
@@ -35,6 +36,7 @@ class LintCommand extends ContainerAwareCommand
 
         $paths = $input->getArgument('paths');
         $exclude = $input->getOption('exclude');
+        $twigVersion = $input->getOption('twig-version');
 
         $files = [];
         foreach ($paths as $path) {
@@ -68,7 +70,7 @@ class LintCommand extends ContainerAwareCommand
                 str_replace(realpath($path), rtrim($path, '/'), $file->getRealPath())
             ));
 
-            $violations = array_merge($violations, $container->get('validator')->validate(new $ruleset(), $tokens));
+            $violations = array_merge($violations, $container->get('validator')->validate(new $ruleset($twigVersion), $tokens));
         }
 
         $container->get(sprintf('reporter.%s', $input->getOption('reporter')))->report($output, $violations);

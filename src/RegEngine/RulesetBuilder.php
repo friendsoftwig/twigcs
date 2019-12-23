@@ -195,7 +195,7 @@ class RulesetBuilder
             array_unshift($rule, $vars);
 
             return $rule;
-        }, $rules);
+        }, array_filter($rules));
     }
 
     public function unaryOpSpace(string $opName, string $spaceChar = '➀'): Handler
@@ -283,8 +283,8 @@ class RulesetBuilder
             ['<➀with $➁>', $this->argTag()->delegate('$', 'expr')],
             ['<➀with $ only➁>', $this->argTag()->delegate('$', 'expr')],
             ['<➀endwith➁>', $this->noArgTag()],
-            ['<➀spaceless➁>', $this->noArgTag()],
-            ['<➀endspaceless➁>', $this->noArgTag()],
+            $this->config['twigMajorVersion'] < 3 ? ['<➀spaceless➁>', $this->noArgTag()] : null,
+            $this->config['twigMajorVersion'] < 3 ? ['<➀endspaceless➁>', $this->noArgTag()] : null,
             ['<➀extends $➁>', $this->argTag()->delegate('$', 'expr')],
             ['<➀embed➊$➋ignore missing➌with➍&➎only➁>', $this
                 ->argTag()
@@ -401,8 +401,8 @@ class RulesetBuilder
             ['<➀block @➁>', $this->argTag()],
             ['<➀block @ $➁>', $this->argTag()->delegate('$', 'expr')],
             ['<➀endblock➁>', $this->noArgTag()],
-            ['<➀filter @➁>', $this->argTag()],
-            ['<➀endfilter➁>', $this->noArgTag()],
+            $this->config['twigMajorVersion'] < 3 ? ['<➀filter @➁>', $this->argTag()] : null,
+            $this->config['twigMajorVersion'] < 3 ? ['<➀endfilter➁>', $this->noArgTag()] : null,
             ['<➀import➊$➋as➌&➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')
@@ -440,7 +440,7 @@ class RulesetBuilder
             ['<➀endif➁>', $this->noArgTag()],
             ['<➀endfor➁>', $this->noArgTag()],
 
-            ['<➀for➊@➋,➌@➍in➎$➏if➐$➁>', $this
+            $this->config['twigMajorVersion'] < 3 ? ['<➀for➊@➋,➌@➍in➎$➏if➐$➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')
                 ->enforceSize('➊', $this->config['for']['after_for'], 'There should be %quantity% space(s) between for and the local variables.')
@@ -450,7 +450,7 @@ class RulesetBuilder
                 ->enforceSize('➎', $this->config['for']['after_in'], 'There should be %quantity% space(s) after the in operator.')
                 ->enforceSize('➏', $this->config['for']['before_if'], 'There should be %quantity% space(s) before the if part of the loop.')
                 ->enforceSize('➐', $this->config['for']['after_if'], 'There should be %quantity% space(s) between the if and its expression.'),
-            ],
+            ] : null,
             ['<➀for➊@➋,➌@➍in➎$➁>', $this
                 ->argTag()
                 ->enforceSize('➊', $this->config['for']['after_for'], 'There should be %quantity% space(s) between for and the local variables.')
@@ -459,7 +459,7 @@ class RulesetBuilder
                 ->enforceSize('➍', $this->config['for']['after_value_var'], 'There should be %quantity% space(s) between the local variable and the in operator.')
                 ->enforceSize('➎', $this->config['for']['after_in'], 'There should be %quantity% space(s) after the in operator.'),
             ],
-            ['<➀for➊@➋in➎$➏if➐$➁>', $this
+            $this->config['twigMajorVersion'] < 3 ? ['<➀for➊@➋in➎$➏if➐$➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')
                 ->enforceSize('➊', $this->config['for']['after_for'], 'There should be %quantity% space(s) between for and the local variables.')
@@ -467,7 +467,7 @@ class RulesetBuilder
                 ->enforceSize('➎', $this->config['for']['after_in'], 'There should be %quantity% space(s) after the in operator.')
                 ->enforceSize('➏', $this->config['for']['before_if'], 'There should be %quantity% space(s) before the if part of the loop.')
                 ->enforceSize('➐', $this->config['for']['after_if'], 'There should be %quantity% space(s) between the if and its expression.'),
-            ],
+            ] : null,
             ['<➀for➊@➋in➎$➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')

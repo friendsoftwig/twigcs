@@ -60,10 +60,13 @@ class RulesetConfigurator
     private $tagDefaultArgSpacing = 1; // Default space used between tag arguments : {% foo arg1 arg2 %}
     private $emptyListWhitespaces = 0;
     private $arrowFunctionSpacingPattern = 'args => expr';
+    private $twigMajorVersion = 3;
 
     public function getProcessedConfiguration()
     {
         $config = [];
+
+        $config['twigMajorVersion'] = $this->twigMajorVersion;
 
         preg_match(self::PARENTHESES_SPACING_PATTERN, $this->parenthesesSpacingPattern, $matches);
         $config['parentheses']['before_value'] = strlen($matches[1]);
@@ -196,6 +199,13 @@ class RulesetConfigurator
         $config['empty_list_whitespaces'] = $this->emptyListWhitespaces;
 
         return $config;
+    }
+
+    public function setTwigMajorVersion(int $twigMajorVersion): self
+    {
+        $this->twigMajorVersion = $twigMajorVersion;
+
+        return $this;
     }
 
     public function setMacroSpacingPattern(string $macroSpacingPattern): self
