@@ -16,7 +16,7 @@ class Official implements RulesetInterface
 {
     private $twigMajorVersion;
 
-    public function __construct(int $twigMajorVersion = 3)
+    public function __construct(int $twigMajorVersion)
     {
         $this->twigMajorVersion = $twigMajorVersion;
     }

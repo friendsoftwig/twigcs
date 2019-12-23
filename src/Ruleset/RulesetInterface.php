@@ -6,7 +6,7 @@ use FriendsOfTwig\Twigcs\Rule\RuleInterface;
 
 interface RulesetInterface
 {
-    public function __construct(int $twigMajorVersion = 3);
+    public function __construct(int $twigMajorVersion);
 
     /**
      * @return RuleInterface[]
