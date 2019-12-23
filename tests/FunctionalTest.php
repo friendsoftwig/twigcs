@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Test;
 use FriendsOfTwig\Twigcs\Lexer;
 use FriendsOfTwig\Twigcs\Rule\RegEngineRule;
 use FriendsOfTwig\Twigcs\Ruleset\Official;
+use FriendsOfTwig\Twigcs\TwigPort\Source;
 use FriendsOfTwig\Twigcs\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -20,12 +21,10 @@ class FunctionalTest extends TestCase
      */
     public function testExpressions($expression, $expectedViolation, array $expectedViolationPosition = null)
     {
-        $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader());
-        $twig->setLexer(new Lexer($twig));
-
+        $lexer = new Lexer();
         $validator = new Validator();
 
-        $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig\Source($expression, 'src', 'src.html.twig')));
+        $violations = $validator->validate(new Official(), $lexer->tokenize(new Source($expression, 'src', 'src.html.twig')));
         $this->assertCount(0, $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []);
 
         if ($expectedViolation) {

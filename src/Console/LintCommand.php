@@ -4,6 +4,7 @@ namespace FriendsOfTwig\Twigcs\Console;
 
 use FriendsOfTwig\Twigcs\Ruleset\Official;
 use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
+use FriendsOfTwig\Twigcs\TwigPort\Source;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -61,14 +62,16 @@ class LintCommand extends ContainerAwareCommand
         }
 
         foreach ($files as $file) {
-            $violations = array_merge($violations, $container['validator']->validate(new $ruleset(), $container['twig']->tokenize(new \Twig\Source(
+            $tokens = $container->get('lexer')->tokenize(new Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
                 str_replace(realpath($path), rtrim($path, '/'), $file->getRealPath())
-            ))));
+            ));
+
+            $violations = array_merge($violations, $container->get('validator')->validate(new $ruleset(), $tokens));
         }
 
-        $container[sprintf('reporter.%s', $input->getOption('reporter'))]->report($output, $violations);
+        $container->get(sprintf('reporter.%s', $input->getOption('reporter')))->report($output, $violations);
 
         foreach ($violations as $violation) {
             if ($violation->getSeverity() > $limit) {

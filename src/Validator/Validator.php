@@ -3,6 +3,7 @@
 namespace FriendsOfTwig\Twigcs\Validator;
 
 use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
+use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 
 class Validator
 {
@@ -21,7 +22,7 @@ class Validator
     /**
      * @return Violation[]
      */
-    public function validate(RulesetInterface $ruleset, \Twig\TokenStream $tokens)
+    public function validate(RulesetInterface $ruleset, TokenStream $tokens)
     {
         $violations = [];
         foreach ($ruleset->getRules() as $rule) {

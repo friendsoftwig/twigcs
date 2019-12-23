@@ -2,6 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\Rule;
 
+use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 
 interface RuleInterface
@@ -9,7 +10,7 @@ interface RuleInterface
     /**
      * @return Violation[]
      */
-    public function check(\Twig\TokenStream $tokens);
+    public function check(TokenStream $tokens);
 
     public function collect(): array;
 }
