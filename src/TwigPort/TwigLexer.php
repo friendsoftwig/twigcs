@@ -477,7 +477,7 @@ class TwigLexer
         $operators = array_merge(
             ['='],
             self::OPERATORS['unary'],
-            self::OPERATORS['binary'],
+            self::OPERATORS['binary']
         );
 
         $operators = array_combine($operators, array_map('strlen', $operators));
