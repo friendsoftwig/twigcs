@@ -10,7 +10,7 @@ class Config implements ConfigInterface
     private $name;
     private $finder;
     private $severity = 'warning';
-    private $reporter = 'reporter.console';
+    private $reporter = 'console';
     private $ruleset = Official::class;
     private $specificRulesets = [];
 

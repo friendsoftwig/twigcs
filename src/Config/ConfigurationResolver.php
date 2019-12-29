@@ -80,8 +80,11 @@ final class ConfigurationResolver
 
     public function getReporter()
     {
-        //TODO: get reporter from config class
-        $reporterServiceName = "reporter.{$this->options['reporter-service-name']}";
+        $reporterServiceName = "reporter.{$this->config->getReporter()}";
+        if ($this->options['ruleset-class-name']) {
+            $reporterServiceName = "reporter.{$this->options['reporter-service-name']}";
+        }
+
         return $this->container[$reporterServiceName];
     }
 
