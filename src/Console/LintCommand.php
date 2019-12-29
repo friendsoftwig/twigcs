@@ -2,16 +2,13 @@
 
 namespace FriendsOfTwig\Twigcs\Console;
 
+use FriendsOfTwig\Twigcs\Config\ConfigurationResolver;
 use FriendsOfTwig\Twigcs\Ruleset\Official;
-use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
-use FriendsOfTwig\Twigcs\Validator\Violation;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
-use function class_exists;
-use function sprintf;
+use Symfony\Component\Finder\SplFileInfo;
 
 class LintCommand extends ContainerAwareCommand
 {
@@ -19,79 +16,66 @@ class LintCommand extends ContainerAwareCommand
     {
         $this
             ->setName('lint')
-            ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', ['.'])
+            ->addArgument('path', InputArgument::IS_ARRAY, 'The path to scan for twig files.')
+            ->addOption('path-mode', '', InputOption::VALUE_REQUIRED, 'Specify path mode (can be override or intersection).', 'override')
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
+            ->addOption('config', null, InputOption::VALUE_REQUIRED, 'Config file to use', null)
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null
+     * @throws \Exception
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
-        $limit = $this->getSeverityLimit($input);
-
-        $paths = $input->getArgument('paths');
-        $exclude = $input->getOption('exclude');
-
-        $files = [];
-        foreach ($paths as $path) {
-            if (is_file($path)) {
-                $files[] = new \SplFileInfo($path);
-            } else {
-                $finder = new Finder();
-                $found = iterator_to_array($finder->in($path)->exclude($exclude)->name('*.twig'));
-                if (!empty($found)) {
-                    $files = array_merge($files, $found);
-                }
-            }
-        }
+        $twig = $container['twig'];
+        $validator = $container['validator'];
+        $resolver = new ConfigurationResolver($container, getcwd(), [
+            'path' => $input->getArgument('path'),
+            'path-mode' => $input->getOption('path-mode'),
+            'reporter-service-name' => $input->getOption('reporter'),
+            'exclude' => $input->getOption('exclude'),
+            'severity' => $input->getOption('severity'),
+            'ruleset-class-name' => $input->getOption('ruleset'),
+            'config' => $input->getOption('config'),
+        ]);
+        $severityLimit = $resolver->getSeverityLimit();
+        $finder = $resolver->getFinder();
+        $reporter = $resolver->getReporter();
 
         $violations = [];
 
-        $ruleset = $input->getOption('ruleset');
+        // TODO: should be refactored to a Runner class
+        foreach ($finder as $file) {
+            /** @var SplFileInfo $file */
 
-        if (!class_exists($ruleset)) {
-            throw new \InvalidArgumentException(sprintf('Ruleset class %s does not exist', $ruleset));
-        }
-
-        if (!is_subclass_of($ruleset, RulesetInterface::class)) {
-            throw new \InvalidArgumentException('Ruleset class must implement '.RulesetInterface::class);
-        }
-
-        foreach ($files as $file) {
-            $violations = array_merge($violations, $container['validator']->validate(new $ruleset(), $container['twig']->tokenize(new \Twig\Source(
+            $ruleset = $resolver->getRuleset($file->getRelativePathname());
+            $currentViolations = $validator->validate($ruleset, $twig->tokenize(new \Twig\Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
-                str_replace(realpath($path), rtrim($path, '/'), $file->getRealPath())
-            ))));
+                // TODO: relative path is without base dir if multiple in's are given.
+                $file->getRelativePathname()
+            )));
+
+            // TODO: change array_merge to something more efficient
+            $violations = array_merge($violations, $currentViolations);
         }
 
-        $container[sprintf('reporter.%s', $input->getOption('reporter'))]->report($output, $violations);
+        $reporter->report($output, $violations);
 
         foreach ($violations as $violation) {
-            if ($violation->getSeverity() > $limit) {
+            if ($violation->getSeverity() > $severityLimit) {
                 return 1;
             }
         }
 
         return 0;
-    }
-
-    private function getSeverityLimit(InputInterface $input)
-    {
-        switch ($input->getOption('severity')) {
-            case 'ignore':
-                return Violation::SEVERITY_IGNORE - 1;
-            case 'info':
-                return Violation::SEVERITY_INFO - 1;
-            case 'warning':
-                return Violation::SEVERITY_WARNING - 1;
-            case 'error':
-                return Violation::SEVERITY_ERROR - 1;
-            default:
-                throw new \InvalidArgumentException('Invalid severity limit provided.');
-        }
     }
 }
