@@ -9,6 +9,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\SplFileInfo;
+use Symplify\SmartFileSystem\Finder\FinderSanitizer;
+use Symplify\SmartFileSystem\SmartFileInfo;
 
 class LintCommand extends ContainerAwareCommand
 {
@@ -52,16 +54,34 @@ class LintCommand extends ContainerAwareCommand
 
         $violations = [];
 
+        $finderSanitizer = new FinderSanitizer();
+        $files = $finderSanitizer->sanitize($finder);
+//        $files = $finder;
+
         // TODO: should be refactored to a Runner class
-        foreach ($finder as $file) {
-            /** @var SplFileInfo $file */
+        foreach ($files as $file) {
+            /** @var SmartFileInfo $file */
+            var_dump(
+//                'getRelativeFilePath',
+//                $file->getRelativeFilePath(),
+//                $file->getRelativePathname(),
+//                ''
+                'getRelativeFilePathFromCwd',
+                $file->getRelativeFilePathFromCwd(),
+//                'getRelativePathname',
+//                $file->getRelativePathname(),
+//                'getRelativeFilePathFromDirectory',
+//                $file->getRelativeFilePathFromDirectory(getcwd())
+            );
+
 
             $ruleset = $resolver->getRuleset($file->getRelativePathname());
             $currentViolations = $validator->validate($ruleset, $twig->tokenize(new \Twig\Source(
                 file_get_contents($file->getRealPath()),
                 $file->getRealPath(),
                 // TODO: relative path is without base dir if multiple in's are given.
-                $file->getRelativePathname()
+//                $file->getRelativePathname(),
+                $file->getRelativeFilePathFromCwd()
             )));
 
             // TODO: change array_merge to something more efficient
