@@ -61,18 +61,18 @@ class LintCommand extends ContainerAwareCommand
         // TODO: should be refactored to a Runner class
         foreach ($files as $file) {
             /** @var SmartFileInfo $file */
-            var_dump(
+//            var_dump(
 //                'getRelativeFilePath',
 //                $file->getRelativeFilePath(),
 //                $file->getRelativePathname(),
 //                ''
-                'getRelativeFilePathFromCwd',
-                $file->getRelativeFilePathFromCwd(),
+//                'getRelativeFilePathFromCwd',
+//                $file->getRelativeFilePathFromCwd(),
 //                'getRelativePathname',
 //                $file->getRelativePathname(),
 //                'getRelativeFilePathFromDirectory',
 //                $file->getRelativeFilePathFromDirectory(getcwd())
-            );
+//            );
 
 
             $ruleset = $resolver->getRuleset($file->getRelativePathname());
