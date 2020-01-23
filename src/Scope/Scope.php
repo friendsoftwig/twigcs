@@ -2,6 +2,8 @@
 
 namespace FriendsOfTwig\Twigcs\Scope;
 
+use FriendsOfTwig\Twigcs\TwigPort\Token;
+
 class Scope
 {
     /**
@@ -70,10 +72,7 @@ class Scope
         return $this->parent ?? $this;
     }
 
-    /**
-     * @param Token $token
-     */
-    public function declare(string $name, \Twig\Token $token)
+    public function declare(string $name, Token $token)
     {
         $this->declarations[$name] = $token;
     }

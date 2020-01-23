@@ -2,7 +2,8 @@
 
 namespace FriendsOfTwig\Twigcs\Rule;
 
-use FriendsOfTwig\Twigcs\Token;
+use FriendsOfTwig\Twigcs\TwigPort\Token;
+use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 
 /**
@@ -41,7 +42,7 @@ abstract class AbstractRule
      *
      * @return Token|null
      */
-    protected function getPreviousSignificantToken(\Twig\TokenStream $tokens, $skip = 0)
+    protected function getPreviousSignificantToken(TokenStream $tokens, $skip = 0)
     {
         $i = 1;
         $token = null;
@@ -66,7 +67,7 @@ abstract class AbstractRule
      *
      * @return Token|null
      */
-    protected function getNextSignificantToken(\Twig\TokenStream $tokens, $skip = 0)
+    protected function getNextSignificantToken(TokenStream $tokens, $skip = 0)
     {
         $i = 1;
         $token = null;
@@ -86,7 +87,7 @@ abstract class AbstractRule
         return null;
     }
 
-    protected function skipTo(\Twig\TokenStream $tokens, int $tokenType, string $tokenValue = null)
+    protected function skipTo(TokenStream $tokens, int $tokenType, string $tokenValue = null)
     {
         while (!$tokens->isEOF()) {
             $continue = $tokens->getCurrent()->getType() !== $tokenType;
@@ -103,7 +104,7 @@ abstract class AbstractRule
         }
     }
 
-    protected function skipToOneOf(\Twig\TokenStream $tokens, array $possibilities)
+    protected function skipToOneOf(TokenStream $tokens, array $possibilities)
     {
         while (!$tokens->isEOF()) {
             foreach ($possibilities as $possibility) {
@@ -128,7 +129,7 @@ abstract class AbstractRule
         }
     }
 
-    protected function skip(\Twig\TokenStream $tokens, int $amount)
+    protected function skip(TokenStream $tokens, int $amount)
     {
         while (!$tokens->isEOF()) {
             --$amount;

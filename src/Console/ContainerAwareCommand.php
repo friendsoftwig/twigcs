@@ -2,7 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\Console;
 
-use Pimple\Container;
+use FriendsOfTwig\Twigcs\Container;
 use Symfony\Component\Console\Command\Command;
 
 class ContainerAwareCommand extends Command

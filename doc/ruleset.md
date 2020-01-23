@@ -25,10 +25,23 @@ use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
 
 class MyRuleset implements RulesetInterface
 {
+    private $twigMajorVersion;
+
+    public function __construct(int $twigMajorVersion)
+    {
+        // Use this to customize your rules based on the major twig version
+        $this->twigMajorVersion = $twigMajorVersion;
+    }
+
     public function getRules()
     {
+        $configurator = new RulesetConfigurator();
+        $configurator->setTwigMajorVersion($this->twigMajorVersion);
+        $builder = new RulesetBuilder($configurator);
+
         return [
             new Rule\LowerCaseVariable(Violation::SEVERITY_ERROR),
+            new Rule\RegEngineRule(Violation::SEVERITY_ERROR, $builder->build()),
             // ...
         ];
     }

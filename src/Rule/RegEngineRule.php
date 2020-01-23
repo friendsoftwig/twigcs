@@ -3,7 +3,8 @@
 namespace FriendsOfTwig\Twigcs\Rule;
 
 use FriendsOfTwig\Twigcs\RegEngine\Linter;
-use Twig\Token;
+use FriendsOfTwig\Twigcs\TwigPort\Token;
+use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 
 class RegEngineRule extends AbstractRule implements RuleInterface
 {
@@ -34,7 +35,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig\TokenStream $tokens)
+    public function check(TokenStream $tokens)
     {
         $violations = [];
 
@@ -59,7 +60,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
             } elseif (Token::VAR_END_TYPE === $token->getType()) {
                 $toAppend = '}}';
                 $clear = true;
-            } elseif (13 === $token->getType()) {
+            } elseif (Token::NEWLINE_TYPE === $token->getType()) {
                 $toAppend = "\n";
             } elseif (Token::STRING_TYPE === $token->getType()) {
                 $toAppend = '"'.str_pad('', mb_strlen($token->getValue()), 'A').'"';
@@ -86,7 +87,6 @@ class RegEngineRule extends AbstractRule implements RuleInterface
 
         foreach ($expressions as $expression) {
             $report = $this->linter->lint($expression['value']);
-
             $this->unrecognizedExpressions = array_merge($this->unrecognizedExpressions, $report->getUnrecognizedExpressions());
 
             foreach ($report->getErrors() as $error) {

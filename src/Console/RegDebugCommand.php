@@ -10,6 +10,7 @@ use FriendsOfTwig\Twigcs\RegEngine\RulesetConfigurator;
 use FriendsOfTwig\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -20,6 +21,7 @@ class RegDebugCommand extends ContainerAwareCommand
         $this
             ->setName('reg:debug')
             ->addArgument('path', InputArgument::REQUIRED)
+            ->addOption('twig-version', 't', InputOption::VALUE_REQUIRED, 'The major version of twig to use.', 3)
         ;
     }
 
@@ -53,7 +55,9 @@ class RegDebugCommand extends ContainerAwareCommand
         $report = new Report();
 
         foreach ($nodes as $node) {
-            $builder = new RulesetBuilder(new RulesetConfigurator());
+            $configurator = new RulesetConfigurator();
+            $configurator->setTwigMajorVersion($input->getOption('twig-version'));
+            $builder = new RulesetBuilder($configurator);
 
             $ruleChecker = new RuleChecker($builder->build());
             $ruleChecker->explain();

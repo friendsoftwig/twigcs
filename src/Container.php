@@ -7,9 +7,8 @@ use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
 use FriendsOfTwig\Twigcs\Reporter\EmacsReporter;
 use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
 use FriendsOfTwig\Twigcs\Validator\Validator;
-use Pimple\Container as BaseContainer;
 
-class Container extends BaseContainer
+class Container extends \ArrayObject
 {
     public function __construct()
     {
@@ -29,16 +28,17 @@ class Container extends BaseContainer
             return new EmacsReporter();
         };
 
-        $this['twig'] = function ($container) {
-            $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader());
-
-            $twig->setLexer(new Lexer($twig));
-
-            return $twig;
+        $this['lexer'] = function () {
+            return new Lexer();
         };
 
         $this['validator'] = function () {
             return new Validator();
         };
+    }
+
+    public function get(string $key)
+    {
+        return call_user_func($this[$key]);
     }
 }

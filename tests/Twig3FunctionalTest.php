@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Test;
 use FriendsOfTwig\Twigcs\Lexer;
 use FriendsOfTwig\Twigcs\Rule\RegEngineRule;
 use FriendsOfTwig\Twigcs\Ruleset\Official;
+use FriendsOfTwig\Twigcs\TwigPort\Source;
 use FriendsOfTwig\Twigcs\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -13,19 +14,17 @@ use PHPUnit\Framework\TestCase;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class FunctionalTest extends TestCase
+class Twig3FunctionalTest extends TestCase
 {
     /**
      * @dataProvider getData
      */
     public function testExpressions($expression, $expectedViolation, array $expectedViolationPosition = null)
     {
-        $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader());
-        $twig->setLexer(new Lexer($twig));
-
+        $lexer = new Lexer();
         $validator = new Validator();
 
-        $violations = $validator->validate(new Official(), $twig->tokenize(new \Twig\Source($expression, 'src', 'src.html.twig')));
+        $violations = $validator->validate(new Official(3), $lexer->tokenize(new Source($expression, 'src', 'src.html.twig')));
         $this->assertCount(0, $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []);
 
         if ($expectedViolation) {
@@ -69,8 +68,6 @@ class FunctionalTest extends TestCase
             ['{% for i in  (some_array) %}', 'There should be 1 space after the in operator.'],
             ['{% for  i in (some_array) %}', 'There should be 1 space between for and the local variables.'],
             ['{% for i  in (some_array) %}', 'There should be 1 space after the local variable.'],
-            ['{% for i in (some_array) if  foo %}', 'There should be 1 space between the if and its expression.'],
-            ['{% for i in (some_array)  if foo %}', 'There should be 1 space before the if part of the loop.'],
             ['{% for i in 1..10 %}', null],
             ['{% for i in 1.. 10 %}', 'There should be 0 space between the ".." operator and its right operand.'],
             ['{% if  (1 + 2) == 3 %}', 'There should be 1 space between the if keyword and its condition.'],
@@ -296,7 +293,6 @@ class FunctionalTest extends TestCase
             ['{% from _self import folder_breadcrumb %}', 'Unused macro import "folder_breadcrumb".'],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/56
-            ["{% for item in ['one', 'two'] if attribute(_context, item) is not empty %}\n{% endfor %}", null],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/60
             ['{% set foo %}1{% endset %}{% include "foo.html.twig" with {foo: foo} %}', null],
@@ -354,7 +350,6 @@ class FunctionalTest extends TestCase
             ['{{ collector.symfonystate in [\'eom\', \'eol\'] ? \'were\' : \'are\' }}', null],
             ['{% if limit not in limit_choices %}', null],
             ['{{ [] }}', null],
-            ['{% for module in hook[\'modules\'] if modules[module[\'id_module\']] is defined %}', null],
             ['{% set bar %}1{% endset %}{% include "foo.html.twig" with {foo: bar} only %}', null],
             ['{% if (quotation.data[field]|default(null) is same as(0) or quotation.data[field]|default(false)) %}', null],
             ['{{ ps.form_group_row(taxForm.rate, {}, {

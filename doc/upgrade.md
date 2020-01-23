@@ -2,8 +2,19 @@
 
 ## From 3.x to 4.x
 
-If you're not using a custom coding standard, upgrading does not require any change on your side. Otherwise,
-the following rules are removed and replaced by a regex based engine (also see [the regengine documentation](regengine.md)).
+If you're not using a custom coding standard, upgrading does not require any change on your side. Otherwise, the
+interface `FriendsOfTwig\Twigcs\Ruleset\RulesetInterface` has changed :
+
+```php
+interface RulesetInterface
+{
+    public function __construct(int $twigMajorVersion); // This is new
+
+    // [...]
+}
+```
+
+And the following rules are removed and replaced by a regex based engine (also see [the regengine documentation](regengine.md)).
 
 ### DelimiterSpacing
 

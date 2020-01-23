@@ -14,12 +14,21 @@ use FriendsOfTwig\Twigcs\Validator\Violation;
  */
 class Official implements RulesetInterface
 {
+    private $twigMajorVersion;
+
+    public function __construct(int $twigMajorVersion)
+    {
+        $this->twigMajorVersion = $twigMajorVersion;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function getRules()
     {
-        $builder = new RulesetBuilder(new RulesetConfigurator());
+        $configurator = new RulesetConfigurator();
+        $configurator->setTwigMajorVersion($this->twigMajorVersion);
+        $builder = new RulesetBuilder($configurator);
 
         return [
             new Rule\LowerCaseVariable(Violation::SEVERITY_ERROR),

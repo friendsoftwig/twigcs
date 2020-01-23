@@ -2,7 +2,8 @@
 
 namespace FriendsOfTwig\Twigcs\Rule;
 
-use FriendsOfTwig\Twigcs\Token;
+use FriendsOfTwig\Twigcs\TwigPort\Token;
+use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 
 /**
  * Checks for trailing spaces and triggers a violation when one
@@ -15,7 +16,7 @@ class TrailingSpace extends AbstractRule implements RuleInterface
     /**
      * {@inheritdoc}
      */
-    public function check(\Twig\TokenStream $tokens)
+    public function check(TokenStream $tokens)
     {
         $violations = [];
 
@@ -23,7 +24,7 @@ class TrailingSpace extends AbstractRule implements RuleInterface
             $token = $tokens->getCurrent();
 
             if (Token::NEWLINE_TYPE === $token->getType() && Token::WHITESPACE_TYPE === $tokens->look(-1)->getType() ||
-                \Twig\Token::TEXT_TYPE === $token->getType()
+                Token::TEXT_TYPE === $token->getType()
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
                     $line = $token->getLine();
