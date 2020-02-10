@@ -40,7 +40,6 @@ class Violation
     private $source;
 
     /**
-     * Violation constructor.
      * @param $filename
      * @param $line
      * @param $column

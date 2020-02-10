@@ -36,7 +36,6 @@ class LintCommand extends ContainerAwareCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
-        $limit = $this->getSeverityLimit($input);
 
         $paths = $input->getArgument('paths');
         $exclude = $input->getOption('exclude');
@@ -105,14 +104,9 @@ class LintCommand extends ContainerAwareCommand
 
         $limit = $this->getSeverityLimit($input);
 
-        $filteredViolations = [];
-        foreach ($violations as $violation) {
-            if ($violation->getSeverity() > $limit) {
-                $filteredViolations[] = $violation;
-            }
-        }
-
-        return $filteredViolations;
+        return array_filter($violations, function(Violation $violation) use ($limit) {
+            return $violation->getSeverity() > $limit;
+        });
     }
 
     private function getSeverityLimit(InputInterface $input): int
