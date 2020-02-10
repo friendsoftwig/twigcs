@@ -40,9 +40,13 @@ class Violation
     private $source;
 
     /**
-     * @param string $filename
-     * @param int    $line
-     * @param string $reason
+     * Violation constructor.
+     * @param $filename
+     * @param $line
+     * @param $column
+     * @param $reason
+     * @param int $severity
+     * @param string $source
      */
     public function __construct($filename, $line, $column, $reason, $severity = self::SEVERITY_ERROR, $source = 'unknown')
     {
