@@ -7,6 +7,7 @@ use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
 use FriendsOfTwig\Twigcs\Reporter\EmacsReporter;
 use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
 use FriendsOfTwig\Twigcs\Validator\Validator;
+use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 
 class Container extends \ArrayObject
 {
@@ -26,6 +27,10 @@ class Container extends \ArrayObject
 
         $this['reporter.emacs'] = function () {
             return new EmacsReporter();
+        };
+
+        $this['reporter.json'] = function () {
+            return new JsonReporter();
         };
 
         $this['lexer'] = function () {
