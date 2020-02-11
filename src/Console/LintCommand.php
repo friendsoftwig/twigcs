@@ -16,6 +16,9 @@ use function sprintf;
 
 class LintCommand extends ContainerAwareCommand
 {
+    const DISPLAY_BLOCKING = 'blocking';
+    const DISPLAY_ALL = 'all';
+
     public function configure()
     {
         $this
@@ -25,6 +28,7 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
+            ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "' . self::DISPLAY_ALL . '" or "' . self::DISPLAY_BLOCKING . '".', self::DISPLAY_ALL)
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
         ;
     }
@@ -32,7 +36,6 @@ class LintCommand extends ContainerAwareCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $container = $this->getContainer();
-        $limit = $this->getSeverityLimit($input);
 
         $paths = $input->getArgument('paths');
         $exclude = $input->getOption('exclude');
@@ -60,7 +63,7 @@ class LintCommand extends ContainerAwareCommand
         }
 
         if (!is_subclass_of($ruleset, RulesetInterface::class)) {
-            throw new \InvalidArgumentException('Ruleset class must implement '.RulesetInterface::class);
+            throw new \InvalidArgumentException('Ruleset class must implement ' . RulesetInterface::class);
         }
 
         foreach ($files as $file) {
@@ -73,7 +76,16 @@ class LintCommand extends ContainerAwareCommand
             $violations = array_merge($violations, $container->get('validator')->validate(new $ruleset($twigVersion), $tokens));
         }
 
+        $violations = $this->filterDisplayViolations($input, $violations);
+
         $container->get(sprintf('reporter.%s', $input->getOption('reporter')))->report($output, $violations);
+
+        return $this->determineExitCode($input, $violations);
+    }
+
+    private function determineExitCode(InputInterface $input, array $violations): int
+    {
+        $limit = $this->getSeverityLimit($input);
 
         foreach ($violations as $violation) {
             if ($violation->getSeverity() > $limit) {
@@ -84,7 +96,20 @@ class LintCommand extends ContainerAwareCommand
         return 0;
     }
 
-    private function getSeverityLimit(InputInterface $input)
+    private function filterDisplayViolations(InputInterface $input, array $violations): array
+    {
+        if (self::DISPLAY_ALL === $input->getOption('display')) {
+            return $violations;
+        }
+
+        $limit = $this->getSeverityLimit($input);
+
+        return array_filter($violations, function(Violation $violation) use ($limit) {
+            return $violation->getSeverity() > $limit;
+        });
+    }
+
+    private function getSeverityLimit(InputInterface $input): int
     {
         switch ($input->getOption('severity')) {
             case 'ignore':

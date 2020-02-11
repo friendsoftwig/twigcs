@@ -44,6 +44,20 @@ twigcs /path/to/views --exclude vendor
 
 Tips: You can use multiple _exclude_ parameters.
 
+## Restricting output
+
+By default TwigCS will output all lines that have violations regardless of whether they match the severity level
+specified or not. If you only want to see violations that are greater than or equal to the severity level you've specified
+you can use the `--display` option. For example. 
+
+```bash
+twigcs /path/to/views --severity error --display blocking
+```
+
+Would only display errors and not warnings.
+
+Alternatively you can use `--display all` which is the default behaviour as described above.
+
 ### Continuous Integration
 
 Twigcs can be used with your favorite CI server. The command itself will return a consistent exit code telling
