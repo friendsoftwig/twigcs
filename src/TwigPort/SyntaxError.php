@@ -9,7 +9,7 @@
 
 namespace FriendsOfTwig\Twigcs\TwigPort;
 
-class SyntaxError extends Error
+class SyntaxError extends \Error
 {
     public function addSuggestions($name, array $items)
     {
