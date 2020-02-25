@@ -21,9 +21,9 @@ class SyntaxError extends \Exception
      * @param int         $lineno  The template line where the error occurred
      * @param Source|null $source  The source context where the error occurred
      */
-    public function __construct(string $message, int $lineno = -1, Source $source = null, \Exception $previous = null)
+    public function __construct(string $message, int $lineno = -1, Source $source = null)
     {
-        parent::__construct($message, null, $previous);
+        parent::__construct($message);
 
         $this->lineno = $lineno;
         $this->source = $source;
@@ -51,24 +51,5 @@ class SyntaxError extends \Exception
     public function getSourcePath(): ?string
     {
         return $this->source ? $this->source->getPath() : null;
-    }
-
-    public function addSuggestions($name, array $items)
-    {
-        $alternatives = [];
-        foreach ($items as $item) {
-            $lev = levenshtein($name, $item);
-            if ($lev <= \strlen($name) / 3 || false !== strpos($item, $name)) {
-                $alternatives[$item] = $lev;
-            }
-        }
-
-        if (!$alternatives) {
-            return;
-        }
-
-        asort($alternatives);
-
-        $this->appendMessage(sprintf(' Did you mean "%s"?', implode('", "', array_keys($alternatives))));
     }
 }
