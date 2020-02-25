@@ -9,8 +9,50 @@
 
 namespace FriendsOfTwig\Twigcs\TwigPort;
 
-class SyntaxError extends \Error
+class SyntaxError extends \Exception
 {
+    private $lineno;
+    private $source;
+
+    /**
+     * Constructor.
+     *
+     * @param string      $message The error message
+     * @param int         $lineno  The template line where the error occurred
+     * @param Source|null $source  The source context where the error occurred
+     */
+    public function __construct(string $message, int $lineno = -1, Source $source = null, \Exception $previous = null)
+    {
+        parent::__construct($message, null, $previous);
+
+        $this->lineno = $lineno;
+        $this->source = $source;
+    }
+
+    public function getLineNo(): int
+    {
+        return $this->lineno;
+    }
+
+    public function getSource(): ?Source
+    {
+        return $this->source;
+    }
+
+    public function getSourceName(): ?string {
+        return $this->source ? $this->source->getName() : null;
+    }
+
+    public function getSourceCode(): ?string
+    {
+        return $this->source ? $this->source->getCode() : null;
+    }
+
+    public function getSourcePath(): ?string
+    {
+        return $this->source ? $this->source->getPath() : null;
+    }
+
     public function addSuggestions($name, array $items)
     {
         $alternatives = [];
