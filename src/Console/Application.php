@@ -9,7 +9,7 @@ use Symfony\Component\Console\Command\Command;
 class Application extends BaseApplication
 {
     const NAME = 'twigcs';
-    const VERSION = 'v4.0-BETA4';
+    const VERSION = 'v4.0-BETA5';
 
     /**
      * @var Container
