@@ -9,24 +9,47 @@
 
 namespace FriendsOfTwig\Twigcs\TwigPort;
 
-class SyntaxError extends Error
+class SyntaxError extends \Exception
 {
-    public function addSuggestions($name, array $items)
+    private $lineno;
+    private $source;
+
+    /**
+     * Constructor.
+     *
+     * @param string      $message The error message
+     * @param int         $lineno  The template line where the error occurred
+     * @param Source|null $source  The source context where the error occurred
+     */
+    public function __construct(string $message, int $lineno = -1, Source $source = null)
     {
-        $alternatives = [];
-        foreach ($items as $item) {
-            $lev = levenshtein($name, $item);
-            if ($lev <= \strlen($name) / 3 || false !== strpos($item, $name)) {
-                $alternatives[$item] = $lev;
-            }
-        }
+        parent::__construct($message);
 
-        if (!$alternatives) {
-            return;
-        }
+        $this->lineno = $lineno;
+        $this->source = $source;
+    }
 
-        asort($alternatives);
+    public function getLineNo(): int
+    {
+        return $this->lineno;
+    }
 
-        $this->appendMessage(sprintf(' Did you mean "%s"?', implode('", "', array_keys($alternatives))));
+    public function getSource(): ?Source
+    {
+        return $this->source;
+    }
+
+    public function getSourceName(): ?string {
+        return $this->source ? $this->source->getName() : null;
+    }
+
+    public function getSourceCode(): ?string
+    {
+        return $this->source ? $this->source->getCode() : null;
+    }
+
+    public function getSourcePath(): ?string
+    {
+        return $this->source ? $this->source->getPath() : null;
     }
 }

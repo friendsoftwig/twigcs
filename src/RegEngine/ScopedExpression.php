@@ -151,7 +151,7 @@ class ScopedExpression
         }
 
         if (null === $previousHead) {
-            throw new RuntimeException('Cannot rollback : no parent scope.');
+            throw new \RuntimeException('Cannot rollback : no parent scope.');
         }
 
         // remove the rollbacked item
