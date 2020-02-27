@@ -1,0 +1,10 @@
+#!/bin/bash
+
+composer install --no-dev
+phar-composer build
+
+VERSION=$(php twigcs.phar --version)
+
+printf "\n\n"
+
+printf "Built $VERSION\n\n"

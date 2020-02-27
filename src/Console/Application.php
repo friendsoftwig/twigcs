@@ -8,14 +8,17 @@ use Symfony\Component\Console\Command\Command;
 
 class Application extends BaseApplication
 {
+    const NAME = 'twigcs';
+    const VERSION = 'v4.0-BETA4';
+
     /**
      * @var Container
      */
     private $container;
 
-    public function __construct(string $name = 'UNKNOWN', string $version = 'UNKNOWN', bool $singleCommand = true)
+    public function __construct(bool $singleCommand = true)
     {
-        parent::__construct($name, $version);
+        parent::__construct(self::NAME, self::VERSION);
 
         $this->container = new Container();
         $command = new LintCommand();
