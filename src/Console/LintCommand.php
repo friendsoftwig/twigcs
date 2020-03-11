@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Console;
 use FriendsOfTwig\Twigcs\Ruleset\Official;
 use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
 use FriendsOfTwig\Twigcs\TwigPort\Source;
+use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,6 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use function class_exists;
 use function sprintf;
+
 
 class LintCommand extends ContainerAwareCommand
 {
@@ -29,6 +31,7 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
             ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "' . self::DISPLAY_ALL . '" or "' . self::DISPLAY_BLOCKING . '".', self::DISPLAY_ALL)
+            ->addOption('convert', 'c',  InputOption::VALUE_OPTIONAL, "Convert syntax errors to violations", false)
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
         ;
     }
@@ -66,14 +69,28 @@ class LintCommand extends ContainerAwareCommand
             throw new \InvalidArgumentException('Ruleset class must implement ' . RulesetInterface::class);
         }
 
-        foreach ($files as $file) {
-            $tokens = $container->get('lexer')->tokenize(new Source(
-                file_get_contents($file->getRealPath()),
-                $file->getRealPath(),
-                str_replace(realpath($path), rtrim($path, '/'), $file->getRealPath())
-            ));
+        $lexer = $container->get('lexer');
+        $validator = $container->get('validator');
 
-            $violations = array_merge($violations, $container->get('validator')->validate(new $ruleset($twigVersion), $tokens));
+        foreach ($files as $file) {
+            $realPath = $file->getRealPath();
+            $source = new Source(
+                file_get_contents($realPath),
+                $realPath,
+                str_replace(realpath($path), rtrim($path, '/'), $realPath)
+                );
+
+            try {
+                $tokens = $lexer->tokenize($source);
+                $violations = array_merge($violations, $validator->validate(new $ruleset($twigVersion), $tokens));
+
+            } catch (SyntaxError $e) {
+                if ($input->getOption('convert') !== false) {
+                    $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), 0, $e->getMessage());
+                } else {
+                    throw $e;
+                }
+            }
         }
 
         $violations = $this->filterDisplayViolations($input, $violations);
