@@ -31,7 +31,7 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
             ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "' . self::DISPLAY_ALL . '" or "' . self::DISPLAY_BLOCKING . '".', self::DISPLAY_ALL)
-            ->addOption('convert', 'c',  InputOption::VALUE_OPTIONAL, "Convert syntax errors to violations", false)
+            ->addOption('error', 'e',  InputOption::VALUE_OPTIONAL, 'Throw syntax error when a template contains an invalid token.', false)
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
         ;
     }
@@ -85,10 +85,10 @@ class LintCommand extends ContainerAwareCommand
                 $violations = array_merge($violations, $validator->validate(new $ruleset($twigVersion), $tokens));
 
             } catch (SyntaxError $e) {
-                if ($input->getOption('convert') !== false) {
-                    $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), 0, $e->getMessage());
-                } else {
+                if ($input->getOption('error') !== false) {
                     throw $e;
+                } else {
+                    $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), 0, $e->getMessage());
                 }
             }
         }
@@ -140,5 +140,17 @@ class LintCommand extends ContainerAwareCommand
             default:
                 throw new \InvalidArgumentException('Invalid severity limit provided.');
         }
+    }
+
+    /**
+     * Check if empty convert option passed
+     *
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @return bool
+     */
+    private function hasEmptyConvertOption(InputInterface $input)
+    {
+        return null === $input->getOption('convert')
+            && ($input->hasParameterOption(['-c', '--convert']));
     }
 }

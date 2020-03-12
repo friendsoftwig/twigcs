@@ -6,6 +6,7 @@ use FriendsOfTwig\Twigcs\Console\LintCommand;
 use FriendsOfTwig\Twigcs\Container;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
+use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
 
 class LintCommandTest extends TestCase
 {
@@ -126,5 +127,50 @@ class LintCommandTest extends TestCase
         $this->assertContains('l.2 c.2 : ERROR A print statement should start with 1 space.', $output);
         $this->assertContains('l.2 c.13 : ERROR There should be 0 space between the closing parenthese and its content.', $output);
         $this->assertContains('3 violation(s) found', $output);
+    }
+
+    public function testSyntaxErrorThrow()
+    {
+        $this->expectException(SyntaxError::class);
+        $this->commandTester->execute([
+            'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
+            '--severity' => 'error',
+            '--display' => LintCommand::DISPLAY_ALL,
+            '--error' => true,
+        ]);
+
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+    }
+
+    public function testSyntaxErrorNotThrow()
+    {
+        $this->commandTester->execute([
+            'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
+            '--severity' => 'error',
+            '--display' => LintCommand::DISPLAY_ALL,
+            '--error' => false,
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertContains('1 violation(s) found', $output);
+        $this->assertContains('l.1 c.0 : ERROR Unexpected "}"', $output);
+    }
+
+    public function testSyntaxErrorNotThrowOmitArgument()
+    {
+        $this->commandTester->execute([
+            'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
+            '--severity' => 'error',
+            '--display' => LintCommand::DISPLAY_ALL,
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertContains('1 violation(s) found', $output);
+        $this->assertContains('l.1 c.0 : ERROR Unexpected "}"', $output);
     }
 }
