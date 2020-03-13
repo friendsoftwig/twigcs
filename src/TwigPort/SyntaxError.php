@@ -29,26 +29,42 @@ class SyntaxError extends \Exception
         $this->source = $source;
     }
 
+    /**
+     * @return int
+     */
     public function getLineNo(): int
     {
         return $this->lineno;
     }
 
-    public function getSource(): ?Source
+    /**
+     * @return Source|null
+     */
+    public function getSource()
     {
         return $this->source;
     }
 
-    public function getSourceName(): ?string {
+    /**
+     * @return string|null
+     */
+    public function getSourceName()
+    {
         return $this->source ? $this->source->getName() : null;
     }
 
-    public function getSourceCode(): ?string
+    /**
+     * @return string|null
+     */
+    public function getSourceCode()
     {
         return $this->source ? $this->source->getCode() : null;
     }
 
-    public function getSourcePath(): ?string
+    /**
+     * @return string|null
+     */
+    public function getSourcePath()
     {
         return $this->source ? $this->source->getPath() : null;
     }
