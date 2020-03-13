@@ -141,16 +141,4 @@ class LintCommand extends ContainerAwareCommand
                 throw new \InvalidArgumentException('Invalid severity limit provided.');
         }
     }
-
-    /**
-     * Check if empty convert option passed
-     *
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @return bool
-     */
-    private function hasEmptyConvertOption(InputInterface $input)
-    {
-        return null === $input->getOption('convert')
-            && ($input->hasParameterOption(['-c', '--convert']));
-    }
 }
