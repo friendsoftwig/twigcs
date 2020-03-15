@@ -15,6 +15,7 @@ class TwigLexer
     protected $code;
     protected $cursor;
     protected $lineno;
+    protected $columnno;
     protected $end;
     protected $state;
     protected $states;
@@ -185,6 +186,7 @@ class TwigLexer
         $this->code = str_replace(["\r\n", "\r"], "\n", $source->getCode());
         $this->cursor = 0;
         $this->lineno = 1;
+        $this->columnno = 0;
         $this->end = \strlen($this->code);
         $this->tokens = [];
         $this->state = self::STATE_DATA;
@@ -222,7 +224,7 @@ class TwigLexer
 
         if (!empty($this->brackets)) {
             list($expect, $lineno) = array_pop($this->brackets);
-            throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->source);
+            throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->columnno, $this->source);
         }
 
         return new TokenStream($this->tokens, $this->source);
@@ -320,7 +322,7 @@ class TwigLexer
             $this->moveCursor($match[0]);
 
             if ($this->cursor >= $this->end) {
-                throw new SyntaxError(sprintf('Unclosed "%s".', self::STATE_BLOCK === $this->state ? 'block' : 'variable'), $this->currentVarBlockLine, $this->source);
+                throw new SyntaxError(sprintf('Unclosed "%s".', self::STATE_BLOCK === $this->state ? 'block' : 'variable'), $this->currentVarBlockLine, $this->columnno, $this->source);
             }
         }
 
@@ -357,12 +359,12 @@ class TwigLexer
             // closing bracket
             elseif (false !== strpos(')]}', $this->code[$this->cursor])) {
                 if (empty($this->brackets)) {
-                    throw new SyntaxError(sprintf('Unexpected "%s".', $this->code[$this->cursor]), $this->lineno, $this->source);
+                    throw new SyntaxError(sprintf('Unexpected "%s".', $this->code[$this->cursor]), $this->lineno, $this->columnno, $this->source);
                 }
 
                 list($expect, $lineno) = array_pop($this->brackets);
                 if ($this->code[$this->cursor] !== strtr($expect, '([{', ')]}')) {
-                    throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->source);
+                    throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->columnno, $this->source);
                 }
             }
 
@@ -382,14 +384,14 @@ class TwigLexer
         }
         // unlexable
         else {
-            throw new SyntaxError(sprintf('Unexpected character "%s".', $this->code[$this->cursor]), $this->lineno, $this->source);
+            throw new SyntaxError(sprintf('Unexpected character "%s".', $this->code[$this->cursor]), $this->lineno, $this->columnno, $this->source);
         }
     }
 
     protected function lexRawData()
     {
         if (!preg_match($this->regexes['lex_raw_data'], $this->code, $match, PREG_OFFSET_CAPTURE, $this->cursor)) {
-            throw new SyntaxError('Unexpected end of file: Unclosed "verbatim" block.', $this->lineno, $this->source);
+            throw new SyntaxError('Unexpected end of file: Unclosed "verbatim" block.', $this->lineno, $this->columnno, $this->source);
         }
 
         $text = substr($this->code, $this->cursor, $match[0][1] - $this->cursor);
@@ -413,7 +415,7 @@ class TwigLexer
     protected function lexComment()
     {
         if (!preg_match($this->regexes['lex_comment'], $this->code, $match, PREG_OFFSET_CAPTURE, $this->cursor)) {
-            throw new SyntaxError('Unclosed comment.', $this->lineno, $this->source);
+            throw new SyntaxError('Unclosed comment.', $this->lineno, $this->columnno, $this->source);
         }
 
         $this->moveCursor(substr($this->code, $this->cursor, $match[0][1] - $this->cursor).$match[0][0]);
@@ -432,14 +434,14 @@ class TwigLexer
         } elseif (preg_match(self::REGEX_DQ_STRING_DELIM, $this->code, $match, 0, $this->cursor)) {
             list($expect, $lineno) = array_pop($this->brackets);
             if ('"' !== $this->code[$this->cursor]) {
-                throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->source);
+                throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->columnno, $this->source);
             }
 
             $this->popState();
             ++$this->cursor;
         } else {
             // unlexable
-            throw new SyntaxError(sprintf('Unexpected character "%s".', $this->code[$this->cursor]), $this->lineno, $this->source);
+            throw new SyntaxError(sprintf('Unexpected character "%s".', $this->code[$this->cursor]), $this->lineno, $this->columnno, $this->source);
         }
     }
 
@@ -463,7 +465,7 @@ class TwigLexer
             return;
         }
 
-        $this->tokens[] = new Token($type, $value, $this->lineno);
+        $this->tokens[] = new Token($type, $value, $this->lineno, $this->columnno);
     }
 
     protected function moveCursor($text)

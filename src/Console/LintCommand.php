@@ -88,7 +88,7 @@ class LintCommand extends ContainerAwareCommand
                 if ($input->getOption('error') !== false) {
                     throw $e;
                 } else {
-                    $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), 0, $e->getMessage());
+                    $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), $e->getColumnNo(), $e->getMessage());
                 }
             }
         }

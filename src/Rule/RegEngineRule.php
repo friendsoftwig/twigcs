@@ -49,10 +49,10 @@ class RegEngineRule extends AbstractRule implements RuleInterface
             $clear = false;
 
             if (Token::BLOCK_START_TYPE === $token->getType()) {
-                $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->columnno];
+                $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->getColumn()];
                 $toAppend = '{%';
             } elseif (Token::VAR_START_TYPE === $token->getType()) {
-                $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->columnno];
+                $currentExpression = ['value' => '', 'map' => [], 'offset' => $token->getColumn()];
                 $toAppend = '{{';
             } elseif (Token::BLOCK_END_TYPE === $token->getType()) {
                 $toAppend = '%}';
@@ -73,7 +73,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
 
                 $col = 0;
                 foreach (str_split($toAppend) as $char) {
-                    $currentExpression['map'][] = ['line' => $token->getLine(), 'column' => $token->columnno + $col];
+                    $currentExpression['map'][] = ['line' => $token->getLine(), 'column' => $token->getColumn() + $col];
                     ++$col;
                 }
             }

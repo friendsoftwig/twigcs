@@ -156,7 +156,7 @@ class LintCommandTest extends TestCase
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
         $this->assertContains('1 violation(s) found', $output);
-        $this->assertContains('l.1 c.0 : ERROR Unexpected "}"', $output);
+        $this->assertContains('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
 
     public function testSyntaxErrorNotThrowOmitArgument()
@@ -171,6 +171,6 @@ class LintCommandTest extends TestCase
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
         $this->assertContains('1 violation(s) found', $output);
-        $this->assertContains('l.1 c.0 : ERROR Unexpected "}"', $output);
+        $this->assertContains('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
 }
