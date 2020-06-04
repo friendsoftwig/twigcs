@@ -1,0 +1,30 @@
+{# A list of cases with variable usage #}
+
+{# Using the loop variable inside the loop itself #}
+{% for a in 1..2 %}
+    {{ a }}
+{% endfor %}
+
+{# Incrementing a variable inside a loop #}
+{% set b = 0 %}
+{% for x in 1..2 %}
+    {% set b = b + x %}
+{% endfor %}
+{{ b }}
+
+{# Cross-block references #}
+{% block repeated_content_block %} {{ c }} {% endblock %}
+{% for item in something %} {% set c = item %} {{ block("repeated_content_block") }} {% endfor %}
+
+{# Reverted cross-block references #}
+{% for item in something %} {% set c = item %} {{ block("repeated_content_block") }} {% endfor %}
+{% block repeated_content_block %} {{ c }} {% endblock %}
+
+{# Nested references #}
+{% for item in something %} {% set c = item %} {{ block("nested_1") }} {% endfor %}
+{% block nested_1 %} {{ block("nested_2") }} {% endblock %}
+{% block nested_2 %} {{ c }} {% endblock %}
+
+{# Infinite loops #}
+{% block nested_1 %} {{ block("nested_2") }} {% endblock %}
+{% block nested_2 %} {{ block("nested_1") }} {% endblock %}

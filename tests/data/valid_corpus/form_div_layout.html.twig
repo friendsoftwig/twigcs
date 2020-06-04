@@ -80,6 +80,7 @@
         {%- if choice is iterable -%}
             <optgroup label="{{ choice_translation_domain is same as(false) ? group_label : group_label|trans({}, choice_translation_domain) }}">
                 {% set options = choice %}
+                {# twigcs use-var options #}
                 {{- block('choice_widget_options') -}}
             </optgroup>
         {%- else -%}
