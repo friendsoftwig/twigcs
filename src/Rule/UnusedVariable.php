@@ -13,7 +13,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
      */
     public function check(TokenStream $tokens)
     {
-        $scope = new Scope('file');
+        $scope = new Scope('file', 'root');
         $root = $scope;
 
         $violations = [];
@@ -25,7 +25,11 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                 $blockType = $tokens->look(2)->getValue();
 
                 if (in_array($blockType, ['block', 'for', 'embed', 'macro'], true)) {
-                    $scope = $scope->spawn($blockType);
+                    if ('block' === $blockType) {
+                        $scope = $scope->spawn($blockType, $tokens->look(4)->getValue());
+                    } else {
+                        $scope = $scope->spawn($blockType, 'noname');
+                    }
                     if ('macro' === $blockType) {
                         $scope->isolate();
                     }
@@ -64,8 +68,11 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                         ]);
                         break;
                     case 'if':
-                    case 'for':
                         $this->skip($tokens, 3);
+                        break;
+                    case 'for':
+                        $scope->declare($tokens->look(4)->getValue(), $tokens->look(4));
+                        $this->skip($tokens, 5);
                         break;
                     default:
                         $this->skipTo($tokens, Token::BLOCK_END_TYPE);
@@ -80,6 +87,17 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                 $isFunctionCall = '(' === $next->getValue();
                 $isTest = ('is' === $previous->getValue()) || ('is not' === $previous->getValue());
                 $isReserved = in_array($token->getValue(), ['null', 'true', 'false'], true);
+
+                if ($isFunctionCall && 'block' === $token->getValue()) {
+                    $i = 0;
+                    $blockNameToken = $tokens->look($i);
+                    // Scans for the name of the nested block.
+                    while (Token::BLOCK_END_TYPE !== $blockNameToken->getType() && Token::STRING_TYPE !== $blockNameToken->getType()) {
+                        $blockNameToken = $tokens->look($i);
+                        ++$i;
+                    }
+                    $scope->referenceBlock($blockNameToken->getValue());
+                }
 
                 if (!$isHashKey && !$isFilter && !$isProperty && !$isFunctionCall && !$isTest && !$isReserved) {
                     $scope->use($token->getValue());
@@ -101,12 +119,14 @@ class UnusedVariable extends AbstractRule implements RuleInterface
             }
         }
 
-        foreach ($root->getUnused() as $declarationToken) {
+        foreach ($root->flatten()->getUnusedDeclarations() as $declaration) {
+            $token = $declaration->getToken();
+
             $violations[] = $this->createViolation(
                 $tokens->getSourceContext()->getPath(),
-                $declarationToken->getLine(),
-                $declarationToken->columnno,
-                sprintf('Unused variable "%s".', $declarationToken->getValue())
+                $token->getLine(),
+                $token->columnno,
+                sprintf('Unused variable "%s".', $token->getValue())
             );
         }
 
