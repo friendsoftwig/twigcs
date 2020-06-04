@@ -13,7 +13,7 @@ class UnusedMacro extends AbstractRule implements RuleInterface
      */
     public function check(TokenStream $tokens)
     {
-        $scope = new Scope('file');
+        $scope = new Scope('file', 'root');
         $root = $scope;
 
         $violations = [];
@@ -25,7 +25,11 @@ class UnusedMacro extends AbstractRule implements RuleInterface
                 $blockType = $tokens->look(2)->getValue();
 
                 if (in_array($blockType, ['block', 'for', 'embed', 'macro'], true)) {
-                    $scope = $scope->spawn($blockType);
+                    if ('block' === $blockType) {
+                        $scope = $scope->spawn($blockType, $tokens->look(4)->getValue());
+                    } else {
+                        $scope = $scope->spawn($blockType, 'noname');
+                    }
                     if ('macro' === $blockType) {
                         $scope->isolate();
                     }
@@ -102,12 +106,14 @@ class UnusedMacro extends AbstractRule implements RuleInterface
             }
         }
 
-        foreach ($root->getUnused() as $declarationToken) {
+        foreach ($root->flatten()->getUnusedDeclarations() as $declaration) {
+            $token = $declaration->getToken();
+
             $violations[] = $this->createViolation(
                 $tokens->getSourceContext()->getPath(),
-                $declarationToken->getLine(),
-                $declarationToken->columnno,
-                sprintf('Unused macro import "%s".', $declarationToken->getValue())
+                $token->getLine(),
+                $token->columnno,
+                sprintf('Unused macro import "%s".', $token->getValue())
             );
         }
 

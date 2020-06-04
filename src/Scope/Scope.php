@@ -7,11 +7,6 @@ use FriendsOfTwig\Twigcs\TwigPort\Token;
 class Scope
 {
     /**
-     * @var array
-     */
-    private $children;
-
-    /**
      * @var Scope|null
      */
     private $parent;
@@ -19,7 +14,7 @@ class Scope
     /**
      * @var array
      */
-    private $declarations;
+    private $queue;
 
     /**
      * @var string
@@ -27,22 +22,31 @@ class Scope
     private $name;
 
     /**
-     * @var array
+     * @var string
      */
-    private $usages;
+    private $type;
 
     /**
      * @var bool
      */
     private $isolated;
 
-    public function __construct(string $name)
+    public function __construct(string $type, string $name)
     {
+        $this->type = $type;
         $this->name = $name;
-        $this->children = [];
-        $this->declarations = [];
-        $this->usages = [];
+        $this->queue = [];
         $this->isolated = false;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     /**
@@ -58,11 +62,11 @@ class Scope
         return $this->isolated;
     }
 
-    public function spawn(string $name): self
+    public function spawn(string $type, string $name): self
     {
-        $scope = new self($name);
+        $scope = new self($type, $name);
         $scope->parent = $this;
-        $this->children[] = $scope;
+        $this->queue[] = $scope;
 
         return $scope;
     }
@@ -74,59 +78,26 @@ class Scope
 
     public function declare(string $name, Token $token)
     {
-        $this->declarations[$name] = $token;
+        $this->queue[] = new Declaration($name, $token);
     }
 
     public function use(string $name)
     {
-        $this->usages[] = $name;
+        $this->queue[] = new Usage($name);
     }
 
-    public function getUnused(): array
+    public function referenceBlock(string $blockName)
     {
-        $unused = [];
-
-        foreach ($this->declarations as $name => $token) {
-            if (!$this->isUsed($name)) {
-                $unused[] = $token;
-            }
-        }
-
-        foreach ($this->children as $child) {
-            $unused = array_merge($unused, $child->getUnused());
-        }
-
-        return $unused;
+        $this->queue[] = new BlockReference($blockName);
     }
 
-    public function isUsed(string $name): bool
+    public function getQueue(): array
     {
-        if (in_array($name, $this->usages, true)) {
-            return true;
-        }
-
-        foreach ($this->children as $child) {
-            if (!$child->isIsolated() && $child->isUsed($name)) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->queue;
     }
 
-    public function dump(int $tab = 0): string
+    public function flatten(): FlattenedScope
     {
-        $declarations = implode(', ', array_keys($this->declarations));
-        $usages = implode(', ', $this->usages);
-
-        $self = sprintf("%s : {D : %s} {U : %s} \n", $name ?? 'noname', $declarations, $usages);
-
-        $children = '';
-
-        foreach ($this->children as $child) {
-            $children .= str_repeat(' ', $tab).$child->dump($tab + 4)."\n";
-        }
-
-        return $self.$children;
+        return new FlattenedScope($this);
     }
 }
