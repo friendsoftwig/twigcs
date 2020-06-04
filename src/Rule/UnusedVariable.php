@@ -125,7 +125,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
             $violations[] = $this->createViolation(
                 $tokens->getSourceContext()->getPath(),
                 $token->getLine(),
-                $token->columnno,
+                $token->getColumn(),
                 sprintf('Unused variable "%s".', $token->getValue())
             );
         }

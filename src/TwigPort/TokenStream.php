@@ -34,7 +34,10 @@ final class TokenStream
     public function next(): Token
     {
         if (!isset($this->tokens[++$this->current])) {
-            throw new SyntaxError('Unexpected end of template.', $this->tokens[$this->current - 1]->getLine(), $this->source);
+            $token = $this->tokens[$this->current - 1];
+            $line = $token->getLine();
+            $column = $token->getColumn();
+            throw new SyntaxError('Unexpected end of template.',$line, $column, $this->source);
         }
 
         return $this->tokens[$this->current - 1];
@@ -52,7 +55,8 @@ final class TokenStream
         $token = $this->tokens[$this->current];
         if (!$token->test($type, $value)) {
             $line = $token->getLine();
-            throw new SyntaxError(sprintf('%sUnexpected token "%s"%s ("%s" expected%s).', $message ? $message.'. ' : '', Token::typeToEnglish($token->getType()), $token->getValue() ? sprintf(' of value "%s"', $token->getValue()) : '', Token::typeToEnglish($type), $value ? sprintf(' with value "%s"', $value) : ''), $line, $this->source);
+            $column = $token->getColumn();
+            throw new SyntaxError(sprintf('%sUnexpected token "%s"%s ("%s" expected%s).', $message ? $message.'. ' : '', Token::typeToEnglish($token->getType()), $token->getValue() ? sprintf(' of value "%s"', $token->getValue()) : '', Token::typeToEnglish($type), $value ? sprintf(' with value "%s"', $value) : ''), $line, $column, $this->source);
         }
         $this->next();
 
@@ -62,7 +66,10 @@ final class TokenStream
     public function look(int $number = 1): Token
     {
         if (!isset($this->tokens[$this->current + $number])) {
-            throw new SyntaxError('Unexpected end of template.', $this->tokens[$this->current + $number - 1]->getLine(), $this->source);
+            $token = $this->tokens[$this->current + $number - 1];
+            $line = $token->getLine();
+            $column = $token->getColumn();
+            throw new SyntaxError('Unexpected end of template.', $line, $column, $this->source);
         }
 
         return $this->tokens[$this->current + $number];

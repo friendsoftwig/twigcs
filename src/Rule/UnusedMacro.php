@@ -112,7 +112,7 @@ class UnusedMacro extends AbstractRule implements RuleInterface
             $violations[] = $this->createViolation(
                 $tokens->getSourceContext()->getPath(),
                 $token->getLine(),
-                $token->columnno,
+                $token->getColumn(),
                 sprintf('Unused macro import "%s".', $token->getValue())
             );
         }

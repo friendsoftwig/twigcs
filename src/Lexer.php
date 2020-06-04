@@ -17,11 +17,6 @@ class Lexer extends TwigLexer
     const PREVIOUS_TOKEN = -1;
     const NEXT_TOKEN = 1;
 
-    /**
-     * @var int
-     */
-    protected $columnno = 0;
-
     protected function lexExpression()
     {
         // collect whitespaces and new lines
@@ -79,7 +74,7 @@ class Lexer extends TwigLexer
     protected function lexComment()
     {
         if (!preg_match($this->regexes['lex_comment'], $this->code, $match, PREG_OFFSET_CAPTURE, $this->cursor)) {
-            throw new SyntaxError('Unclosed comment.', $this->lineno, $this->source);
+            throw new SyntaxError('Unclosed comment.', $this->lineno, $this->columnno, $this->source);
         }
 
         $content = substr($this->code, $this->cursor, $match[0][1] - $this->cursor);
@@ -105,11 +100,7 @@ class Lexer extends TwigLexer
             ++$this->columnno;
         }
 
-        $token = new Token($type, $value, $this->lineno);
-
-        // Twig tokens cannot be extended anymore since 2.0, so a dynamic attribute
-        // is the only way to store the column number.
-        $token->columnno = $this->columnno;
+        $token = new Token($type, $value, $this->lineno, $this->columnno);
 
         $this->tokens[] = $token;
     }

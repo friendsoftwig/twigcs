@@ -14,7 +14,7 @@ class Token
     private $value;
     private $type;
     private $lineno;
-    public $columnno;
+    private $columnno;
 
     const EOF_TYPE = -1;
     const TEXT_TYPE = 0;
@@ -34,11 +34,12 @@ class Token
     const NEWLINE_TYPE = 14;
     const COMMENT_TYPE = 15;
 
-    public function __construct(int $type, $value, int $lineno)
+    public function __construct(int $type, $value, int $lineno, int $columnno)
     {
         $this->type = $type;
         $this->value = $value;
         $this->lineno = $lineno;
+        $this->columnno = $columnno;
     }
 
     public function __toString()
@@ -63,6 +64,11 @@ class Token
     public function getLine(): int
     {
         return $this->lineno;
+    }
+
+    public function getColumn(): int
+    {
+        return $this->columnno;
     }
 
     public function getType(): int

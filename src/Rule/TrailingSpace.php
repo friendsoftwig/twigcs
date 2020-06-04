@@ -28,7 +28,7 @@ class TrailingSpace extends AbstractRule implements RuleInterface
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
                     $line = $token->getLine();
-                    $column = $token->columnno;
+                    $column = $token->getColumn();
                     $values = explode("\n", $token->getValue());
                     $counter = 0;
 

@@ -20,7 +20,7 @@ class LowerCaseVariable extends AbstractRule implements RuleInterface
 
             if (Token::NAME_TYPE === $token->getType() && preg_match('/[A-Z]/', $token->getValue())) {
                 if (Token::WHITESPACE_TYPE === $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() && 'set' === $tokens->look(-2)->getValue()) {
-                    $violations[] = $this->createViolation($tokens->getSourceContext()->getPath(), $token->getLine(), $token->columnno, sprintf('The "%s" variable should be in lower case (use _ as a separator).', $token->getValue()));
+                    $violations[] = $this->createViolation($tokens->getSourceContext()->getPath(), $token->getLine(), $token->getColumn(), sprintf('The "%s" variable should be in lower case (use _ as a separator).', $token->getValue()));
                 }
             }
 
