@@ -4,9 +4,9 @@ namespace FriendsOfTwig\Twigcs\Tests\Console;
 
 use FriendsOfTwig\Twigcs\Console\LintCommand;
 use FriendsOfTwig\Twigcs\Container;
+use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
-use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
 
 class LintCommandTest extends TestCase
 {
@@ -149,7 +149,7 @@ class LintCommandTest extends TestCase
             'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => LintCommand::DISPLAY_ALL,
-            '--error' => true,
+            '--throw-syntax-error' => true,
         ]);
 
         $statusCode = $this->commandTester->getStatusCode();
@@ -162,7 +162,7 @@ class LintCommandTest extends TestCase
             'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => LintCommand::DISPLAY_ALL,
-            '--error' => false,
+            '--throw-syntax-error' => false,
         ]);
 
         $output = $this->commandTester->getDisplay();

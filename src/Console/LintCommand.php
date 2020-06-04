@@ -15,7 +15,6 @@ use Symfony\Component\Finder\Finder;
 use function class_exists;
 use function sprintf;
 
-
 class LintCommand extends ContainerAwareCommand
 {
     const DISPLAY_BLOCKING = 'blocking';
@@ -31,7 +30,7 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
             ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.self::DISPLAY_ALL.'" or "'.self::DISPLAY_BLOCKING.'".', self::DISPLAY_ALL)
-            ->addOption('throw-syntax-error', 'e',  InputOption::VALUE_OPTIONAL, 'Throw syntax error when a template contains an invalid token.', false)
+            ->addOption('throw-syntax-error', 'e', InputOption::VALUE_OPTIONAL, 'Throw syntax error when a template contains an invalid token.', false)
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
         ;
     }
@@ -84,13 +83,11 @@ class LintCommand extends ContainerAwareCommand
                 try {
                     $tokens = $lexer->tokenize($source);
                     $violations = array_merge($violations, $validator->validate(new $ruleset($twigVersion), $tokens));
-
                 } catch (SyntaxError $e) {
-                    if ($input->getOption('error') !== false) {
+                    if (false !== $input->getOption('throw-syntax-error')) {
                         throw $e;
-                    } else {
-                        $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), $e->getColumnNo(), $e->getMessage());
                     }
+                    $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), $e->getColumnNo(), $e->getMessage());
                 }
             }
         }
