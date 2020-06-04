@@ -63,13 +63,13 @@ class Twig3FunctionalTest extends TestCase
 
             // parentheses spacing is not appliable to control structures.
             ['{% if (1 + 2) == 3 %}', null],
-            ['{% for i in (some_array) %}', null],
+            ['{% for i in (some_array) %}{{ i }}', null],
             ['{% if (foo and (not bar or baz)) %}', null],
-            ['{% for i in  (some_array) %}', 'There should be 1 space after the in operator.'],
-            ['{% for  i in (some_array) %}', 'There should be 1 space between for and the local variables.'],
-            ['{% for i  in (some_array) %}', 'There should be 1 space after the local variable.'],
-            ['{% for i in 1..10 %}', null],
-            ['{% for i in 1.. 10 %}', 'There should be 0 space between the ".." operator and its right operand.'],
+            ['{% for i in  (some_array) %}{{ i }}', 'There should be 1 space after the in operator.'],
+            ['{% for  i in (some_array) %}{{ i }}', 'There should be 1 space between for and the local variables.'],
+            ['{% for i  in (some_array) %}{{ i }}', 'There should be 1 space after the local variable.'],
+            ['{% for i in 1..10 %}{{ i }}', null],
+            ['{% for i in 1.. 10 %}{{ i }}', 'There should be 0 space between the ".." operator and its right operand.'],
             ['{% if  (1 + 2) == 3 %}', 'There should be 1 space between the if keyword and its condition.'],
 
             // Do not put any spaces before and after the following operators: |, ., .., [].
@@ -158,7 +158,7 @@ class Twig3FunctionalTest extends TestCase
             ['{% set foo = 1 %}{{ foo ? foo : 0 }}', null],
             ['{% set foo = 1 %}{% macro toto() %}{{ foo }}{% endmacro %}', 'Unused variable "foo".'], // https://github.com/friendsoftwig/twigcs/issues/27
             ['{% set foo = 1 %}{% if foo %}{% endif %}', null],
-            ['{% set foo = [] %}{% for bar in foo %}{% endfor %}', null],
+            ['{% set foo = [] %}{% for bar in foo %}{{ bar }}{% endfor %}', null],
             ['{% set is = 1 %}{% if 1 is 1 %}{% endif %}', 'Unused variable "is".'],
             ['{% set uppercase = 1 %}{% filter uppercase %}{% endfilter %}', 'Unused variable "uppercase".'],
             ['{% set uppercase = 1 %}{% if "a"|uppercase %}{% endif %}', 'Unused variable "uppercase".'],
@@ -230,11 +230,11 @@ class Twig3FunctionalTest extends TestCase
             ['{{ a_is_b }}}', null], // Checks that it does not split on the "is" as an operator.
 
             // Arrow functions
-            ['{% for a in b|filter(c => c > 10) %}', null],
-            ['{% for a in b|filter(c  => c > 10) %}', 'There should be 1 space between the arrow and its arguments.'],
-            ['{% for a in b|filter(c =>  c > 10) %}', 'There should be 1 space between the arrow and its body.'],
-            ['{% for a in b|filter((c ) => c > 10) %}', 'There should be 0 space between the closing parenthese and its content.'],
-            ['{% for a in b|filter(c => c >  10) %}', 'There should be 1 space between the ">" operator and its right operand.'],
+            ['{% for a in b|filter(c => c > 10) %}{{ a }}', null],
+            ['{% for a in b|filter(c  => c > 10) %}{{ a }}', 'There should be 1 space between the arrow and its arguments.'],
+            ['{% for a in b|filter(c =>  c > 10) %}{{ a }}', 'There should be 1 space between the arrow and its body.'],
+            ['{% for a in b|filter((c ) => c > 10) %}{{ a }}', 'There should be 0 space between the closing parenthese and its content.'],
+            ['{% for a in b|filter(c => c >  10) %}{{ a }}', 'There should be 1 space between the ">" operator and its right operand.'],
 
             // Nested hashes
             ['{{ {
@@ -338,6 +338,11 @@ class Twig3FunctionalTest extends TestCase
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/105
             ['{% block block_name \'some-text\' ~ (not a_function() ? \' other other-text-2\') %}', null],
+
+            // Check regression of https://github.com/friendsoftwig/twigcs/issues/50
+            ['{% set foo = false %}{% for i in 0..2 %}{{ i }}{% set foo = true %}...{% endfor %}{% if foo %}...{% endif %}', null],
+            ['{% set foo = false %}{% for i in 0..2 %}{% set foo = true %}...{% endfor %}{% if foo %}...{% endif %}', 'Unused variable "i".'],
+            ['{% set foo = false %}{% if foo %}...{% endif %}{% for i in 0..2 %}{{ i }}{% set foo = true %}...{% endfor %}', 'Unused variable "foo".'],
 
             // Regressions from the official examples
             ['{% if \'Fabien\' starts with \'F\' %}', null],

@@ -30,8 +30,8 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
-            ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "' . self::DISPLAY_ALL . '" or "' . self::DISPLAY_BLOCKING . '".', self::DISPLAY_ALL)
-            ->addOption('error', 'e',  InputOption::VALUE_OPTIONAL, 'Throw syntax error when a template contains an invalid token.', false)
+            ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.self::DISPLAY_ALL.'" or "'.self::DISPLAY_BLOCKING.'".', self::DISPLAY_ALL)
+            ->addOption('throw-syntax-error', 'e',  InputOption::VALUE_OPTIONAL, 'Throw syntax error when a template contains an invalid token.', false)
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
         ;
     }
@@ -47,12 +47,12 @@ class LintCommand extends ContainerAwareCommand
         $files = [];
         foreach ($paths as $path) {
             if (is_file($path)) {
-                $files[] = new \SplFileInfo($path);
+                $files[$path] = [new \SplFileInfo($path)];
             } else {
                 $finder = new Finder();
                 $found = iterator_to_array($finder->in($path)->exclude($exclude)->name('*.twig'));
                 if (!empty($found)) {
-                    $files = array_merge($files, $found);
+                    $files[$path] = array_merge($files[$path] ?? [], $found);
                 }
             }
         }
@@ -66,29 +66,31 @@ class LintCommand extends ContainerAwareCommand
         }
 
         if (!is_subclass_of($ruleset, RulesetInterface::class)) {
-            throw new \InvalidArgumentException('Ruleset class must implement ' . RulesetInterface::class);
+            throw new \InvalidArgumentException('Ruleset class must implement '.RulesetInterface::class);
         }
 
         $lexer = $container->get('lexer');
         $validator = $container->get('validator');
 
-        foreach ($files as $file) {
-            $realPath = $file->getRealPath();
-            $source = new Source(
-                file_get_contents($realPath),
-                $realPath,
-                str_replace(realpath($path), rtrim($path, '/'), $realPath)
-                );
+        foreach ($files as $path => $fileList) {
+            foreach ($fileList as $file) {
+                $realPath = $file->getRealPath();
+                $source = new Source(
+                    file_get_contents($realPath),
+                    $realPath,
+                    str_replace(realpath($path), rtrim($path, '/'), $realPath)
+                    );
 
-            try {
-                $tokens = $lexer->tokenize($source);
-                $violations = array_merge($violations, $validator->validate(new $ruleset($twigVersion), $tokens));
+                try {
+                    $tokens = $lexer->tokenize($source);
+                    $violations = array_merge($violations, $validator->validate(new $ruleset($twigVersion), $tokens));
 
-            } catch (SyntaxError $e) {
-                if ($input->getOption('error') !== false) {
-                    throw $e;
-                } else {
-                    $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), $e->getColumnNo(), $e->getMessage());
+                } catch (SyntaxError $e) {
+                    if ($input->getOption('error') !== false) {
+                        throw $e;
+                    } else {
+                        $violations[] = new Violation($e->getSourcePath(), $e->getLineNo(), $e->getColumnNo(), $e->getMessage());
+                    }
                 }
             }
         }
@@ -121,7 +123,7 @@ class LintCommand extends ContainerAwareCommand
 
         $limit = $this->getSeverityLimit($input);
 
-        return array_filter($violations, function(Violation $violation) use ($limit) {
+        return array_filter($violations, function (Violation $violation) use ($limit) {
             return $violation->getSeverity() > $limit;
         });
     }

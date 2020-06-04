@@ -40,8 +40,8 @@ class Twig2FunctionalTest extends TestCase
     public function getData()
     {
         return [
-            ['{% for i in (some_array) if  foo %}', 'There should be 1 space between the if and its expression.'],
-            ['{% for i in (some_array)  if foo %}', 'There should be 1 space before the if part of the loop.'],
+            ['{% for i in (some_array) if  foo %}{{ i }}', 'There should be 1 space between the if and its expression.'],
+            ['{% for i in (some_array)  if foo %}{{ i }}', 'There should be 1 space before the if part of the loop.'],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/56
             ["{% for item in ['one', 'two'] if attribute(_context, item) is not empty %}\n{% endfor %}", null],
