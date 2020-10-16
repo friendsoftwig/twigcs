@@ -534,11 +534,11 @@ class RulesetBuilder
             ['$➀\+➁$', $this->binaryOpSpace('+')],
             ['$➀-➁$', $this->binaryOpSpace('-')],
             ['$➀~➁$', $this->binaryOpSpace('~')],
-            ['$➀\*➁$', $this->binaryOpSpace('*')],
             ['$➀//➁$', $this->binaryOpSpace('//')],
             ['$➀/➁$', $this->binaryOpSpace('/')],
             ['$➀%➁$', $this->binaryOpSpace('%')],
             ['$➀\*\*➁$', $this->binaryOpSpace('**')],
+            ['$➀\*➁$', $this->binaryOpSpace('*')],
             ['$➊is not➋$', $this->binaryOpSpace('is', '➊', '➋')],
             ['$➊is➋$', $this->binaryOpSpace('is', '➊', '➋')],
             ['$➊not in➋$', $this->binaryOpSpace('in', '➊', '➋')],
@@ -546,7 +546,6 @@ class RulesetBuilder
             ['$➊matches➋$', $this->binaryOpSpace('matches', '➊', '➋')],
             ['$➊starts with➋$', $this->binaryOpSpace('starts with', '➊', '➋')],
             ['$➊ends with➋$', $this->binaryOpSpace('ends with', '➊', '➋')],
-            ['$➀\?\?➁$', $this->binaryOpSpace('??')],
             ['$➀\.\.➁$', $this
                 ->handle()
                 ->delegate('$', 'expr')
