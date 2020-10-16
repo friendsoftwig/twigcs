@@ -158,6 +158,9 @@ class Twig3FunctionalTest extends TestCase
             ['{% set foo = 1 %}{{ foo ? foo : 0 }}', null],
             ['{% set foo = 1 %}{% macro toto() %}{{ foo }}{% endmacro %}', 'Unused variable "foo".'], // https://github.com/friendsoftwig/twigcs/issues/27
             ['{% set foo = 1 %}{% if foo %}{% endif %}', null],
+            ['{% set foo = 1 %}{% if bar %}{% elseif fooBar %}{% endif %}', 'Unused variable "foo".'],
+            ['{% set foo = 1 %}{% if bar %}{% elseif foo %}{% endif %}', null],
+            ['{% set foo = 1 %}{% if bar %}{% elseif fooBar %}{% elseif foo %}{% endif %}', null],
             ['{% set foo = [] %}{% for bar in foo %}{{ bar }}{% endfor %}', null],
             ['{% set is = 1 %}{% if 1 is 1 %}{% endif %}', 'Unused variable "is".'],
             ['{% set uppercase = 1 %}{% filter uppercase %}{% endfilter %}', 'Unused variable "uppercase".'],
