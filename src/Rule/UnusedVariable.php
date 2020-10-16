@@ -68,6 +68,7 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                         ]);
                         break;
                     case 'if':
+                    case 'elseif':
                         $this->skip($tokens, 3);
                         break;
                     case 'for':

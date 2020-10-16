@@ -76,6 +76,7 @@ class UnusedMacro extends AbstractRule implements RuleInterface
                         }
                         break;
                     case 'if':
+                    case 'elseif':
                     case 'for':
                         $this->skip($tokens, 3);
                         break;
