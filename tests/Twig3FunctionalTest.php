@@ -153,6 +153,15 @@ class Twig3FunctionalTest extends TestCase
             ['{{ 1 ** 2 }}', null],
             ['{{ 1** 2 }}', 'There should be 1 space between the "**" operator and its left operand.'],
             ['{{ 1 **2 }}', 'There should be 1 space between the "**" operator and its right operand.'],
+            ['{{ 1 b-and 2 }}', null],
+            ['{{ 1    b-and 2 }}', 'There should be 1 space between the "b-and" operator and its left operand.'],
+            ['{{ 1 b-and    2 }}', 'There should be 1 space between the "b-and" operator and its right operand.'],
+            ['{{ 1 b-xor 2 }}', null],
+            ['{{ 1    b-xor 2 }}', 'There should be 1 space between the "b-xor" operator and its left operand.'],
+            ['{{ 1 b-xor    2 }}', 'There should be 1 space between the "b-xor" operator and its right operand.'],
+            ['{{ 1 b-or 2 }}', null],
+            ['{{ 1    b-or 2 }}', 'There should be 1 space between the "b-or" operator and its left operand.'],
+            ['{{ 1 b-or    2 }}', 'There should be 1 space between the "b-or" operator and its right operand.'],
 
 
             // Use lower cased and underscored variable names.
