@@ -141,6 +141,19 @@ class Twig3FunctionalTest extends TestCase
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],
             ['{% include "file" with {foo: bar ? baz} %}', null],
+            ['{{ 1 / 2 }}', null],
+            ['{{ 1/ 2 }}', 'There should be 1 space between the "/" operator and its left operand.'],
+            ['{{ 1 /2 }}', 'There should be 1 space between the "/" operator and its right operand.'],
+            ['{{ 1 // 2 }}', null],
+            ['{{ 1// 2 }}', 'There should be 1 space between the "//" operator and its left operand.'],
+            ['{{ 1 //2 }}', 'There should be 1 space between the "//" operator and its right operand.'],
+            ['{{ 1 * 2 }}', null],
+            ['{{ 1* 2 }}', 'There should be 1 space between the "*" operator and its left operand.'],
+            ['{{ 1 *2 }}', 'There should be 1 space between the "*" operator and its right operand.'],
+            ['{{ 1 ** 2 }}', null],
+            ['{{ 1** 2 }}', 'There should be 1 space between the "**" operator and its left operand.'],
+            ['{{ 1 **2 }}', 'There should be 1 space between the "**" operator and its right operand.'],
+
 
             // Use lower cased and underscored variable names.
             ['{% set foo = 1 %}{{ foo }}', null],
