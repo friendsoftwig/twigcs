@@ -146,6 +146,13 @@ class Twig3FunctionalTest extends TestCase
             ['{% set foo = 1 %}{{ foo }}', null],
             ['{% set foo_bar = 1 %}{{ foo_bar }}', null],
             ['{% set fooBar = 1 %}{{ fooBar }}', 'The "fooBar" variable should be in lower case (use _ as a separator).'],
+            ['{% for foo in 1..10 %}{{ foo }}{% endfor %}', null],
+            ['{% for foo_bar in 1..10 %}{{ foo_bar }}{% endfor %}', null],
+            ['{% for fooBar in 1..10 %}{{ fooBar }}{% endfor %}', 'The "fooBar" variable should be in lower case (use _ as a separator).'],
+            ['{% for foo, bar in 1..10 %}{{ foo }}: {{ bar }}{% endfor %}', null],
+            ['{% for foo_key, bar_val in 1..10 %}{{ foo_key }}: {{ bar_val }}{% endfor %}', null],
+            ['{% for fooKey, bar_val in 1..10 %}{{ fooKey }}: {{ bar_val }}{% endfor %}', 'The "fooKey" variable should be in lower case (use _ as a separator).'],
+            ['{% for foo_key, barVal in 1..10 %}{{ foo_key }}: {{ barVal }}{% endfor %}', 'The "barVal" variable should be in lower case (use _ as a separator).'],
 
             // var declaration spacing
             ['{% set  foo = 1 %}{{ foo }}', 'There should be 1 space after the "set".'],
