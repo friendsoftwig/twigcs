@@ -1,0 +1,10 @@
+<?php
+
+return \FriendsOfTwig\Twigcs\Config\Config::create()
+    ->setSeverity('warning')
+    ->setReporter('json')
+    ->setName('my-config')
+    ->setSpecificRuleSets([
+        '*/a.html.twig' => FriendsOfTwig\Twigcs\Tests\data\config\local\CustomRuleset::class,
+    ])
+;

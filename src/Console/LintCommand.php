@@ -2,8 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\Console;
 
-use FriendsOfTwig\Twigcs\Ruleset\Official;
-use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
+use FriendsOfTwig\Twigcs\Config\ConfigResolver;
 use FriendsOfTwig\Twigcs\TwigPort\Source;
 use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
 use FriendsOfTwig\Twigcs\Validator\Violation;
@@ -11,9 +10,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Finder\Finder;
-use function class_exists;
-use function sprintf;
 
 class LintCommand extends ContainerAwareCommand
 {
@@ -24,14 +20,15 @@ class LintCommand extends ContainerAwareCommand
     {
         $this
             ->setName('lint')
-            ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', ['.'])
+            ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', null)
             ->addOption('twig-version', 't', InputOption::VALUE_REQUIRED, 'The major version of twig to use.', 3)
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
-            ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.', 'console')
+            ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.')
             ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.self::DISPLAY_ALL.'" or "'.self::DISPLAY_BLOCKING.'".', self::DISPLAY_ALL)
             ->addOption('throw-syntax-error', 'e', InputOption::VALUE_OPTIONAL, 'Throw syntax error when a template contains an invalid token.', false)
-            ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use', Official::class)
+            ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use')
+            ->addOption('config', null, InputOption::VALUE_REQUIRED, 'Config file to use', null)
         ;
     }
 
@@ -39,50 +36,35 @@ class LintCommand extends ContainerAwareCommand
     {
         $container = $this->getContainer();
 
-        $paths = $input->getArgument('paths');
-        $exclude = $input->getOption('exclude');
-        $twigVersion = $input->getOption('twig-version');
+        $resolver = new ConfigResolver($container, getcwd(), [
+            'path' => $input->getArgument('paths'),
+            'reporter-service-name' => $input->getOption('reporter'),
+            'exclude' => $input->getOption('exclude'),
+            'severity' => $input->getOption('severity'),
+            'ruleset-class-name' => $input->getOption('ruleset'),
+            'twig-version' => $input->getOption('twig-version'),
+            'config' => $input->getOption('config'),
+        ]);
 
-        $files = [];
-        foreach ($paths as $path) {
-            if (is_file($path)) {
-                $files[$path] = [new \SplFileInfo($path)];
-            } else {
-                $finder = new Finder();
-                $found = iterator_to_array($finder->in($path)->exclude($exclude)->name('*.twig'));
-                if (!empty($found)) {
-                    $files[$path] = array_merge($files[$path] ?? [], $found);
-                }
-            }
-        }
-
-        $violations = [];
-
-        $ruleset = $input->getOption('ruleset');
-
-        if (!class_exists($ruleset)) {
-            throw new \InvalidArgumentException(sprintf('Ruleset class %s does not exist', $ruleset));
-        }
-
-        if (!is_subclass_of($ruleset, RulesetInterface::class)) {
-            throw new \InvalidArgumentException('Ruleset class must implement '.RulesetInterface::class);
-        }
+        $finders = $resolver->getFinders();
 
         $lexer = $container->get('lexer');
         $validator = $container->get('validator');
 
-        foreach ($files as $path => $fileList) {
-            foreach ($fileList as $file) {
+        $files = [];
+        $violations = [];
+        foreach ($finders as $finder) {
+            $files = iterator_to_array($finder);
+
+            foreach ($files as $file) {
+                $ruleset = $resolver->getRuleset($file);
+
                 $realPath = $file->getRealPath();
-                $source = new Source(
-                    file_get_contents($realPath),
-                    $realPath,
-                    str_replace(realpath($path), rtrim($path, '/'), $realPath)
-                    );
+                $source = new Source(file_get_contents($realPath), $realPath, ltrim(str_replace(getcwd(), '', $realPath), '/'));
 
                 try {
                     $tokens = $lexer->tokenize($source);
-                    $violations = array_merge($violations, $validator->validate(new $ruleset($twigVersion), $tokens));
+                    $violations = array_merge($violations, $validator->validate($ruleset, $tokens));
                 } catch (SyntaxError $e) {
                     if (false !== $input->getOption('throw-syntax-error')) {
                         throw $e;
@@ -94,7 +76,7 @@ class LintCommand extends ContainerAwareCommand
 
         $violations = $this->filterDisplayViolations($input, $violations);
 
-        $container->get(sprintf('reporter.%s', $input->getOption('reporter')))->report($output, $violations);
+        $resolver->getReporter()->report($output, $violations);
 
         return $this->determineExitCode($input, $violations);
     }

@@ -146,7 +146,7 @@ class LintCommandTest extends TestCase
     {
         $this->expectException(SyntaxError::class);
         $this->commandTester->execute([
-            'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
+            'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => LintCommand::DISPLAY_ALL,
             '--throw-syntax-error' => true,
@@ -159,7 +159,7 @@ class LintCommandTest extends TestCase
     public function testSyntaxErrorNotThrow()
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
+            'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => LintCommand::DISPLAY_ALL,
             '--throw-syntax-error' => false,
@@ -175,7 +175,7 @@ class LintCommandTest extends TestCase
     public function testSyntaxErrorNotThrowOmitArgument()
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/syntay_error/syntax_errors.html.twig'],
+            'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => LintCommand::DISPLAY_ALL,
         ]);
@@ -185,5 +185,77 @@ class LintCommandTest extends TestCase
         $this->assertSame($statusCode, 1);
         $this->assertContains('1 violation(s) found', $output);
         $this->assertContains('l.1 c.17 : ERROR Unexpected "}"', $output);
+    }
+
+    public function testConfigFileWithoutCliPath()
+    {
+        $this->commandTester->execute([
+            'paths' => null,
+            '--config' => 'tests/data/config/external/.twig_cs.dist',
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertContains(<<<EOF
+        tests/data/basepaths/a/bad.html.twig
+        l.1 c.8 : WARNING Unused variable "foo".
+        tests/data/basepaths/b/bad.html.twig
+        l.1 c.8 : WARNING Unused variable "foo".
+        2 violation(s) found
+        EOF, $output);
+    }
+
+    public function testConfigFileWithCliPath()
+    {
+        $this->commandTester->execute([
+            'paths' => ['tests/data/syntax_error'],
+            '--config' => 'tests/data/config/external/.twig_cs.dist',
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertContains(<<<EOF
+        tests/data/basepaths/a/bad.html.twig
+        l.1 c.8 : WARNING Unused variable "foo".
+        tests/data/basepaths/b/bad.html.twig
+        l.1 c.8 : WARNING Unused variable "foo".
+        tests/data/syntax_error/syntax_errors.html.twig
+        l.1 c.17 : ERROR Unexpected "}".
+        3 violation(s) found
+        EOF, $output);
+    }
+
+    public function testConfigFileSamePathWithRulesetOverrides()
+    {
+        chdir(__DIR__.'/../data/config/local');
+        $this->commandTester->execute([
+            'paths' => null,
+        ]);
+        chdir(__DIR__.'/../..');
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertContains(<<<EOF
+        {
+            "failures": 1,
+            "files": [
+                {
+                    "file": "a.html.twig",
+                    "violations": [
+                        {
+                            "line": 1,
+                            "column": 8,
+                            "severity": 2,
+                            "type": "warning",
+                            "message": "Unused variable \"foo\"."
+                        }
+                    ]
+                }
+            ]
+        }
+        EOF, $output);
     }
 }
