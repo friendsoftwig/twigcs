@@ -197,13 +197,11 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains(<<<EOF
-        tests/data/basepaths/a/bad.html.twig
-        l.1 c.8 : WARNING Unused variable "foo".
-        tests/data/basepaths/b/bad.html.twig
-        l.1 c.8 : WARNING Unused variable "foo".
-        2 violation(s) found
-        EOF, $output);
+        $this->assertContains('tests/data/basepaths/a/bad.html.twig
+l.1 c.8 : WARNING Unused variable "foo".
+tests/data/basepaths/b/bad.html.twig
+l.1 c.8 : WARNING Unused variable "foo".
+2 violation(s) found', $output);
     }
 
     public function testConfigFileWithCliPath()
@@ -216,15 +214,13 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains(<<<EOF
-        tests/data/basepaths/a/bad.html.twig
-        l.1 c.8 : WARNING Unused variable "foo".
-        tests/data/basepaths/b/bad.html.twig
-        l.1 c.8 : WARNING Unused variable "foo".
-        tests/data/syntax_error/syntax_errors.html.twig
-        l.1 c.17 : ERROR Unexpected "}".
-        3 violation(s) found
-        EOF, $output);
+        $this->assertContains('tests/data/basepaths/a/bad.html.twig
+l.1 c.8 : WARNING Unused variable "foo".
+tests/data/basepaths/b/bad.html.twig
+l.1 c.8 : WARNING Unused variable "foo".
+tests/data/syntax_error/syntax_errors.html.twig
+l.1 c.17 : ERROR Unexpected "}".
+3 violation(s) found', $output);
     }
 
     public function testConfigFileSamePathWithRulesetOverrides()
@@ -238,24 +234,22 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains(<<<EOF
+        $this->assertContains('{
+    "failures": 1,
+    "files": [
         {
-            "failures": 1,
-            "files": [
+            "file": "a.html.twig",
+            "violations": [
                 {
-                    "file": "a.html.twig",
-                    "violations": [
-                        {
-                            "line": 1,
-                            "column": 8,
-                            "severity": 2,
-                            "type": "warning",
-                            "message": "Unused variable \"foo\"."
-                        }
-                    ]
+                    "line": 1,
+                    "column": 8,
+                    "severity": 2,
+                    "type": "warning",
+                    "message": "Unused variable \"foo\"."
                 }
             ]
         }
-        EOF, $output);
+    ]
+}', $output);
     }
 }
