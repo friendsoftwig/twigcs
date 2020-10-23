@@ -491,10 +491,10 @@ class RulesetBuilder
             ['not➊$', $this->unaryOpSpace('not', '➊')],
             ['@ __PARENTHESES__', $this->handle()->enforceSize(' ', $this->config['func']['before_parentheses'], 'There should be %quantity% space(s) between a function name and its opening parentheses.')],
             ['\( \)', $this->handle()->enforceSize(' ', $this->config['parentheses']['empty'], 'There should be %quantity% space(s) inside empty parentheses.')],
-            ["\(\n $\n \)", $this->handle()->delegate('$', 'list')], // Multiline function call
+            ["\(\n $\n \)", $this->handle()->delegate('$', 'argsList')], // Multiline function call
             ['\(➀$➁\)', $this
                 ->handle()
-                ->delegate('$', 'list')
+                ->delegate('$', 'argsList')
                 ->enforceSize('➀', $this->config['parentheses']['before_value'], 'There should be %quantity% space(s) between the opening parenthese and its content.')
                 ->enforceSize('➁', $this->config['parentheses']['after_value'], 'There should be %quantity% space(s) between the closing parenthese and its content.'),
             ],
@@ -575,6 +575,31 @@ class RulesetBuilder
             [' & ', Handler::create()->noop()],
             [' \[\] ', Handler::create()->noop()],
             [' \?\: ', Handler::create()->noop()],
+        ]);
+
+        $argsList = $this->using(self::LIST_VARS, [
+            [' ', Handler::create()->enforceSize(' ', $this->config['empty_list_whitespaces'], 'Empty list should have %quantity% whitespace(s).')],
+            ['@➀=➁$➂,➃%', Handler::create()
+                ->enforceSize('➀', $this->config['named_args']['before_='], 'There should be %quantity% space(s) before the "=" in the named arguments list.')
+                ->enforceSize('➁', $this->config['named_args']['after_='], 'There should be %quantity% space(s) after the "=" in the named arguments list.')
+                ->enforceSize('➂', $this->config['named_args']['after_value'], 'There should be %quantity% space(s) after the value in the named arguments list.')
+                ->delegate('$', 'expr')
+                ->delegate('%', 'argsList'),
+            ],
+            ['@➀=(?!>)➁$', Handler::create()
+                ->enforceSize('➀', $this->config['named_args']['before_='], 'There should be %quantity% space(s) before the "=" in the named arguments list.')
+                ->enforceSize('➁', $this->config['named_args']['after_='], 'There should be %quantity% space(s) after the "=" in the named arguments list.')
+                ->delegate('$', 'expr'),
+            ],
+            ['$_, %', Handler::create()
+                ->delegate('$', 'expr')
+                ->delegate('%', 'argsList')
+                ->enforceSize('_', $this->config['list']['after_value'], 'There should be %quantity% space(s) before the ",".')
+                ->enforceSpaceOrLineBreak(' ', $this->config['list']['after_coma'], 'The next value of a list should be separated by %quantity% space(s).'),
+            ],
+            [' @ ', Handler::create()->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
+            [' $, ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
+            [' $ ', Handler::create()->delegate('$', 'expr')->enforceSize(' ', 0, 'A single valued list should have no inner whitespace.')],
         ]);
 
         $list = $this->using(self::LIST_VARS, [
@@ -667,6 +692,7 @@ class RulesetBuilder
         return [
             'expr' => array_merge($tags, $ops, $fallback),
             'list' => $list,
+            'argsList' => $argsList,
             'hash' => array_merge($hash, $hashFallback),
             'imports' => $imports,
             'arrayOrSlice' => array_merge($slice, $array),
