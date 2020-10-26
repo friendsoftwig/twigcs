@@ -163,7 +163,6 @@ class Twig3FunctionalTest extends TestCase
             ['{{ 1    b-or 2 }}', 'There should be 1 space between the "b-or" operator and its left operand.'],
             ['{{ 1 b-or    2 }}', 'There should be 1 space between the "b-or" operator and its right operand.'],
 
-
             // Use lower cased and underscored variable names.
             ['{% set foo = 1 %}{{ foo }}', null],
             ['{% set foo_bar = 1 %}{{ foo_bar }}', null],
@@ -340,6 +339,13 @@ class Twig3FunctionalTest extends TestCase
             ['        {%- set vars = widget == "text" ? {"attr": {"size": 1 }} : {} -%}{{ vars }}', 'There should be 0 space after the hash values.', [61, 1]],
             ['{{ {foo: {bar: {baz: {foo: {bar: 1 }}}}} }}', 'There should be 0 space after the hash values.', [34, 1]],
             ['{{ {foo: {bar: 1}}|agg + {baz: 2 }|agg }}', 'There should be 0 space after the hash values.', [32, 1]],
+
+            // Check for named args
+            ['{{ foo(bar=1, baz=2) }}', null],
+            ['{{ foo(1, 2, 3, bar=1, baz=2) }}', null],
+            ['{{ foo(bar =1, baz=2) }}', 'There should be 0 space before the "=" in the named arguments list.'],
+            ['{{ foo(bar= 1, baz=2) }}', 'There should be 0 space after the "=" in the named arguments list.'],
+            ['{{ foo(bar=1 , baz=2) }}', 'There should be 0 space after the value in the named arguments list.'],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/62
             ['{%~ if foo ~%}', null],

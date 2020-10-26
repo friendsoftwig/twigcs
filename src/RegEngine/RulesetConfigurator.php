@@ -31,6 +31,7 @@ class RulesetConfigurator
     const TERNARY_SPACING_PATTERN = '#^expr( *)\?( *)expr( *)\:( *)expr\|\|expr( *)\?\:( *)expr$#';
     const PROPERTY_SPACING_PATTERN = '#^expr( *)\.( *)expr( *)\|( *)filter$#';
     const ARROW_FUNCTION_SPACING_PATTERN = '#^args( *)=>( *)expr$#';
+    const NAMED_ARGS_SPACING_PATTERN = '#^name( *)=( *)value( *),( *)expr$#';
 
     private $macroSpacingPattern = 'macro name(expr)';
     private $tagSpacingPattern = '{% expr %}';
@@ -60,6 +61,7 @@ class RulesetConfigurator
     private $tagDefaultArgSpacing = 1; // Default space used between tag arguments : {% foo arg1 arg2 %}
     private $emptyListWhitespaces = 0;
     private $arrowFunctionSpacingPattern = 'args => expr';
+    private $namedArgsSpacingPattern = 'name=value, expr';
     private $twigMajorVersion = 3;
 
     public function getProcessedConfiguration()
@@ -194,6 +196,11 @@ class RulesetConfigurator
         preg_match(self::ARROW_FUNCTION_SPACING_PATTERN, $this->arrowFunctionSpacingPattern, $matches);
         $config['arrow_function']['before_arrow'] = strlen($matches[1]);
         $config['arrow_function']['after_arrow'] = strlen($matches[2]);
+
+        preg_match(self::NAMED_ARGS_SPACING_PATTERN, $this->namedArgsSpacingPattern, $matches);
+        $config['named_args']['before_='] = strlen($matches[1]);
+        $config['named_args']['after_='] = strlen($matches[2]);
+        $config['named_args']['after_value'] = strlen($matches[3]);
 
         $config['tag_default_arg_spacing'] = $this->tagDefaultArgSpacing;
         $config['empty_list_whitespaces'] = $this->emptyListWhitespaces;
@@ -386,6 +393,13 @@ class RulesetConfigurator
     public function setPropertySpacingPattern(string $propertySpacingPattern): self
     {
         $this->propertySpacingPattern = $propertySpacingPattern;
+
+        return $this;
+    }
+
+    public function setNamedArgsSpacingPattern(int $namedArgsSpacingPattern): self
+    {
+        $this->namedArgsSpacingPattern = $namedArgsSpacingPattern;
 
         return $this;
     }
