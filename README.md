@@ -58,7 +58,7 @@ Would only display errors and not warnings.
 
 Alternatively you can use `--display all` which is the default behaviour as described above.
 
-### Continuous Integration
+## Continuous Integration
 
 Twigcs can be used with your favorite CI server. The command itself will return a consistent exit code telling
 the CI job if it failed or succeeded. You can also have a nice xml report (checkstyle format):
@@ -67,7 +67,7 @@ the CI job if it failed or succeeded. You can also have a nice xml report (check
 twigcs /path/to/views --reporter checkstyle > /path/to/report.xml
 ```
 
-### Using older twig versions
+## Using older twig versions
 
 By default twigcs is using Twig 3. This means that features like `filter` tags or filtered loops using `if` are not supported
 anymore. You can use an older twig version using the `twig-version` option:
@@ -76,7 +76,7 @@ anymore. You can use an older twig version using the `twig-version` option:
 twigcs /path/to/views --twig-version 2
 ```
 
-#### Custom coding standard
+## Custom coding standard
 
 At the moment the only available standard is the [official one from twig](http://twig.sensiolabs.org/doc/coding_standards.html).
 
@@ -95,15 +95,68 @@ twigcs /path/to/views --ruleset \\MyApp\\TwigCsRuleset
 
 For more complex needs, have a look at the [custom ruleset documentation](doc/ruleset.md).
 
-### Upgrading
+## File-based configuration
+
+Using configuration, you can easily store per-project settings:
+
+```php
+// ~/.twig_cs.dist
+<?php
+
+return \FriendsOfTwig\Twigcs\Config\Config::create()
+    ->setName('my-config')
+    ->setSeverity('warning')
+    ->setReporter('json')
+    ->setRuleSet(FriendsOfTwig\Twigcs\Ruleset\Official::class)
+    ->setSpecificRuleSets([ // Every file matching the pattern will use a different ruleset.
+        '*/template.html.twig' => Acme\Project\CustomRuleset::class,
+    ])
+;
+```
+
+This configuration will be applied if you call twigcs from the `~/` directory. If you run twigcs from outside this directory,
+you must use the `--config` option:
+
+```
+cd ~/dirA
+twigcs --config ~/dirB/.twig_cs.dist # Will lint templates in ~/dirA with the config of ~/dirB
+```
+
+By default, the files `.twig_cs` and `.twig_cs.dist` are looked up in your current working directory (CWD).
+
+You can also provide finders inside config files, they will completely replace the path in the CLI:
+
+```php
+// ~/.twig_cs.dist
+<?php
+
+$finderA = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirA');
+$finderB = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirB');
+
+return \FriendsOfTwig\Twigcs\Config\Config::create()
+    // ...
+    ->addFinder($finderA)
+    ->addFinder($finderB)
+    ->setName('my-config')
+;
+```
+
+In this case, calling `twigcs` from the `~/` directory of the config will run the linter on the directories pointed by the finders.
+If you explicitly supply a path to the CLI, it will be added to the list of linted directories:
+
+```
+twigcs ~/dirC # This will lint ~/dirA, ~/dirB and ~/dirC using the configuration file of the current directory.
+```
+
+## Upgrading
 
 If you're upgrading from 3.x to 4.x or later, please read the [upgrade guide](doc/upgrade.md).
 
-### Community
+## Community
 
 Join us on [Symfony Devs](https://symfony.com/slack) via the **twigcs** channel.
 
-### Contributing
+## Contributing
 
 The master is the development branch, if you find any bug or false positive during style checking, please
 open an issue or submit a pull request.
