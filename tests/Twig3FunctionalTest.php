@@ -347,6 +347,13 @@ class Twig3FunctionalTest extends TestCase
             ['{{ foo(bar= 1, baz=2) }}', 'There should be 0 space after the "=" in the named arguments list.'],
             ['{{ foo(bar=1 , baz=2) }}', 'There should be 0 space after the value in the named arguments list.'],
 
+            // Check short object initialization
+            ['{% include "foo.html.twig" with {bar, bar} %}', null],
+            ['{% include "foo.html.twig" with {bar, bar, foo: 1} %}', null],
+            ['{% include "foo.html.twig" with {foo: 1, bar, bar} %}', null],
+            ['{% include "foo.html.twig" with {bar   , bar} %}', 'There should be 0 space between the value and the following ",".'],
+            ['{% include "foo.html.twig" with {bar,    bar} %}', 'There should be 1 space between the , and the following hash key.'],
+
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/62
             ['{%~ if foo ~%}', null],
             ['{%~ if foo ~%}', null],

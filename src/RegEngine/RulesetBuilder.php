@@ -668,6 +668,12 @@ class RulesetBuilder
                 ->enforceSize(' ', $this->config['hash']['after_key'], 'There should be %quantity% space(s) between the key and ":".')
                 ->enforceSize('_', $this->config['hash']['before_value'], 'There should be %quantity% space(s) between ":" and the value.'),
             ],
+            ['@•,…%', Handler::create()
+                ->delegate('%', 'hash')
+                ->enforceSize('•', $this->config['hash']['after_value'], 'There should be %quantity% space(s) between the value and the following ",".')
+                ->enforceSpaceOrLineBreak('…', $this->config['hash']['after_coma'], 'There should be %quantity% space(s) between the , and the following hash key.'),
+            ],
+            ['@', Handler::create()->noop()], // Collects the last entry of a short object initialization
         ]);
 
         $hashFallback = $this->using(self::FALLBACK_VARS, [
