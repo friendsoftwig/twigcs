@@ -32,7 +32,7 @@ class Validator
         }
 
         usort($violations, function (Violation $a, Violation $b) {
-            return $a->getLine() > $b->getLine();
+            return $a->getLine() - $b->getLine();
         });
 
         return $violations;
