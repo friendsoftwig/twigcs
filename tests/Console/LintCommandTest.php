@@ -13,7 +13,7 @@ class LintCommandTest extends TestCase
     /** @var CommandTester */
     private $commandTester;
 
-    public function setUp()
+    public function setUp(): void
     {
         $container = new Container();
         $command = new LintCommand();
@@ -31,7 +31,7 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 0);
-        $this->assertContains('No violation found.', $output);
+        $this->assertStringContainsString('No violation found.', $output);
     }
 
     public function testMultipleBasePaths()
@@ -44,7 +44,7 @@ class LintCommandTest extends TestCase
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
         $this->assertStringStartsWith('tests/data/basepaths/a/bad.html.twig', $output);
-        $this->assertContains("\ntests/data/basepaths/b/bad.html.twig", $output);
+        $this->assertStringContainsString("\ntests/data/basepaths/b/bad.html.twig", $output);
     }
 
     public function testExecuteWithError()
@@ -56,7 +56,7 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('ERROR', $output);
+        $this->assertStringContainsString('ERROR', $output);
     }
 
     public function testExecuteWithIgnoredErrors()
@@ -69,7 +69,7 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 0);
-        $this->assertContains('ERROR', $output);
+        $this->assertStringContainsString('ERROR', $output);
     }
 
     public function testExecuteWithIgnoredWarnings()
@@ -82,7 +82,7 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 0);
-        $this->assertContains('WARNING', $output);
+        $this->assertStringContainsString('WARNING', $output);
 
         $this->commandTester->execute([
             '--severity' => 'error',
@@ -92,7 +92,7 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('WARNING', $output);
+        $this->assertStringContainsString('WARNING', $output);
     }
 
     public function testExecuteWithExclude()
@@ -105,7 +105,7 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 0);
-        $this->assertContains('No violation found.', $output);
+        $this->assertStringContainsString('No violation found.', $output);
     }
 
     public function testErrorsOnlyDisplayBlocking()
@@ -119,10 +119,10 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertNotContains('l.1 c.7 : WARNING Unused variable "foo".', $output);
-        $this->assertContains('l.2 c.2 : ERROR A print statement should start with 1 space.', $output);
-        $this->assertContains('l.2 c.13 : ERROR There should be 0 space between the closing parenthese and its content.', $output);
-        $this->assertContains('2 violation(s) found', $output);
+        $this->assertStringNotContainsString('l.1 c.7 : WARNING Unused variable "foo".', $output);
+        $this->assertStringContainsString('l.2 c.2 : ERROR A print statement should start with 1 space.', $output);
+        $this->assertStringContainsString('l.2 c.13 : ERROR There should be 0 space between the closing parenthese and its content.', $output);
+        $this->assertStringContainsString('2 violation(s) found', $output);
     }
 
     public function testErrorsDisplayAll()
@@ -136,10 +136,10 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('l.1 c.7 : WARNING Unused variable "foo".', $output);
-        $this->assertContains('l.2 c.2 : ERROR A print statement should start with 1 space.', $output);
-        $this->assertContains('l.2 c.13 : ERROR There should be 0 space between the closing parenthese and its content.', $output);
-        $this->assertContains('3 violation(s) found', $output);
+        $this->assertStringContainsString('l.1 c.7 : WARNING Unused variable "foo".', $output);
+        $this->assertStringContainsString('l.2 c.2 : ERROR A print statement should start with 1 space.', $output);
+        $this->assertStringContainsString('l.2 c.13 : ERROR There should be 0 space between the closing parenthese and its content.', $output);
+        $this->assertStringContainsString('3 violation(s) found', $output);
     }
 
     public function testSyntaxErrorThrow()
@@ -168,8 +168,8 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('1 violation(s) found', $output);
-        $this->assertContains('l.1 c.17 : ERROR Unexpected "}"', $output);
+        $this->assertStringContainsString('1 violation(s) found', $output);
+        $this->assertStringContainsString('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
 
     public function testSyntaxErrorNotThrowOmitArgument()
@@ -183,8 +183,8 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('1 violation(s) found', $output);
-        $this->assertContains('l.1 c.17 : ERROR Unexpected "}"', $output);
+        $this->assertStringContainsString('1 violation(s) found', $output);
+        $this->assertStringContainsString('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
 
     public function testConfigFileWithoutCliPath()
@@ -197,7 +197,7 @@ class LintCommandTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('tests/data/basepaths/a/bad.html.twig
+        $this->assertStringContainsString('tests/data/basepaths/a/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
 tests/data/basepaths/b/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
@@ -214,7 +214,7 @@ l.1 c.8 : WARNING Unused variable "foo".
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('tests/data/basepaths/a/bad.html.twig
+        $this->assertStringContainsString('tests/data/basepaths/a/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
 tests/data/basepaths/b/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
@@ -234,7 +234,7 @@ l.1 c.17 : ERROR Unexpected "}".
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertContains('{
+        $this->assertStringContainsString('{
     "failures": 1,
     "files": [
         {

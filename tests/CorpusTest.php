@@ -11,7 +11,7 @@ class CorpusTest extends TestCase
 {
     private $commandTester;
 
-    public function setUp()
+    public function setUp(): void
     {
         $container = new Container();
         $command = new LintCommand();
@@ -29,6 +29,6 @@ class CorpusTest extends TestCase
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 0);
-        $this->assertContains('No violation found.', $output);
+        $this->assertStringContainsString('No violation found.', $output);
     }
 }

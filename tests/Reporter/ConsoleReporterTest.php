@@ -18,15 +18,13 @@ class ConsoleReporterTest extends TestCase
         ;
 
         $output
-            ->expects($this->at(1))
+            ->expects($this->exactly(3))
             ->method('writeln')
-            ->with('<comment>l.10 c.20</comment> : ERROR You are not allowed to do that.')
-        ;
-
-        $output
-            ->expects($this->at(2))
-            ->method('writeln')
-            ->with('<error>1 violation(s) found</error>')
+            ->withConsecutive(
+                ['<comment>template.twig</comment>'],
+                ['<comment>l.10 c.20</comment> : ERROR You are not allowed to do that.'],
+                ['<error>1 violation(s) found</error>']
+            )
         ;
 
         $reporter->report($output, [
