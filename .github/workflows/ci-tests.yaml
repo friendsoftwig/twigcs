@@ -1,0 +1,31 @@
+name: CI Tests
+on:
+  release:
+    types: [opened, reopened]
+  push:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  run:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest, windows-latest, macos-latest ]
+        php-versions: [ '7.0', '7.1', '7.2', '7.3', '7.4', '8.0' ]
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: phpunit
+
+      - name: Install dependencies
+        run: composer --prefer-source -n install
+
+      - name: Launch test
+        run: bin/phpunit
