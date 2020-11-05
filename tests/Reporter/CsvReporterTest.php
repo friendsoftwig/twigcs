@@ -20,7 +20,7 @@ class CsvReporterTest extends TestCase
         $output
             ->expects($this->once())
             ->method('writeln')
-            ->with('template.twig:10:20: error - You are not allowed to do that.')
+            ->with('template.twig;10;20;error - You are not allowed to do that.')
         ;
 
         $reporter->report($output, [
