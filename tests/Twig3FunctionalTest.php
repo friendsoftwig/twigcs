@@ -146,6 +146,7 @@ class Twig3FunctionalTest extends TestCase
             ['{{ foo <=> -1 }}', null],
             ['{{ foo  <=> -1 }}', 'There should be 1 space between the "<=>" operator and its left operand.'],
             ['{{ foo <=>  -1 }}', 'There should be 1 space between the "<=>" operator and its right operand.'],
+            ["{{ (test == 3) }}", null],
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],

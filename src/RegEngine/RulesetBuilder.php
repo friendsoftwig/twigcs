@@ -262,8 +262,6 @@ class RulesetBuilder
 
     public function build(): array
     {
-        $expr = [];
-
         $tags = self::using(self::TAGS_VARS, [
             ['<➀use $ with &➁>', $this->argTag()->delegate('$', 'expr')->delegate('&', 'imports')],
             ['<➀use $➁>', $this->argTag()->delegate('$', 'expr')],
@@ -587,7 +585,7 @@ class RulesetBuilder
                 ->delegate('$', 'expr')
                 ->delegate('%', 'argsList'),
             ],
-            ['@➀=(?!>)➁$', Handler::create()
+            ['@➀=(?![>=])➁$', Handler::create()
                 ->enforceSize('➀', $this->config['named_args']['before_='], 'There should be %quantity% space(s) before the "=" in the named arguments list.')
                 ->enforceSize('➁', $this->config['named_args']['after_='], 'There should be %quantity% space(s) after the "=" in the named arguments list.')
                 ->delegate('$', 'expr'),
