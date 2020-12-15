@@ -25,6 +25,10 @@ class Twig3FunctionalTest extends TestCase
         $validator = new Validator();
 
         $violations = $validator->validate(new Official(3), $lexer->tokenize(new Source($expression, 'src', 'src.html.twig')));
+        if (count($validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []) > 0) {
+            var_dump($violations);
+            die;
+        }
         $this->assertCount(
             0,
             $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []
@@ -155,6 +159,9 @@ class Twig3FunctionalTest extends TestCase
             ["{{ function(foo, bar == false) }}", null],
             ["{{ function(foo, bar  == false) }}", 'There should be 1 space between the "==" operator and its left operand.'],
             ["{{ function(foo, bar ==  false) }}", 'There should be 1 space between the "==" operator and its right operand.'],
+            ['{{ function(foo, bar == false, baz) }}', null],
+            ["{{ function(foo, bar  == false, baz) }}", 'There should be 1 space between the "==" operator and its left operand.'],
+            ["{{ function(foo, bar ==  false, baz) }}", 'There should be 1 space between the "==" operator and its right operand.'],
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],
