@@ -26,7 +26,7 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.')
             ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.self::DISPLAY_ALL.'" or "'.self::DISPLAY_BLOCKING.'".', self::DISPLAY_ALL)
-            ->addOption('throw-syntax-error', 'e', InputOption::VALUE_NONE, 'Throw syntax error when a template contains an invalid token.', false)
+            ->addOption('throw-syntax-error', 'e', InputOption::VALUE_NONE, 'Throw syntax error when a template contains an invalid token.')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use')
             ->addOption('config', null, InputOption::VALUE_REQUIRED, 'Config file to use', null)
         ;
