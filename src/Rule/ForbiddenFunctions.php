@@ -59,6 +59,7 @@ class ForbiddenFunctions extends AbstractRule implements RuleInterface
             if (Token::NAME_TYPE === $token->getType() &&
                 Token::WHITESPACE_TYPE === $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() &&
                 Token::PUNCTUATION_TYPE === $tokens->look(Lexer::NEXT_TOKEN)->getType() &&
+                '(' === $tokens->look(Lexer::NEXT_TOKEN)->getValue() &&
                 in_array($token->getValue(), $this->functions)
             ) {
                 $violations[] = $this->createViolation(

@@ -16,7 +16,7 @@ class ForbiddenFunctionsTest extends TestCase
     {
         $lexer = new Lexer();
         $source = new Source(
-            '{{ dump(test) }}',
+            '{{ dump(test) }}{{ dump.test }}',
             'my/path/file.html.twig',
             ltrim(str_replace(getcwd(), '', 'my/path/file.html.twig'), '/')
         );
