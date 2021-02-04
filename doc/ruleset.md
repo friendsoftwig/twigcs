@@ -42,6 +42,7 @@ class MyRuleset implements RulesetInterface
         return [
             new Rule\LowerCaseVariable(Violation::SEVERITY_ERROR),
             new Rule\RegEngineRule(Violation::SEVERITY_ERROR, $builder->build()),
+            new Rule\ForbiddenFunctions(Violation::SEVERITY_ERROR, ['dump']),
             // ...
         ];
     }
@@ -56,6 +57,7 @@ that gives the priority of the violations that it will generate.
 There are 5 built-ins rules at the moment:
 
 - `FriendsOfTwig\Twigcs\Rule\LowerCaseVariable`: Ensures that every declared variable name is lower case (using `_` as a separator).
+- `FriendsOfTwig\Twigcs\Rule\ForbiddenFunctions`: Ensures that the given functions are not used in any twig template.
 - `FriendsOfTwig\Twigcs\Rule\TrailingSpace`: Ensures that there are no space at the end of a line.
 - `FriendsOfTwig\Twigcs\Rule\UnusedMacro`: Ensures that an imported macro is called inside the current or any child scope.
 - `FriendsOfTwig\Twigcs\Rule\UnusedVariable`: Ensures that a declared variable is used in the current of any child scope.
