@@ -578,7 +578,7 @@ class RulesetBuilder
 
         $argsList = $this->using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', $this->config['empty_list_whitespaces'], 'Empty list should have %quantity% whitespace(s).')],
-            ['@➀=(?![>])➁$➂,➃%', Handler::create()
+            ['@➀=(?![>=])➁$➂,➃%', Handler::create()
                 ->enforceSize('➀', $this->config['named_args']['before_='], 'There should be %quantity% space(s) before the "=" in the named arguments list.')
                 ->enforceSize('➁', $this->config['named_args']['after_='], 'There should be %quantity% space(s) after the "=" in the named arguments list.')
                 ->enforceSize('➂', $this->config['named_args']['after_value'], 'There should be %quantity% space(s) after the value in the named arguments list.')
