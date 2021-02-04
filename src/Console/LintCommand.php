@@ -51,7 +51,6 @@ class LintCommand extends ContainerAwareCommand
         $lexer = $container->get('lexer');
         $validator = $container->get('validator');
 
-        $files = [];
         $violations = [];
         foreach ($finders as $finder) {
             $files = iterator_to_array($finder);
