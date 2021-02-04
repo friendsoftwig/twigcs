@@ -25,7 +25,10 @@ class Twig3FunctionalTest extends TestCase
         $validator = new Validator();
 
         $violations = $validator->validate(new Official(3), $lexer->tokenize(new Source($expression, 'src', 'src.html.twig')));
-        $this->assertCount(0, $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []);
+        $this->assertCount(
+            0,
+            $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []
+        );
 
         if ($expectedViolation) {
             $this->assertCount(1, $violations, sprintf("There should be one violation in:\n %s", $expression));
@@ -137,6 +140,24 @@ class Twig3FunctionalTest extends TestCase
             ['{{ [test ? path({bar: baz}) : null] }}', null],
             ['{{ {prop1: foo ? "bar", prop2: true} }}', null],
             ['{{ foo == -1 }}', null],
+            ['{{ foo >= -1 }}', null],
+            ['{{ foo >=  -1 }}', 'There should be 1 space between the ">=" operator and its right operand.'],
+            ['{{ foo  >= -1 }}', 'There should be 1 space between the ">=" operator and its left operand.'],
+            ['{{ foo  <= -1 }}', 'There should be 1 space between the "<=" operator and its left operand.'],
+            ['{{ foo <=  -1 }}', 'There should be 1 space between the "<=" operator and its right operand.'],
+            ['{{ foo <= -1 }}', null],
+            ['{{ foo <=> -1 }}', null],
+            ['{{ foo  <=> -1 }}', 'There should be 1 space between the "<=>" operator and its left operand.'],
+            ['{{ foo <=>  -1 }}', 'There should be 1 space between the "<=>" operator and its right operand.'],
+            ["{{ (test == 3) }}", null],
+            ["{{ (test  == 3) }}", 'There should be 1 space between the "==" operator and its left operand.'],
+            ["{{ (test ==  3) }}", 'There should be 1 space between the "==" operator and its right operand.'],
+            ["{{ function(foo, bar == false) }}", null],
+            ["{{ function(foo, bar  == false) }}", 'There should be 1 space between the "==" operator and its left operand.'],
+            ["{{ function(foo, bar ==  false) }}", 'There should be 1 space between the "==" operator and its right operand.'],
+            ['{{ function(foo, bar == false, baz) }}', null],
+            ["{{ function(foo, bar  == false, baz) }}", 'There should be 1 space between the "==" operator and its left operand.'],
+            ["{{ function(foo, bar ==  false, baz) }}", 'There should be 1 space between the "==" operator and its right operand.'],
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],
@@ -262,6 +283,7 @@ class Twig3FunctionalTest extends TestCase
 
             // Arrow functions
             ['{% for a in b|filter(c => c > 10) %}{{ a }}', null],
+            ['{{ numbers|reduce((carry, v) => carry + v, 10) }}', null],
             ['{% for a in b|filter(c  => c > 10) %}{{ a }}', 'There should be 1 space between the arrow and its arguments.'],
             ['{% for a in b|filter(c =>  c > 10) %}{{ a }}', 'There should be 1 space between the arrow and its body.'],
             ['{% for a in b|filter((c ) => c > 10) %}{{ a }}', 'There should be 0 space between the closing parenthese and its content.'],

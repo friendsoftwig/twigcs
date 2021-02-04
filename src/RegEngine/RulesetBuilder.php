@@ -262,8 +262,6 @@ class RulesetBuilder
 
     public function build(): array
     {
-        $expr = [];
-
         $tags = self::using(self::TAGS_VARS, [
             ['<➀use $ with &➁>', $this->argTag()->delegate('$', 'expr')->delegate('&', 'imports')],
             ['<➀use $➁>', $this->argTag()->delegate('$', 'expr')],
@@ -511,6 +509,7 @@ class RulesetBuilder
                 ->enforceSpaceOrLineBreak('➀', $this->config['hash']['after_opening'], 'There should be %quantity% space(s) before the hash values.')
                 ->enforceSpaceOrLineBreak('➁', $this->config['hash']['before_closing'], 'There should be %quantity% space(s) after the hash values.'),
             ],
+            ['$➀<=>➁$', $this->binaryOpSpace('<=>')],
             ['$➀=>➁$', $this
                 ->handle()
                 ->delegate('$', 'expr')
@@ -579,14 +578,14 @@ class RulesetBuilder
 
         $argsList = $this->using(self::LIST_VARS, [
             [' ', Handler::create()->enforceSize(' ', $this->config['empty_list_whitespaces'], 'Empty list should have %quantity% whitespace(s).')],
-            ['@➀=➁$➂,➃%', Handler::create()
+            ['@➀=(?![>=])➁$➂,➃%', Handler::create()
                 ->enforceSize('➀', $this->config['named_args']['before_='], 'There should be %quantity% space(s) before the "=" in the named arguments list.')
                 ->enforceSize('➁', $this->config['named_args']['after_='], 'There should be %quantity% space(s) after the "=" in the named arguments list.')
                 ->enforceSize('➂', $this->config['named_args']['after_value'], 'There should be %quantity% space(s) after the value in the named arguments list.')
                 ->delegate('$', 'expr')
                 ->delegate('%', 'argsList'),
             ],
-            ['@➀=(?!>)➁$', Handler::create()
+            ['@➀=(?![>=])➁$', Handler::create()
                 ->enforceSize('➀', $this->config['named_args']['before_='], 'There should be %quantity% space(s) before the "=" in the named arguments list.')
                 ->enforceSize('➁', $this->config['named_args']['after_='], 'There should be %quantity% space(s) after the "=" in the named arguments list.')
                 ->delegate('$', 'expr'),
