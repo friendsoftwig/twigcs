@@ -154,15 +154,15 @@ class Twig3FunctionalTest extends TestCase
             ['{{ foo <=> -1 }}', null],
             ['{{ foo  <=> -1 }}', 'There should be 1 space between the "<=>" operator and its left operand.'],
             ['{{ foo <=>  -1 }}', 'There should be 1 space between the "<=>" operator and its right operand.'],
-            ["{{ (test == 3) }}", null],
-            ["{{ (test  == 3) }}", 'There should be 1 space between the "==" operator and its left operand.'],
-            ["{{ (test ==  3) }}", 'There should be 1 space between the "==" operator and its right operand.'],
-            ["{{ function(foo, bar == false) }}", null],
-            ["{{ function(foo, bar  == false) }}", 'There should be 1 space between the "==" operator and its left operand.'],
-            ["{{ function(foo, bar ==  false) }}", 'There should be 1 space between the "==" operator and its right operand.'],
+            ['{{ (test == 3) }}', null],
+            ['{{ (test  == 3) }}', 'There should be 1 space between the "==" operator and its left operand.'],
+            ['{{ (test ==  3) }}', 'There should be 1 space between the "==" operator and its right operand.'],
+            ['{{ function(foo, bar == false) }}', null],
+            ['{{ function(foo, bar  == false) }}', 'There should be 1 space between the "==" operator and its left operand.'],
+            ['{{ function(foo, bar ==  false) }}', 'There should be 1 space between the "==" operator and its right operand.'],
             ['{{ function(foo, bar == false, baz) }}', null],
-            ["{{ function(foo, bar  == false, baz) }}", 'There should be 1 space between the "==" operator and its left operand.'],
-            ["{{ function(foo, bar ==  false, baz) }}", 'There should be 1 space between the "==" operator and its right operand.'],
+            ['{{ function(foo, bar  == false, baz) }}', 'There should be 1 space between the "==" operator and its left operand.'],
+            ['{{ function(foo, bar ==  false, baz) }}', 'There should be 1 space between the "==" operator and its right operand.'],
             ['{{ -1 }}', null],
             ['{{ -10 }}', null],
             ['{{ (-10) }}', null],
@@ -473,6 +473,10 @@ class Twig3FunctionalTest extends TestCase
                 3,
             ] %}{{ columns }}', null],
             ['{% set foo = {a: 1 , b: 2} %}{{ foo }}', 'There should be 0 space between the value and the following ",".'],
+
+            // Check regression from https://github.com/friendsoftwig/twigcs/issues/121
+            ['{% for entry in data %}{% include "@namespace/" ~ entry.something ~ "/" ~ entry.something ~ ".twig" with entry.data %}{% endfor %}', null],
+            ['{% for entry in data %}{% embed "@namespace/" ~ entry.something ~ "/" ~ entry.something ~ ".twig" with entry.data %}{% endfor %}', null],
         ];
     }
 }

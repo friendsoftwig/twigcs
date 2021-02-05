@@ -4,6 +4,7 @@ namespace FriendsOfTwig\Twigcs\Rule;
 
 use FriendsOfTwig\Twigcs\TwigPort\Token;
 use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
+use FriendsOfTwig\Twigcs\Util\StreamNavigator;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 
 /**
@@ -19,10 +20,7 @@ abstract class AbstractRule
      */
     protected $severity;
 
-    /**
-     * @param int $severity
-     */
-    public function __construct($severity)
+    public function __construct(int $severity)
     {
         $this->severity = $severity;
     }
@@ -34,109 +32,31 @@ abstract class AbstractRule
 
     public function createViolation(string $filename, int $line, int $column, string $reason): Violation
     {
-        return new Violation($filename, $line, $column, $reason, $this->severity, get_called_class());
+        return new Violation($filename, $line, $column, $reason, $this->severity, static::class);
     }
 
-    /**
-     * @param int $skip
-     *
-     * @return Token|null
-     */
-    protected function getPreviousSignificantToken(TokenStream $tokens, $skip = 0)
+    protected function getPreviousSignificantToken(TokenStream $tokens, int $skip = 0): ?Token
     {
-        $i = 1;
-        $token = null;
-
-        while ($token = $tokens->look(-$i)) {
-            if (!in_array($token->getType(), [Token::WHITESPACE_TYPE, Token::NEWLINE_TYPE], true)) {
-                if (0 === $skip) {
-                    return $token;
-                }
-
-                --$skip;
-            }
-
-            ++$i;
-        }
-
-        return null;
+        return StreamNavigator::getPreviousSignificantToken($tokens, $skip);
     }
 
-    /**
-     * @param int $skip
-     *
-     * @return Token|null
-     */
-    protected function getNextSignificantToken(TokenStream $tokens, $skip = 0)
+    protected function getNextSignificantToken(TokenStream $tokens, int $skip = 0): ?Token
     {
-        $i = 1;
-        $token = null;
-
-        while ($token = $tokens->look($i)) {
-            if (!in_array($token->getType(), [Token::WHITESPACE_TYPE, Token::NEWLINE_TYPE], true)) {
-                if (0 === $skip) {
-                    return $token;
-                }
-
-                --$skip;
-            }
-
-            ++$i;
-        }
-
-        return null;
+        return StreamNavigator::getNextSignificantToken($tokens, $skip);
     }
 
     protected function skipTo(TokenStream $tokens, int $tokenType, string $tokenValue = null)
     {
-        while (!$tokens->isEOF()) {
-            $continue = $tokens->getCurrent()->getType() !== $tokenType;
-
-            if (null !== $tokenValue) {
-                $continue |= $tokens->getCurrent()->getValue() !== $tokenValue;
-            }
-
-            if (!$continue) {
-                return;
-            }
-
-            $tokens->next();
-        }
+        return StreamNavigator::skipTo($tokens, $tokenType, $tokenValue);
     }
 
     protected function skipToOneOf(TokenStream $tokens, array $possibilities)
     {
-        while (!$tokens->isEOF()) {
-            foreach ($possibilities as $possibility) {
-                $tokenValue = $possibility['value'] ?? null;
-                $tokenType = $possibility['type'] ?? null;
-                $found = true;
-
-                if ($tokenType) {
-                    $found &= $tokenType === $tokens->getCurrent()->getType();
-                }
-
-                if ($tokenValue) {
-                    $found &= $tokenValue === $tokens->getCurrent()->getValue();
-                }
-
-                if ($found) {
-                    return;
-                }
-            }
-
-            $tokens->next();
-        }
+        return StreamNavigator::skipToOneOf($tokens, $possibilities);
     }
 
     protected function skip(TokenStream $tokens, int $amount)
     {
-        while (!$tokens->isEOF()) {
-            --$amount;
-            $tokens->next();
-            if (0 === $amount) {
-                return;
-            }
-        }
+        return StreamNavigator::skip($tokens, $amount);
     }
 }
