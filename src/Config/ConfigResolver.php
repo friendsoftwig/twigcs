@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Config;
 use FriendsOfTwig\Twigcs\Container;
 use FriendsOfTwig\Twigcs\Finder\TemplateFinder;
 use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
+use FriendsOfTwig\Twigcs\Ruleset\TemplateResolverAwareInterface;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use Symfony\Component\Filesystem\Filesystem;
 use function fnmatch;
@@ -117,7 +118,13 @@ final class ConfigResolver
             throw new \InvalidArgumentException('Ruleset class must implement '.RulesetInterface::class);
         }
 
-        return new $rulesetClassName($this->options['twig-version']);
+        $instance = new $rulesetClassName($this->options['twig-version']);
+
+        if ($instance instanceof TemplateResolverAwareInterface) {
+            $instance->setTemplateResolver($this->config->getTemplateResolver());
+        }
+
+        return $instance;
     }
 
     /**

@@ -2,6 +2,9 @@
 
 namespace FriendsOfTwig\Twigcs\Scope;
 
+use FriendsOfTwig\Twigcs\Lexer;
+use FriendsOfTwig\Twigcs\TemplateResolver\TemplateResolverInterface;
+use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
 use FriendsOfTwig\Twigcs\TwigPort\Token;
 use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 use FriendsOfTwig\Twigcs\Util\StreamNavigator;
@@ -15,25 +18,53 @@ class ScopeBuilder
     const MODE_VARIABLE = 1;
 
     private int $mode;
+    private int $maxDepth = 5;
+    private TemplateResolverInterface $loader;
 
-    public static function createVariableScopeBuilder()
+    public static function createVariableScopeBuilder(TemplateResolverInterface $loader)
     {
-        return new self(self::MODE_VARIABLE);
+        return new self($loader, self::MODE_VARIABLE);
     }
 
-    public static function createMacroScopeBuilder()
+    public static function createMacroScopeBuilder(TemplateResolverInterface $loader)
     {
-        return new self(self::MODE_MACRO);
+        return new self($loader, self::MODE_MACRO);
     }
 
-    public function __construct(int $mode = 0)
+    public function __construct(TemplateResolverInterface $loader, int $mode = 0)
     {
         $this->mode = $mode;
+        $this->loader = $loader;
     }
 
-    public function build(TokenStream $tokens): Scope
+    private function subScope(string $twigPath, int $depth): Scope
     {
-        $scope = new Scope('file', 'root');
+        if ($depth > $this->maxDepth) {
+            return new Scope('file', $twigPath);
+        }
+
+        $lexer = new Lexer();
+
+        $source = $this->loader->load($twigPath);
+
+        try {
+            $tokens = $lexer->tokenize($source);
+            $scope = $this->doBuild($tokens, $twigPath, $this->maxDepth + 1);
+
+            return $scope;
+        } catch (SyntaxError $e) {
+            return new Scope('file', $twigPath);
+        }
+    }
+
+    public function build(TokenStream $tokens)
+    {
+        return $this->doBuild($tokens);
+    }
+
+    private function doBuild(TokenStream $tokens, $name = 'root', $depth = 0): Scope
+    {
+        $scope = new Scope('file', $name);
         $root = $scope;
 
         while (!$tokens->isEOF()) {
@@ -62,6 +93,20 @@ class ScopeBuilder
                 $blockType = $tokens->look(2)->getValue();
 
                 switch ($blockType) {
+                    case 'extends':
+                        $templateName = $tokens->look(4);
+
+                        if (Token::NAME_TYPE === $templateName->getType()) { // {% import varName ... %}
+                            $scope->use($templateName->getValue());
+                        }
+                        $file = $tokens->look(4)->getValue();
+
+                        $scope->extends($this->subScope($file, $depth));
+
+                        StreamNavigator::skipToOneOf($tokens, [
+                            ['type' => Token::BLOCK_END_TYPE],
+                        ]);
+                        break;
                     case 'embed':
                     case 'include':
                         $templateName = $tokens->look(4);
@@ -69,6 +114,9 @@ class ScopeBuilder
                         if (Token::NAME_TYPE === $templateName->getType()) { // {% import varName ... %}
                             $scope->use($templateName->getValue());
                         }
+                        $file = $tokens->look(4)->getValue();
+
+                        $scope->nest($this->subScope($file, $depth));
 
                         StreamNavigator::skipToOneOf($tokens, [
                             ['value' => 'with'],

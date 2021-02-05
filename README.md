@@ -48,7 +48,7 @@ Tips: You can use multiple _exclude_ parameters.
 
 By default TwigCS will output all lines that have violations regardless of whether they match the severity level
 specified or not. If you only want to see violations that are greater than or equal to the severity level you've specified
-you can use the `--display` option. For example. 
+you can use the `--display` option. For example.
 
 ```bash
 twigcs /path/to/views --severity error --display blocking
@@ -86,7 +86,7 @@ You can create a class implementing `RulesetInterface` and supply it as a `--rul
 twigcs /path/to/views --ruleset \MyApp\TwigCsRuleset
 ```
 
-*Note:* `twigcs` needs to be used via composer and the ruleset class must be reachable via composer's autoloader for this feature to work.
+_Note:_ `twigcs` needs to be used via composer and the ruleset class must be reachable via composer's autoloader for this feature to work.
 Also note that depending on your shell, you might need to escape backslashes in the fully qualified class name:
 
 ```bash
@@ -147,6 +147,43 @@ If you explicitly supply a path to the CLI, it will be added to the list of lint
 ```
 twigcs ~/dirC # This will lint ~/dirA, ~/dirB and ~/dirC using the configuration file of the current directory.
 ```
+
+## Template resolution
+
+Using file based configuration, you can provide a way for twigcs to resolve template. This enables better unused variable/macro detection. Here's the
+simplest example when you have only one directory of templates.
+
+```php
+<?php
+
+use FriendsOfTwig\Twigcs\TemplateResolver\FileResolver;
+
+return \FriendsOfTwig\Twigcs\Config\Config::create()
+    // ...
+    ->setTemplateResolver(new FileResolver(__DIR__))
+    ->setRuleSet(FriendsOfTwig\Twigcs\Ruleset\Official::class)
+;
+```
+
+Here is a more complex example that uses a chain resolver and a namespaced resolver to handle vendor templates:
+
+```
+<?php
+
+use FriendsOfTwig\Twigcs\TemplateResolver;
+
+return \FriendsOfTwig\Twigcs\Config\Config::create()
+    ->setFinder($finder)
+    ->setTemplateResolver(new TemplateResolver\ChainResolver([
+        new TemplateResolver\FileResolver(__DIR__ . '/templates'),
+        new TemplateResolver\NamespacedResolver([
+            'acme' =>  new TemplateResolver\FileResolver(__DIR__ . '/vendor/Acme/AcmeLib/templates')
+        ]),
+    ]))
+;
+```
+
+This handles twig namespaces of the form `@acme/<templatepath>`.
 
 ## Upgrading
 

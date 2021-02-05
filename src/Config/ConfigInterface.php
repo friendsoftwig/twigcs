@@ -2,6 +2,8 @@
 
 namespace FriendsOfTwig\Twigcs\Config;
 
+use FriendsOfTwig\Twigcs\TemplateResolver\TemplateResolverInterface;
+
 /**
  * Special thanks to https://github.com/c33s/twigcs/ which this feature was inspired from.
  *
@@ -62,4 +64,11 @@ interface ConfigInterface
      * @return self
      */
     public function setSpecificRuleSets(array $ruleSet);
+
+    public function getTemplateResolver(): TemplateResolverInterface;
+
+    /**
+     * @return self
+     */
+    public function setTemplateResolver(TemplateResolverInterface $loader);
 }

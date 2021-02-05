@@ -267,4 +267,28 @@ l.1 c.17 : ERROR Unexpected "}".
     ]
 }', $output);
     }
+
+    public function testUnusedWithFileLoader()
+    {
+        $this->commandTester->execute([
+            '--config' => 'tests/data/config/loaders/.twig_cs.dist',
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertStringContainsString('tests/data/config/loaders/src/embed/child.html.twig
+l.3 c.7 : WARNING Unused variable "unused_child".
+tests/data/config/loaders/src/embed/parent.html.twig
+l.2 c.7 : WARNING Unused variable "unused_parent".
+tests/data/config/loaders/src/extends/child.html.twig
+l.5 c.7 : WARNING Unused variable "unused_child".
+tests/data/config/loaders/src/extends/parent.html.twig
+l.7 c.7 : WARNING Unused variable "unused_parent".
+tests/data/config/loaders/src/include/child.html.twig
+l.3 c.7 : WARNING Unused variable "unused_child".
+tests/data/config/loaders/src/include/parent.html.twig
+l.2 c.7 : WARNING Unused variable "unused_parent".
+6 violation(s) found', $output);
+    }
 }

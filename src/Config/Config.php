@@ -3,24 +3,28 @@
 namespace FriendsOfTwig\Twigcs\Config;
 
 use FriendsOfTwig\Twigcs\Ruleset\Official;
+use FriendsOfTwig\Twigcs\TemplateResolver\NullResolver;
+use FriendsOfTwig\Twigcs\TemplateResolver\TemplateResolverInterface;
 
 /**
  * Special thanks to https://github.com/c33s/twigcs/ which this feature was inspired from.
  */
 class Config implements ConfigInterface
 {
-    private $name;
-    private $finders;
-    private $severity = 'warning';
-    private $reporter = 'console';
-    private $ruleset = Official::class;
-    private $specificRulesets = [];
+    private string $name;
+    private array $finders;
+    private ?TemplateResolverInterface $loader;
+    private string $severity = 'warning';
+    private string $reporter = 'console';
+    private string $ruleset = Official::class;
+    private array $specificRulesets = [];
     private $display = ConfigInterface::DISPLAY_ALL;
 
-    public function __construct($name = 'default')
+    public function __construct(string $name = 'default')
     {
         $this->name = $name;
         $this->finders = [];
+        $this->loader = new NullResolver();
     }
 
     /**
@@ -132,6 +136,24 @@ class Config implements ConfigInterface
     public function setRuleset(string $ruleSet): self
     {
         $this->ruleset = $ruleSet;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTemplateResolver(): TemplateResolverInterface
+    {
+        return $this->loader;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTemplateResolver(TemplateResolverInterface $loader): self
+    {
+        $this->loader = $loader;
 
         return $this;
     }

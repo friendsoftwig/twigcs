@@ -76,6 +76,23 @@ class FlattenedScope
         return $this->queue;
     }
 
+    public function getRootUnusedDeclarations(): array
+    {
+        $unused = $this->getUnusedDeclarations();
+
+        $unused = array_filter($unused, function (Declaration $declaration) {
+            $scope = $declaration->getOrigin();
+
+            while ('file' !== $scope->getType() && $scope->getParent()) {
+                $scope = $scope->getParent();
+            }
+
+            return 'root' === $scope->getName();
+        });
+
+        return $unused;
+    }
+
     public function getUnusedDeclarations(): array
     {
         $unused = [];

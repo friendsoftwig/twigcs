@@ -3,22 +3,31 @@
 namespace FriendsOfTwig\Twigcs\Rule;
 
 use FriendsOfTwig\Twigcs\Scope\ScopeBuilder;
+use FriendsOfTwig\Twigcs\TemplateResolver\NullResolver;
+use FriendsOfTwig\Twigcs\TemplateResolver\TemplateResolverInterface;
 use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 
 class UnusedVariable extends AbstractRule implements RuleInterface
 {
+    public function __construct(int $severity, TemplateResolverInterface $loader = null)
+    {
+        $this->loader = $loader ?: new NullResolver();
+
+        parent::__construct($severity);
+    }
+
     /**
      * {@inheritdoc}
      */
     public function check(TokenStream $tokens)
     {
-        $builder = ScopeBuilder::createVariableScopeBuilder();
+        $builder = ScopeBuilder::createVariableScopeBuilder($this->loader);
 
         $root = $builder->build($tokens);
 
         $violations = [];
 
-        foreach ($root->flatten()->getUnusedDeclarations() as $declaration) {
+        foreach ($root->flatten()->getRootUnusedDeclarations() as $declaration) {
             $token = $declaration->getToken();
 
             $violations[] = $this->createViolation(

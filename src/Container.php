@@ -7,9 +7,9 @@ use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
 use FriendsOfTwig\Twigcs\Reporter\CsvReporter;
 use FriendsOfTwig\Twigcs\Reporter\EmacsReporter;
 use FriendsOfTwig\Twigcs\Reporter\GithubActionReporter;
+use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
 use FriendsOfTwig\Twigcs\Validator\Validator;
-use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 
 class Container extends \ArrayObject
 {

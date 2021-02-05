@@ -1,0 +1,7 @@
+{% set title = title|default('My Title') %}
+
+{% block title %}
+<p>{{ title }}</p>
+{% endblock %}
+
+{% set unused_parent = true %}

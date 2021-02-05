@@ -1,0 +1,6 @@
+{% set foo = 1 %}
+{% set unused_parent = 2 %}
+{% set used_vendor_bar = 3 %}
+
+{% embed 'embed/child.html.twig' %}
+{% embed '@acme/base.html.twig' %}
