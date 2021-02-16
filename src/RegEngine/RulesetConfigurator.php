@@ -397,7 +397,7 @@ class RulesetConfigurator
         return $this;
     }
 
-    public function setNamedArgsSpacingPattern(int $namedArgsSpacingPattern): self
+    public function setNamedArgsSpacingPattern(string $namedArgsSpacingPattern): self
     {
         $this->namedArgsSpacingPattern = $namedArgsSpacingPattern;
 
