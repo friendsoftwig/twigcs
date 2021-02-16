@@ -91,10 +91,15 @@ class Twig3FunctionalTest extends TestCase
 
             // Put one (and only one) space after the : sign in hashes and , in arrays and hashes:
             ['{{ {foo: 1} }}', null],
+            ['{{ {"foo": 1} }}', null],
             ['{{ {  foo: 1} }}', 'There should be 0 space before the hash values.'],
+            ['{{ {  "foo": 1} }}', 'There should be 0 space before the hash values.'],
             ['{{ {foo: 1 } }}', 'There should be 0 space after the hash values.'],
+            ['{{ {"foo": 1 } }}', 'There should be 0 space after the hash values.'],
             ['{{ {foo:  1} }}', 'There should be 1 space between ":" and the value.'],
+            ['{{ {"foo":  1} }}', 'There should be 1 space between ":" and the value.'],
             ['{{ {foo: 1,   bar: 2} }}', 'There should be 1 space between the , and the following hash key.'],
+            ['{{ {"foo": 1,   "bar": 2} }}', 'There should be 1 space between the , and the following hash key.'],
             ['{{ [1, 2, 3] }}', null],
             ["{{ [1,\n2] }}", null],
             ['{{ {hash: ","} }}', null],
@@ -300,6 +305,15 @@ class Twig3FunctionalTest extends TestCase
                 },
             } }}', null],
             ['{{ {
+                "A": "",
+                "B": {
+                    "foo": {
+                        "A": 1
+                    },
+                    "bar": baz
+                },
+            } }}', null],
+            ['{{ {
                 A: "",
                 B:  {
                     foo: {
@@ -309,12 +323,30 @@ class Twig3FunctionalTest extends TestCase
                 },
             } }}', 'There should be 1 space between ":" and the value.'],
             ['{{ {
+                "A": "",
+                "B":  {
+                    "foo": {
+                        "A": 1
+                    },
+                    "bar": baz
+                },
+            } }}', 'There should be 1 space between ":" and the value.'],
+            ['{{ {
                 A: "",
                 B: {
                     foo: {
                         A: 1
                     },
                     bar:   baz
+                },
+            } }}', 'There should be 1 space between ":" and the value.'],
+            ['{{ {
+                "A": "",
+                "B": {
+                    "foo": {
+                        "A": 1
+                    },
+                    "bar":   baz
                 },
             } }}', 'There should be 1 space between ":" and the value.'],
 
@@ -372,9 +404,15 @@ class Twig3FunctionalTest extends TestCase
             // Check short object initialization
             ['{% include "foo.html.twig" with {bar, bar} %}', null],
             ['{% include "foo.html.twig" with {bar, bar, foo: 1} %}', null],
+            ['{% include "foo.html.twig" with {bar, bar, "foo": 1} %}', null],
             ['{% include "foo.html.twig" with {foo: 1, bar, bar} %}', null],
+            ['{% include "foo.html.twig" with {"foo": 1, bar, bar} %}', null],
             ['{% include "foo.html.twig" with {bar   , bar} %}', 'There should be 0 space between the value and the following ",".'],
+            ['{% include "foo.html.twig" with {foo: 1 , bar} %}', 'There should be 0 space between the value and the following ",".'],
+            ['{% include "foo.html.twig" with {"foo": 1 , bar} %}', 'There should be 0 space between the value and the following ",".'],
             ['{% include "foo.html.twig" with {bar,    bar} %}', 'There should be 1 space between the , and the following hash key.'],
+            ['{% include "foo.html.twig" with {foo: 1,    bar} %}', 'There should be 1 space between the , and the following hash key.'],
+            ['{% include "foo.html.twig" with {"foo": 1,    bar} %}', 'There should be 1 space between the , and the following hash key.'],
 
             // Check regression of https://github.com/friendsoftwig/twigcs/issues/62
             ['{%~ if foo ~%}', null],
