@@ -645,7 +645,8 @@ class RulesetBuilder
                 ->delegate('%', 'hash')
                 ->enforceSize(' ', $this->config['hash']['after_key'], 'There should be %quantity% space(s) between the key and ":".')
                 ->enforceSize('_', $this->config['hash']['before_value'], 'There should be %quantity% space(s) between ":" and the value.')
-                ->enforceSize('•', $this->config['hash']['after_value'], 'There should be %quantity% space(s) between the value and the following ",".'),
+                ->enforceSize('•', $this->config['hash']['after_value'], 'There should be %quantity% space(s) between the value and the following ",".')
+                ->enforceSpaceOrLineBreak('…', $this->config['hash']['after_coma'], 'There should be %quantity% space(s) between the , and the following hash key.'),
             ],
             ['@ :_$,', Handler::create()
                 ->delegate('$', 'expr')
