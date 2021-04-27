@@ -2,13 +2,16 @@
 
 namespace FriendsOfTwig\Twigcs\Config;
 
-use Symfony\Component\Finder\Finder;
-
 /**
  * Special thanks to https://github.com/c33s/twigcs/ which this feature was inspired from.
+ *
+ * @method string getDisplay()
  */
 interface ConfigInterface
 {
+    public const DISPLAY_BLOCKING = 'blocking';
+    public const DISPLAY_ALL = 'all';
+
     /**
      * Returns the name of the configuration.
      *

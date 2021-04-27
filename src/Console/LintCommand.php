@@ -2,6 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\Console;
 
+use FriendsOfTwig\Twigcs\Config\ConfigInterface;
 use FriendsOfTwig\Twigcs\Config\ConfigResolver;
 use FriendsOfTwig\Twigcs\TwigPort\Source;
 use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
@@ -13,7 +14,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class LintCommand extends ContainerAwareCommand
 {
+    /**
+     * @deprecated use ConfigInterface::DISPLAY_BLOCKING instead
+     */
     const DISPLAY_BLOCKING = 'blocking';
+
+    /**
+     * @deprecated use ConfigInterface::DISPLAY_ALL instead
+     */
     const DISPLAY_ALL = 'all';
 
     public function configure()
@@ -25,7 +33,7 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_OPTIONAL, 'The maximum allowed error level.')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.')
-            ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.self::DISPLAY_ALL.'" or "'.self::DISPLAY_BLOCKING.'".', self::DISPLAY_ALL)
+            ->addOption('display', 'd', InputOption::VALUE_OPTIONAL, 'The violations to display, "'.ConfigInterface::DISPLAY_ALL.'" or "'.ConfigInterface::DISPLAY_BLOCKING.'".')
             ->addOption('throw-syntax-error', 'e', InputOption::VALUE_NONE, 'Throw syntax error when a template contains an invalid token.')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use')
             ->addOption('config', null, InputOption::VALUE_REQUIRED, 'Config file to use', null)
@@ -44,6 +52,7 @@ class LintCommand extends ContainerAwareCommand
             'ruleset-class-name' => $input->getOption('ruleset'),
             'twig-version' => $input->getOption('twig-version'),
             'config' => $input->getOption('config'),
+            'display' => $input->getOption('display'),
         ]);
 
         $finders = $resolver->getFinders();
@@ -75,7 +84,7 @@ class LintCommand extends ContainerAwareCommand
 
         $severityLimit = $resolver->getSeverityLimit();
 
-        $violations = $this->filterDisplayViolations($input, $severityLimit, $violations);
+        $violations = $this->filterDisplayViolations($resolver->getDisplay(), $severityLimit, $violations);
 
         $resolver->getReporter()->report($output, $violations);
 
@@ -93,9 +102,9 @@ class LintCommand extends ContainerAwareCommand
         return 0;
     }
 
-    private function filterDisplayViolations(InputArgument $input, int $severityLevel, array $violations): array
+    private function filterDisplayViolations(string $display, int $severityLevel, array $violations): array
     {
-        if (ConfigInterface::DISPLAY_ALL === $input->getOption('display')) {
+        if (ConfigInterface::DISPLAY_ALL === $display) {
             return $violations;
         }
 

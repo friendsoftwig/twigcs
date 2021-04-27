@@ -44,6 +44,7 @@ final class ConfigResolver
         'exclude' => [],
         'config' => null,
         'twig-version' => null,
+        'display' => null,
     ];
 
     private $finders;
@@ -169,6 +170,19 @@ final class ConfigResolver
             default:
                 throw new \InvalidArgumentException('Invalid severity limit provided.');
         }
+    }
+
+    public function getDisplay(): string
+    {
+        if (null !== $this->options['display']) {
+            return $this->options['display'];
+        }
+
+        if (!method_exists($this->getConfig(), 'getDisplay')) {
+            return ConfigInterface::DISPLAY_ALL;
+        }
+
+        return $this->getConfig()->getDisplay();
     }
 
     public function getConfig(): ConfigInterface
