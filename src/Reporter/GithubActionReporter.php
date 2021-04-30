@@ -27,13 +27,23 @@ class GithubActionReporter implements ReporterInterface
     ];
 
     /**
+     * @var ReporterInterface
+     */
+    private $reporter;
+
+    public function __construct(ReporterInterface $reporter)
+    {
+        $this->reporter = $reporter;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function report(OutputInterface $output, array $violations)
     {
         foreach ($violations as $key => $violation) {
             $output->writeln(sprintf(
-                '::%s file=%s, line=%s, col=%s::%s',
+                '::%s file=%s,line=%s,col=%s::%s',
                 strtolower($violation->getSeverityAsString()),
                 strtr($violation->getFilename(), self::ESCAPED_PROPERTIES),
                 strtr($violation->getLine() ?? 1, self::ESCAPED_PROPERTIES),
@@ -41,5 +51,7 @@ class GithubActionReporter implements ReporterInterface
                 strtr($violation->getReason(), self::ESCAPED_DATA)
             ));
         }
+
+        $this->reporter->report($output, $violations);
     }
 }

@@ -40,7 +40,7 @@ class Container extends \ArrayObject
         };
 
         $this['reporter.githubAction'] = function () {
-            return new GithubActionReporter();
+            return new GithubActionReporter(new ConsoleReporter());
         };
 
         $this['lexer'] = function () {
