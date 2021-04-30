@@ -4,7 +4,9 @@ namespace FriendsOfTwig\Twigcs;
 
 use FriendsOfTwig\Twigcs\Reporter\CheckstyleReporter;
 use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
+use FriendsOfTwig\Twigcs\Reporter\CsvReporter;
 use FriendsOfTwig\Twigcs\Reporter\EmacsReporter;
+use FriendsOfTwig\Twigcs\Reporter\GithubActionReporter;
 use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
 use FriendsOfTwig\Twigcs\Validator\Validator;
 use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
@@ -31,6 +33,14 @@ class Container extends \ArrayObject
 
         $this['reporter.json'] = function () {
             return new JsonReporter();
+        };
+
+        $this['reporter.csv'] = function () {
+            return new CsvReporter();
+        };
+
+        $this['reporter.githubAction'] = function () {
+            return new GithubActionReporter();
         };
 
         $this['lexer'] = function () {
