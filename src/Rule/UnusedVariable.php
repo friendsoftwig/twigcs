@@ -46,6 +46,12 @@ class UnusedVariable extends AbstractRule implements RuleInterface
                 switch ($blockType) {
                     case 'embed':
                     case 'include':
+                        $templateName = $tokens->look(4);
+
+                        if (Token::NAME_TYPE === $templateName->getType()) { // {% import varName ... %}
+                            $scope->use($templateName->getValue());
+                        }
+
                         if ('with' === $tokens->look(6)->getValue()) {
                             $this->skip($tokens, 8);
                         } else {
