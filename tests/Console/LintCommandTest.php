@@ -2,6 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\Tests\Console;
 
+use FriendsOfTwig\Twigcs\Config\ConfigInterface;
 use FriendsOfTwig\Twigcs\Console\LintCommand;
 use FriendsOfTwig\Twigcs\Container;
 use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
@@ -13,7 +14,7 @@ class LintCommandTest extends TestCase
     /** @var CommandTester */
     private $commandTester;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $container = new Container();
         $command = new LintCommand();
@@ -113,7 +114,7 @@ class LintCommandTest extends TestCase
         $this->commandTester->execute([
             'paths' => ['tests/data/exclusion/bad/mixed.html.twig'],
             '--severity' => 'error',
-            '--display' => LintCommand::DISPLAY_BLOCKING,
+            '--display' => ConfigInterface::DISPLAY_BLOCKING,
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -130,7 +131,7 @@ class LintCommandTest extends TestCase
         $this->commandTester->execute([
             'paths' => ['tests/data/exclusion/bad/mixed.html.twig'],
             '--severity' => 'error',
-            '--display' => LintCommand::DISPLAY_ALL,
+            '--display' => ConfigInterface::DISPLAY_ALL,
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -148,7 +149,7 @@ class LintCommandTest extends TestCase
         $this->commandTester->execute([
             'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
-            '--display' => LintCommand::DISPLAY_ALL,
+            '--display' => ConfigInterface::DISPLAY_ALL,
             '--throw-syntax-error' => true,
         ]);
 
@@ -161,7 +162,7 @@ class LintCommandTest extends TestCase
         $this->commandTester->execute([
             'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
-            '--display' => LintCommand::DISPLAY_ALL,
+            '--display' => ConfigInterface::DISPLAY_ALL,
             '--throw-syntax-error' => false,
         ]);
 
@@ -177,7 +178,7 @@ class LintCommandTest extends TestCase
         $this->commandTester->execute([
             'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
-            '--display' => LintCommand::DISPLAY_ALL,
+            '--display' => ConfigInterface::DISPLAY_ALL,
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -221,6 +222,20 @@ l.1 c.8 : WARNING Unused variable "foo".
 tests/data/syntax_error/syntax_errors.html.twig
 l.1 c.17 : ERROR Unexpected "}".
 3 violation(s) found', $output);
+    }
+
+    public function testConfigFileWithDisplayAndSeverity()
+    {
+        $this->commandTester->execute([
+            '--config' => 'tests/data/config/external/.twig_cs_with_display_blocking.dist',
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+        $statusCode = $this->commandTester->getStatusCode();
+        $this->assertSame($statusCode, 1);
+        $this->assertStringContainsString('tests/data/syntax_error/syntax_errors.html.twig
+l.1 c.17 : ERROR Unexpected "}".
+1 violation(s) found', $output);
     }
 
     public function testConfigFileSamePathWithRulesetOverrides()

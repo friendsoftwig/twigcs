@@ -2,6 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\Console;
 
+use FriendsOfTwig\Twigcs\Config\ConfigInterface;
 use FriendsOfTwig\Twigcs\Config\ConfigResolver;
 use FriendsOfTwig\Twigcs\TwigPort\Source;
 use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
@@ -13,7 +14,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class LintCommand extends ContainerAwareCommand
 {
+    /**
+     * @deprecated use ConfigInterface::DISPLAY_BLOCKING instead
+     */
     const DISPLAY_BLOCKING = 'blocking';
+
+    /**
+     * @deprecated use ConfigInterface::DISPLAY_ALL instead
+     */
     const DISPLAY_ALL = 'all';
 
     public function configure()
@@ -23,9 +31,9 @@ class LintCommand extends ContainerAwareCommand
             ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', null)
             ->addOption('twig-version', 't', InputOption::VALUE_REQUIRED, 'The major version of twig to use.', 3)
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Excluded folder of path.', [])
-            ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.', 'warning')
+            ->addOption('severity', 's', InputOption::VALUE_OPTIONAL, 'The maximum allowed error level.')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.')
-            ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.self::DISPLAY_ALL.'" or "'.self::DISPLAY_BLOCKING.'".', self::DISPLAY_ALL)
+            ->addOption('display', 'd', InputOption::VALUE_OPTIONAL, 'The violations to display, "'.ConfigInterface::DISPLAY_ALL.'" or "'.ConfigInterface::DISPLAY_BLOCKING.'".')
             ->addOption('throw-syntax-error', 'e', InputOption::VALUE_NONE, 'Throw syntax error when a template contains an invalid token.')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use')
             ->addOption('config', null, InputOption::VALUE_REQUIRED, 'Config file to use', null)
@@ -44,6 +52,7 @@ class LintCommand extends ContainerAwareCommand
             'ruleset-class-name' => $input->getOption('ruleset'),
             'twig-version' => $input->getOption('twig-version'),
             'config' => $input->getOption('config'),
+            'display' => $input->getOption('display'),
         ]);
 
         $finders = $resolver->getFinders();
@@ -73,19 +82,19 @@ class LintCommand extends ContainerAwareCommand
             }
         }
 
-        $violations = $this->filterDisplayViolations($input, $violations);
+        $severityLimit = $resolver->getSeverityLimit();
+
+        $violations = $this->filterDisplayViolations($resolver->getDisplay(), $severityLimit, $violations);
 
         $resolver->getReporter()->report($output, $violations);
 
-        return $this->determineExitCode($input, $violations);
+        return $this->determineExitCode($severityLimit, $violations);
     }
 
-    private function determineExitCode(InputInterface $input, array $violations): int
+    private function determineExitCode(int $severityLevel, array $violations): int
     {
-        $limit = $this->getSeverityLimit($input);
-
         foreach ($violations as $violation) {
-            if ($violation->getSeverity() > $limit) {
+            if ($violation->getSeverity() > $severityLevel) {
                 return 1;
             }
         }
@@ -93,32 +102,14 @@ class LintCommand extends ContainerAwareCommand
         return 0;
     }
 
-    private function filterDisplayViolations(InputInterface $input, array $violations): array
+    private function filterDisplayViolations(string $display, int $severityLevel, array $violations): array
     {
-        if (self::DISPLAY_ALL === $input->getOption('display')) {
+        if (ConfigInterface::DISPLAY_ALL === $display) {
             return $violations;
         }
 
-        $limit = $this->getSeverityLimit($input);
-
-        return array_filter($violations, function (Violation $violation) use ($limit) {
-            return $violation->getSeverity() > $limit;
+        return array_filter($violations, function (Violation $violation) use ($severityLevel) {
+            return $violation->getSeverity() > $severityLevel;
         });
-    }
-
-    private function getSeverityLimit(InputInterface $input): int
-    {
-        switch ($input->getOption('severity')) {
-            case 'ignore':
-                return Violation::SEVERITY_IGNORE - 1;
-            case 'info':
-                return Violation::SEVERITY_INFO - 1;
-            case 'warning':
-                return Violation::SEVERITY_WARNING - 1;
-            case 'error':
-                return Violation::SEVERITY_ERROR - 1;
-            default:
-                throw new \InvalidArgumentException('Invalid severity limit provided.');
-        }
     }
 }

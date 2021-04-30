@@ -15,6 +15,7 @@ class Config implements ConfigInterface
     private $reporter = 'console';
     private $ruleset = Official::class;
     private $specificRulesets = [];
+    private $display = ConfigInterface::DISPLAY_ALL;
 
     public function __construct($name = 'default')
     {
@@ -143,6 +144,18 @@ class Config implements ConfigInterface
     public function setSpecificRulesets(array $ruleSet): self
     {
         $this->specificRulesets = $ruleSet;
+
+        return $this;
+    }
+
+    public function getDisplay(): string
+    {
+        return $this->display;
+    }
+
+    public function setDisplay(string $display): self
+    {
+        $this->display = $display;
 
         return $this;
     }
