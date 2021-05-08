@@ -17,12 +17,12 @@ class LintCommand extends ContainerAwareCommand
     /**
      * @deprecated use ConfigInterface::DISPLAY_BLOCKING instead
      */
-    const DISPLAY_BLOCKING = 'blocking';
+    public const DISPLAY_BLOCKING = 'blocking';
 
     /**
      * @deprecated use ConfigInterface::DISPLAY_ALL instead
      */
-    const DISPLAY_ALL = 'all';
+    public const DISPLAY_ALL = 'all';
 
     public function configure()
     {

@@ -19,7 +19,6 @@ class SyntaxError extends \Exception
      * Constructor.
      *
      * @param string      $message The error message
-     * @param int         $column  The template column where the error occurred
      * @param int         $lineno  The template line where the error occurred
      * @param Source|null $source  The source context where the error occurred
      */
@@ -32,9 +31,6 @@ class SyntaxError extends \Exception
         $this->source = $source;
     }
 
-    /**
-     * @return int
-     */
     public function getLineNo(): int
     {
         return $this->lineno;
@@ -72,12 +68,8 @@ class SyntaxError extends \Exception
         return $this->source ? $this->source->getPath() : null;
     }
 
-    /**
-     * @return int
-     */
     public function getColumnNo(): int
     {
         return $this->columnno;
     }
-
 }

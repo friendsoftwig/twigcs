@@ -1,0 +1,16 @@
+name: CI Coding Standards
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    name: PHP-CS-Fixer
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run PHP-CS-Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga:3.0.0
+        with:
+          args: --ansi --verbose --diff --dry-run

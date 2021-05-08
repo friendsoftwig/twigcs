@@ -16,23 +16,23 @@ class Token
     private $lineno;
     private $columnno;
 
-    const EOF_TYPE = -1;
-    const TEXT_TYPE = 0;
-    const BLOCK_START_TYPE = 1;
-    const VAR_START_TYPE = 2;
-    const BLOCK_END_TYPE = 3;
-    const VAR_END_TYPE = 4;
-    const NAME_TYPE = 5;
-    const NUMBER_TYPE = 6;
-    const STRING_TYPE = 7;
-    const OPERATOR_TYPE = 8;
-    const PUNCTUATION_TYPE = 9;
-    const INTERPOLATION_START_TYPE = 10;
-    const INTERPOLATION_END_TYPE = 11;
-    const ARROW_TYPE = 12;
-    const WHITESPACE_TYPE = 13;
-    const NEWLINE_TYPE = 14;
-    const COMMENT_TYPE = 15;
+    public const EOF_TYPE = -1;
+    public const TEXT_TYPE = 0;
+    public const BLOCK_START_TYPE = 1;
+    public const VAR_START_TYPE = 2;
+    public const BLOCK_END_TYPE = 3;
+    public const VAR_END_TYPE = 4;
+    public const NAME_TYPE = 5;
+    public const NUMBER_TYPE = 6;
+    public const STRING_TYPE = 7;
+    public const OPERATOR_TYPE = 8;
+    public const PUNCTUATION_TYPE = 9;
+    public const INTERPOLATION_START_TYPE = 10;
+    public const INTERPOLATION_END_TYPE = 11;
+    public const ARROW_TYPE = 12;
+    public const WHITESPACE_TYPE = 13;
+    public const NEWLINE_TYPE = 14;
+    public const COMMENT_TYPE = 15;
 
     public function __construct(int $type, $value, int $lineno, int $columnno)
     {

@@ -1,11 +1,12 @@
 <?php
+
 namespace FriendsOfTwig\Twigcs\Reporter;
 
-use Symfony\Component\Console\Output\OutputInterface;
 use FriendsOfTwig\Twigcs\Validator\Violation;
+use Symfony\Component\Console\Output\OutputInterface;
 
-class JsonReporter implements ReporterInterface {
-
+class JsonReporter implements ReporterInterface
+{
     /**
      * {@inheritdoc}
      *
@@ -35,6 +36,6 @@ class JsonReporter implements ReporterInterface {
             ];
         }
 
-        $output->writeln(json_encode($result, JSON_PRETTY_PRINT));
+        $output->writeln(json_encode($result, \JSON_PRETTY_PRINT));
     }
 }

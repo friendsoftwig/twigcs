@@ -11,7 +11,7 @@ class CorpusTest extends TestCase
 {
     private $commandTester;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $container = new Container();
         $command = new LintCommand();

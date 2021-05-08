@@ -36,7 +36,7 @@ class ForbiddenFunctions extends AbstractRule implements RuleInterface
      */
     public function addFunction($function)
     {
-        if (!in_array($function, $this->functions)) {
+        if (!in_array($function, $this->functions, true)) {
             $this->functions[] = $function;
         }
 
@@ -60,7 +60,7 @@ class ForbiddenFunctions extends AbstractRule implements RuleInterface
                 Token::WHITESPACE_TYPE === $tokens->look(Lexer::PREVIOUS_TOKEN)->getType() &&
                 Token::PUNCTUATION_TYPE === $tokens->look(Lexer::NEXT_TOKEN)->getType() &&
                 '(' === $tokens->look(Lexer::NEXT_TOKEN)->getValue() &&
-                in_array($token->getValue(), $this->functions)
+                in_array($token->getValue(), $this->functions, true)
             ) {
                 $violations[] = $this->createViolation(
                     $tokens->getSourceContext()->getPath(),

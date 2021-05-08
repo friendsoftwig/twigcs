@@ -34,7 +34,7 @@ abstract class AbstractRule
 
     public function createViolation(string $filename, int $line, int $column, string $reason): Violation
     {
-        return new Violation($filename, $line, $column, $reason, $this->severity, get_called_class());
+        return new Violation($filename, $line, $column, $reason, $this->severity, static::class);
     }
 
     /**

@@ -5,8 +5,9 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('tests/Fixtures/app/cache')
 ;
 
-return PhpCsFixer\Config::create()
-    ->setRiskyAllowed(true)
+$config = new PhpCsFixer\Config();
+
+return $config->setRiskyAllowed(true)
     ->setRules([
         '@PHPUnit60Migration:risky' => true,
         '@Symfony' => true,
@@ -38,12 +39,12 @@ return PhpCsFixer\Config::create()
         'no_useless_else' => true,
         'no_useless_return' => true,
         'ordered_imports' => [
-            'importsOrder' => [
+            'imports_order' => [
                 'class',
                 'function',
                 'const',
             ],
-            'sortAlgorithm' => 'alpha',
+            'sort_algorithm' => 'alpha',
         ],
         'phpdoc_order' => true,
         'strict_comparison' => true,
