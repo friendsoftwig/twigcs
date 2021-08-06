@@ -291,11 +291,11 @@ final class ConfigResolver
                 }
             }
 
-            $finders[] = TemplateFinder::create()->in($pathsByType['dir'])->append($pathsByType['file'])->exclude($this->options['exclude']);
+            $finders[] = TemplateFinder::create()->in($pathsByType['dir'])->append($pathsByType['file'])->notPath($this->options['exclude']);
         }
 
         if (0 === count($finders)) {
-            $finders[] = TemplateFinder::create()->in($this->cwd)->exclude($this->options['exclude']);
+            $finders[] = TemplateFinder::create()->in($this->cwd)->notPath($this->options['exclude']);
         }
 
         return $finders;
