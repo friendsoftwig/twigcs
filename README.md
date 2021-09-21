@@ -78,7 +78,7 @@ twigcs /path/to/views --twig-version 2
 
 ## Custom coding standard
 
-At the moment the only available standard is the [official one from twig](http://twig.sensiolabs.org/doc/coding_standards.html).
+At the moment the only available standard is the [official one from twig](https://twig.symfony.com/doc/3.x/coding_standards.html).
 
 You can create a class implementing `RulesetInterface` and supply it as a `--ruleset` option to the CLI script:
 
