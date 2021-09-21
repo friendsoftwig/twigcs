@@ -3,4 +3,5 @@
 !/bin/twigcs
 composer.lock
 twigcs.phar
+twigcs.phar.asc
 .phpunit.result.cache

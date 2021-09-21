@@ -1,0 +1,8 @@
+{
+    "stub": true,
+    "main":  "bin/twigcs",
+    "directories": ["src", "vendor"],
+    "git-version": "__VERSION__",
+    "output": "twigcs.phar",
+    "chmod": "0700"
+}

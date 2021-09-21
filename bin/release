@@ -1,10 +1,14 @@
 #!/bin/bash
 
 composer install --no-dev
-phar-composer build
+box build
 
 VERSION=$(php twigcs.phar --version)
 
 printf "\n\n"
 
 printf "Built $VERSION\n\n"
+
+gpg -u tmaindron@gmail.com --detach-sign --output twigcs.phar.asc twigcs.phar
+
+printf "Signed $VERSION\n\n"
