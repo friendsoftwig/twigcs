@@ -33,7 +33,7 @@ class LintCommand extends ContainerAwareCommand
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Excluded folder of path.', [])
             ->addOption('severity', 's', InputOption::VALUE_OPTIONAL, 'The maximum allowed error level.')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.')
-            ->addOption('display', 'd', InputOption::VALUE_OPTIONAL, 'The violations to display, "'.ConfigInterface::DISPLAY_ALL.'" or "'.ConfigInterface::DISPLAY_BLOCKING.'".')
+            ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.ConfigInterface::DISPLAY_ALL.'" or "'.ConfigInterface::DISPLAY_BLOCKING.'".')
             ->addOption('throw-syntax-error', 'e', InputOption::VALUE_NONE, 'Throw syntax error when a template contains an invalid token.')
             ->addOption('ruleset', null, InputOption::VALUE_REQUIRED, 'Ruleset class to use')
             ->addOption('config', null, InputOption::VALUE_REQUIRED, 'Config file to use', null)
