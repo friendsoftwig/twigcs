@@ -31,7 +31,7 @@ class LintCommand extends ContainerAwareCommand
             ->addArgument('paths', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, 'The path to scan for twig files.', null)
             ->addOption('twig-version', 't', InputOption::VALUE_REQUIRED, 'The major version of twig to use.', 3)
             ->addOption('exclude', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Excluded folder of path.', [])
-            ->addOption('severity', 's', InputOption::VALUE_OPTIONAL, 'The maximum allowed error level.')
+            ->addOption('severity', 's', InputOption::VALUE_REQUIRED, 'The maximum allowed error level.')
             ->addOption('reporter', 'r', InputOption::VALUE_REQUIRED, 'The reporter to use.')
             ->addOption('display', 'd', InputOption::VALUE_REQUIRED, 'The violations to display, "'.ConfigInterface::DISPLAY_ALL.'" or "'.ConfigInterface::DISPLAY_BLOCKING.'".')
             ->addOption('throw-syntax-error', 'e', InputOption::VALUE_NONE, 'Throw syntax error when a template contains an invalid token.')
