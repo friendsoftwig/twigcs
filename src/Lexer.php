@@ -20,7 +20,7 @@ class Lexer extends TwigLexer
     protected function lexExpression()
     {
         // collect whitespaces and new lines
-        if (preg_match('/\s+/A', $this->code, $match, null, $this->cursor)) {
+        if (preg_match('/\s+/A', $this->code, $match, 0, $this->cursor)) {
             if ("\n" === $match[0]) {
                 $emptyLines = [''];
             } else {
@@ -41,7 +41,7 @@ class Lexer extends TwigLexer
 
     protected function lexBlock()
     {
-        if (empty($this->brackets) && preg_match($this->regexes['lex_block'], $this->code, $match, null, $this->cursor)) {
+        if (empty($this->brackets) && preg_match($this->regexes['lex_block'], $this->code, $match, 0, $this->cursor)) {
             // Collect whitespaces in end blocks
             if (preg_match('/^(\s+)/', $match[0], $spaces)) {
                 $this->pushToken(Token::WHITESPACE_TYPE, $spaces[0]);
@@ -57,7 +57,7 @@ class Lexer extends TwigLexer
 
     protected function lexVar()
     {
-        if (empty($this->brackets) && preg_match($this->regexes['lex_var'], $this->code, $match, null, $this->cursor)) {
+        if (empty($this->brackets) && preg_match($this->regexes['lex_var'], $this->code, $match, 0, $this->cursor)) {
             // Collect whitespaces in end blocks
             if (preg_match('/^(\s+)/', $match[0], $spaces)) {
                 $this->pushToken(Token::WHITESPACE_TYPE, $spaces[0]);
