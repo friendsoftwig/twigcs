@@ -2,6 +2,7 @@
 
 namespace FriendsOfTwig\Twigcs\Reporter;
 
+use FriendsOfTwig\Twigcs\Validator\Violation;
 use Symfony\Component\Console\Output\OutputInterface;
 
 interface ReporterInterface
