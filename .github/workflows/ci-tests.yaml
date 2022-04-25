@@ -25,7 +25,7 @@ jobs:
           tools: phpunit
 
       - name: Install dependencies
-        run: composer --prefer-source -n install
+        run: composer -n install
 
       - name: Launch test
         run: bin/phpunit
