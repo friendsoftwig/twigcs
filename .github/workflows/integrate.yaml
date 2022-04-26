@@ -32,13 +32,13 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
-      - name: "Setup PHP"
+      - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
         with:
           php-version: "${{ matrix.php-version }}"
 
-      - name: "Install dependencies"
+      - name: "Install dependencies with composer"
         run: "composer -n install"
 
-      - name: "Launch test"
+      - name: "Run tests with phpunit/phpunit"
         run: "bin/phpunit"
