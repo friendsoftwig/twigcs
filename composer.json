@@ -27,9 +27,6 @@
             "FriendsOfTwig\\Twigcs\\Tests\\": "tests/"
         }
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "bin": [
         "bin/twigcs"
     ]
