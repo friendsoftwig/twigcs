@@ -31,6 +31,11 @@ class Scope
      */
     private $isolated;
 
+    /**
+     * @var Scope|null
+     */
+    private $extends;
+
     public function __construct(string $type, string $name)
     {
         $this->type = $type;
@@ -71,6 +76,21 @@ class Scope
         return $scope;
     }
 
+    public function nest(self $scope): self
+    {
+        $scope->parent = $this;
+        $this->queue[] = $scope;
+
+        return $scope;
+    }
+
+    public function extends(self $scope): self
+    {
+        $this->extends = $scope;
+
+        return $scope;
+    }
+
     public function leave(): self
     {
         return $this->parent ?? $this;
@@ -78,7 +98,7 @@ class Scope
 
     public function declare(string $name, Token $token)
     {
-        $this->queue[] = new Declaration($name, $token);
+        $this->queue[] = new Declaration($name, $token, $this);
     }
 
     public function use(string $name)
@@ -93,7 +113,16 @@ class Scope
 
     public function getQueue(): array
     {
+        if ($this->extends) {
+            return [...$this->queue, $this->extends];
+        }
+
         return $this->queue;
+    }
+
+    public function getParent(): self
+    {
+        return $this->parent;
     }
 
     public function flatten(): FlattenedScope

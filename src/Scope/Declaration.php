@@ -16,10 +16,16 @@ class Declaration
      */
     private $token;
 
-    public function __construct(string $name, Token $token)
+    /**
+     * @var Scope
+     */
+    private $origin;
+
+    public function __construct(string $name, Token $token, Scope $origin)
     {
         $this->name = $name;
         $this->token = $token;
+        $this->origin = $origin;
     }
 
     public function getName(): string
@@ -30,6 +36,11 @@ class Declaration
     public function getToken(): Token
     {
         return $this->token;
+    }
+
+    public function getOrigin(): Scope
+    {
+        return $this->origin;
     }
 
     public function __toString()

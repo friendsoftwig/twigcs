@@ -287,7 +287,7 @@ class RulesetBuilder
             ['<➀embed➊$➋ignore missing➌with➍&➎only➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')
-                ->delegate('&', 'hash')
+                ->delegate('&', 'with')
                 ->enforceSize('➊', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the source.')
                 ->enforceSize('➋', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "ignore missing".')
                 ->enforceSize('➌', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "with".')
@@ -309,7 +309,7 @@ class RulesetBuilder
             ],
             ['<➀embed➊$➌with➍&➎only➁>', $this
                 ->argTag()
-                ->delegate('$', 'expr')->delegate('&', 'hash')
+                ->delegate('$', 'expr')->delegate('&', 'with')
                 ->enforceSize('➊', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the source.')
                 ->enforceSize('➌', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "with".')
                 ->enforceSize('➍', $this->config['from']['before_source'], 'There should be %quantity% space(s) after the "with".')
@@ -317,7 +317,7 @@ class RulesetBuilder
             ],
             ['<➀embed➊$➌with➍&➁>', $this
                 ->argTag()
-                ->delegate('$', 'expr')->delegate('&', 'hash')
+                ->delegate('$', 'expr')->delegate('&', 'with')
                 ->enforceSize('➊', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the source.')
                 ->enforceSize('➌', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "with".')
                 ->enforceSize('➍', $this->config['from']['before_source'], 'There should be %quantity% space(s) after the "with".'),
@@ -338,7 +338,7 @@ class RulesetBuilder
             ['<➀include➊$➋ignore missing➌with➍&➎only➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')
-                ->delegate('&', 'hash')
+                ->delegate('&', 'with')
                 ->enforceSize('➊', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the source.')
                 ->enforceSize('➋', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "ignore missing".')
                 ->enforceSize('➌', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "with".')
@@ -361,7 +361,7 @@ class RulesetBuilder
             ['<➀include➊$➌with➍&➎only➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')
-                ->delegate('&', 'hash')
+                ->delegate('&', 'with')
                 ->enforceSize('➊', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the source.')
                 ->enforceSize('➌', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "with".')
                 ->enforceSize('➍', $this->config['from']['before_source'], 'There should be %quantity% space(s) after the "with".')
@@ -370,7 +370,7 @@ class RulesetBuilder
             ['<➀include➊$➌with➍&➁>', $this
                 ->argTag()
                 ->delegate('$', 'expr')
-                ->delegate('&', 'hash')
+                ->delegate('&', 'with')
                 ->enforceSize('➊', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the source.')
                 ->enforceSize('➌', $this->config['from']['before_source'], 'There should be %quantity% space(s) before the "with".')
                 ->enforceSize('➍', $this->config['from']['before_source'], 'There should be %quantity% space(s) after the "with".'),
@@ -695,11 +695,16 @@ class RulesetBuilder
             ],
         ]);
 
+        $with = $this->using(self::OP_VARS, [
+            ['$', $this->handle()->noop()],
+        ]);
+
         return [
             'expr' => array_merge($tags, $ops, $fallback),
             'list' => $list,
             'argsList' => $argsList,
             'hash' => array_merge($hash, $hashFallback),
+            'with' => array_merge($hash, $with),
             'imports' => $imports,
             'arrayOrSlice' => array_merge($slice, $array),
         ];
