@@ -1,5 +1,5 @@
 /vendor/
-composer.lock
-twigcs.phar
-twigcs.phar.asc
-.phpunit.result.cache
+/.phpunit.result.cache
+/composer.lock
+/twigcs.phar
+/twigcs.phar.asc
