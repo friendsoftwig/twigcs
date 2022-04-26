@@ -1,4 +1,4 @@
-name: CI Tests
+name: Integrate
 on:
   release:
     types: [opened, reopened]
