@@ -1,5 +1,7 @@
 # Twigcs
 
+[![Integrate](https://github.com/friendsoftwig/twigcs/workflows/Integrate/badge.svg)](https://github.com/friendsoftwig/twigcs/actions)
+
 The missing checkstyle for twig!
 
 Twigcs aims to be what [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) is to php. It checks your codebase for
