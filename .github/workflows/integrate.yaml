@@ -34,4 +34,4 @@ jobs:
         run: "composer -n install"
 
       - name: "Run tests with phpunit/phpunit"
-        run: "bin/phpunit"
+        run: "vendor/bin/phpunit"
