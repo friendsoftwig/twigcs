@@ -1,18 +1,27 @@
 name: Integrate
 on:
   release:
-    types: [opened, reopened]
+    types:
+      - opened
+      - reopened
   push:
   pull_request:
-    types: [opened, reopened]
+    types:
+      - opened
+      - reopened
 
 jobs:
   run:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-latest, macos-latest ]
-        php-versions: [ '7.4', '8.0', '8.1' ]
+        operating-system:
+          - ubuntu-latest
+          - macos-latest
+        php-versions:
+          - '7.4'
+          - '8.0'
+          - '8.1'
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
       - name: Checkout
