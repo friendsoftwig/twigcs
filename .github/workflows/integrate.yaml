@@ -23,7 +23,7 @@ jobs:
           - "ubuntu-latest"
           - "macos-latest"
 
-        php-versions:
+        php-version:
           - "7.4"
           - "8.0"
           - "8.1"
@@ -35,7 +35,7 @@ jobs:
       - name: "Setup PHP"
         uses: "shivammathur/setup-php@v2"
         with:
-          php-version: "${{ matrix.php-versions }}"
+          php-version: "${{ matrix.php-version }}"
 
       - name: "Install dependencies"
         run: "composer -n install"
