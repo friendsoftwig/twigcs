@@ -1,18 +1,20 @@
 name: "Integrate"
 
 on:
-  release:
+  pull_request:
     types:
       - "opened"
       - "reopened"
   push:
-  pull_request:
+  release:
     types:
       - "opened"
       - "reopened"
 
 jobs:
   tests:
+    name: "Tests"
+
     runs-on: "${{ matrix.operating-system }}"
 
     strategy:
@@ -25,8 +27,6 @@ jobs:
           - "7.4"
           - "8.0"
           - "8.1"
-
-    name: "Tests"
 
     steps:
       - name: "Checkout"
