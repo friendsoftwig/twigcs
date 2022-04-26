@@ -1,15 +1,8 @@
 name: "Integrate"
 
 on:
-  pull_request:
-    types:
-      - "opened"
-      - "reopened"
-  push:
-  release:
-    types:
-      - "opened"
-      - "reopened"
+  pull_request: null
+  push: null
 
 jobs:
   tests:
