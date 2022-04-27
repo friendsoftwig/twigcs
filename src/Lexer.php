@@ -14,8 +14,8 @@ use FriendsOfTwig\Twigcs\TwigPort\TwigLexer;
  */
 class Lexer extends TwigLexer
 {
-    const PREVIOUS_TOKEN = -1;
-    const NEXT_TOKEN = 1;
+    public const PREVIOUS_TOKEN = -1;
+    public const NEXT_TOKEN = 1;
 
     protected function lexExpression()
     {
@@ -28,7 +28,7 @@ class Lexer extends TwigLexer
             }
 
             foreach ($emptyLines as $line) {
-                if (0 === strlen($line)) {
+                if ('' === $line) {
                     $this->pushToken(Token::NEWLINE_TYPE);
                 } else {
                     $this->pushToken(Token::WHITESPACE_TYPE, $line);
@@ -73,7 +73,7 @@ class Lexer extends TwigLexer
 
     protected function lexComment()
     {
-        if (!preg_match($this->regexes['lex_comment'], $this->code, $match, PREG_OFFSET_CAPTURE, $this->cursor)) {
+        if (!preg_match($this->regexes['lex_comment'], $this->code, $match, \PREG_OFFSET_CAPTURE, $this->cursor)) {
             throw new SyntaxError('Unclosed comment.', $this->lineno, $this->columnno, $this->source);
         }
 

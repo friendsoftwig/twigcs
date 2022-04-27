@@ -12,7 +12,7 @@ class ForbiddenFunctionsTest extends TestCase
 {
     private $tokens;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $lexer = new Lexer();
         $source = new Source(
