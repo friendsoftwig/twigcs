@@ -40,12 +40,12 @@ return $config
         'no_useless_else' => true,
         'no_useless_return' => true,
         'ordered_imports' => [
-            'importsOrder' => [
+            'imports_order' => [
                 'class',
                 'function',
                 'const',
             ],
-            'sortAlgorithm' => 'alpha',
+            'sort_algorithm' => 'alpha',
         ],
         'phpdoc_order' => true,
         'strict_comparison' => true,
