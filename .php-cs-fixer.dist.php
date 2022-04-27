@@ -5,7 +5,9 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('tests/Fixtures/app/cache')
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+
+return $config
     ->setRiskyAllowed(true)
     ->setRules([
         '@PHPUnit60Migration:risky' => true,
