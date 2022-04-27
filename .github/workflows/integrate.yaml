@@ -5,6 +5,28 @@ on:
   push: null
 
 jobs:
+  coding-standards:
+    name: "Coding Standards"
+
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Set up PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+
+      - name: "Run friendsofphp/php-cs-fixer"
+        run: ".phive/php-cs-fixer fix --ansi --diff --dry-run --verbose"
+
   tests:
     name: "Tests"
 

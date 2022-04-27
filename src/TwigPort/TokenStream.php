@@ -37,7 +37,7 @@ final class TokenStream
             $token = $this->tokens[$this->current - 1];
             $line = $token->getLine();
             $column = $token->getColumn();
-            throw new SyntaxError('Unexpected end of template.',$line, $column, $this->source);
+            throw new SyntaxError('Unexpected end of template.', $line, $column, $this->source);
         }
 
         return $this->tokens[$this->current - 1];

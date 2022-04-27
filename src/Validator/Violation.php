@@ -44,7 +44,7 @@ class Violation
      * @param $line
      * @param $column
      * @param $reason
-     * @param int $severity
+     * @param int    $severity
      * @param string $source
      */
     public function __construct($filename, $line, $column, $reason, $severity = self::SEVERITY_ERROR, $source = 'unknown')
