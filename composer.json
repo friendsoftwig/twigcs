@@ -13,6 +13,7 @@
         "ext-ctype": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
+        "ext-simplexml": "*",
         "symfony/console": "^4.4 || ^5.3 || ^6.0",
         "symfony/filesystem": "^4.4 || ^5.3 || ^6.0",
         "symfony/finder": "^4.4 || ^5.3 || ^6.0"
