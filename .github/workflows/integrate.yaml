@@ -22,6 +22,7 @@ jobs:
       - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
         with:
+          coverage: "none"
           php-version: "${{ matrix.php-version }}"
 
       - name: "Run friendsofphp/php-cs-fixer"
@@ -46,6 +47,7 @@ jobs:
       - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
         with:
+          coverage: "none"
           php-version: "${{ matrix.php-version }}"
 
       - name: "Install dependencies with composer"
