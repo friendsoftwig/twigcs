@@ -4,7 +4,7 @@ namespace FriendsOfTwig\Twigcs\RegEngine\Sanitizer;
 
 class StringSanitizer
 {
-    const NEUTRAL_CHAR = 'A';
+    public const NEUTRAL_CHAR = 'A';
 
     public function sanitize(string $expr)
     {

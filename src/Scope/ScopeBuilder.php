@@ -14,8 +14,8 @@ use FriendsOfTwig\Twigcs\Util\StreamNavigator;
  */
 class ScopeBuilder
 {
-    const MODE_MACRO = 0;
-    const MODE_VARIABLE = 1;
+    public const MODE_MACRO = 0;
+    public const MODE_VARIABLE = 1;
 
     private int $mode;
     private int $maxDepth = 5;

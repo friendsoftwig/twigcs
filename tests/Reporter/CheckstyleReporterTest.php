@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class CheckstyleReporterTest extends TestCase
 {
-    const EXPECTED_REPORT = <<<EOF
+    public const EXPECTED_REPORT = <<<EOF
 <?xml version="1.0"?>
 <checkstyle version="1.0.0"><file name="template.twig"><error column="20" line="10" severity="error" message="You are not allowed to do that." source="unknown"/></file></checkstyle>
 

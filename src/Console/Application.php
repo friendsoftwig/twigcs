@@ -8,8 +8,8 @@ use Symfony\Component\Console\Command\Command;
 
 class Application extends BaseApplication
 {
-    const NAME = 'twigcs';
-    const VERSION = '@__VERSION__@';
+    public const NAME = 'twigcs';
+    public const VERSION = '@__VERSION__@';
 
     /**
      * @var Container

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class JsonReporterTest extends TestCase
 {
-    const EXPECTED_REPORT = <<<EOF
+    public const EXPECTED_REPORT = <<<EOF
 {
     "failures": 1,
     "files": [
@@ -28,7 +28,7 @@ class JsonReporterTest extends TestCase
 }
 EOF;
 
-    const EXPECTED_REPORT_MULTIPLE = <<<EOF
+    public const EXPECTED_REPORT_MULTIPLE = <<<EOF
 {
     "failures": 2,
     "files": [

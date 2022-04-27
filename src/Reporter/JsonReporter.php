@@ -36,6 +36,6 @@ class JsonReporter implements ReporterInterface
             ];
         }
 
-        $output->writeln(json_encode($result, JSON_PRETTY_PRINT));
+        $output->writeln(json_encode($result, \JSON_PRETTY_PRINT));
     }
 }

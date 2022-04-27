@@ -4,10 +4,10 @@ namespace FriendsOfTwig\Twigcs\Validator;
 
 class Violation
 {
-    const SEVERITY_INFO = 1;
-    const SEVERITY_WARNING = 2;
-    const SEVERITY_ERROR = 3;
-    const SEVERITY_IGNORE = 4;
+    public const SEVERITY_INFO = 1;
+    public const SEVERITY_WARNING = 2;
+    public const SEVERITY_ERROR = 3;
+    public const SEVERITY_IGNORE = 4;
 
     /**
      * @var int

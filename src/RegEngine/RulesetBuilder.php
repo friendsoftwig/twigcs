@@ -6,7 +6,7 @@ use FriendsOfTwig\Twigcs\RegEngine\Checker\Handler;
 
 class RulesetBuilder
 {
-    const OP_VARS = [
+    public const OP_VARS = [
         '➀' => '\s*',
         '➁' => '\s*',
         '➂' => '\s*',
@@ -33,7 +33,7 @@ class RulesetBuilder
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
-    const TAGS_VARS = [
+    public const TAGS_VARS = [
         '➀' => '\s*',
         '➁' => '\s*',
         '➂' => '\s*',
@@ -66,7 +66,7 @@ class RulesetBuilder
         '}' => '[~-]?}}',
     ];
 
-    const LIST_VARS = [
+    public const LIST_VARS = [
         '➀' => '\s*',
         '➁' => '\s*',
         '➂' => '\s*',
@@ -96,7 +96,7 @@ class RulesetBuilder
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
-    const IMPORTS_VARS = [
+    public const IMPORTS_VARS = [
         '➀' => '\s*',
         '➁' => '\s*',
         '➂' => '\s*',
@@ -125,7 +125,7 @@ class RulesetBuilder
         '@' => '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*',
     ];
 
-    const SLICE_VARS = [
+    public const SLICE_VARS = [
         '➀' => '\s*',
         '➁' => '\s*',
         '➂' => '\s*',
@@ -150,7 +150,7 @@ class RulesetBuilder
         '$' => '(?:[^\?]|\n|\r)+?', // Excludes ternary from slice detection
     ];
 
-    const FALLBACK_VARS = [
+    public const FALLBACK_VARS = [
         '➀' => '\s*',
         '➁' => '\s*',
         '➂' => '\s*',
