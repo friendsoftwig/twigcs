@@ -49,7 +49,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
 
       - name: "Install dependencies with composer"
-        run: "composer -n install"
+        run: "composer install --no-progress"
 
       - name: "Run tests with phpunit/phpunit"
         run: "vendor/bin/phpunit"
