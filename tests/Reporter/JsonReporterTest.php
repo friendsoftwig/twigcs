@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class JsonReporterTest extends TestCase
 {
-const EXPECTED_REPORT = <<<EOF
+    const EXPECTED_REPORT = <<<EOF
 {
     "failures": 1,
     "files": [
@@ -28,7 +28,7 @@ const EXPECTED_REPORT = <<<EOF
 }
 EOF;
 
-const EXPECTED_REPORT_MULTIPLE = <<<EOF
+    const EXPECTED_REPORT_MULTIPLE = <<<EOF
 {
     "failures": 2,
     "files": [
@@ -97,7 +97,7 @@ EOF;
 
         $reporter->report($output, [
             new Violation('first.twig', 1, 2, 'This is the first file.'),
-            new Violation('second.twig', 10, 20, "This is the second file.", Violation::SEVERITY_INFO),
+            new Violation('second.twig', 10, 20, 'This is the second file.', Violation::SEVERITY_INFO),
         ]);
     }
 }
