@@ -1,0 +1,20 @@
+{
+    "symbol-whitelist": [
+        "array",
+        "bool",
+        "callable",
+        "false",
+        "float",
+        "int",
+        "iterable",
+        "null",
+        "object",
+        "parent",
+        "self",
+        "split",
+        "static",
+        "string",
+        "true",
+        "void"
+    ]
+}
