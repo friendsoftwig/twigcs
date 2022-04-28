@@ -108,7 +108,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
 
       - name: "Install dependencies with composer"
-        run: "composer install --ansi --no-progress"
+        run: "composer install --ansi --no-dev --no-progress"
 
       - name: "Validate box.json.dist with humbug/box"
         run: ".phive/box validate"
