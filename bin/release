@@ -1,7 +1,7 @@
 #!/bin/bash
 
 composer install --no-dev
-box build
+.phive/box build
 
 VERSION=$(php twigcs.phar --version)
 
