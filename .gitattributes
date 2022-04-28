@@ -8,3 +8,5 @@
 /box.json.dist                  export-ignore
 /composer-require-checker.json  export-ignore
 /phpunit.xml.dist               export-ignore
+/psalm-baseline.xml             export-ignore
+/psalm.xml                      export-ignore

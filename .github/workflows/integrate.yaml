@@ -87,6 +87,32 @@ jobs:
       - name: "Run maglnet/composer-require-checker"
         run: ".phive/composer-require-checker check --config-file=$(pwd)/composer-require-checker.json"
 
+  static-code-analysis:
+    name: "Static Code Analysis"
+
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v3"
+
+      - name: "Set up PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          coverage: "none"
+          php-version: "${{ matrix.php-version }}"
+
+      - name: "Install dependencies with composer"
+        run: "composer install --ansi --no-progress"
+
+      - name: "Run vimeo/psalm"
+        run: ".phive/psalm --config=psalm.xml --output-format=github --shepherd --show-info=false --stats --threads=4"
+
   tests:
     name: "Tests"
 
