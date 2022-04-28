@@ -23,6 +23,7 @@ return $config
         'braces' => [
             'allow_single_line_closure' => true,
         ],
+        'native_function_invocation' => false,
         'no_extra_blank_lines' => [
             'tokens' => [
                 'break',
@@ -39,6 +40,7 @@ return $config
         'no_superfluous_phpdoc_tags' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
+        'non_printable_character' => false,
         'ordered_imports' => [
             'imports_order' => [
                 'class',
@@ -51,8 +53,6 @@ return $config
         'strict_comparison' => true,
         'strict_param' => true,
         'ternary_to_null_coalescing' => true,
-        'native_function_invocation' => false,
-        'non_printable_character' => false,
     ])
     ->setFinder($finder)
 ;
