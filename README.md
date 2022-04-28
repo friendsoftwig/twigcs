@@ -204,3 +204,5 @@ The master is the development branch, if you find any bug or false positive duri
 open an issue or submit a pull request.
 
 When creating or changing a class, don't forget to add you as an `@author` at the top of the file.
+
+Please have a look at [`CONTRIBUTING.md`](.github/CONTRIBUTING.md).
