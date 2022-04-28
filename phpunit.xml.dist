@@ -3,8 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     backupGlobals="false"
-    colors="true"
     bootstrap="vendor/autoload.php"
+    colors="true"
 >
     <testsuites>
         <testsuite name="Project Test Suite">
