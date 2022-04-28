@@ -15,6 +15,7 @@ help: ## Displays this list of targets with descriptions
 
 .PHONY: phar
 phar: vendor ## Compiles a phar with humbug/box
+	.phive/box validate
 	.phive/box build
 	php twigcs.phar --version
 
