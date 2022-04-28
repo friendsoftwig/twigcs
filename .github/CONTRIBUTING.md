@@ -13,7 +13,7 @@ We are using [`friendsofphp/php-cs-fixer`](https://github.com/FriendsOfPHP/PHP-C
 Run
 
 ```sh
-.phive/php-cs-fixer fix
+make coding-standards
 ```
 
 to automatically fix coding standard violations.
@@ -25,7 +25,7 @@ We are using [`maglnet/composer-require-checker`](https://github.com/maglnet/Com
 Run
 
 ```sh
-.phive/composer-require-checker check --config-file=$(shell pwd)/composer-require-checker.json
+make dependency-analysis
 ```
 
 to run a dependency analysis.
@@ -37,7 +37,7 @@ We are using [`vimeo/psalm`](https://github.com/vimeo/psalm) to statically analy
 Run
 
 ```sh
-.phive/psalm --config=psalm.xml --show-info=false --stats
+make static-code-analysis
 ```
 
 to run a static code analysis.
@@ -47,7 +47,7 @@ We are also using the baseline feature of [`vimeo/psalm`](https://psalm.dev/docs
 Run
 
 ```sh
-.phive/psalm --config=psalm.xml --set-baseline=psalm-baseline.xml
+make static-code-analysis-baseline
 ```
 
 to regenerate the baseline in [`../psalm-baseline.xml`](../psalm-baseline.xml).
@@ -61,7 +61,27 @@ We are using [`phpunit/phpunit`](https://github.com/sebastianbergmann/phpunit) t
 Run
 
 ```sh
-vendor/bin/phpunit
+make tests
 ```
 
 to run all the tests.
+
+## Extra lazy?
+
+Run
+
+```sh
+make
+```
+
+to enforce coding standards, run a static code analysis, and run tests!
+
+## Help
+
+:bulb: Run
+
+```sh
+make help
+```
+
+to display a list of available targets with corresponding descriptions.
