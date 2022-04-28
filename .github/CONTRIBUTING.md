@@ -30,6 +30,18 @@ make dependency-analysis
 
 to run a dependency analysis.
 
+## Phar
+
+We are using [`humbug/box`](https://github.com/box-project/box) to compile a Phar.
+
+Run
+
+```sh
+make phar
+```
+
+to compile a Phar.
+
 ## Static Code Analysis
 
 We are using [`vimeo/psalm`](https://github.com/vimeo/psalm) to statically analyze the code.
