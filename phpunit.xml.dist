@@ -6,6 +6,11 @@
     bootstrap="vendor/autoload.php"
     colors="true"
 >
+    <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </coverage>
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
