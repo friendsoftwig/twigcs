@@ -5,6 +5,7 @@
     backupGlobals="false"
     bootstrap="vendor/autoload.php"
     colors="true"
+    verbose="true"
 >
     <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
         <include>
