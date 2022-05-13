@@ -35,17 +35,11 @@ class Config implements ConfigInterface
         return new static();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -53,17 +47,11 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFinders(): array
     {
         return $this->finders;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setFinder($finder): self
     {
         if (false === \is_array($finder) && false === $finder instanceof \Traversable) {
@@ -86,17 +74,11 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSeverity(): string
     {
         return $this->severity;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setSeverity(string $severity): self
     {
         $this->severity = $severity;
@@ -104,17 +86,11 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getReporter(): string
     {
         return $this->reporter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setReporter(string $reporter): self
     {
         $this->reporter = $reporter;
@@ -122,17 +98,11 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRuleset(): string
     {
         return $this->ruleset;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setRuleset(string $ruleSet): self
     {
         $this->ruleset = $ruleSet;
@@ -140,17 +110,11 @@ class Config implements ConfigInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTemplateResolver(): TemplateResolverInterface
     {
         return $this->loader;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTemplateResolver(TemplateResolverInterface $loader): self
     {
         $this->loader = $loader;

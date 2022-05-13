@@ -32,9 +32,6 @@ class RegEngineRule extends AbstractRule implements RuleInterface
         parent::__construct($severity);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function check(TokenStream $tokens)
     {
         $violations = [];

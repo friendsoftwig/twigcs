@@ -36,9 +36,6 @@ class GithubActionReporter implements ReporterInterface
         $this->reporter = $reporter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function report(OutputInterface $output, array $violations)
     {
         foreach ($violations as $key => $violation) {
