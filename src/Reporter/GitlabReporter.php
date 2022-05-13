@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FriendsOfTwig\Twigcs\Reporter;
@@ -14,6 +15,7 @@ class GitlabReporter implements ReporterInterface
 {
     /**
      * {@inheritdoc}
+     *
      * @param Violation[] $violations
      *
      * @throws JsonException
@@ -23,7 +25,7 @@ class GitlabReporter implements ReporterInterface
         $errors = [];
 
         foreach ($violations as $violation) {
-            switch($violation->getSeverity()) {
+            switch ($violation->getSeverity()) {
                 case Violation::SEVERITY_INFO:
                     $severity = 'info';
                     break;
@@ -40,7 +42,7 @@ class GitlabReporter implements ReporterInterface
                 'fingerprint' => hash(
                     'sha256',
                     implode(
-                        [
+                        '', [
                             $violation->getFilename(),
                             $violation->getLine(),
                             $violation->getColumn(),
@@ -48,9 +50,9 @@ class GitlabReporter implements ReporterInterface
                         ]
                     )
                 ),
-                'severity'    => $severity,
-                'location'    => [
-                    'path'  => $violation->getFilename(),
+                'severity' => $severity,
+                'location' => [
+                    'path' => $violation->getFilename(),
                     'lines' => [
                         'begin' => $violation->getLine(),
                     ],
@@ -58,6 +60,6 @@ class GitlabReporter implements ReporterInterface
             ];
         }
 
-        $output->writeln(json_encode($errors, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
+        $output->writeln(json_encode($errors, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT));
     }
 }

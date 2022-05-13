@@ -10,6 +10,7 @@ use FriendsOfTwig\Twigcs\Reporter\GithubActionReporter;
 use FriendsOfTwig\Twigcs\Reporter\GitlabReporter;
 use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
+use FriendsOfTwig\Twigcs\Reporter\ReporterInterface;
 use FriendsOfTwig\Twigcs\Validator\Validator;
 
 class Container extends \ArrayObject
@@ -44,7 +45,7 @@ class Container extends \ArrayObject
             return new GithubActionReporter(new ConsoleReporter());
         };
 
-        $this['reporter.gitlab'] = function () {
+        $this['reporter.gitlab'] = function (): ReporterInterface {
             return new GitlabReporter();
         };
 
