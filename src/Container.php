@@ -7,6 +7,7 @@ use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
 use FriendsOfTwig\Twigcs\Reporter\CsvReporter;
 use FriendsOfTwig\Twigcs\Reporter\EmacsReporter;
 use FriendsOfTwig\Twigcs\Reporter\GithubActionReporter;
+use FriendsOfTwig\Twigcs\Reporter\GitlabReporter;
 use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 use FriendsOfTwig\Twigcs\Reporter\JUnitReporter;
 use FriendsOfTwig\Twigcs\Validator\Validator;
@@ -41,6 +42,10 @@ class Container extends \ArrayObject
 
         $this['reporter.githubAction'] = function () {
             return new GithubActionReporter(new ConsoleReporter());
+        };
+
+        $this['reporter.gitlab'] = function () {
+            return new GitlabReporter();
         };
 
         $this['lexer'] = function () {
