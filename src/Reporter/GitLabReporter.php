@@ -16,8 +16,6 @@ final class GitLabReporter implements ReporterInterface
     /**
      * {@inheritdoc}
      *
-     * @param Violation[] $violations
-     *
      * @throws JsonException
      */
     public function report(OutputInterface $output, array $violations): void
