@@ -31,15 +31,16 @@ twigcs /project/dir/app/Resources/views
 ```
 
 You will get a summary of the violations in the console. The exit code of the command is based on the severity
-of any violation found. By default, twigcs only tolerates notices, this can be changed at run time:
+of any violation found. By default, twigcs only tolerates info, this can be changed at run time:
 
 ```bash
-twigcs /path/to/views --severity error # Allows notices and warnings
-twigcs /path/to/views --severity notice # Disallows notices
-twigcs /path/to/views --severity ignore # Allows everything
+twigcs /path/to/views --severity error   # Allows info and warnings
+twigcs /path/to/views --severity warning # Allows info
+twigcs /path/to/views --severity info    # Disallows info
+twigcs /path/to/views --severity ignore  # Allows everything
 ```
 
-With the example above, notices are still displayed but not altering the exit code.
+With the example above, info is still displayed but not altering the exit code.
 
 You can also exclude relative subfolders of path like this:
 
@@ -70,6 +71,20 @@ the CI job if it failed or succeeded. You can also have a nice xml report (check
 
 ```bash
 twigcs /path/to/views --reporter checkstyle > /path/to/report.xml
+```
+
+## Reporters
+
+Twigcs currently supports to following reporters:
+
+```bash
+twigcs /path/to/views --reporter console
+twigcs /path/to/views --reporter checkstyle
+twigcs /path/to/views --reporter junit
+twigcs /path/to/views --reporter emacs
+twigcs /path/to/views --reporter json
+twigcs /path/to/views --reporter csv
+twigcs /path/to/views --reporter githubAction
 ```
 
 ## Using older twig versions
