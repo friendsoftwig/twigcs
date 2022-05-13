@@ -13,6 +13,7 @@ use function json_encode;
 
 /**
  * Code Quality report format supported by GitLab
+ *
  * @see https://docs.gitlab.com/ee/user/project/merge_requests/code_quality.html#implementing-a-custom-tool
  */
 final class GitLabReporter implements ReporterInterface
