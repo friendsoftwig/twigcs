@@ -11,7 +11,7 @@ use function hash;
 use function implode;
 use function json_encode;
 
-class GitlabReporter implements ReporterInterface
+final class GitLabReporter implements ReporterInterface
 {
     /**
      * {@inheritdoc}

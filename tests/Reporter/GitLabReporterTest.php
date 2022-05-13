@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace FriendsOfTwig\Twigcs\Tests\Reporter;
 
-use FriendsOfTwig\Twigcs\Reporter\GitlabReporter;
+use FriendsOfTwig\Twigcs\Reporter\GitLabReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
-use JsonException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-class GitlabReporterTest extends TestCase
+final class GitLabReporterTest extends TestCase
 {
     public const EXPECTED_REPORT = <<<EOF
 [
@@ -50,12 +49,9 @@ class GitlabReporterTest extends TestCase
 ]
 EOF;
 
-    /**
-     * @throws JsonException
-     */
     public function testReport(): void
     {
-        $reporter = new GitlabReporter();
+        $reporter = new GitLabReporter();
         $output = $this->createMock(ConsoleOutput::class);
 
         $output
