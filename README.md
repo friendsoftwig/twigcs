@@ -85,6 +85,7 @@ twigcs /path/to/views --reporter emacs
 twigcs /path/to/views --reporter json
 twigcs /path/to/views --reporter csv
 twigcs /path/to/views --reporter githubAction
+twigcs /path/to/views --reporter gitlab
 ```
 
 ## Using older twig versions
