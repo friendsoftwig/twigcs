@@ -52,8 +52,15 @@ class Container extends \ArrayObject
         };
     }
 
+    /**
+     * @throws \RuntimeException
+     */
     public function get(string $key)
     {
+        if (!$this->offsetExists($key)) {
+            throw new \RuntimeException(sprintf('A service with the identifier "%s" has not been registered.', $key));
+        }
+
         return call_user_func($this[$key]);
     }
 }
