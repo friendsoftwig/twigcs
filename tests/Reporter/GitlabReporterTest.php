@@ -23,6 +23,28 @@ class GitlabReporterTest extends TestCase
                 "begin": 10
             }
         }
+    },
+    {
+        "description": "You should not do that.",
+        "fingerprint": "3068464e6cfb4c459076c2b5e910b8d99a80bbbadb1ff1e3e1551a71352ca3e2",
+        "severity": "minor",
+        "location": {
+            "path": "template.twig",
+            "lines": {
+                "begin": 10
+            }
+        }
+    },
+    {
+        "description": "You might not want to do that.",
+        "fingerprint": "b2b519c15c4819fe59ccff92544b35c1dd331a41d0ec138dc3f6b966d0362187",
+        "severity": "info",
+        "location": {
+            "path": "template.twig",
+            "lines": {
+                "begin": 10
+            }
+        }
     }
 ]
 EOF;
@@ -43,6 +65,8 @@ EOF;
 
         $reporter->report($output, [
             new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
+            new Violation('template.twig', 10, 20, 'You should not do that.', Violation::SEVERITY_WARNING),
+            new Violation('template.twig', 10, 20, 'You might not want to do that.', Violation::SEVERITY_INFO),
         ]);
     }
 }
