@@ -26,9 +26,6 @@ class Official implements RulesetInterface, TemplateResolverAwareInterface
         $this->resolver = new NullResolver();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRules()
     {
         $configurator = new RulesetConfigurator();

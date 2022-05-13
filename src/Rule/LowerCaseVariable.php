@@ -8,9 +8,6 @@ use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 
 class LowerCaseVariable extends AbstractRule implements RuleInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function check(TokenStream $tokens)
     {
         $violations = [];

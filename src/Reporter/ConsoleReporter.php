@@ -6,9 +6,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ConsoleReporter implements ReporterInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function report(OutputInterface $output, array $violations)
     {
         $filename = null;

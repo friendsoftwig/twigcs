@@ -6,9 +6,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class EmacsReporter implements ReporterInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function report(OutputInterface $output, array $violations)
     {
         foreach ($violations as $violation) {

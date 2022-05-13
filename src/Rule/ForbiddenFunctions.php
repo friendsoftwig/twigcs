@@ -43,9 +43,6 @@ class ForbiddenFunctions extends AbstractRule implements RuleInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function check(TokenStream $tokens)
     {
         if (empty($this->functions)) {

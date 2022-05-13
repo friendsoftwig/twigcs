@@ -13,9 +13,6 @@ use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
  */
 class TrailingSpace extends AbstractRule implements RuleInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function check(TokenStream $tokens)
     {
         $violations = [];
