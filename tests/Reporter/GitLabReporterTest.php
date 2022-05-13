@@ -53,7 +53,7 @@ EOF;
     public function testReport(): void
     {
         $reporter = new GitLabReporter();
-        $output   = $this->createMock(ConsoleOutput::class);
+        $output = $this->createMock(ConsoleOutput::class);
 
         $output
             ->expects($this->once())
@@ -70,7 +70,7 @@ EOF;
     public function testReportWithJsonException(): void
     {
         $reporter = new GitLabReporter();
-        $output   = $this->createMock(ConsoleOutput::class);
+        $output = $this->createMock(ConsoleOutput::class);
 
         $this->expectException(JsonException::class);
         $reporter->report($output, [new Violation('template.twig', 10, 20, "Error message with latin1 character \xE7")]);
