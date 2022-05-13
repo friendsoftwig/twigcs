@@ -175,7 +175,7 @@ final class ConfigResolver
             case 'error':
                 return Violation::SEVERITY_ERROR - 1;
             default:
-                throw new \InvalidArgumentException('Invalid severity limit provided.');
+                throw new \InvalidArgumentException('Invalid severity limit provided. Valid values are: ignore, info, warning, or error');
         }
     }
 
