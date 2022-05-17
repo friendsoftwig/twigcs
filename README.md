@@ -121,7 +121,7 @@ For more complex needs, have a look at the [custom ruleset documentation](doc/ru
 Using configuration, you can easily store per-project settings:
 
 ```php
-// ~/.twig_cs.dist
+// ~/.twig_cs.dist.php
 <?php
 
 return \FriendsOfTwig\Twigcs\Config\Config::create()
@@ -140,7 +140,7 @@ you must use the `--config` option:
 
 ```
 cd ~/dirA
-twigcs --config ~/dirB/.twig_cs.dist # Will lint templates in ~/dirA with the config of ~/dirB
+twigcs --config ~/dirB/.twig_cs.dist.php # Will lint templates in ~/dirA with the config of ~/dirB
 ```
 
 By default, the files `.twig_cs.php`, `.twig_cs.dist.php`, `.twig_cs` and `.twig_cs.dist` are looked up in your current working directory (CWD).
@@ -148,7 +148,7 @@ By default, the files `.twig_cs.php`, `.twig_cs.dist.php`, `.twig_cs` and `.twig
 You can also provide finders inside config files, they will completely replace the path in the CLI:
 
 ```php
-// ~/.twig_cs.dist
+// ~/.twig_cs.dist.php
 <?php
 
 $finderA = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirA');
