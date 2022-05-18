@@ -188,7 +188,7 @@ return \FriendsOfTwig\Twigcs\Config\Config::create()
 
 Here is a more complex example that uses a chain resolver and a namespaced resolver to handle vendor templates:
 
-```
+```php
 <?php
 
 use FriendsOfTwig\Twigcs\TemplateResolver;
