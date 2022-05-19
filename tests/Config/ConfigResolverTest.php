@@ -119,7 +119,7 @@ PHP;
             $availableDefaultConfigFilePath = sprintf(
                 '%s/%s',
                 self::temporaryDirectory(),
-                $defaultConfigFileName
+                $availableDefaultConfigFileName
             );
 
             self::fileSystem()->dumpFile(
