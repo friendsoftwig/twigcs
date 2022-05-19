@@ -338,8 +338,8 @@ final class ConfigResolver
 
         return [
             $configDir.\DIRECTORY_SEPARATOR.'.twig_cs.php',
-            $configDir.\DIRECTORY_SEPARATOR.'.twig_cs.dist.php',
             $configDir.\DIRECTORY_SEPARATOR.'.twig_cs',
+            $configDir.\DIRECTORY_SEPARATOR.'.twig_cs.dist.php',
             $configDir.\DIRECTORY_SEPARATOR.'.twig_cs.dist',
         ];
     }

@@ -143,7 +143,14 @@ cd ~/dirA
 twigcs --config ~/dirB/.twig_cs.dist.php # Will lint templates in ~/dirA with the config of ~/dirB
 ```
 
-By default, the files `.twig_cs.php`, `.twig_cs.dist.php`, `.twig_cs` and `.twig_cs.dist` are looked up in your current working directory (CWD).
+By default, the files
+
+- `.twig_cs.php`
+- `.twig_cs`
+- `.twig_cs.dist.php`
+- `.twig_cs.dist`
+
+are looked up in your current working directory (CWD).
 
 You can also provide finders inside config files, they will completely replace the path in the CLI:
 

@@ -153,7 +153,7 @@ PHP;
                 ],
             ],
             [
-                '.twig_cs.dist.php',
+                '.twig_cs',
                 [
                     '.twig_cs',
                     '.twig_cs.dist',
@@ -161,10 +161,10 @@ PHP;
                 ],
             ],
             [
-                '.twig_cs',
+                '.twig_cs.dist.php',
                 [
-                    '.twig_cs',
                     '.twig_cs.dist',
+                    '.twig_cs.dist.php',
                 ],
             ],
             [
