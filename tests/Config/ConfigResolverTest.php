@@ -146,8 +146,8 @@ PHP;
             [
                 '.twig_cs',
                 [
-                    '.twigcs',
-                    '.twigcs.dist',
+                    '.twig_cs',
+                    '.twig_cs.dist',
                 ],
             ],
         ];
