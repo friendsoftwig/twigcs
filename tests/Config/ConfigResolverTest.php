@@ -144,9 +144,32 @@ PHP;
     {
         return [
             [
+                '.twig_cs.php',
+                [
+                    '.twig_cs',
+                    '.twig_cs.dist',
+                    '.twig_cs.dist.php',
+                    '.twig_cs.php',
+                ],
+            ],
+            [
+                '.twig_cs.dist.php',
+                [
+                    '.twig_cs',
+                    '.twig_cs.dist',
+                    '.twig_cs.dist.php',
+                ],
+            ],
+            [
                 '.twig_cs',
                 [
                     '.twig_cs',
+                    '.twig_cs.dist',
+                ],
+            ],
+            [
+                '.twig_cs.dist',
+                [
                     '.twig_cs.dist',
                 ],
             ],
@@ -278,6 +301,8 @@ PHP;
         $defaultConfigFileNames = [
             '.twig_cs',
             '.twig_cs.dist',
+            '.twig_cs.dist.php',
+            '.twig_cs.php',
         ];
 
         foreach ($defaultConfigFileNames as $defaultConfigFileName) {
