@@ -88,7 +88,9 @@
     <MixedInferredReturnType occurrences="1">
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedOperand occurrences="3">
+    <MixedOperand occurrences="5">
+      <code>$configDir</code>
+      <code>$configDir</code>
       <code>$configDir</code>
       <code>$configDir</code>
       <code>$cwd</code>

@@ -192,7 +192,7 @@ class LintCommandTest extends TestCase
     {
         $this->commandTester->execute([
             'paths' => null,
-            '--config' => 'tests/data/config/external/.twig_cs.dist',
+            '--config' => 'tests/data/config/external/.twig_cs.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -209,7 +209,7 @@ l.1 c.8 : WARNING Unused variable "foo".
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/syntax_error'],
-            '--config' => 'tests/data/config/external/.twig_cs.dist',
+            '--config' => 'tests/data/config/external/.twig_cs.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -227,7 +227,7 @@ l.1 c.17 : ERROR Unexpected "}".
     public function testConfigFileWithDisplayAndSeverity()
     {
         $this->commandTester->execute([
-            '--config' => 'tests/data/config/external/.twig_cs_with_display_blocking.dist',
+            '--config' => 'tests/data/config/external/.twig_cs_with_display_blocking.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -271,7 +271,7 @@ l.1 c.17 : ERROR Unexpected "}".
     public function testUnusedWithFileLoader()
     {
         $this->commandTester->execute([
-            '--config' => 'tests/data/config/loaders/.twig_cs.dist',
+            '--config' => 'tests/data/config/loaders/.twig_cs.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
