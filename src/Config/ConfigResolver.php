@@ -8,7 +8,6 @@ use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
 use FriendsOfTwig\Twigcs\Ruleset\TemplateResolverAwareInterface;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use Symfony\Component\Filesystem\Filesystem;
-use function fnmatch;
 
 /**
  * Special thanks to https://github.com/c33s/twigcs/ which this feature was inspired from.
@@ -61,8 +60,6 @@ final class ConfigResolver
 
     /**
      * ConfigurationResolver constructor.
-     *
-     * @param $cwd
      */
     public function __construct(Container $container, $cwd, array $options)
     {
@@ -141,7 +138,7 @@ final class ConfigResolver
         $file = $this->normalizePath($file);
         foreach ($this->specificRulesets as $pattern => $rulesetClassName) {
             $pattern = $this->normalizePath($pattern);
-            if ($file === $pattern || fnmatch($pattern, $file)) {
+            if ($file === $pattern || \fnmatch($pattern, $file)) {
                 return $rulesetClassName;
             }
         }
