@@ -5,11 +5,7 @@ declare(strict_types=1);
 namespace FriendsOfTwig\Twigcs\Reporter;
 
 use FriendsOfTwig\Twigcs\Validator\Violation;
-use JsonException;
 use Symfony\Component\Console\Output\OutputInterface;
-use function hash;
-use function implode;
-use function json_encode;
 
 /**
  * Code Quality report format supported by GitLab.
@@ -21,7 +17,7 @@ final class GitLabReporter implements ReporterInterface
     /**
      * {@inheritdoc}
      *
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function report(OutputInterface $output, array $violations): void
     {
@@ -42,9 +38,9 @@ final class GitLabReporter implements ReporterInterface
 
             $errors[] = [
                 'description' => $violation->getReason(),
-                'fingerprint' => hash(
+                'fingerprint' => \hash(
                     'sha256',
-                    implode(
+                    \implode(
                         '', [
                             $violation->getFilename(),
                             $violation->getLine(),
@@ -63,6 +59,6 @@ final class GitLabReporter implements ReporterInterface
             ];
         }
 
-        $output->writeln(json_encode($errors, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT));
+        $output->writeln(\json_encode($errors, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT));
     }
 }

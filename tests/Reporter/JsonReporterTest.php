@@ -73,7 +73,7 @@ EOF;
             ->expects($this->once())
             ->method('writeln')
             ->with(self::EXPECTED_REPORT)
-            ;
+        ;
 
         $reporter->report($output, [
             new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),

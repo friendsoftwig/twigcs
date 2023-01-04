@@ -6,7 +6,6 @@ namespace FriendsOfTwig\Twigcs\Tests\Reporter;
 
 use FriendsOfTwig\Twigcs\Reporter\GitLabReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
-use JsonException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -72,7 +71,7 @@ EOF;
         $reporter = new GitLabReporter();
         $output = $this->createMock(ConsoleOutput::class);
 
-        $this->expectException(JsonException::class);
+        $this->expectException(\JsonException::class);
         $reporter->report($output, [new Violation('template.twig', 10, 20, "Error message with latin1 character \xE7")]);
     }
 }

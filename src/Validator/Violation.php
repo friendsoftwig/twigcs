@@ -40,10 +40,6 @@ class Violation
     private $source;
 
     /**
-     * @param $filename
-     * @param $line
-     * @param $column
-     * @param $reason
      * @param int    $severity
      * @param string $source
      */
