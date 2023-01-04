@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.x-dev@">
+<files psalm-version="dev-master@">
   <file src="src/Config/Config.php">
     <DocblockTypeContradiction occurrences="1">
       <code>\gettype($finder)</code>
@@ -213,6 +213,9 @@
     <MissingReturnType occurrences="1">
       <code>get</code>
     </MissingReturnType>
+    <MissingTemplateParam occurrences="1">
+      <code>Container</code>
+    </MissingTemplateParam>
     <MixedFunctionCall occurrences="1">
       <code>call_user_func($this[$key])</code>
     </MixedFunctionCall>
@@ -276,10 +279,10 @@
       <code>!$this-&gt;parent</code>
       <code>$this-&gt;parent</code>
     </DocblockTypeContradiction>
-    <InvalidScalarArgument occurrences="2">
+    <InvalidArgument occurrences="2">
       <code>$size</code>
       <code>$size</code>
-    </InvalidScalarArgument>
+    </InvalidArgument>
     <MixedArgument occurrences="7">
       <code>$capture-&gt;getRealOffset()</code>
       <code>$capture-&gt;getRealOffset()</code>
@@ -658,17 +661,27 @@
       <code>$this-&gt;config['ternary']['before_?:']</code>
       <code>$this-&gt;config['unary']['between']</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="166">
+    <MixedArrayAccess occurrences="321">
       <code>$this-&gt;config['array']</code>
       <code>$this-&gt;config['array']</code>
       <code>$this-&gt;config['array']</code>
       <code>$this-&gt;config['array']</code>
       <code>$this-&gt;config['array']</code>
       <code>$this-&gt;config['array']</code>
+      <code>$this-&gt;config['array']['after_opening']</code>
+      <code>$this-&gt;config['array']['after_opening']</code>
+      <code>$this-&gt;config['array']['before_closing']</code>
+      <code>$this-&gt;config['array']['before_closing']</code>
+      <code>$this-&gt;config['array']['empty']</code>
+      <code>$this-&gt;config['array']['empty']</code>
       <code>$this-&gt;config['arrow_function']</code>
       <code>$this-&gt;config['arrow_function']</code>
+      <code>$this-&gt;config['arrow_function']['after_arrow']</code>
+      <code>$this-&gt;config['arrow_function']['before_arrow']</code>
       <code>$this-&gt;config['binary']</code>
       <code>$this-&gt;config['binary']</code>
+      <code>$this-&gt;config['binary']['after_op']</code>
+      <code>$this-&gt;config['binary']['before_op']</code>
       <code>$this-&gt;config['elseif']</code>
       <code>$this-&gt;config['empty_list_whitespaces']</code>
       <code>$this-&gt;config['empty_list_whitespaces']</code>
@@ -692,6 +705,26 @@
       <code>$this-&gt;config['for']</code>
       <code>$this-&gt;config['for']</code>
       <code>$this-&gt;config['for']</code>
+      <code>$this-&gt;config['for']['after_coma']</code>
+      <code>$this-&gt;config['for']['after_coma']</code>
+      <code>$this-&gt;config['for']['after_for']</code>
+      <code>$this-&gt;config['for']['after_for']</code>
+      <code>$this-&gt;config['for']['after_for']</code>
+      <code>$this-&gt;config['for']['after_for']</code>
+      <code>$this-&gt;config['for']['after_if']</code>
+      <code>$this-&gt;config['for']['after_if']</code>
+      <code>$this-&gt;config['for']['after_in']</code>
+      <code>$this-&gt;config['for']['after_in']</code>
+      <code>$this-&gt;config['for']['after_in']</code>
+      <code>$this-&gt;config['for']['after_in']</code>
+      <code>$this-&gt;config['for']['after_key_var']</code>
+      <code>$this-&gt;config['for']['after_key_var']</code>
+      <code>$this-&gt;config['for']['after_value_var']</code>
+      <code>$this-&gt;config['for']['after_value_var']</code>
+      <code>$this-&gt;config['for']['after_value_var']</code>
+      <code>$this-&gt;config['for']['after_value_var']</code>
+      <code>$this-&gt;config['for']['before_if']</code>
+      <code>$this-&gt;config['for']['before_if']</code>
       <code>$this-&gt;config['from']</code>
       <code>$this-&gt;config['from']</code>
       <code>$this-&gt;config['from']</code>
@@ -743,7 +776,59 @@
       <code>$this-&gt;config['from']</code>
       <code>$this-&gt;config['from']</code>
       <code>$this-&gt;config['from']</code>
+      <code>$this-&gt;config['from']['after_as']</code>
+      <code>$this-&gt;config['from']['after_source']</code>
+      <code>$this-&gt;config['from']['after_source']</code>
+      <code>$this-&gt;config['from']['after_source']</code>
+      <code>$this-&gt;config['from']['before_as']</code>
+      <code>$this-&gt;config['from']['before_names']</code>
+      <code>$this-&gt;config['from']['before_names']</code>
+      <code>$this-&gt;config['from']['before_names']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
+      <code>$this-&gt;config['from']['before_source']</code>
       <code>$this-&gt;config['func']</code>
+      <code>$this-&gt;config['func']['before_parentheses']</code>
       <code>$this-&gt;config['hash']</code>
       <code>$this-&gt;config['hash']</code>
       <code>$this-&gt;config['hash']</code>
@@ -766,6 +851,28 @@
       <code>$this-&gt;config['hash']</code>
       <code>$this-&gt;config['hash']</code>
       <code>$this-&gt;config['hash']</code>
+      <code>$this-&gt;config['hash']['after_coma']</code>
+      <code>$this-&gt;config['hash']['after_coma']</code>
+      <code>$this-&gt;config['hash']['after_coma']</code>
+      <code>$this-&gt;config['hash']['after_key']</code>
+      <code>$this-&gt;config['hash']['after_key']</code>
+      <code>$this-&gt;config['hash']['after_key']</code>
+      <code>$this-&gt;config['hash']['after_key']</code>
+      <code>$this-&gt;config['hash']['after_key']</code>
+      <code>$this-&gt;config['hash']['after_key']</code>
+      <code>$this-&gt;config['hash']['after_opening']</code>
+      <code>$this-&gt;config['hash']['after_value']</code>
+      <code>$this-&gt;config['hash']['after_value']</code>
+      <code>$this-&gt;config['hash']['after_value']</code>
+      <code>$this-&gt;config['hash']['before_closing']</code>
+      <code>$this-&gt;config['hash']['before_value']</code>
+      <code>$this-&gt;config['hash']['before_value']</code>
+      <code>$this-&gt;config['hash']['before_value']</code>
+      <code>$this-&gt;config['hash']['before_value']</code>
+      <code>$this-&gt;config['hash']['before_value']</code>
+      <code>$this-&gt;config['hash']['before_value']</code>
+      <code>$this-&gt;config['hash']['empty']</code>
+      <code>$this-&gt;config['hash']['empty']</code>
       <code>$this-&gt;config['if']</code>
       <code>$this-&gt;config['import']</code>
       <code>$this-&gt;config['import']</code>
@@ -776,41 +883,85 @@
       <code>$this-&gt;config['import']</code>
       <code>$this-&gt;config['import']</code>
       <code>$this-&gt;config['import']</code>
+      <code>$this-&gt;config['import']['after_as']</code>
+      <code>$this-&gt;config['import']['after_as']</code>
+      <code>$this-&gt;config['import']['after_as']</code>
+      <code>$this-&gt;config['import']['after_coma']</code>
+      <code>$this-&gt;config['import']['after_source']</code>
+      <code>$this-&gt;config['import']['after_source']</code>
+      <code>$this-&gt;config['import']['after_source']</code>
+      <code>$this-&gt;config['import']['before_coma']</code>
+      <code>$this-&gt;config['import']['before_source']</code>
       <code>$this-&gt;config['list']</code>
       <code>$this-&gt;config['list']</code>
       <code>$this-&gt;config['list']</code>
       <code>$this-&gt;config['list']</code>
+      <code>$this-&gt;config['list']['after_coma']</code>
+      <code>$this-&gt;config['list']['after_coma']</code>
+      <code>$this-&gt;config['list']['after_value']</code>
+      <code>$this-&gt;config['list']['after_value']</code>
       <code>$this-&gt;config['macro']</code>
       <code>$this-&gt;config['macro']</code>
+      <code>$this-&gt;config['macro']['after_macro']</code>
+      <code>$this-&gt;config['macro']['after_name']</code>
       <code>$this-&gt;config['named_args']</code>
       <code>$this-&gt;config['named_args']</code>
       <code>$this-&gt;config['named_args']</code>
       <code>$this-&gt;config['named_args']</code>
       <code>$this-&gt;config['named_args']</code>
+      <code>$this-&gt;config['named_args']['after_=']</code>
+      <code>$this-&gt;config['named_args']['after_=']</code>
+      <code>$this-&gt;config['named_args']['after_value']</code>
+      <code>$this-&gt;config['named_args']['before_=']</code>
+      <code>$this-&gt;config['named_args']['before_=']</code>
       <code>$this-&gt;config['parentheses']</code>
       <code>$this-&gt;config['parentheses']</code>
       <code>$this-&gt;config['parentheses']</code>
+      <code>$this-&gt;config['parentheses']['after_value']</code>
+      <code>$this-&gt;config['parentheses']['before_value']</code>
+      <code>$this-&gt;config['parentheses']['empty']</code>
       <code>$this-&gt;config['print']</code>
       <code>$this-&gt;config['print']</code>
+      <code>$this-&gt;config['print']['after']</code>
+      <code>$this-&gt;config['print']['before']</code>
       <code>$this-&gt;config['property']</code>
       <code>$this-&gt;config['property']</code>
       <code>$this-&gt;config['property']</code>
       <code>$this-&gt;config['property']</code>
+      <code>$this-&gt;config['property']['after_.']</code>
+      <code>$this-&gt;config['property']['after_|']</code>
+      <code>$this-&gt;config['property']['before_.']</code>
+      <code>$this-&gt;config['property']['before_|']</code>
       <code>$this-&gt;config['range']</code>
       <code>$this-&gt;config['range']</code>
+      <code>$this-&gt;config['range']['after_op']</code>
+      <code>$this-&gt;config['range']['before_op']</code>
       <code>$this-&gt;config['set']</code>
       <code>$this-&gt;config['set']</code>
       <code>$this-&gt;config['set']</code>
+      <code>$this-&gt;config['set']['after_equal']</code>
+      <code>$this-&gt;config['set']['after_set']</code>
+      <code>$this-&gt;config['set']['after_var_name']</code>
       <code>$this-&gt;config['slice']</code>
       <code>$this-&gt;config['slice']</code>
       <code>$this-&gt;config['slice']</code>
       <code>$this-&gt;config['slice']</code>
+      <code>$this-&gt;config['slice']['after_:']</code>
+      <code>$this-&gt;config['slice']['after_[']</code>
+      <code>$this-&gt;config['slice']['before_:']</code>
+      <code>$this-&gt;config['slice']['before_]']</code>
       <code>$this-&gt;config['tag']</code>
       <code>$this-&gt;config['tag']</code>
       <code>$this-&gt;config['tag']</code>
       <code>$this-&gt;config['tag']</code>
       <code>$this-&gt;config['tag']</code>
       <code>$this-&gt;config['tag']</code>
+      <code>$this-&gt;config['tag']['after']</code>
+      <code>$this-&gt;config['tag']['after']</code>
+      <code>$this-&gt;config['tag']['after']</code>
+      <code>$this-&gt;config['tag']['before']</code>
+      <code>$this-&gt;config['tag']['before']</code>
+      <code>$this-&gt;config['tag']['before']</code>
       <code>$this-&gt;config['tag_default_arg_spacing']</code>
       <code>$this-&gt;config['ternary']</code>
       <code>$this-&gt;config['ternary']</code>
@@ -818,6 +969,12 @@
       <code>$this-&gt;config['ternary']</code>
       <code>$this-&gt;config['ternary']</code>
       <code>$this-&gt;config['ternary']</code>
+      <code>$this-&gt;config['ternary']['after_:']</code>
+      <code>$this-&gt;config['ternary']['after_?']</code>
+      <code>$this-&gt;config['ternary']['after_?:']</code>
+      <code>$this-&gt;config['ternary']['before_:']</code>
+      <code>$this-&gt;config['ternary']['before_?']</code>
+      <code>$this-&gt;config['ternary']['before_?:']</code>
       <code>$this-&gt;config['twigMajorVersion']</code>
       <code>$this-&gt;config['twigMajorVersion']</code>
       <code>$this-&gt;config['twigMajorVersion']</code>
@@ -825,6 +982,7 @@
       <code>$this-&gt;config['twigMajorVersion']</code>
       <code>$this-&gt;config['twigMajorVersion']</code>
       <code>$this-&gt;config['unary']</code>
+      <code>$this-&gt;config['unary']['between']</code>
     </MixedArrayAccess>
   </file>
   <file src="src/RegEngine/RulesetConfigurator.php">
@@ -904,6 +1062,9 @@
     </MissingReturnType>
   </file>
   <file src="src/RegEngine/ScopedExpression.php">
+    <InvalidArrayOffset occurrences="1">
+      <code>$array[$i - 1]</code>
+    </InvalidArrayOffset>
     <MissingParamType occurrences="9">
       <code>$char</code>
       <code>$char</code>
@@ -964,7 +1125,9 @@
     <PossiblyFalseArgument occurrences="1">
       <code>$checkstyle-&gt;asXML()</code>
     </PossiblyFalseArgument>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference occurrences="3">
+      <code>addAttribute</code>
+      <code>addAttribute</code>
       <code>addChild</code>
     </PossiblyNullReference>
   </file>
@@ -1017,7 +1180,10 @@
     <PossiblyFalseArgument occurrences="1">
       <code>$testsuites-&gt;asXML()</code>
     </PossiblyFalseArgument>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference occurrences="4">
+      <code>addAttribute</code>
+      <code>addAttribute</code>
+      <code>addAttribute</code>
       <code>addChild</code>
     </PossiblyNullReference>
   </file>
@@ -1357,12 +1523,15 @@
       <code>getName</code>
       <code>getPath</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="6">
+    <MixedReturnStatement occurrences="9">
       <code>$this-&gt;columnno</code>
       <code>$this-&gt;lineno</code>
       <code>$this-&gt;source</code>
       <code>$this-&gt;source ? $this-&gt;source-&gt;getCode() : null</code>
+      <code>$this-&gt;source ? $this-&gt;source-&gt;getCode() : null</code>
       <code>$this-&gt;source ? $this-&gt;source-&gt;getName() : null</code>
+      <code>$this-&gt;source ? $this-&gt;source-&gt;getName() : null</code>
+      <code>$this-&gt;source ? $this-&gt;source-&gt;getPath() : null</code>
       <code>$this-&gt;source ? $this-&gt;source-&gt;getPath() : null</code>
     </MixedReturnStatement>
   </file>
@@ -1659,7 +1828,7 @@
       <code>$this-&gt;states</code>
       <code>$type</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="55">
+    <MixedArrayAccess occurrences="68">
       <code>$bracket[0]</code>
       <code>$expect</code>
       <code>$expect</code>
@@ -1685,14 +1854,19 @@
       <code>$this-&gt;options['interpolation']</code>
       <code>$this-&gt;options['interpolation']</code>
       <code>$this-&gt;options['interpolation'][0]</code>
+      <code>$this-&gt;options['interpolation'][0]</code>
+      <code>$this-&gt;options['interpolation'][0]</code>
       <code>$this-&gt;options['interpolation'][1]</code>
       <code>$this-&gt;options['tag_block']</code>
+      <code>$this-&gt;options['tag_block'][0]</code>
       <code>$this-&gt;options['tag_block'][0]</code>
       <code>$this-&gt;options['tag_block'][1]</code>
       <code>$this-&gt;options['tag_comment']</code>
       <code>$this-&gt;options['tag_comment'][0]</code>
+      <code>$this-&gt;options['tag_comment'][0]</code>
       <code>$this-&gt;options['tag_comment'][1]</code>
       <code>$this-&gt;options['tag_variable']</code>
+      <code>$this-&gt;options['tag_variable'][0]</code>
       <code>$this-&gt;options['tag_variable'][0]</code>
       <code>$this-&gt;options['tag_variable'][1]</code>
       <code>$this-&gt;options['whitespace_line_trim']</code>
@@ -1702,9 +1876,17 @@
       <code>$this-&gt;positions[0]</code>
       <code>$this-&gt;positions[0]</code>
       <code>$this-&gt;positions[0]</code>
+      <code>$this-&gt;positions[0][++$this-&gt;position]</code>
+      <code>$this-&gt;positions[0][++$this-&gt;position]</code>
       <code>$this-&gt;positions[1]</code>
+      <code>$this-&gt;positions[1][$this-&gt;position]</code>
+      <code>$this-&gt;positions[1][$this-&gt;position][0]</code>
       <code>$this-&gt;positions[2]</code>
       <code>$this-&gt;positions[2]</code>
+      <code>$this-&gt;positions[2][$this-&gt;position]</code>
+      <code>$this-&gt;positions[2][$this-&gt;position]</code>
+      <code>$this-&gt;positions[2][$this-&gt;position][0]</code>
+      <code>$this-&gt;positions[2][$this-&gt;position][0]</code>
       <code>$this-&gt;regexes['interpolation_end']</code>
       <code>$this-&gt;regexes['interpolation_start']</code>
       <code>$this-&gt;regexes['lex_block']</code>
@@ -1780,6 +1962,9 @@
       <code>$this-&gt;position</code>
       <code>$this-&gt;position</code>
     </MixedOperand>
+    <NoValue occurrences="1">
+      <code>$this-&gt;brackets</code>
+    </NoValue>
     <PossiblyInvalidArrayOffset occurrences="1">
       <code>$operator[$length - 1]</code>
     </PossiblyInvalidArrayOffset>
