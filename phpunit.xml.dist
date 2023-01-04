@@ -12,6 +12,9 @@
             <directory suffix=".php">src</directory>
         </include>
     </coverage>
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+    </listeners>
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
