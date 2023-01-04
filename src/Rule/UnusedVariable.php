@@ -9,6 +9,8 @@ use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 
 class UnusedVariable extends AbstractRule implements RuleInterface
 {
+    public TemplateResolverInterface $loader;
+
     public function __construct(int $severity, TemplateResolverInterface $loader = null)
     {
         $this->loader = $loader ?: new NullResolver();

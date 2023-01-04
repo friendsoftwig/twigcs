@@ -1272,8 +1272,7 @@
     </MixedArgument>
   </file>
   <file src="src/Rule/UnusedMacro.php">
-    <MixedArgument occurrences="4">
-      <code>$this-&gt;loader</code>
+    <MixedArgument occurrences="3">
       <code>$token-&gt;getColumn()</code>
       <code>$token-&gt;getLine()</code>
       <code>$token-&gt;getValue()</code>
@@ -1293,16 +1292,9 @@
       <code>getToken</code>
       <code>getValue</code>
     </MixedMethodCall>
-    <UndefinedThisPropertyAssignment occurrences="1">
-      <code>$this-&gt;loader</code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch occurrences="1">
-      <code>$this-&gt;loader</code>
-    </UndefinedThisPropertyFetch>
   </file>
   <file src="src/Rule/UnusedVariable.php">
-    <MixedArgument occurrences="4">
-      <code>$this-&gt;loader</code>
+    <MixedArgument occurrences="3">
       <code>$token-&gt;getColumn()</code>
       <code>$token-&gt;getLine()</code>
       <code>$token-&gt;getValue()</code>
@@ -1322,12 +1314,6 @@
       <code>getToken</code>
       <code>getValue</code>
     </MixedMethodCall>
-    <UndefinedThisPropertyAssignment occurrences="1">
-      <code>$this-&gt;loader</code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch occurrences="1">
-      <code>$this-&gt;loader</code>
-    </UndefinedThisPropertyFetch>
   </file>
   <file src="src/Ruleset/Official.php">
     <MissingPropertyType occurrences="1">
