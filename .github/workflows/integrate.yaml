@@ -31,7 +31,7 @@ jobs:
       - name: "Collect code coverage with Xdebug and phpunit/phpunit"
         env:
           XDEBUG_MODE: "coverage"
-        run: "vendor/bin/phpunit --coverage-clover=clover.xml"
+        run: "vendor/bin/phpunit --colors=always --coverage-clover=clover.xml"
 
       - name: "Send code coverage report to codecov.io"
         uses: "codecov/codecov-action@v3"
@@ -172,4 +172,4 @@ jobs:
         run: "composer install --ansi --no-progress"
 
       - name: "Run tests with phpunit/phpunit"
-        run: "vendor/bin/phpunit"
+        run: "vendor/bin/phpunit --colors=always"
