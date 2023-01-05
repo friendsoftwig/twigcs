@@ -3,7 +3,7 @@ it: coding-standards static-code-analysis tests ## Runs the coding-standards, st
 
 .PHONY: coding-standards
 coding-standards: vendor ## Fixes code style issues with friendsofphp/php-cs-fixer
-	.phive/php-cs-fixer fix --diff --verbose
+	vendor/bin/php-cs-fixer fix --diff --verbose
 
 .PHONY: dependency-analysis
 dependency-analysis: vendor ## Runs a dependency analysis with maglnet/composer-require-checker
