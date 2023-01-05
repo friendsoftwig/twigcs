@@ -57,7 +57,13 @@ return $config
             'sort_algorithm' => 'alpha',
         ],
         'php_unit_internal_class' => true,
-        'phpdoc_order' => true,
+        'phpdoc_order' => [
+            'order' => [
+                'param',
+                'throws',
+                'return',
+            ],
+        ],
         'strict_comparison' => true,
         'strict_param' => true,
         'ternary_to_null_coalescing' => true,
