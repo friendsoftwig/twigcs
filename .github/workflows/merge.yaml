@@ -1,0 +1,36 @@
+# https://docs.github.com/en/actions
+
+name: "Merge"
+
+on: # yamllint disable-line rule:truthy
+  workflow_run:
+    types:
+      - "completed"
+    workflows:
+      - "Integrate"
+
+jobs:
+  merge:
+    name: "Merge"
+
+    runs-on: "ubuntu-latest"
+
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.actor == 'dependabot[bot]' && (
+        startsWith(github.event.workflow_run.head_commit.message, 'composer(deps-dev)') ||
+        startsWith(github.event.workflow_run.head_commit.message, 'github-actions(deps)')
+      )
+
+    steps:
+      - name: "Approve pull request"
+        uses: "ergebnis/.github/actions/github/pull-request/approve@1.7.0"
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: "Merge pull request"
+        uses: "ergebnis/.github/actions/github/pull-request/merge@1.7.0"
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          merge-method: "squash"
