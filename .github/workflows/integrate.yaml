@@ -59,7 +59,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
 
       - name: "Run friendsofphp/php-cs-fixer"
-        run: "vendor/bin/php-cs-fixer fix --ansi --diff --dry-run --verbose"
+        run: ".phive/php-cs-fixer fix --ansi --diff --dry-run --verbose"
 
   dependency-analysis:
     name: "Dependency Analysis"
