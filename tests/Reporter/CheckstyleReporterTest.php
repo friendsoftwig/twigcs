@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @covers \FriendsOfTwig\Twigcs\Reporter\CheckstyleReporter
  */
 final class CheckstyleReporterTest extends TestCase
 {

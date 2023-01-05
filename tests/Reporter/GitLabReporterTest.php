@@ -11,6 +11,8 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
  * @internal
+ *
+ * @covers \FriendsOfTwig\Twigcs\Reporter\GitLabReporter
  */
 final class GitLabReporterTest extends TestCase
 {

@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @covers \FriendsOfTwig\Twigcs\Reporter\ConsoleReporter
  */
 final class ConsoleReporterTest extends TestCase
 {

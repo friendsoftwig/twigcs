@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @covers \FriendsOfTwig\Twigcs\Reporter\CsvReporter
  */
 final class GithubActionReporterTest extends TestCase
 {

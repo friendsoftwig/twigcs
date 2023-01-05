@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @covers \FriendsOfTwig\Twigcs\Reporter\JsonReporter
  */
 final class JsonReporterTest extends TestCase
 {
