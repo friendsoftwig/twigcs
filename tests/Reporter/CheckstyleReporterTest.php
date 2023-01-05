@@ -11,12 +11,6 @@ use PHPUnit\Framework\TestCase;
  */
 final class CheckstyleReporterTest extends TestCase
 {
-    public const EXPECTED_REPORT = <<<EOF
-<?xml version="1.0"?>
-<checkstyle version="1.0.0"><file name="template.twig"><error column="20" line="10" severity="error" message="You are not allowed to do that." source="unknown"/></file></checkstyle>
-
-EOF;
-
     public function testReport(): void
     {
         $reporter = new CheckstyleReporter();
@@ -29,7 +23,13 @@ EOF;
         $output
             ->expects($this->once())
             ->method('writeln')
-            ->with(self::EXPECTED_REPORT)
+            ->with(
+                <<<EOF
+<?xml version="1.0"?>
+<checkstyle version="1.0.0"><file name="template.twig"><error column="20" line="10" severity="error" message="You are not allowed to do that." source="unknown"/></file></checkstyle>
+
+EOF
+            )
         ;
 
         $reporter->report($output, [

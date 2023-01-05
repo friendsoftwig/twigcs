@@ -11,7 +11,20 @@ use PHPUnit\Framework\TestCase;
  */
 final class JsonReporterTest extends TestCase
 {
-    public const EXPECTED_REPORT = <<<EOF
+    public function testReport(): void
+    {
+        $reporter = new JsonReporter();
+        $output = $this
+            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $output
+            ->expects($this->once())
+            ->method('writeln')
+            ->with(
+                <<<EOF
 {
     "failures": 1,
     "files": [
@@ -29,9 +42,29 @@ final class JsonReporterTest extends TestCase
         }
     ]
 }
-EOF;
+EOF
+            )
+        ;
 
-    public const EXPECTED_REPORT_MULTIPLE = <<<EOF
+        $reporter->report($output, [
+            new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
+        ]);
+    }
+
+    public function testReportMultiple(): void
+    {
+        $reporter = new JsonReporter();
+        $output = $this
+            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $output
+            ->expects($this->once())
+            ->method('writeln')
+            ->with(
+                <<<EOF
 {
     "failures": 2,
     "files": [
@@ -61,41 +94,8 @@ EOF;
         }
     ]
 }
-EOF;
-
-    public function testReport(): void
-    {
-        $reporter = new JsonReporter();
-        $output = $this
-            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-
-        $output
-            ->expects($this->once())
-            ->method('writeln')
-            ->with(self::EXPECTED_REPORT)
-        ;
-
-        $reporter->report($output, [
-            new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
-        ]);
-    }
-
-    public function testReportMultiple(): void
-    {
-        $reporter = new JsonReporter();
-        $output = $this
-            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-
-        $output
-            ->expects($this->once())
-            ->method('writeln')
-            ->with(self::EXPECTED_REPORT_MULTIPLE)
+EOF
+            )
         ;
 
         $reporter->report($output, [

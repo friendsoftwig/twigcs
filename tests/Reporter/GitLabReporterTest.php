@@ -14,7 +14,16 @@ use Symfony\Component\Console\Output\ConsoleOutput;
  */
 final class GitLabReporterTest extends TestCase
 {
-    public const EXPECTED_REPORT = <<<EOF
+    public function testReport(): void
+    {
+        $reporter = new GitLabReporter();
+        $output = $this->createMock(ConsoleOutput::class);
+
+        $output
+            ->expects($this->once())
+            ->method('writeln')
+            ->with(
+                <<<EOF
 [
     {
         "description": "You are not allowed to do that.",
@@ -50,17 +59,8 @@ final class GitLabReporterTest extends TestCase
         }
     }
 ]
-EOF;
-
-    public function testReport(): void
-    {
-        $reporter = new GitLabReporter();
-        $output = $this->createMock(ConsoleOutput::class);
-
-        $output
-            ->expects($this->once())
-            ->method('writeln')
-            ->with(self::EXPECTED_REPORT);
+EOF
+            );
 
         $reporter->report($output, [
             new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
