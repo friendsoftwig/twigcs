@@ -5,6 +5,9 @@ namespace FriendsOfTwig\Twigcs\Tests\RegEngine;
 use FriendsOfTwig\Twigcs\RegEngine\ScopedExpression;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class ScopedExpressionTest extends TestCase
 {
     public function testEnqueue()

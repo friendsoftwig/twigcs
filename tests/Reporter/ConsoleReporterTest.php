@@ -6,6 +6,9 @@ use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class ConsoleReporterTest extends TestCase
 {
     public function testReport()

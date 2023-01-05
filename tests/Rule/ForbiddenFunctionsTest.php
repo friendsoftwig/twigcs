@@ -8,6 +8,9 @@ use FriendsOfTwig\Twigcs\TwigPort\Source;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class ForbiddenFunctionsTest extends TestCase
 {
     private $tokens;

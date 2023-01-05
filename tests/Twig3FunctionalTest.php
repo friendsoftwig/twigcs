@@ -13,6 +13,8 @@ use PHPUnit\Framework\TestCase;
  * Twigcs' main functional tests.
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
+ *
+ * @internal
  */
 final class Twig3FunctionalTest extends TestCase
 {

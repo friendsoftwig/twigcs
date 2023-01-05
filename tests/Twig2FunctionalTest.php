@@ -11,6 +11,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author Tristan Maindron <tmaindron@gmail.com>
+ *
+ * @internal
  */
 final class Twig2FunctionalTest extends TestCase
 {

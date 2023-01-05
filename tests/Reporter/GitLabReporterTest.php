@@ -9,6 +9,9 @@ use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
+/**
+ * @internal
+ */
 final class GitLabReporterTest extends TestCase
 {
     public const EXPECTED_REPORT = <<<EOF

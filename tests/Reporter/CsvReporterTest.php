@@ -6,6 +6,9 @@ use FriendsOfTwig\Twigcs\Reporter\CsvReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class CsvReporterTest extends TestCase
 {
     public function testReport()

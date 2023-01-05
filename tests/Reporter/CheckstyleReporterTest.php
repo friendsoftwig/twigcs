@@ -6,6 +6,9 @@ use FriendsOfTwig\Twigcs\Reporter\CheckstyleReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class CheckstyleReporterTest extends TestCase
 {
     public const EXPECTED_REPORT = <<<EOF

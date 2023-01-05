@@ -7,6 +7,9 @@ use FriendsOfTwig\Twigcs\Container;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
+/**
+ * @internal
+ */
 final class CorpusTest extends TestCase
 {
     private $commandTester;

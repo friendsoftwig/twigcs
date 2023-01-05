@@ -7,6 +7,9 @@ use FriendsOfTwig\Twigcs\Reporter\ReporterInterface;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class GithubActionReporterTest extends TestCase
 {
     public function testReport()
