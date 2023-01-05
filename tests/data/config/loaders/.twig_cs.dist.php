@@ -10,9 +10,9 @@ $finder = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()
 return \FriendsOfTwig\Twigcs\Config\Config::create()
     ->setFinder($finder)
     ->setTemplateResolver(new TemplateResolver\ChainResolver([
-        new TemplateResolver\FileResolver(__DIR__ . '/src'),
+        new TemplateResolver\FileResolver(__DIR__.'/src'),
         new TemplateResolver\NamespacedResolver([
-            'acme' =>  new TemplateResolver\FileResolver(__DIR__ . '/acme')
+            'acme' => new TemplateResolver\FileResolver(__DIR__.'/acme'),
         ]),
     ]))
     ->setSeverity('warning')
