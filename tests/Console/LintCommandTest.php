@@ -26,7 +26,7 @@ final class LintCommandTest extends TestCase
         $this->commandTester = new CommandTester($command);
     }
 
-    public function testExecute()
+    public function testExecute(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/exclusion/good'],
@@ -38,7 +38,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('No violation found.', $output);
     }
 
-    public function testMultipleBasePaths()
+    public function testMultipleBasePaths(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/basepaths/a', 'tests/data/basepaths/b'],
@@ -51,7 +51,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString("\ntests/data/basepaths/b/bad.html.twig", $output);
     }
 
-    public function testExecuteWithError()
+    public function testExecuteWithError(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/exclusion'],
@@ -63,7 +63,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('ERROR', $output);
     }
 
-    public function testExecuteWithIgnoredErrors()
+    public function testExecuteWithIgnoredErrors(): void
     {
         $this->commandTester->execute([
             '--severity' => 'ignore',
@@ -76,7 +76,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('ERROR', $output);
     }
 
-    public function testExecuteWithIgnoredWarnings()
+    public function testExecuteWithIgnoredWarnings(): void
     {
         $this->commandTester->execute([
             '--severity' => 'error',
@@ -99,7 +99,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('WARNING', $output);
     }
 
-    public function testExecuteWithExclude()
+    public function testExecuteWithExclude(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/exclusion'],
@@ -112,7 +112,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('No violation found.', $output);
     }
 
-    public function testErrorsOnlyDisplayBlocking()
+    public function testErrorsOnlyDisplayBlocking(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/exclusion/bad/mixed.html.twig'],
@@ -129,7 +129,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('2 violation(s) found', $output);
     }
 
-    public function testErrorsDisplayAll()
+    public function testErrorsDisplayAll(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/exclusion/bad/mixed.html.twig'],
@@ -146,7 +146,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('3 violation(s) found', $output);
     }
 
-    public function testSyntaxErrorThrow()
+    public function testSyntaxErrorThrow(): void
     {
         $this->expectException(SyntaxError::class);
         $this->commandTester->execute([
@@ -160,7 +160,7 @@ final class LintCommandTest extends TestCase
         $this->assertSame($statusCode, 1);
     }
 
-    public function testSyntaxErrorNotThrow()
+    public function testSyntaxErrorNotThrow(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
@@ -176,7 +176,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
 
-    public function testSyntaxErrorNotThrowOmitArgument()
+    public function testSyntaxErrorNotThrowOmitArgument(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
@@ -191,7 +191,7 @@ final class LintCommandTest extends TestCase
         $this->assertStringContainsString('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
 
-    public function testConfigFileWithoutCliPath()
+    public function testConfigFileWithoutCliPath(): void
     {
         $this->commandTester->execute([
             'paths' => null,
@@ -208,7 +208,7 @@ l.1 c.8 : WARNING Unused variable "foo".
 2 violation(s) found', $output);
     }
 
-    public function testConfigFileWithCliPath()
+    public function testConfigFileWithCliPath(): void
     {
         $this->commandTester->execute([
             'paths' => ['tests/data/syntax_error'],
@@ -227,7 +227,7 @@ l.1 c.17 : ERROR Unexpected "}".
 3 violation(s) found', $output);
     }
 
-    public function testConfigFileWithDisplayAndSeverity()
+    public function testConfigFileWithDisplayAndSeverity(): void
     {
         $this->commandTester->execute([
             '--config' => 'tests/data/config/external/.twig_cs_with_display_blocking.dist.php',
@@ -241,7 +241,7 @@ l.1 c.17 : ERROR Unexpected "}".
 1 violation(s) found', $output);
     }
 
-    public function testConfigFileSamePathWithRulesetOverrides()
+    public function testConfigFileSamePathWithRulesetOverrides(): void
     {
         chdir(__DIR__.'/../data/config/local');
         $this->commandTester->execute([
@@ -271,7 +271,7 @@ l.1 c.17 : ERROR Unexpected "}".
 }', $output);
     }
 
-    public function testUnusedWithFileLoader()
+    public function testUnusedWithFileLoader(): void
     {
         $this->commandTester->execute([
             '--config' => 'tests/data/config/loaders/.twig_cs.dist.php',

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ExpressionNodeTest extends TestCase
 {
-    public function testOffsetMapping()
+    public function testOffsetMapping(): void
     {
         $expr = ExpressionNode::fromString('{% func({a: ["b", "B"]}) + {a: do(c + (d - 1))} %}');
         $this->assertSame(0, $expr->getOffsetAt(0));

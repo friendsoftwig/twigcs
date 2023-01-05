@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ConsoleReporterTest extends TestCase
 {
-    public function testReport()
+    public function testReport(): void
     {
         $reporter = new ConsoleReporter();
         $output = $this

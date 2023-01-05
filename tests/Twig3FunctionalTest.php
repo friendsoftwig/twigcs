@@ -21,7 +21,7 @@ final class Twig3FunctionalTest extends TestCase
     /**
      * @dataProvider getData
      */
-    public function testExpressions($expression, $expectedViolation, array $expectedViolationPosition = null)
+    public function testExpressions($expression, $expectedViolation, array $expectedViolationPosition = null): void
     {
         $lexer = new Lexer();
         $validator = new Validator();

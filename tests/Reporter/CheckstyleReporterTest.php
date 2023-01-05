@@ -17,7 +17,7 @@ final class CheckstyleReporterTest extends TestCase
 
 EOF;
 
-    public function testReport()
+    public function testReport(): void
     {
         $reporter = new CheckstyleReporter();
         $output = $this

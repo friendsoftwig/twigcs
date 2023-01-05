@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ScopedExpressionTest extends TestCase
 {
-    public function testEnqueue()
+    public function testEnqueue(): void
     {
         $expr = new ScopedExpression();
         $expr->enqueueString('{% set a = func({a: ["b", "B"]}) + {a: do(c + (d - 1))} %}');

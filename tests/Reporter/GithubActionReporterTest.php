@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class GithubActionReporterTest extends TestCase
 {
-    public function testReport()
+    public function testReport(): void
     {
         $reporter = new GithubActionReporter($this->createStub(ReporterInterface::class));
         $output = $this

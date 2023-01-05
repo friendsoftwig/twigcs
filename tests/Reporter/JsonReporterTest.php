@@ -63,7 +63,7 @@ EOF;
 }
 EOF;
 
-    public function testReport()
+    public function testReport(): void
     {
         $reporter = new JsonReporter();
         $output = $this
@@ -83,7 +83,7 @@ EOF;
         ]);
     }
 
-    public function testReportMultiple()
+    public function testReportMultiple(): void
     {
         $reporter = new JsonReporter();
         $output = $this

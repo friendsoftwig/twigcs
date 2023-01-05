@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class CsvReporterTest extends TestCase
 {
-    public function testReport()
+    public function testReport(): void
     {
         $reporter = new CsvReporter();
         $output = $this

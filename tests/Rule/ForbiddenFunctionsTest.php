@@ -27,7 +27,7 @@ final class ForbiddenFunctionsTest extends TestCase
         $this->tokens = $lexer->tokenize($source);
     }
 
-    public function testCheckWithoutFunctions()
+    public function testCheckWithoutFunctions(): void
     {
         $rule = new ForbiddenFunctions(Violation::SEVERITY_WARNING);
         $violations = $rule->check($this->tokens);
@@ -35,7 +35,7 @@ final class ForbiddenFunctionsTest extends TestCase
         $this->assertCount(0, $violations);
     }
 
-    public function testCheckWithFunctions()
+    public function testCheckWithFunctions(): void
     {
         $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dump']);
         $violations = $rule->check($this->tokens);
@@ -50,7 +50,7 @@ final class ForbiddenFunctionsTest extends TestCase
         $this->assertSame('FriendsOfTwig\Twigcs\Rule\ForbiddenFunctions', $violation->getSource());
     }
 
-    public function testCheckWithFunctionsNoEquals()
+    public function testCheckWithFunctionsNoEquals(): void
     {
         $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dum']);
         $violations = $rule->check($this->tokens);
