@@ -1,18 +1,18 @@
 <?php
 
-use FriendsOfTwig\Twigcs\TemplateResolver;
+use FriendsOfTwig\Twigcs;
 
-$finder = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()
+$finder = Twigcs\Finder\TemplateFinder::create()
     ->in(__DIR__.'/src')
     ->sortByName()
 ;
 
-return \FriendsOfTwig\Twigcs\Config\Config::create()
+return Twigcs\Config\Config::create()
     ->setFinder($finder)
-    ->setTemplateResolver(new TemplateResolver\ChainResolver([
-        new TemplateResolver\FileResolver(__DIR__.'/src'),
-        new TemplateResolver\NamespacedResolver([
-            'acme' => new TemplateResolver\FileResolver(__DIR__.'/acme'),
+    ->setTemplateResolver(new Twigcs\TemplateResolver\ChainResolver([
+        new Twigcs\TemplateResolver\FileResolver(__DIR__.'/src'),
+        new Twigcs\TemplateResolver\NamespacedResolver([
+            'acme' => new Twigcs\TemplateResolver\FileResolver(__DIR__.'/acme'),
         ]),
     ]))
     ->setSeverity('warning')
