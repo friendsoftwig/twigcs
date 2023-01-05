@@ -7,7 +7,7 @@ use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 
 class Validator
 {
-    private $collectedData;
+    private array $collectedData;
 
     public function __construct()
     {

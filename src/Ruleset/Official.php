@@ -16,7 +16,7 @@ use FriendsOfTwig\Twigcs\Validator\Violation;
  */
 class Official implements RulesetInterface, TemplateResolverAwareInterface
 {
-    private $twigMajorVersion;
+    private int $twigMajorVersion;
 
     private TemplateResolverInterface $resolver;
 

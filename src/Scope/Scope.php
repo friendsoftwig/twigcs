@@ -6,35 +6,17 @@ use FriendsOfTwig\Twigcs\TwigPort\Token;
 
 class Scope
 {
-    /**
-     * @var Scope|null
-     */
-    private $parent;
+    private ?Scope $parent = null;
 
-    /**
-     * @var array
-     */
-    private $queue;
+    private array $queue;
 
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
-    /**
-     * @var bool
-     */
-    private $isolated;
+    private bool $isolated;
 
-    /**
-     * @var Scope|null
-     */
-    private $extends;
+    private ?Scope $extends = null;
 
     public function __construct(string $type, string $name)
     {

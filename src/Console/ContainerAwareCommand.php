@@ -7,10 +7,7 @@ use Symfony\Component\Console\Command\Command;
 
 class ContainerAwareCommand extends Command
 {
-    /**
-     * @var Container
-     */
-    private $container;
+    private ?Container $container = null;
 
     public function setContainer(Container $container)
     {

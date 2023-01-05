@@ -26,10 +26,7 @@ class GithubActionReporter implements ReporterInterface
         ',' => '%2C',
     ];
 
-    /**
-     * @var ReporterInterface
-     */
-    private $reporter;
+    private ReporterInterface $reporter;
 
     public function __construct(ReporterInterface $reporter)
     {

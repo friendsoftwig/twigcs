@@ -11,9 +11,9 @@ namespace FriendsOfTwig\Twigcs\TwigPort;
 
 final class Source
 {
-    private $code;
-    private $name;
-    private $path;
+    private string $code;
+    private string $name;
+    private string $path;
 
     public function __construct(string $code, string $name, string $path = '')
     {

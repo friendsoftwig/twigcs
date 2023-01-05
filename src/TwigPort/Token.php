@@ -12,9 +12,9 @@ namespace FriendsOfTwig\Twigcs\TwigPort;
 class Token
 {
     private $value;
-    private $type;
-    private $lineno;
-    private $columnno;
+    private int $type;
+    private int $lineno;
+    private int $columnno;
 
     public const EOF_TYPE = -1;
     public const TEXT_TYPE = 0;

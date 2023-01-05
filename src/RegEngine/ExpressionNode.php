@@ -4,15 +4,9 @@ namespace FriendsOfTwig\Twigcs\RegEngine;
 
 class ExpressionNode
 {
-    /**
-     * @var string
-     */
-    private $expr;
+    private string $expr;
 
-    /**
-     * @var array
-     */
-    private $children;
+    private array $children;
 
     /**
      * @var int
@@ -24,10 +18,7 @@ class ExpressionNode
      */
     private $type;
 
-    /**
-     * @var array
-     */
-    private $offsetsMap;
+    private array $offsetsMap;
 
     public static function fromString($expr)
     {

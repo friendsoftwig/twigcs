@@ -6,20 +6,11 @@ use FriendsOfTwig\Twigcs\TwigPort\Token;
 
 class Declaration
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var Token
-     */
-    private $token;
+    private Token $token;
 
-    /**
-     * @var Scope
-     */
-    private $origin;
+    private Scope $origin;
 
     public function __construct(string $name, Token $token, Scope $origin)
     {

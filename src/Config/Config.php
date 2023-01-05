@@ -18,7 +18,7 @@ class Config implements ConfigInterface
     private string $reporter = 'console';
     private string $ruleset = Official::class;
     private array $specificRulesets = [];
-    private $display = ConfigInterface::DISPLAY_ALL;
+    private string $display = ConfigInterface::DISPLAY_ALL;
 
     public function __construct(string $name = 'default')
     {

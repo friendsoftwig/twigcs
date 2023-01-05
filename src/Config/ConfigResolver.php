@@ -14,15 +14,9 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 final class ConfigResolver
 {
-    /**
-     * @var ConfigInterface|null
-     */
-    private $config;
+    private ?ConfigInterface $config = null;
 
-    /**
-     * @var string|null
-     */
-    private $configFile;
+    private ?string $configFile = null;
 
     /**
      * @var ConfigInterface
@@ -33,10 +27,8 @@ final class ConfigResolver
 
     /**
      * Options which can be set via Cli.
-     *
-     * @var array
      */
-    private $options = [
+    private array $options = [
         'path' => [],
         'severity' => null,
         'reporter-service-name' => 'console',
@@ -49,10 +41,7 @@ final class ConfigResolver
 
     private $finders;
 
-    /**
-     * @var Container
-     */
-    private $container;
+    private Container $container;
 
     private $cwd;
 

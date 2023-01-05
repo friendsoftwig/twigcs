@@ -4,20 +4,11 @@ namespace FriendsOfTwig\Twigcs\Scope;
 
 class FlattenedScope
 {
-    /**
-     * @var array
-     */
-    private $isolatedScopes;
+    private array $isolatedScopes;
 
-    /**
-     * @var array
-     */
-    private $queue;
+    private array $queue;
 
-    /**
-     * @var array
-     */
-    private $blocks;
+    private array $blocks;
 
     public function __construct(Scope $scope, array $blocks = [])
     {
