@@ -3,7 +3,7 @@ it: coding-standards static-code-analysis tests ## Runs the coding-standards, st
 
 .PHONY: coding-standards
 coding-standards: vendor ## Fixes code style issues with friendsofphp/php-cs-fixer
-	vendor/bin/php-cs-fixer fix --diff --verbose
+	.phive/php-cs-fixer fix --diff --verbose
 
 .PHONY: dependency-analysis
 dependency-analysis: vendor ## Runs a dependency analysis with maglnet/composer-require-checker
@@ -23,13 +23,13 @@ phar: ## Compiles a phar with humbug/box
 
 .PHONY: static-code-analysis
 static-code-analysis: vendor ## Runs a static code analysis with vimeo/psalm
-	vendor/bin/psalm --config=psalm.xml --clear-cache
-	vendor/bin/psalm --config=psalm.xml --show-info=false --stats
+	.phive/psalm --config=psalm.xml --clear-cache
+	.phive/psalm --config=psalm.xml --show-info=false --stats
 
 .PHONY: static-code-analysis-baseline
 static-code-analysis-baseline: vendor ## Generates a baseline for static code analysis with vimeo/psalm
-	vendor/bin/psalm --config=psalm.xml --clear-cache
-	vendor/bin/psalm --config=psalm.xml --set-baseline=psalm-baseline.xml
+	.phive/psalm --config=psalm.xml --clear-cache
+	.phive/psalm --config=psalm.xml --set-baseline=psalm-baseline.xml
 
 .PHONY: tests
 tests: vendor ## Runs tests with phpunit/phpunit

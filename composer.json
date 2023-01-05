@@ -20,10 +20,8 @@
         "symfony/finder": "^4.4 || ^5.3 || ^6.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "~3.13.2",
         "phpunit/phpunit": "^9.5.27",
-        "symfony/phpunit-bridge": "^6.2.3",
-        "vimeo/psalm": "^5.4.0"
+        "symfony/phpunit-bridge": "^6.2.3"
     },
     "autoload": {
         "psr-4": {
