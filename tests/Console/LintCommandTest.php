@@ -9,7 +9,7 @@ use FriendsOfTwig\Twigcs\TwigPort\SyntaxError;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class LintCommandTest extends TestCase
+final class LintCommandTest extends TestCase
 {
     /** @var CommandTester */
     private $commandTester;

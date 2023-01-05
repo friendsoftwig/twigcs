@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class Twig3FunctionalTest extends TestCase
+final class Twig3FunctionalTest extends TestCase
 {
     /**
      * @dataProvider getData

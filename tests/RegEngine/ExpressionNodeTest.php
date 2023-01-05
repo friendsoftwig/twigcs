@@ -5,7 +5,7 @@ namespace FriendsOfTwig\Twigcs\Tests\RegEngine;
 use FriendsOfTwig\Twigcs\RegEngine\ExpressionNode;
 use PHPUnit\Framework\TestCase;
 
-class ExpressionNodeTest extends TestCase
+final class ExpressionNodeTest extends TestCase
 {
     public function testOffsetMapping()
     {

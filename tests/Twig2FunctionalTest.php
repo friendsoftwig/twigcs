@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @author Tristan Maindron <tmaindron@gmail.com>
  */
-class Twig2FunctionalTest extends TestCase
+final class Twig2FunctionalTest extends TestCase
 {
     /**
      * @dataProvider getData

@@ -6,7 +6,7 @@ use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
-class JsonReporterTest extends TestCase
+final class JsonReporterTest extends TestCase
 {
     public const EXPECTED_REPORT = <<<EOF
 {
