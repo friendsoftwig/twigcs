@@ -58,9 +58,6 @@ final class ConfigResolver
 
     private $specificRulesets;
 
-    /**
-     * ConfigurationResolver constructor.
-     */
     public function __construct(Container $container, $cwd, array $options)
     {
         $this->container = $container;

@@ -16,8 +16,6 @@ class SyntaxError extends \Exception
     private $source;
 
     /**
-     * Constructor.
-     *
      * @param string      $message The error message
      * @param int         $lineno  The template line where the error occurred
      * @param Source|null $source  The source context where the error occurred
