@@ -59,6 +59,9 @@ return $config
         'php_unit_internal_class' => true,
         'phpdoc_order' => [
             'order' => [
+                'internal',
+                'covers',
+                'author',
                 'param',
                 'throws',
                 'return',
