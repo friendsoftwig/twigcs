@@ -10,9 +10,9 @@ use FriendsOfTwig\Twigcs\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @author Tristan Maindron <tmaindron@gmail.com>
- *
  * @internal
+ *
+ * @author Tristan Maindron <tmaindron@gmail.com>
  */
 final class Twig2FunctionalTest extends TestCase
 {
