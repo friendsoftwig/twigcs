@@ -124,6 +124,8 @@ Using configuration, you can easily store per-project settings:
 // ~/.twig_cs.dist.php
 <?php
 
+declare(strict_types=1);
+
 use FriendsOfTwig\Twigcs;
 
 return Twigcs\Config\Config::create()
@@ -160,6 +162,8 @@ You can also provide finders inside config files, they will completely replace t
 // ~/.twig_cs.dist.php
 <?php
 
+declare(strict_types=1);
+
 use FriendsOfTwig\Twigcs;
 
 $finderA = Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirA');
@@ -188,6 +192,8 @@ simplest example when you have only one directory of templates.
 ```php
 <?php
 
+declare(strict_types=1);
+
 use FriendsOfTwig\Twigcs;
 
 return Twigcs\Config\Config::create()
@@ -201,6 +207,8 @@ Here is a more complex example that uses a chain resolver and a namespaced resol
 
 ```php
 <?php
+
+declare(strict_types=1);
 
 use FriendsOfTwig\Twigcs;
 
