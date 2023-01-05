@@ -25,6 +25,11 @@ return $config
         'braces' => [
             'allow_single_line_closure' => true,
         ],
+        'method_argument_space' => [
+            'after_heredoc' => false,
+            'keep_multiple_spaces_after_comma' => false,
+            'on_multiline' => 'ensure_fully_multiline',
+        ],
         'native_function_invocation' => false,
         'no_extra_blank_lines' => [
             'tokens' => [
