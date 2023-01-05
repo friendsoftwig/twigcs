@@ -124,11 +124,13 @@ Using configuration, you can easily store per-project settings:
 // ~/.twig_cs.dist.php
 <?php
 
-return \FriendsOfTwig\Twigcs\Config\Config::create()
+use FriendsOfTwig\Twigcs;
+
+return Twigcs\Config\Config::create()
     ->setName('my-config')
     ->setSeverity('warning')
     ->setReporter('json')
-    ->setRuleSet(FriendsOfTwig\Twigcs\Ruleset\Official::class)
+    ->setRuleSet(Twigcs\Ruleset\Official::class)
     ->setSpecificRuleSets([ // Every file matching the pattern will use a different ruleset.
         '*/template.html.twig' => Acme\Project\CustomRuleset::class,
     ])
@@ -158,10 +160,12 @@ You can also provide finders inside config files, they will completely replace t
 // ~/.twig_cs.dist.php
 <?php
 
-$finderA = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirA');
-$finderB = FriendsOfTwig\Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirB');
+use FriendsOfTwig\Twigcs;
 
-return \FriendsOfTwig\Twigcs\Config\Config::create()
+$finderA = Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirA');
+$finderB = Twigcs\Finder\TemplateFinder::create()->in(__DIR__.'/dirB');
+
+return Twigcs\Config\Config::create()
     // ...
     ->addFinder($finderA)
     ->addFinder($finderB)
@@ -184,11 +188,11 @@ simplest example when you have only one directory of templates.
 ```php
 <?php
 
-use FriendsOfTwig\Twigcs\TemplateResolver\FileResolver;
+use FriendsOfTwig\Twigcs;
 
-return \FriendsOfTwig\Twigcs\Config\Config::create()
+return Twigcs\Config\Config::create()
     // ...
-    ->setTemplateResolver(new FileResolver(__DIR__))
+    ->setTemplateResolver(new Twigcs\TemplateResolver\FileResolver(__DIR__))
     ->setRuleSet(FriendsOfTwig\Twigcs\Ruleset\Official::class)
 ;
 ```
@@ -198,14 +202,14 @@ Here is a more complex example that uses a chain resolver and a namespaced resol
 ```php
 <?php
 
-use FriendsOfTwig\Twigcs\TemplateResolver;
+use FriendsOfTwig\Twigcs;
 
-return \FriendsOfTwig\Twigcs\Config\Config::create()
+return Twigcs\Config\Config::create()
     ->setFinder($finder)
-    ->setTemplateResolver(new TemplateResolver\ChainResolver([
-        new TemplateResolver\FileResolver(__DIR__ . '/templates'),
-        new TemplateResolver\NamespacedResolver([
-            'acme' =>  new TemplateResolver\FileResolver(__DIR__ . '/vendor/Acme/AcmeLib/templates')
+    ->setTemplateResolver(new Twigcs\TemplateResolver\ChainResolver([
+        new Twigcs\TemplateResolver\FileResolver(__DIR__ . '/templates'),
+        new Twigcs\TemplateResolver\NamespacedResolver([
+            'acme' =>  new Twigcs\TemplateResolver\FileResolver(__DIR__ . '/vendor/Acme/AcmeLib/templates')
         ]),
     ]))
 ;
