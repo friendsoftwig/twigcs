@@ -41,7 +41,8 @@ final class GitLabReporter implements ReporterInterface
                 'fingerprint' => \hash(
                     'sha256',
                     \implode(
-                        '', [
+                        '',
+                        [
                             $violation->getFilename(),
                             $violation->getLine(),
                             $violation->getColumn(),
