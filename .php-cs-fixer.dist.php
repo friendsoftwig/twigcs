@@ -2,6 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('tests/Fixtures/app/cache')
+    ->ignoreDotFiles(false)
     ->in(__DIR__)
 ;
 
