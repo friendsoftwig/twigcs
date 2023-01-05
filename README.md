@@ -223,7 +223,7 @@ Join us on [Symfony Devs](https://symfony.com/slack) via the **twigcs** channel.
 
 ## Contributing
 
-The master is the development branch, if you find any bug or false positive during style checking, please
+The `main` branch is the development branch. If you find any bug or false positive during style checking, please
 open an issue or submit a pull request.
 
 When creating or changing a class, don't forget to add you as an `@author` at the top of the file.
