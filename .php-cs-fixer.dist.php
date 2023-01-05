@@ -57,6 +57,7 @@ return $config
             'sort_algorithm' => 'alpha',
         ],
         'php_unit_internal_class' => true,
+        'php_unit_test_class_requires_covers' => true,
         'phpdoc_order' => [
             'order' => [
                 'param',
