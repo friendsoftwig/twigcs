@@ -56,6 +56,7 @@ return $config
             ],
             'sort_algorithm' => 'alpha',
         ],
+        'php_unit_internal_class' => true,
         'phpdoc_order' => true,
         'strict_comparison' => true,
         'strict_param' => true,
