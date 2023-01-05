@@ -12,9 +12,21 @@ violations on coding standards.
 
 ## How to install
 
+Run
+
 ```bash
-composer global require friendsoftwig/twigcs
+composer require --dev friendsoftwig/twigcs
 ```
+
+to install `friendsoftwig/twigcs` with [`composer`](https://getcomposer.org).
+
+Run
+
+```bash
+phive install friendsoftwig/twigcs
+```
+
+to install `friendsoftwig/twigcs` with [`phive`](https://phar.io).
 
 ## How to run
 
