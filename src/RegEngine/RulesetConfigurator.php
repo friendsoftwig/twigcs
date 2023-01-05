@@ -33,36 +33,36 @@ class RulesetConfigurator
     public const ARROW_FUNCTION_SPACING_PATTERN = '#^args( *)=>( *)expr$#';
     public const NAMED_ARGS_SPACING_PATTERN = '#^name( *)=( *)value( *),( *)expr$#';
 
-    private $macroSpacingPattern = 'macro name(expr)';
-    private $tagSpacingPattern = '{% expr %}';
-    private $printStatementSpacingPattern = '{{ expr }}';
-    private $funcSpacingPattern = 'func(expr)';
-    private $arraySpacingPattern = '[expr]';
-    private $emptyArraySpacingPattern = '[]';
-    private $hashSpacingPattern = '{key: expr, key: expr}';
-    private $emptyHashSpacingPattern = '{}';
-    private $emptyParenthesesSpacingPattern = '()';
-    private $parenthesesSpacingPattern = '(expr)';
-    private $ifSpacingPattern = 'if expr';
-    private $elseifSpacingPattern = 'elseif expr';
-    private $forSpacingPattern = 'for <key, >item in expr< if expr>';
-    private $setSpacingPattern = 'set expr = expr';
-    private $binaryOpSpacingPattern = 'expr op expr';
-    private $rangeOpSpacingPattern = 'expr..expr';
-    private $unaryOpSpacingPattern = 'op expr';
-    private $sliceSpacingPattern = '[expr:expr]';
-    private $listSpacingPattern = 'expr, expr';
-    private $importSpacingPattern = 'import expr as list, expr as list';
-    private $fromSpacingPattern = 'from expr import expr< as list>';
-    private $embedSpacingPattern = 'embed expr< ignore missing>< with list>< only>';
-    private $includeSpacingPattern = 'include expr< ignore missing>< with list>< only>';
-    private $ternarySpacingPattern = 'expr ? expr : expr||expr ?: expr';
-    private $propertySpacingPattern = 'expr.expr|filter';
-    private $tagDefaultArgSpacing = 1; // Default space used between tag arguments : {% foo arg1 arg2 %}
-    private $emptyListWhitespaces = 0;
-    private $arrowFunctionSpacingPattern = 'args => expr';
-    private $namedArgsSpacingPattern = 'name=value, expr';
-    private $twigMajorVersion = 3;
+    private string $macroSpacingPattern = 'macro name(expr)';
+    private string $tagSpacingPattern = '{% expr %}';
+    private string $printStatementSpacingPattern = '{{ expr }}';
+    private string $funcSpacingPattern = 'func(expr)';
+    private string $arraySpacingPattern = '[expr]';
+    private string $emptyArraySpacingPattern = '[]';
+    private string $hashSpacingPattern = '{key: expr, key: expr}';
+    private string $emptyHashSpacingPattern = '{}';
+    private string $emptyParenthesesSpacingPattern = '()';
+    private string $parenthesesSpacingPattern = '(expr)';
+    private string $ifSpacingPattern = 'if expr';
+    private string $elseifSpacingPattern = 'elseif expr';
+    private string $forSpacingPattern = 'for <key, >item in expr< if expr>';
+    private string $setSpacingPattern = 'set expr = expr';
+    private string $binaryOpSpacingPattern = 'expr op expr';
+    private string $rangeOpSpacingPattern = 'expr..expr';
+    private string $unaryOpSpacingPattern = 'op expr';
+    private string $sliceSpacingPattern = '[expr:expr]';
+    private string $listSpacingPattern = 'expr, expr';
+    private string $importSpacingPattern = 'import expr as list, expr as list';
+    private string $fromSpacingPattern = 'from expr import expr< as list>';
+    private string $embedSpacingPattern = 'embed expr< ignore missing>< with list>< only>';
+    private string $includeSpacingPattern = 'include expr< ignore missing>< with list>< only>';
+    private string $ternarySpacingPattern = 'expr ? expr : expr||expr ?: expr';
+    private string $propertySpacingPattern = 'expr.expr|filter';
+    private int $tagDefaultArgSpacing = 1; // Default space used between tag arguments : {% foo arg1 arg2 %}
+    private int $emptyListWhitespaces = 0;
+    private string $arrowFunctionSpacingPattern = 'args => expr';
+    private string $namedArgsSpacingPattern = 'name=value, expr';
+    private int $twigMajorVersion = 3;
 
     public function getProcessedConfiguration()
     {

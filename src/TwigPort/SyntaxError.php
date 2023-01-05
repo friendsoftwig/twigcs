@@ -11,9 +11,9 @@ namespace FriendsOfTwig\Twigcs\TwigPort;
 
 class SyntaxError extends \Exception
 {
-    private $lineno;
-    private $columnno;
-    private $source;
+    private int $lineno;
+    private int $columnno;
+    private ?Source $source;
 
     /**
      * @param string      $message The error message

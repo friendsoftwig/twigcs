@@ -11,10 +11,7 @@ class Application extends BaseApplication
     public const NAME = 'twigcs';
     public const VERSION = '@__VERSION__@';
 
-    /**
-     * @var Container
-     */
-    private $container;
+    private Container $container;
 
     public function __construct(bool $singleCommand = true)
     {

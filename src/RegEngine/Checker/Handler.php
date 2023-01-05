@@ -9,10 +9,7 @@ class Handler
      */
     private $callback;
 
-    /**
-     * @var Handler
-     */
-    private $parent;
+    private ?Handler $parent;
 
     public static function create(): self
     {

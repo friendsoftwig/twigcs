@@ -4,20 +4,11 @@ namespace FriendsOfTwig\Twigcs\RegEngine\Checker;
 
 class RuleError
 {
-    /**
-     * @var int
-     */
-    private $column;
+    private int $column;
 
-    /**
-     * @var string
-     */
-    private $reason;
+    private string $reason;
 
-    /**
-     * @var Regex
-     */
-    private $source;
+    private Regex $source;
 
     public function __construct(string $reason, int $column, Regex $source)
     {

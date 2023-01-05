@@ -4,25 +4,16 @@ namespace FriendsOfTwig\Twigcs\RegEngine;
 
 class ScopedExpression
 {
-    /**
-     * @var array
-     */
-    private $content;
+    private array $content;
 
     /**
      * @var string|self
      */
     private $head;
 
-    /**
-     * @var bool
-     */
-    private $open;
+    private bool $open;
 
-    /**
-     * @var string
-     */
-    private $kind;
+    private string $kind;
 
     public function __construct(string $kind = 'EXPR')
     {

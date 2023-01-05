@@ -8,15 +8,9 @@ use FriendsOfTwig\Twigcs\RegEngine\Sanitizer\StringSanitizer;
 
 class Linter
 {
-    /**
-     * @var RuleChecker
-     */
-    private $ruleChecker;
+    private RuleChecker $ruleChecker;
 
-    /**
-     * @var StringSanitizer
-     */
-    private $stringSanitizer;
+    private StringSanitizer $stringSanitizer;
 
     public function __construct(array $ruleset)
     {

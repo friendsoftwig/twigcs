@@ -4,20 +4,11 @@ namespace FriendsOfTwig\Twigcs\RegEngine\Checker;
 
 class Regex
 {
-    /**
-     * @var string
-     */
-    private $rule;
+    private string $rule;
 
-    /**
-     * @var string
-     */
-    private $regex;
+    private string $regex;
 
-    /**
-     * @var array
-     */
-    private $captureTypes;
+    private array $captureTypes;
 
     /**
      * @var callable

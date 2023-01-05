@@ -10,15 +10,6 @@
     <MissingParamType occurrences="1">
       <code>$finder</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="1">
-      <code>$display</code>
-    </MissingPropertyType>
-    <MixedInferredReturnType occurrences="1">
-      <code>string</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;display</code>
-    </MixedReturnStatement>
     <NullableReturnStatement occurrences="1">
       <code>$this-&gt;loader</code>
     </NullableReturnStatement>
@@ -117,12 +108,15 @@
     </PossiblyNullArgument>
   </file>
   <file src="src/Console/ContainerAwareCommand.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>Container</code>
+    </InvalidNullableReturnType>
     <MissingReturnType occurrences="1">
       <code>setContainer</code>
     </MissingReturnType>
-    <PropertyNotSetInConstructor occurrences="1">
-      <code>$container</code>
-    </PropertyNotSetInConstructor>
+    <NullableReturnStatement occurrences="1">
+      <code>$this-&gt;container</code>
+    </NullableReturnStatement>
   </file>
   <file src="src/Console/LintCommand.php">
     <InvalidMethodCall occurrences="1">
@@ -275,10 +269,6 @@
     </MissingReturnType>
   </file>
   <file src="src/RegEngine/Checker/Handler.php">
-    <DocblockTypeContradiction occurrences="2">
-      <code>!$this-&gt;parent</code>
-      <code>$this-&gt;parent</code>
-    </DocblockTypeContradiction>
     <InvalidArgument occurrences="2">
       <code>$size</code>
       <code>$size</code>
@@ -310,9 +300,6 @@
       <code>getText</code>
       <code>getText</code>
     </MixedMethodCall>
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>$parent</code>
-    </PossiblyNullPropertyAssignmentValue>
     <PropertyNotSetInConstructor occurrences="1">
       <code>$callback</code>
     </PropertyNotSetInConstructor>
@@ -336,27 +323,10 @@
     </UnusedVariable>
   </file>
   <file src="src/RegEngine/Checker/Report.php">
-    <MissingPropertyType occurrences="2">
-      <code>$errors</code>
-      <code>$unrecognizedExpressions</code>
-    </MissingPropertyType>
-    <MixedArgument occurrences="1">
-      <code>$this-&gt;errors</code>
-    </MixedArgument>
-    <MixedArrayAssignment occurrences="2">
-      <code>$this-&gt;errors[]</code>
-      <code>$this-&gt;unrecognizedExpressions[]</code>
-    </MixedArrayAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>array</code>
-    </MixedInferredReturnType>
     <MixedMethodCall occurrences="2">
       <code>getColumn</code>
       <code>getColumn</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;unrecognizedExpressions</code>
-    </MixedReturnStatement>
   </file>
   <file src="src/RegEngine/Checker/RuleChecker.php">
     <MissingParamType occurrences="2">
@@ -986,75 +956,9 @@
     </MixedArrayAccess>
   </file>
   <file src="src/RegEngine/RulesetConfigurator.php">
-    <MissingPropertyType occurrences="30">
-      <code>$arraySpacingPattern</code>
-      <code>$arrowFunctionSpacingPattern</code>
-      <code>$binaryOpSpacingPattern</code>
-      <code>$elseifSpacingPattern</code>
-      <code>$embedSpacingPattern</code>
-      <code>$emptyArraySpacingPattern</code>
-      <code>$emptyHashSpacingPattern</code>
-      <code>$emptyListWhitespaces</code>
-      <code>$emptyParenthesesSpacingPattern</code>
-      <code>$forSpacingPattern</code>
-      <code>$fromSpacingPattern</code>
-      <code>$funcSpacingPattern</code>
-      <code>$hashSpacingPattern</code>
-      <code>$ifSpacingPattern</code>
-      <code>$importSpacingPattern</code>
-      <code>$includeSpacingPattern</code>
-      <code>$listSpacingPattern</code>
-      <code>$macroSpacingPattern</code>
-      <code>$namedArgsSpacingPattern</code>
-      <code>$parenthesesSpacingPattern</code>
-      <code>$printStatementSpacingPattern</code>
-      <code>$propertySpacingPattern</code>
-      <code>$rangeOpSpacingPattern</code>
-      <code>$setSpacingPattern</code>
-      <code>$sliceSpacingPattern</code>
-      <code>$tagDefaultArgSpacing</code>
-      <code>$tagSpacingPattern</code>
-      <code>$ternarySpacingPattern</code>
-      <code>$twigMajorVersion</code>
-      <code>$unaryOpSpacingPattern</code>
-    </MissingPropertyType>
     <MissingReturnType occurrences="1">
       <code>getProcessedConfiguration</code>
     </MissingReturnType>
-    <MixedArgument occurrences="27">
-      <code>$this-&gt;arraySpacingPattern</code>
-      <code>$this-&gt;arrowFunctionSpacingPattern</code>
-      <code>$this-&gt;binaryOpSpacingPattern</code>
-      <code>$this-&gt;elseifSpacingPattern</code>
-      <code>$this-&gt;embedSpacingPattern</code>
-      <code>$this-&gt;emptyArraySpacingPattern</code>
-      <code>$this-&gt;emptyHashSpacingPattern</code>
-      <code>$this-&gt;emptyParenthesesSpacingPattern</code>
-      <code>$this-&gt;forSpacingPattern</code>
-      <code>$this-&gt;fromSpacingPattern</code>
-      <code>$this-&gt;funcSpacingPattern</code>
-      <code>$this-&gt;hashSpacingPattern</code>
-      <code>$this-&gt;ifSpacingPattern</code>
-      <code>$this-&gt;importSpacingPattern</code>
-      <code>$this-&gt;includeSpacingPattern</code>
-      <code>$this-&gt;listSpacingPattern</code>
-      <code>$this-&gt;macroSpacingPattern</code>
-      <code>$this-&gt;namedArgsSpacingPattern</code>
-      <code>$this-&gt;parenthesesSpacingPattern</code>
-      <code>$this-&gt;printStatementSpacingPattern</code>
-      <code>$this-&gt;propertySpacingPattern</code>
-      <code>$this-&gt;rangeOpSpacingPattern</code>
-      <code>$this-&gt;setSpacingPattern</code>
-      <code>$this-&gt;sliceSpacingPattern</code>
-      <code>$this-&gt;tagSpacingPattern</code>
-      <code>$this-&gt;ternarySpacingPattern</code>
-      <code>$this-&gt;unaryOpSpacingPattern</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="3">
-      <code>$config['empty_list_whitespaces']</code>
-      <code>$config['tag_default_arg_spacing']</code>
-      <code>$config['twigMajorVersion']</code>
-    </MixedAssignment>
   </file>
   <file src="src/RegEngine/Sanitizer/StringSanitizer.php">
     <MissingReturnType occurrences="1">
@@ -1316,15 +1220,9 @@
     </MixedMethodCall>
   </file>
   <file src="src/Ruleset/Official.php">
-    <MissingPropertyType occurrences="1">
-      <code>$twigMajorVersion</code>
-    </MissingPropertyType>
     <MissingReturnType occurrences="1">
       <code>setTemplateResolver</code>
     </MissingReturnType>
-    <MixedArgument occurrences="1">
-      <code>$this-&gt;twigMajorVersion</code>
-    </MixedArgument>
   </file>
   <file src="src/Ruleset/TemplateResolverAwareInterface.php">
     <MissingReturnType occurrences="1">
@@ -1490,37 +1388,6 @@
       <code>$namespace</code>
     </PossiblyNullArgument>
   </file>
-  <file src="src/TwigPort/SyntaxError.php">
-    <MissingPropertyType occurrences="3">
-      <code>$columnno</code>
-      <code>$lineno</code>
-      <code>$source</code>
-    </MissingPropertyType>
-    <MixedInferredReturnType occurrences="6">
-      <code>Source|null</code>
-      <code>int</code>
-      <code>int</code>
-      <code>string|null</code>
-      <code>string|null</code>
-      <code>string|null</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="3">
-      <code>getCode</code>
-      <code>getName</code>
-      <code>getPath</code>
-    </MixedMethodCall>
-    <MixedReturnStatement occurrences="9">
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source ? $this-&gt;source-&gt;getCode() : null</code>
-      <code>$this-&gt;source ? $this-&gt;source-&gt;getCode() : null</code>
-      <code>$this-&gt;source ? $this-&gt;source-&gt;getName() : null</code>
-      <code>$this-&gt;source ? $this-&gt;source-&gt;getName() : null</code>
-      <code>$this-&gt;source ? $this-&gt;source-&gt;getPath() : null</code>
-      <code>$this-&gt;source ? $this-&gt;source-&gt;getPath() : null</code>
-    </MixedReturnStatement>
-  </file>
   <file src="src/TwigPort/Token.php">
     <MissingParamType occurrences="3">
       <code>$type</code>
@@ -1549,59 +1416,25 @@
       <code>$type</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="3">
-      <code>$current</code>
-      <code>$source</code>
-      <code>$tokens</code>
-    </MissingPropertyType>
     <MissingReturnType occurrences="2">
       <code>injectTokens</code>
       <code>nextIf</code>
     </MissingReturnType>
-    <MixedArgument occurrences="18">
+    <MixedArgument occurrences="10">
       <code>$column</code>
       <code>$column</code>
       <code>$column</code>
       <code>$line</code>
       <code>$line</code>
       <code>$line</code>
-      <code>$this-&gt;current</code>
-      <code>$this-&gt;current</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;tokens</code>
-      <code>$this-&gt;tokens</code>
-      <code>$this-&gt;tokens</code>
       <code>$token-&gt;getType()</code>
       <code>$token-&gt;getValue()</code>
       <code>$type</code>
       <code>$value</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="9">
-      <code>$this-&gt;tokens[$this-&gt;current + $number - 1]</code>
-      <code>$this-&gt;tokens[$this-&gt;current + $number]</code>
-      <code>$this-&gt;tokens[$this-&gt;current - 1]</code>
-      <code>$this-&gt;tokens[$this-&gt;current - 1]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-    </MixedArrayAccess>
-    <MixedArrayOffset occurrences="11">
-      <code>$this-&gt;tokens[$this-&gt;current + $number - 1]</code>
-      <code>$this-&gt;tokens[$this-&gt;current + $number]</code>
-      <code>$this-&gt;tokens[$this-&gt;current + $number]</code>
-      <code>$this-&gt;tokens[$this-&gt;current - 1]</code>
-      <code>$this-&gt;tokens[$this-&gt;current - 1]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[++$this-&gt;current]</code>
-    </MixedArrayOffset>
+    <MixedArgumentTypeCoercion occurrences="1">
+      <code>$this-&gt;tokens</code>
+    </MixedArgumentTypeCoercion>
     <MixedAssignment occurrences="9">
       <code>$column</code>
       <code>$column</code>
@@ -1613,8 +1446,7 @@
       <code>$token</code>
       <code>$token</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="6">
-      <code>Source</code>
+    <MixedInferredReturnType occurrences="5">
       <code>Token</code>
       <code>Token</code>
       <code>Token</code>
@@ -1636,16 +1468,7 @@
       <code>test</code>
       <code>test</code>
     </MixedMethodCall>
-    <MixedOperand occurrences="6">
-      <code>$this-&gt;current</code>
-      <code>$this-&gt;current</code>
-      <code>$this-&gt;current</code>
-      <code>$this-&gt;current</code>
-      <code>$this-&gt;current</code>
-      <code>$this-&gt;current</code>
-    </MixedOperand>
-    <MixedReturnStatement occurrences="6">
-      <code>$this-&gt;source</code>
+    <MixedReturnStatement occurrences="5">
       <code>$this-&gt;tokens[$this-&gt;current + $number]</code>
       <code>$this-&gt;tokens[$this-&gt;current - 1]</code>
       <code>$this-&gt;tokens[$this-&gt;current]</code>
@@ -1988,20 +1811,6 @@
       <code>$token</code>
       <code>$token</code>
     </UnusedVariable>
-  </file>
-  <file src="src/Validator/Validator.php">
-    <MissingPropertyType occurrences="1">
-      <code>$collectedData</code>
-    </MissingPropertyType>
-    <MixedArrayAssignment occurrences="1">
-      <code>$this-&gt;collectedData[get_class($rule)]</code>
-    </MixedArrayAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>array</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;collectedData</code>
-    </MixedReturnStatement>
   </file>
   <file src="src/Validator/Violation.php">
     <MissingParamType occurrences="4">

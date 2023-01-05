@@ -11,9 +11,9 @@ namespace FriendsOfTwig\Twigcs\TwigPort;
 
 final class TokenStream
 {
-    private $tokens;
-    private $current = 0;
-    private $source;
+    private array $tokens;
+    private int $current = 0;
+    private Source $source;
 
     public function __construct(array $tokens, Source $source = null)
     {

@@ -4,9 +4,9 @@ namespace FriendsOfTwig\Twigcs\RegEngine\Checker;
 
 class Report
 {
-    private $errors;
+    private array $errors;
 
-    private $unrecognizedExpressions;
+    private array $unrecognizedExpressions;
 
     public function __construct()
     {

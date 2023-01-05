@@ -16,25 +16,13 @@ function split($str, $len = 1)
 
 class RuleChecker
 {
-    /**
-     * @var array
-     */
-    private $rules;
+    private array $rules;
 
-    /**
-     * @var bool
-     */
-    private $explain;
+    private bool $explain;
 
-    /**
-     * @var array
-     */
-    private $unrecognizedExpressions;
+    private array $unrecognizedExpressions;
 
-    /**
-     * @var array
-     */
-    private $log;
+    private array $log;
 
     public function __construct(array $rulesets)
     {

@@ -4,30 +4,15 @@ namespace FriendsOfTwig\Twigcs\RegEngine\Checker;
 
 class Capture
 {
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
-    /**
-     * @var string
-     */
-    private $text;
+    private string $text;
 
-    /**
-     * @var int
-     */
-    private $offset;
+    private int $offset;
 
-    /**
-     * @var Regex
-     */
-    private $source;
+    private Regex $source;
 
-    /**
-     * @var array
-     */
-    private $offsetsMap;
+    private array $offsetsMap;
 
     public function __construct(string $type, string $text, int $offset, Regex $source)
     {
