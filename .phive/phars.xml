@@ -3,6 +3,5 @@
   <phar name="composer-require-checker" version="^3.8.0" installed="3.8.0" location="./.phive/composer-require-checker" copy="true"/>
   <phar name="humbug/box" version="^3.16.0" installed="3.16.0" location="./.phive/box" copy="true"/>
   <phar name="php-cs-fixer" version="^3.13.2" installed="3.13.2" location="./.phive/php-cs-fixer" copy="true"/>
-  <phar name="psalm" version="^5.4.0" installed="5.4.0" location="./.phive/psalm" copy="true"/>
   <phar name="friendsoftwig/twigcs" version="^6.1.0" installed="6.1.0" location="./tools/twigcs" copy="false"/>
 </phive>

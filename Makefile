@@ -23,13 +23,13 @@ phar: ## Compiles a phar with humbug/box
 
 .PHONY: static-code-analysis
 static-code-analysis: vendor ## Runs a static code analysis with vimeo/psalm
-	.phive/psalm --config=psalm.xml --clear-cache
-	.phive/psalm --config=psalm.xml --show-info=false --stats
+	vendor/bin/psalm --config=psalm.xml --clear-cache
+	vendor/bin/psalm --config=psalm.xml --show-info=false --stats
 
 .PHONY: static-code-analysis-baseline
 static-code-analysis-baseline: vendor ## Generates a baseline for static code analysis with vimeo/psalm
-	.phive/psalm --config=psalm.xml --clear-cache
-	.phive/psalm --config=psalm.xml --set-baseline=psalm-baseline.xml
+	vendor/bin/psalm --config=psalm.xml --clear-cache
+	vendor/bin/psalm --config=psalm.xml --set-baseline=psalm-baseline.xml
 
 .PHONY: tests
 tests: vendor ## Runs tests with phpunit/phpunit
