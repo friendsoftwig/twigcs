@@ -5,6 +5,9 @@
 [![Code Coverage](https://codecov.io/github/friendsoftwig/twigcs/branch/main/graph/badge.svg)](https://codecov.io/github/friendsoftwig/twigcs)
 [![Type Coverage](https://shepherd.dev/github/friendsoftwig/twigcs/coverage.svg)](https://shepherd.dev/github/friendsoftwig/twigcs)
 
+[![Latest Stable Version](https://poser.pugx.org/friendsoftwig/twigcs/v/stable)](https://packagist.org/packages/friendsoftwig/twigcs)
+[![Total Downloads](https://poser.pugx.org/friendsoftwig/twigcs/downloads)](https://packagist.org/packages/friendsoftwig/twigcs)
+
 The missing checkstyle for twig!
 
 Twigcs aims to be what [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) is to php. It checks your codebase for
