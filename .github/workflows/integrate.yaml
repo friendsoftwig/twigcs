@@ -31,12 +31,12 @@ jobs:
       - name: "Collect code coverage with Xdebug and phpunit/phpunit"
         env:
           XDEBUG_MODE: "coverage"
-        run: "vendor/bin/phpunit --colors=always --coverage-clover=clover.xml"
+        run: "vendor/bin/phpunit --colors=always --coverage-clover=.build/phpunit/logs/clover.xml"
 
       - name: "Send code coverage report to codecov.io"
         uses: "codecov/codecov-action@v3"
         with:
-          files: "clover.xml"
+          files: ".build/phpunit/logs/clover.xml"
 
   coding-standards:
     name: "Coding Standards"
