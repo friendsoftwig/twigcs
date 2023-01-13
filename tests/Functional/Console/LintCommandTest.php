@@ -81,7 +81,7 @@ final class LintCommandTest extends TestCase
         self::assertStringContainsString('ERROR', $output);
     }
 
-    public function testExecuteWithIgnoredWarnings(): void
+    public function testExecuteWithIgnoredWarningsOne(): void
     {
         $commandTester = self::commandTester();
 
@@ -96,6 +96,11 @@ final class LintCommandTest extends TestCase
 
         self::assertSame(0, $commandTester->getStatusCode());
         self::assertStringContainsString('WARNING', $output);
+    }
+
+    public function testExecuteWithIgnoredWarningsTwo(): void
+    {
+        $commandTester = self::commandTester();
 
         $commandTester->execute([
             '--severity' => 'error',

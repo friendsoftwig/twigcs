@@ -10,41 +10,54 @@ use PHPUnit\Framework\TestCase;
  */
 final class ScopedExpressionTest extends TestCase
 {
-    public function testEnqueue(): void
+    /**
+     * @dataProvider provideStringAndDebug
+     */
+    public function testEnqueue(
+        string $string,
+        string $debug,
+    ): void {
+        $scopedExpression = new ScopedExpression();
+
+        $scopedExpression->enqueueString($string);
+
+        self::assertSame($debug, $scopedExpression->debug());
+    }
+
+    /**
+     * @return array<string, array<{0: string, 1: string}>
+     */
+    public function provideStringAndDebug(): array
     {
-        $expr = new ScopedExpression();
-        $expr->enqueueString('{% set a = func({a: ["b", "B"]}) + {a: do(c + (d - 1))} %}');
-
-        self::assertSame('{% set a = func[([{a: [["b", "B"]]}])] + [{a: do[(c + [(d - 1)])]}] %}', $expr->debug());
-
-        $expr = new ScopedExpression();
-        $expr->enqueueString('{{ a ? b : c }}');
-
-        self::assertSame('{{ a [? b :] c }}', $expr->debug());
-
-        $expr = new ScopedExpression();
-        $expr->enqueueString('{{ {foo: a ? b, c}|sum }}');
-
-        self::assertSame('{{ [{foo: a ? b, c}]|sum }}', $expr->debug());
-
-        $expr = new ScopedExpression();
-        $expr->enqueueString('{{ [a ? b] }}');
-
-        self::assertSame('{{ [[a ? b]] }}', $expr->debug());
-
-        $expr = new ScopedExpression();
-        $expr->enqueueString('{{ (a ? b) }}');
-
-        self::assertSame('{{ [(a ? b)] }}', $expr->debug());
-
-        $expr = new ScopedExpression();
-        $expr->enqueueString('{{ (a ? b) + (c ? d : 1) }}');
-
-        self::assertSame('{{ [(a ? b)] + [(c [? d :] 1)] }}', $expr->debug());
-
-        $expr = new ScopedExpression();
-        $expr->enqueueString('{{ (a ? foo()) }}');
-
-        self::assertSame('{{ [(a ? foo[()])] }}', $expr->debug());
+        return [
+            [
+                '{% set a = func({a: ["b", "B"]}) + {a: do(c + (d - 1))} %}',
+                '{% set a = func[([{a: [["b", "B"]]}])] + [{a: do[(c + [(d - 1)])]}] %}',
+            ],
+            [
+                '{{ a ? b : c }}',
+                '{{ a [? b :] c }}',
+            ],
+            [
+                '{{ {foo: a ? b, c}|sum }}',
+                '{{ [{foo: a ? b, c}]|sum }}',
+            ],
+            [
+                '{{ [a ? b] }}',
+                '{{ [[a ? b]] }}',
+            ],
+            [
+                '{{ (a ? b) }}',
+                '{{ [(a ? b)] }}',
+            ],
+            [
+                '{{ (a ? b) + (c ? d : 1) }}',
+                '{{ [(a ? b)] + [(c [? d :] 1)] }}',
+            ],
+            [
+                '{{ (a ? foo()) }}',
+                '{{ [(a ? foo[()])] }}',
+            ],
+        ];
     }
 }
