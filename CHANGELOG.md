@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
-For a full diff see [`6.1.0...main`][6.1.0...main].
+For a full diff see [`6.2.0...main`][6.2.0...main].
+
+## [`6.2.0`][6.2.0]
+
+For a full diff see [`6.1.0...6.2.0`][6.1.0...6.2.0].
 
 ### Changed
 
@@ -123,6 +127,7 @@ For a full diff see [`b139b06...1.0.0`][b139b06...1.0.0].
 [5.2.0]: https://github.com/friendsoftwig/twigcs/releases/tag/5.2.0
 [6.0.0]: https://github.com/friendsoftwig/twigcs/releases/tag/v6.0.0
 [6.1.0]: https://github.com/friendsoftwig/twigcs/releases/tag/v6.1.0
+[6.2.0]: https://github.com/friendsoftwig/twigcs/releases/tag/6.2.0
 
 [b139b06...1.0.0]: https://github.com/friendsoftwig/twigcs/compare/b139b06...1.0.0
 [1.0.0...2.0.0]: https://github.com/friendsoftwig/twigcs/compare/1.0.0...2.0.0
@@ -146,7 +151,8 @@ For a full diff see [`b139b06...1.0.0`][b139b06...1.0.0].
 [5.1.0...5.2.0]: https://github.com/friendsoftwig/twigcs/compare/v5.1.0...5.2.0
 [5.2.0...6.0.0]: https://github.com/friendsoftwig/twigcs/compare/5.2.0...v6.0.0
 [6.0.0...6.1.0]: https://github.com/friendsoftwig/twigcs/compare/v6.0.0...v6.1.0
-[6.1.0...main]: https://github.com/friendsoftwig/twigcs/compare/v6.1.0...main
+[6.1.0...6.2.0]: https://github.com/friendsoftwig/twigcs/compare/v6.1.0...6.2.0
+[6.2.0...main]: https://github.com/friendsoftwig/twigcs/compare/6.2.0...main
 
 [#270]: https://github.com/friendsoftwig/twigcs/pull/270
 
