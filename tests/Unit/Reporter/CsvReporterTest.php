@@ -14,7 +14,7 @@ final class CsvReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
+        $output = $this->createMock(Console\Output\OutputInterface::class);
 
         $output
             ->expects(self::once())

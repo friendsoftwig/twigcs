@@ -7,7 +7,7 @@ namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 use FriendsOfTwig\Twigcs\Reporter\GitLabReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console;
 
 /**
  * @internal
@@ -18,7 +18,7 @@ final class GitLabReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $output = $this->createMock(ConsoleOutput::class);
+        $output = $this->createMock(Console\Output\OutputInterface::class);
 
         $output
             ->expects(self::once())
@@ -77,7 +77,7 @@ EOF
 
     public function testReportWithJsonException(): void
     {
-        $output = $this->createMock(ConsoleOutput::class);
+        $output = $this->createMock(Console\Output\OutputInterface::class);
 
         $reporter = new GitLabReporter();
 
