@@ -8,7 +8,7 @@ use FriendsOfTwig\Twigcs\Rule\UnusedVariable;
 use FriendsOfTwig\Twigcs\Ruleset\RulesetInterface;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 
-class CustomRuleset implements RulesetInterface
+final class CustomRuleset implements RulesetInterface
 {
     private int $twigMajorVersion;
 
