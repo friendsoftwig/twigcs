@@ -23,7 +23,7 @@ final class CheckstyleReporterTest extends TestCase
         ;
 
         $output
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('writeln')
             ->with(
                 <<<EOF

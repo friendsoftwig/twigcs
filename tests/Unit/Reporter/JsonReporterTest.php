@@ -23,7 +23,7 @@ final class JsonReporterTest extends TestCase
         ;
 
         $output
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('writeln')
             ->with(
                 <<<EOF
@@ -63,7 +63,7 @@ EOF
         ;
 
         $output
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('writeln')
             ->with(
                 <<<EOF

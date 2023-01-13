@@ -24,7 +24,7 @@ final class GithubActionReporterTest extends TestCase
         ;
 
         $output
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('writeln')
             ->with('::error file=template.twig,line=10,col=20::You are not allowed to do that.')
         ;

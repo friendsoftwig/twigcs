@@ -23,7 +23,7 @@ final class ConsoleReporterTest extends TestCase
         ;
 
         $output
-            ->expects($this->exactly(3))
+            ->expects(self::exactly(3))
             ->method('writeln')
             ->withConsecutive(
                 ['<comment>template.twig</comment>'],

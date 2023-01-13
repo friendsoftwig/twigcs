@@ -22,8 +22,8 @@ final class CorpusTest extends TestCase
 
         $output = $commandTester->getDisplay();
         $statusCode = $commandTester->getStatusCode();
-        $this->assertSame($statusCode, 0);
-        $this->assertStringContainsString('No violation found.', $output);
+        self::assertSame($statusCode, 0);
+        self::assertStringContainsString('No violation found.', $output);
     }
 
     private static function commandTester(): CommandTester

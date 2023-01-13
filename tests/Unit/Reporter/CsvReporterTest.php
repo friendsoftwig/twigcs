@@ -21,7 +21,7 @@ final class CsvReporterTest extends TestCase
         ;
 
         $output
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('writeln')
             ->with('template.twig;10;20;error - You are not allowed to do that.')
         ;

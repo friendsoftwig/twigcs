@@ -19,7 +19,7 @@ final class ForbiddenFunctionsTest extends TestCase
         $rule = new ForbiddenFunctions(Violation::SEVERITY_WARNING);
         $violations = $rule->check(self::tokenStream());
 
-        $this->assertCount(0, $violations);
+        self::assertCount(0, $violations);
     }
 
     public function testCheckWithFunctions(): void
@@ -27,14 +27,14 @@ final class ForbiddenFunctionsTest extends TestCase
         $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dump']);
         $violations = $rule->check(self::tokenStream());
 
-        $this->assertCount(1, $violations);
+        self::assertCount(1, $violations);
         $violation = $violations[0];
-        $this->assertSame(1, $violation->getLine());
-        $this->assertSame(3, $violation->getColumn());
-        $this->assertSame('The function "dump" is forbidden.', $violation->getReason());
-        $this->assertSame('my/path/file.html.twig', $violation->getFilename());
-        $this->assertSame(Violation::SEVERITY_WARNING, $violation->getSeverity());
-        $this->assertSame('FriendsOfTwig\Twigcs\Rule\ForbiddenFunctions', $violation->getSource());
+        self::assertSame(1, $violation->getLine());
+        self::assertSame(3, $violation->getColumn());
+        self::assertSame('The function "dump" is forbidden.', $violation->getReason());
+        self::assertSame('my/path/file.html.twig', $violation->getFilename());
+        self::assertSame(Violation::SEVERITY_WARNING, $violation->getSeverity());
+        self::assertSame('FriendsOfTwig\Twigcs\Rule\ForbiddenFunctions', $violation->getSource());
     }
 
     public function testCheckWithFunctionsNoEquals(): void
@@ -42,7 +42,7 @@ final class ForbiddenFunctionsTest extends TestCase
         $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dum']);
         $violations = $rule->check(self::tokenStream());
 
-        $this->assertCount(0, $violations);
+        self::assertCount(0, $violations);
     }
 
     private static function tokenStream(): TokenStream

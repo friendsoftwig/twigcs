@@ -22,7 +22,7 @@ final class GitLabReporterTest extends TestCase
         $output = $this->createMock(ConsoleOutput::class);
 
         $output
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('writeln')
             ->with(
                 <<<EOF

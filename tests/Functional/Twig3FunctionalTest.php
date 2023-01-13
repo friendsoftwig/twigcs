@@ -27,20 +27,20 @@ final class Twig3FunctionalTest extends TestCase
         $validator = new Validator();
 
         $violations = $validator->validate(new Official(3), $lexer->tokenize(new Source($expression, 'src', 'src.html.twig')));
-        $this->assertCount(
+        self::assertCount(
             0,
             $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []
         );
 
         if ($expectedViolation) {
-            $this->assertCount(1, $violations, sprintf("There should be one violation in:\n %s", $expression));
-            $this->assertSame($expectedViolation, $violations[0]->getReason());
+            self::assertCount(1, $violations, sprintf("There should be one violation in:\n %s", $expression));
+            self::assertSame($expectedViolation, $violations[0]->getReason());
             if ($expectedViolationPosition) {
-                $this->assertSame($expectedViolationPosition[0], $violations[0]->getColumn());
-                $this->assertSame($expectedViolationPosition[1], $violations[0]->getLine());
+                self::assertSame($expectedViolationPosition[0], $violations[0]->getColumn());
+                self::assertSame($expectedViolationPosition[1], $violations[0]->getLine());
             }
         } else {
-            $this->assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
+            self::assertCount(0, $violations, sprintf("There should be no violations in:\n %s", $expression));
         }
     }
 
