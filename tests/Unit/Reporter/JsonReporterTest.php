@@ -48,9 +48,12 @@ EOF
             )
         ;
 
-        $reporter->report($output, [
-            new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
-        ]);
+        $reporter->report(
+            $output,
+            [
+                new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
+            ]
+        );
     }
 
     public function testReportMultiple(): void
@@ -100,9 +103,12 @@ EOF
             )
         ;
 
-        $reporter->report($output, [
-            new Violation('first.twig', 1, 2, 'This is the first file.'),
-            new Violation('second.twig', 10, 20, 'This is the second file.', Violation::SEVERITY_INFO),
-        ]);
+        $reporter->report(
+            $output,
+            [
+                new Violation('first.twig', 1, 2, 'This is the first file.'),
+                new Violation('second.twig', 10, 20, 'This is the second file.', Violation::SEVERITY_INFO),
+            ]
+        );
     }
 }

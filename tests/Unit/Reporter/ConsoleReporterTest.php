@@ -38,8 +38,11 @@ final class ConsoleReporterTest extends TestCase
             )
         ;
 
-        $reporter->report($output, [
-            new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
-        ]);
+        $reporter->report(
+            $output,
+            [
+                new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
+            ]
+        );
     }
 }

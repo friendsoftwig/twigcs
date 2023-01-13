@@ -64,11 +64,14 @@ final class GitLabReporterTest extends TestCase
 EOF
             );
 
-        $reporter->report($output, [
-            new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
-            new Violation('template.twig', 10, 20, 'You should not do that.', Violation::SEVERITY_WARNING),
-            new Violation('template.twig', 10, 20, 'You might not want to do that.', Violation::SEVERITY_INFO),
-        ]);
+        $reporter->report(
+            $output,
+            [
+                new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
+                new Violation('template.twig', 10, 20, 'You should not do that.', Violation::SEVERITY_WARNING),
+                new Violation('template.twig', 10, 20, 'You might not want to do that.', Violation::SEVERITY_INFO),
+            ]
+        );
     }
 
     public function testReportWithJsonException(): void
@@ -77,6 +80,11 @@ EOF
         $output = $this->createMock(ConsoleOutput::class);
 
         $this->expectException(\JsonException::class);
-        $reporter->report($output, [new Violation('template.twig', 10, 20, "Error message with latin1 character \xE7")]);
+
+        $reporter->report(
+            $output,
+            [
+                new Violation('template.twig', 10, 20, "Error message with latin1 character \xE7")]
+        );
     }
 }

@@ -29,8 +29,11 @@ final class GithubActionReporterTest extends TestCase
             ->with('::error file=template.twig,line=10,col=20::You are not allowed to do that.')
         ;
 
-        $reporter->report($output, [
-            new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
-        ]);
+        $reporter->report(
+            $output,
+            [
+                new Violation('template.twig', 10, 20, 'You are not allowed to do that.'),
+            ]
+        );
     }
 }
