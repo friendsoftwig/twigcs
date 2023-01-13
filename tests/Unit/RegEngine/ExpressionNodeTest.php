@@ -13,6 +13,7 @@ final class ExpressionNodeTest extends TestCase
     public function testOffsetMapping(): void
     {
         $expr = ExpressionNode::fromString('{% func({a: ["b", "B"]}) + {a: do(c + (d - 1))} %}');
+
         self::assertSame(0, $expr->getOffsetAt(0));
         self::assertSame(1, $expr->getOffsetAt(1));
         self::assertSame(2, $expr->getOffsetAt(2));

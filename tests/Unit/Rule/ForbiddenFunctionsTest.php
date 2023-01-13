@@ -28,7 +28,9 @@ final class ForbiddenFunctionsTest extends TestCase
         $violations = $rule->check(self::tokenStream());
 
         self::assertCount(1, $violations);
+
         $violation = $violations[0];
+
         self::assertSame(1, $violation->getLine());
         self::assertSame(3, $violation->getColumn());
         self::assertSame('The function "dump" is forbidden.', $violation->getReason());

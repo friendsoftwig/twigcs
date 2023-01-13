@@ -25,6 +25,7 @@ final class Twig2FunctionalTest extends TestCase
         $validator = new Validator();
 
         $violations = $validator->validate(new Official(2), $lexer->tokenize(new Source($expression, 'src', 'src.html.twig')));
+
         self::assertCount(0, $validator->getCollectedData()[RegEngineRule::class]['unrecognized_expressions'] ?? []);
 
         if ($expectedViolation) {
