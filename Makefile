@@ -7,6 +7,7 @@ code-coverage: vendor ## Collects coverage from running tests with phpunit/phpun
 
 .PHONY: coding-standards
 coding-standards: vendor ## Fixes code style issues with friendsofphp/php-cs-fixer
+	mkdir -p .build/php-cs-fixer
 	.phive/php-cs-fixer fix --diff --verbose
 
 .PHONY: dependency-analysis

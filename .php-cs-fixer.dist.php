@@ -9,6 +9,7 @@ $finder = PhpCsFixer\Finder::create()
 $config = new PhpCsFixer\Config();
 
 return $config
+    ->setCacheFile(__DIR__.'/.build/php-cs-fixer/php-cs-fixer.cache')
     ->setFinder($finder)
     ->setRiskyAllowed(true)
     ->setRules([
