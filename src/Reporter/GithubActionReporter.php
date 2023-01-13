@@ -35,7 +35,7 @@ class GithubActionReporter implements ReporterInterface
 
     public function report(OutputInterface $output, array $violations)
     {
-        foreach ($violations as $key => $violation) {
+        foreach ($violations as $violation) {
             $output->writeln(sprintf(
                 '::%s file=%s,line=%s,col=%s::%s',
                 strtolower($violation->getSeverityAsString()),

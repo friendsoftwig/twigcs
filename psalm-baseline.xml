@@ -1066,9 +1066,6 @@
       <code>$violation-&gt;getColumn()</code>
       <code>$violation-&gt;getLine()</code>
     </RedundantConditionGivenDocblockType>
-    <UnusedVariable occurrences="1">
-      <code>$key</code>
-    </UnusedVariable>
   </file>
   <file src="src/Reporter/JUnitReporter.php">
     <ImplicitToStringCast occurrences="1">
