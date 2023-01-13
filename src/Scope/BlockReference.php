@@ -11,13 +11,13 @@ class BlockReference
         $this->name = $name;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function __toString()
     {
         return sprintf('reference for block "%s"', $this->name);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

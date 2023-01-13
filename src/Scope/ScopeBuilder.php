@@ -21,6 +21,12 @@ class ScopeBuilder
     private int $maxDepth = 5;
     private TemplateResolverInterface $loader;
 
+    public function __construct(TemplateResolverInterface $loader, int $mode = 0)
+    {
+        $this->mode = $mode;
+        $this->loader = $loader;
+    }
+
     public static function createVariableScopeBuilder(TemplateResolverInterface $loader)
     {
         return new self($loader, self::MODE_VARIABLE);
@@ -31,10 +37,9 @@ class ScopeBuilder
         return new self($loader, self::MODE_MACRO);
     }
 
-    public function __construct(TemplateResolverInterface $loader, int $mode = 0)
+    public function build(TokenStream $tokens)
     {
-        $this->mode = $mode;
-        $this->loader = $loader;
+        return $this->doBuild($tokens);
     }
 
     private function subScope(string $twigPath, int $depth): Scope
@@ -55,11 +60,6 @@ class ScopeBuilder
         } catch (SyntaxError $e) {
             return new Scope('file', $twigPath);
         }
-    }
-
-    public function build(TokenStream $tokens)
-    {
-        return $this->doBuild($tokens);
     }
 
     private function doBuild(TokenStream $tokens, $name = 'root', $depth = 0): Scope

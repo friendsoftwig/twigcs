@@ -20,14 +20,6 @@ class ExpressionNode
 
     private array $offsetsMap;
 
-    public static function fromString($expr)
-    {
-        $scoped = new ScopedExpression();
-        $scoped->enqueueString($expr);
-
-        return new self($scoped);
-    }
-
     public function __construct(ScopedExpression $scoped, $offset = 0)
     {
         $expr = '';
@@ -65,6 +57,14 @@ class ExpressionNode
             default:
                 $this->type = 'expr';
         }
+    }
+
+    public static function fromString($expr)
+    {
+        $scoped = new ScopedExpression();
+        $scoped->enqueueString($expr);
+
+        return new self($scoped);
     }
 
     public function getOffsetAt($i)

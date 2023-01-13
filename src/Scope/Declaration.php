@@ -19,6 +19,11 @@ class Declaration
         $this->origin = $origin;
     }
 
+    public function __toString()
+    {
+        return sprintf('declaration of %s', $this->name);
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -32,10 +37,5 @@ class Declaration
     public function getOrigin(): Scope
     {
         return $this->origin;
-    }
-
-    public function __toString()
-    {
-        return sprintf('declaration of %s', $this->name);
     }
 }

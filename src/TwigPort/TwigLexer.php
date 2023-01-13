@@ -11,22 +11,6 @@ namespace FriendsOfTwig\Twigcs\TwigPort;
 
 class TwigLexer
 {
-    protected $tokens;
-    protected $code;
-    protected $cursor;
-    protected $lineno;
-    protected $columnno;
-    protected $end;
-    protected $state;
-    protected $states;
-    protected $brackets;
-    protected $source;
-    protected $options;
-    protected $regexes;
-    protected $position;
-    protected $positions;
-    protected $currentVarBlockLine;
-
     public const STATE_DATA = 0;
     public const STATE_BLOCK = 1;
     public const STATE_VAR = 2;
@@ -78,6 +62,21 @@ class TwigLexer
             '??',
         ],
     ];
+    protected $tokens;
+    protected $code;
+    protected $cursor;
+    protected $lineno;
+    protected $columnno;
+    protected $end;
+    protected $state;
+    protected $states;
+    protected $brackets;
+    protected $source;
+    protected $options;
+    protected $regexes;
+    protected $position;
+    protected $positions;
+    protected $currentVarBlockLine;
 
     public function __construct(array $options = [])
     {

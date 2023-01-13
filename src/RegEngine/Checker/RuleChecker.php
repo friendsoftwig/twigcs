@@ -48,23 +48,6 @@ class RuleChecker
         return $this->log;
     }
 
-    private function compute(array $vars, string $rule, callable $callback)
-    {
-        $regex = '';
-        $types = [];
-
-        foreach (split($rule) as $char) {
-            if ($vars[$char] ?? false) {
-                $regex .= '('.$vars[$char].')';
-                $types[] = $char;
-            } else {
-                $regex .= $char;
-            }
-        }
-
-        return new Regex($rule, '#^'.$regex.'$#', $types, $callback);
-    }
-
     public function subCheck(Report $report, string $ruleset, Capture $capture)
     {
         $this->check($report, $ruleset, $capture->getText(), $capture->getOffsetsMap(), $capture->getOffset());
@@ -132,5 +115,22 @@ class RuleChecker
         $this->log = $log;
 
         return $this;
+    }
+
+    private function compute(array $vars, string $rule, callable $callback)
+    {
+        $regex = '';
+        $types = [];
+
+        foreach (split($rule) as $char) {
+            if ($vars[$char] ?? false) {
+                $regex .= '('.$vars[$char].')';
+                $types[] = $char;
+            } else {
+                $regex .= $char;
+            }
+        }
+
+        return new Regex($rule, '#^'.$regex.'$#', $types, $callback);
     }
 }

@@ -11,11 +11,6 @@ namespace FriendsOfTwig\Twigcs\TwigPort;
 
 class Token
 {
-    private $value;
-    private int $type;
-    private int $lineno;
-    private int $columnno;
-
     public const EOF_TYPE = -1;
     public const TEXT_TYPE = 0;
     public const BLOCK_START_TYPE = 1;
@@ -33,6 +28,10 @@ class Token
     public const WHITESPACE_TYPE = 13;
     public const NEWLINE_TYPE = 14;
     public const COMMENT_TYPE = 15;
+    private $value;
+    private int $type;
+    private int $lineno;
+    private int $columnno;
 
     public function __construct(int $type, $value, int $lineno, int $columnno)
     {

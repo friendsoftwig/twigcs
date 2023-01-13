@@ -68,20 +68,6 @@ final class ConfigResolver
         return $this->container->get($reporterServiceName);
     }
 
-    /**
-     * Set option that will be resolved.
-     *
-     * @param string $name
-     */
-    private function setOption($name, $value)
-    {
-        if (!\array_key_exists($name, $this->options)) {
-            throw new InvalidConfigurationException(sprintf('Unknown option name: "%s".', $name));
-        }
-
-        $this->options[$name] = $value;
-    }
-
     public function getRuleset(string $file)
     {
         $rulesetClassName = $this->getSpecificRuleset($file);
@@ -108,42 +94,6 @@ final class ConfigResolver
         }
 
         return $instance;
-    }
-
-    /**
-     * File/Glob specific Ruleset definition. cannot be set via cli.
-     *
-     * @return mixed|null
-     */
-    private function getSpecificRuleset(string $file)
-    {
-        if (null === $this->specificRulesets) {
-            $this->specificRulesets = $this->getConfig()->getSpecificRulesets();
-        }
-
-        $file = $this->normalizePath($file);
-        foreach ($this->specificRulesets as $pattern => $rulesetClassName) {
-            $pattern = $this->normalizePath($pattern);
-            if ($file === $pattern || \fnmatch($pattern, $file)) {
-                return $rulesetClassName;
-            }
-        }
-
-        return null;
-    }
-
-    private function normalizePath(string $path): string
-    {
-        return str_replace('\\', '/', $path);
-    }
-
-    private function getSeverity()
-    {
-        if (null !== $this->options['severity']) {
-            return $this->options['severity'];
-        }
-
-        return $this->getConfig()->getSeverity();
     }
 
     public function getSeverityLimit()
@@ -222,6 +172,56 @@ final class ConfigResolver
         }
 
         return $this->finders;
+    }
+
+    /**
+     * Set option that will be resolved.
+     *
+     * @param string $name
+     */
+    private function setOption($name, $value)
+    {
+        if (!\array_key_exists($name, $this->options)) {
+            throw new InvalidConfigurationException(sprintf('Unknown option name: "%s".', $name));
+        }
+
+        $this->options[$name] = $value;
+    }
+
+    /**
+     * File/Glob specific Ruleset definition. cannot be set via cli.
+     *
+     * @return mixed|null
+     */
+    private function getSpecificRuleset(string $file)
+    {
+        if (null === $this->specificRulesets) {
+            $this->specificRulesets = $this->getConfig()->getSpecificRulesets();
+        }
+
+        $file = $this->normalizePath($file);
+        foreach ($this->specificRulesets as $pattern => $rulesetClassName) {
+            $pattern = $this->normalizePath($pattern);
+            if ($file === $pattern || \fnmatch($pattern, $file)) {
+                return $rulesetClassName;
+            }
+        }
+
+        return null;
+    }
+
+    private function normalizePath(string $path): string
+    {
+        return str_replace('\\', '/', $path);
+    }
+
+    private function getSeverity()
+    {
+        if (null !== $this->options['severity']) {
+            return $this->options['severity'];
+        }
+
+        return $this->getConfig()->getSeverity();
     }
 
     private function getPath()
