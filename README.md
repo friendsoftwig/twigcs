@@ -248,6 +248,10 @@ If you're upgrading from 3.x to 4.x or later, please read the [upgrade guide](do
 
 Join us on [Symfony Devs](https://symfony.com/slack) via the **twigcs** channel.
 
+## Changelog
+
+Please have a look at [`CHANGELOG.md`](CHANGELOG.md).
+
 ## Contributing
 
 The `main` branch is the development branch. If you find any bug or false positive during style checking, please
