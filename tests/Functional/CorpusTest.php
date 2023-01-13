@@ -24,7 +24,7 @@ final class CorpusTest extends TestCase
 
         $output = $commandTester->getDisplay();
 
-        self::assertSame($commandTester->getStatusCode(), 0);
+        self::assertSame(0, $commandTester->getStatusCode());
         self::assertStringContainsString('No violation found.', $output);
     }
 
