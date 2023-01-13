@@ -15,11 +15,8 @@ final class CsvReporterTest extends TestCase
     public function testReport(): void
     {
         $reporter = new CsvReporter();
-        $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+
+        $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
             ->expects(self::once())

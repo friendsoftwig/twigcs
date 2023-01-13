@@ -18,11 +18,8 @@ final class GithubActionReporterTest extends TestCase
     public function testReport(): void
     {
         $reporter = new GithubActionReporter($this->createStub(ReporterInterface::class));
-        $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+
+        $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
             ->expects(self::once())

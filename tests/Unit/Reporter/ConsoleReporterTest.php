@@ -17,11 +17,8 @@ final class ConsoleReporterTest extends TestCase
     public function testReport(): void
     {
         $reporter = new ConsoleReporter();
-        $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+
+        $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
             ->expects(self::exactly(3))

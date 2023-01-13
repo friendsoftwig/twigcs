@@ -17,11 +17,8 @@ final class JsonReporterTest extends TestCase
     public function testReport(): void
     {
         $reporter = new JsonReporter();
-        $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+
+        $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
             ->expects(self::once())
@@ -60,11 +57,8 @@ EOF
     public function testReportMultiple(): void
     {
         $reporter = new JsonReporter();
-        $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+
+        $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
             ->expects(self::once())
