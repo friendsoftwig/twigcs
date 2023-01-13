@@ -121,11 +121,11 @@ final class LintCommandTest extends TestCase
         $commandTester = self::commandTester();
 
         $commandTester->execute([
-            'paths' => [
-                'tests/Fixture/exclusion',
-            ],
             '--exclude' => [
                 'bad',
+            ],
+            'paths' => [
+                'tests/Fixture/exclusion',
             ],
         ]);
 
@@ -141,11 +141,11 @@ final class LintCommandTest extends TestCase
         $commandTester = self::commandTester();
 
         $commandTester->execute([
+            '--display' => ConfigInterface::DISPLAY_BLOCKING,
+            '--severity' => 'error',
             'paths' => [
                 'tests/Fixture/exclusion/bad/mixed.html.twig',
             ],
-            '--severity' => 'error',
-            '--display' => ConfigInterface::DISPLAY_BLOCKING,
         ]);
 
         $output = $commandTester->getDisplay();
@@ -163,11 +163,11 @@ final class LintCommandTest extends TestCase
         $commandTester = self::commandTester();
 
         $commandTester->execute([
+            '--display' => ConfigInterface::DISPLAY_ALL,
+            '--severity' => 'error',
             'paths' => [
                 'tests/Fixture/exclusion/bad/mixed.html.twig',
             ],
-            '--severity' => 'error',
-            '--display' => ConfigInterface::DISPLAY_ALL,
         ]);
 
         $output = $commandTester->getDisplay();
@@ -187,12 +187,12 @@ final class LintCommandTest extends TestCase
         $this->expectException(SyntaxError::class);
 
         $commandTester->execute([
+            '--display' => ConfigInterface::DISPLAY_ALL,
+            '--severity' => 'error',
+            '--throw-syntax-error' => true,
             'paths' => [
                 'tests/Fixture/syntax_error/syntax_errors.html.twig',
             ],
-            '--severity' => 'error',
-            '--display' => ConfigInterface::DISPLAY_ALL,
-            '--throw-syntax-error' => true,
         ]);
 
         $statusCode = $commandTester->getStatusCode();
@@ -205,12 +205,12 @@ final class LintCommandTest extends TestCase
         $commandTester = self::commandTester();
 
         $commandTester->execute([
+            '--display' => ConfigInterface::DISPLAY_ALL,
+            '--severity' => 'error',
+            '--throw-syntax-error' => false,
             'paths' => [
                 'tests/Fixture/syntax_error/syntax_errors.html.twig',
             ],
-            '--severity' => 'error',
-            '--display' => ConfigInterface::DISPLAY_ALL,
-            '--throw-syntax-error' => false,
         ]);
 
         $output = $commandTester->getDisplay();
@@ -226,11 +226,11 @@ final class LintCommandTest extends TestCase
         $commandTester = self::commandTester();
 
         $commandTester->execute([
+            '--display' => ConfigInterface::DISPLAY_ALL,
+            '--severity' => 'error',
             'paths' => [
                 'tests/Fixture/syntax_error/syntax_errors.html.twig',
             ],
-            '--severity' => 'error',
-            '--display' => ConfigInterface::DISPLAY_ALL,
         ]);
 
         $output = $commandTester->getDisplay();
@@ -246,8 +246,8 @@ final class LintCommandTest extends TestCase
         $commandTester = self::commandTester();
 
         $commandTester->execute([
-            'paths' => null,
             '--config' => 'tests/Fixture/config/external/.twig_cs.dist.php',
+            'paths' => null,
         ]);
 
         $output = $commandTester->getDisplay();
@@ -266,10 +266,10 @@ l.1 c.8 : WARNING Unused variable "foo".
         $commandTester = self::commandTester();
 
         $commandTester->execute([
+            '--config' => 'tests/Fixture/config/external/.twig_cs.dist.php',
             'paths' => [
                 'tests/Fixture/syntax_error',
             ],
-            '--config' => 'tests/Fixture/config/external/.twig_cs.dist.php',
         ]);
 
         $output = $commandTester->getDisplay();
