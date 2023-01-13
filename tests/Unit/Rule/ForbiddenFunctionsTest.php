@@ -24,7 +24,9 @@ final class ForbiddenFunctionsTest extends TestCase
 
     public function testCheckWithFunctions(): void
     {
-        $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dump']);
+        $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions([
+            'dump',
+        ]);
         $violations = $rule->check(self::tokenStream());
 
         self::assertCount(1, $violations);
@@ -41,7 +43,9 @@ final class ForbiddenFunctionsTest extends TestCase
 
     public function testCheckWithFunctionsNoEquals(): void
     {
-        $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dum']);
+        $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions([
+            'dum',
+        ]);
         $violations = $rule->check(self::tokenStream());
 
         self::assertCount(0, $violations);

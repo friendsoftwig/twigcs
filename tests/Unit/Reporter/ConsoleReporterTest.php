@@ -26,9 +26,15 @@ final class ConsoleReporterTest extends TestCase
             ->expects(self::exactly(3))
             ->method('writeln')
             ->withConsecutive(
-                ['<comment>template.twig</comment>'],
-                ['<comment>l.10 c.20</comment> : ERROR You are not allowed to do that.'],
-                ['<error>1 violation(s) found</error>']
+                [
+                    '<comment>template.twig</comment>',
+                ],
+                [
+                    '<comment>l.10 c.20</comment> : ERROR You are not allowed to do that.',
+                ],
+                [
+                    '<error>1 violation(s) found</error>',
+                ]
             )
         ;
 

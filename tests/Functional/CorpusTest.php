@@ -17,7 +17,9 @@ final class CorpusTest extends TestCase
         $commandTester = self::commandTester();
 
         $commandTester->execute([
-            'paths' => ['tests/Fixture/valid_corpus'],
+            'paths' => [
+                'tests/Fixture/valid_corpus',
+            ],
         ]);
 
         $output = $commandTester->getDisplay();
