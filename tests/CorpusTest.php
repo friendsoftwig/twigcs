@@ -26,7 +26,7 @@ final class CorpusTest extends TestCase
     public function testExecute(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/valid_corpus'],
+            'paths' => ['tests/Fixture/valid_corpus'],
         ]);
 
         $output = $this->commandTester->getDisplay();

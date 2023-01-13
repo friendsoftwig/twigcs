@@ -29,7 +29,7 @@
 
 {%- block collection_widget -%}
     {% if prototype is defined and not prototype.rendered %}
-        {%- set attr = attr|merge({'data-prototype': form_row(prototype)}) -%}
+        {%- set attr = attr|merge({'Fixture-prototype': form_row(prototype)}) -%}
     {% endif %}
     {{- block('form_widget') -}}
 {%- endblock collection_widget -%}

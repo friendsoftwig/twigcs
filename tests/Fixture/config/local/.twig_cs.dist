@@ -7,6 +7,6 @@ return Twigcs\Config\Config::create()
     ->setReporter('json')
     ->setName('my-config')
     ->setSpecificRuleSets([
-        '*/a.html.twig' => Twigcs\Tests\data\config\local\CustomRuleset::class,
+        '*/a.html.twig' => Twigcs\Tests\Fixture\config\local\CustomRuleset::class,
     ])
 ;

@@ -28,7 +28,7 @@ final class LintCommandTest extends TestCase
     public function testExecute(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/exclusion/good'],
+            'paths' => ['tests/Fixture/exclusion/good'],
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -40,20 +40,20 @@ final class LintCommandTest extends TestCase
     public function testMultipleBasePaths(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/basepaths/a', 'tests/data/basepaths/b'],
+            'paths' => ['tests/Fixture/basepaths/a', 'tests/Fixture/basepaths/b'],
         ]);
 
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertStringStartsWith('tests/data/basepaths/a/bad.html.twig', $output);
-        $this->assertStringContainsString("\ntests/data/basepaths/b/bad.html.twig", $output);
+        $this->assertStringStartsWith('tests/Fixture/basepaths/a/bad.html.twig', $output);
+        $this->assertStringContainsString("\ntests/Fixture/basepaths/b/bad.html.twig", $output);
     }
 
     public function testExecuteWithError(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/exclusion'],
+            'paths' => ['tests/Fixture/exclusion'],
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -66,7 +66,7 @@ final class LintCommandTest extends TestCase
     {
         $this->commandTester->execute([
             '--severity' => 'ignore',
-            'paths' => ['tests/data/exclusion'],
+            'paths' => ['tests/Fixture/exclusion'],
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -79,7 +79,7 @@ final class LintCommandTest extends TestCase
     {
         $this->commandTester->execute([
             '--severity' => 'error',
-            'paths' => ['tests/data/exclusion/bad/warning.html.twig'],
+            'paths' => ['tests/Fixture/exclusion/bad/warning.html.twig'],
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -89,7 +89,7 @@ final class LintCommandTest extends TestCase
 
         $this->commandTester->execute([
             '--severity' => 'error',
-            'paths' => ['tests/data/exclusion/bad'],
+            'paths' => ['tests/Fixture/exclusion/bad'],
         ]);
 
         $output = $this->commandTester->getDisplay();
@@ -101,7 +101,7 @@ final class LintCommandTest extends TestCase
     public function testExecuteWithExclude(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/exclusion'],
+            'paths' => ['tests/Fixture/exclusion'],
             '--exclude' => ['bad'],
         ]);
 
@@ -114,7 +114,7 @@ final class LintCommandTest extends TestCase
     public function testErrorsOnlyDisplayBlocking(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/exclusion/bad/mixed.html.twig'],
+            'paths' => ['tests/Fixture/exclusion/bad/mixed.html.twig'],
             '--severity' => 'error',
             '--display' => ConfigInterface::DISPLAY_BLOCKING,
         ]);
@@ -131,7 +131,7 @@ final class LintCommandTest extends TestCase
     public function testErrorsDisplayAll(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/exclusion/bad/mixed.html.twig'],
+            'paths' => ['tests/Fixture/exclusion/bad/mixed.html.twig'],
             '--severity' => 'error',
             '--display' => ConfigInterface::DISPLAY_ALL,
         ]);
@@ -149,7 +149,7 @@ final class LintCommandTest extends TestCase
     {
         $this->expectException(SyntaxError::class);
         $this->commandTester->execute([
-            'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
+            'paths' => ['tests/Fixture/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => ConfigInterface::DISPLAY_ALL,
             '--throw-syntax-error' => true,
@@ -162,7 +162,7 @@ final class LintCommandTest extends TestCase
     public function testSyntaxErrorNotThrow(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
+            'paths' => ['tests/Fixture/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => ConfigInterface::DISPLAY_ALL,
             '--throw-syntax-error' => false,
@@ -178,7 +178,7 @@ final class LintCommandTest extends TestCase
     public function testSyntaxErrorNotThrowOmitArgument(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/syntax_error/syntax_errors.html.twig'],
+            'paths' => ['tests/Fixture/syntax_error/syntax_errors.html.twig'],
             '--severity' => 'error',
             '--display' => ConfigInterface::DISPLAY_ALL,
         ]);
@@ -194,15 +194,15 @@ final class LintCommandTest extends TestCase
     {
         $this->commandTester->execute([
             'paths' => null,
-            '--config' => 'tests/data/config/external/.twig_cs.dist.php',
+            '--config' => 'tests/Fixture/config/external/.twig_cs.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertStringContainsString('tests/data/basepaths/a/bad.html.twig
+        $this->assertStringContainsString('tests/Fixture/basepaths/a/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
-tests/data/basepaths/b/bad.html.twig
+tests/Fixture/basepaths/b/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
 2 violation(s) found', $output);
     }
@@ -210,18 +210,18 @@ l.1 c.8 : WARNING Unused variable "foo".
     public function testConfigFileWithCliPath(): void
     {
         $this->commandTester->execute([
-            'paths' => ['tests/data/syntax_error'],
-            '--config' => 'tests/data/config/external/.twig_cs.dist.php',
+            'paths' => ['tests/Fixture/syntax_error'],
+            '--config' => 'tests/Fixture/config/external/.twig_cs.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertStringContainsString('tests/data/basepaths/a/bad.html.twig
+        $this->assertStringContainsString('tests/Fixture/basepaths/a/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
-tests/data/basepaths/b/bad.html.twig
+tests/Fixture/basepaths/b/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
-tests/data/syntax_error/syntax_errors.html.twig
+tests/Fixture/syntax_error/syntax_errors.html.twig
 l.1 c.17 : ERROR Unexpected "}".
 3 violation(s) found', $output);
     }
@@ -229,20 +229,20 @@ l.1 c.17 : ERROR Unexpected "}".
     public function testConfigFileWithDisplayAndSeverity(): void
     {
         $this->commandTester->execute([
-            '--config' => 'tests/data/config/external/.twig_cs_with_display_blocking.dist.php',
+            '--config' => 'tests/Fixture/config/external/.twig_cs_with_display_blocking.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertStringContainsString('tests/data/syntax_error/syntax_errors.html.twig
+        $this->assertStringContainsString('tests/Fixture/syntax_error/syntax_errors.html.twig
 l.1 c.17 : ERROR Unexpected "}".
 1 violation(s) found', $output);
     }
 
     public function testConfigFileSamePathWithRulesetOverrides(): void
     {
-        chdir(__DIR__.'/../data/config/local');
+        chdir(__DIR__.'/../Fixture/config/local');
         $this->commandTester->execute([
             'paths' => null,
         ]);
@@ -273,23 +273,23 @@ l.1 c.17 : ERROR Unexpected "}".
     public function testUnusedWithFileLoader(): void
     {
         $this->commandTester->execute([
-            '--config' => 'tests/data/config/loaders/.twig_cs.dist.php',
+            '--config' => 'tests/Fixture/config/loaders/.twig_cs.dist.php',
         ]);
 
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();
         $this->assertSame($statusCode, 1);
-        $this->assertStringContainsString('tests/data/config/loaders/src/embed/child.html.twig
+        $this->assertStringContainsString('tests/Fixture/config/loaders/src/embed/child.html.twig
 l.3 c.7 : WARNING Unused variable "unused_child".
-tests/data/config/loaders/src/embed/parent.html.twig
+tests/Fixture/config/loaders/src/embed/parent.html.twig
 l.2 c.7 : WARNING Unused variable "unused_parent".
-tests/data/config/loaders/src/extends/child.html.twig
+tests/Fixture/config/loaders/src/extends/child.html.twig
 l.5 c.7 : WARNING Unused variable "unused_child".
-tests/data/config/loaders/src/extends/parent.html.twig
+tests/Fixture/config/loaders/src/extends/parent.html.twig
 l.7 c.7 : WARNING Unused variable "unused_parent".
-tests/data/config/loaders/src/include/child.html.twig
+tests/Fixture/config/loaders/src/include/child.html.twig
 l.3 c.7 : WARNING Unused variable "unused_child".
-tests/data/config/loaders/src/include/parent.html.twig
+tests/Fixture/config/loaders/src/include/parent.html.twig
 l.2 c.7 : WARNING Unused variable "unused_parent".
 6 violation(s) found', $output);
     }

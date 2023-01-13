@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests\data\config\local;
+namespace FriendsOfTwig\Twigcs\Tests\Fixture\config\local;
 
 use FriendsOfTwig\Twigcs\RegEngine\RulesetBuilder;
 use FriendsOfTwig\Twigcs\RegEngine\RulesetConfigurator;
