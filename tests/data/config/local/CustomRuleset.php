@@ -17,10 +17,7 @@ class CustomRuleset implements RulesetInterface
         $this->twigMajorVersion = $twigMajorVersion;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getRules()
+    public function getRules(): array
     {
         $configurator = new RulesetConfigurator();
         $configurator->setTwigMajorVersion($this->twigMajorVersion);

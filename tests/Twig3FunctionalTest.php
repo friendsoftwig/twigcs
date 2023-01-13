@@ -44,7 +44,7 @@ final class Twig3FunctionalTest extends TestCase
         }
     }
 
-    public function getData()
+    public function getData(): array
     {
         return [
             // Put one (and only one) space after the start of a delimiter and before the end of a delimiter.

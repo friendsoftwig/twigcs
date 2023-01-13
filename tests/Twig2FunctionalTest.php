@@ -39,7 +39,7 @@ final class Twig2FunctionalTest extends TestCase
         }
     }
 
-    public function getData()
+    public function getData(): array
     {
         return [
             ['{% for i in (some_array) if  foo %}{{ i }}', 'There should be 1 space between the if and its expression.'],
