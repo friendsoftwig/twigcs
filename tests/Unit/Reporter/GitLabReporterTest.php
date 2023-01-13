@@ -86,7 +86,8 @@ EOF
         $reporter->report(
             $output,
             [
-                new Violation('template.twig', 10, 20, "Error message with latin1 character \xE7")]
+                new Violation('template.twig', 10, 20, "Error message with latin1 character \xE7"),
+            ]
         );
     }
 }
