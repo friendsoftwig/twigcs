@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 use FriendsOfTwig\Twigcs\Reporter\ConsoleReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console;
 
 /**
  * @internal
@@ -17,7 +18,7 @@ final class ConsoleReporterTest extends TestCase
     {
         $reporter = new ConsoleReporter();
         $output = $this
-            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
+            ->getMockBuilder(Console\Output\ConsoleOutput::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;

@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console;
 
 /**
  * @internal
@@ -17,7 +18,7 @@ final class JsonReporterTest extends TestCase
     {
         $reporter = new JsonReporter();
         $output = $this
-            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
+            ->getMockBuilder(Console\Output\ConsoleOutput::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;
@@ -60,7 +61,7 @@ EOF
     {
         $reporter = new JsonReporter();
         $output = $this
-            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
+            ->getMockBuilder(Console\Output\ConsoleOutput::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;

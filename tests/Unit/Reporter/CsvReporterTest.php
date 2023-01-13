@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 use FriendsOfTwig\Twigcs\Reporter\CsvReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console;
 
 /**
  * @internal
@@ -15,7 +16,7 @@ final class CsvReporterTest extends TestCase
     {
         $reporter = new CsvReporter();
         $output = $this
-            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
+            ->getMockBuilder(Console\Output\ConsoleOutput::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;

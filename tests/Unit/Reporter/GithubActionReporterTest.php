@@ -6,6 +6,7 @@ use FriendsOfTwig\Twigcs\Reporter\GithubActionReporter;
 use FriendsOfTwig\Twigcs\Reporter\ReporterInterface;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console;
 
 /**
  * @internal
@@ -18,7 +19,7 @@ final class GithubActionReporterTest extends TestCase
     {
         $reporter = new GithubActionReporter($this->createStub(ReporterInterface::class));
         $output = $this
-            ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
+            ->getMockBuilder(Console\Output\ConsoleOutput::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;
