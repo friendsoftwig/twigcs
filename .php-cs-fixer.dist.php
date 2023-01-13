@@ -77,6 +77,9 @@ return $config
             'sort_algorithm' => 'alpha',
         ],
         'php_unit_internal_class' => true,
+        'php_unit_test_case_static_method_calls' => [
+            'call_type' => 'self',
+        ],
         'phpdoc_order' => [
             'order' => [
                 'internal',
