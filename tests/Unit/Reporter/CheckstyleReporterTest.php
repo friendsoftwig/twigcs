@@ -18,7 +18,7 @@ final class CheckstyleReporterTest extends TestCase
     {
         $reporter = new CheckstyleReporter();
         $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutput::class)
+            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;

@@ -19,7 +19,7 @@ final class GithubActionReporterTest extends TestCase
     {
         $reporter = new GithubActionReporter($this->createStub(ReporterInterface::class));
         $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutput::class)
+            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;

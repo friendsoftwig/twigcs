@@ -18,7 +18,7 @@ final class ConsoleReporterTest extends TestCase
     {
         $reporter = new ConsoleReporter();
         $output = $this
-            ->getMockBuilder(Console\Output\ConsoleOutput::class)
+            ->getMockBuilder(Console\Output\ConsoleOutputInterface::class)
             ->disableOriginalConstructor()
             ->getMock()
         ;
