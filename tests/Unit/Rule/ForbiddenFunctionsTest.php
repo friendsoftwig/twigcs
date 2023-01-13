@@ -14,24 +14,10 @@ use PHPUnit\Framework\TestCase;
  */
 final class ForbiddenFunctionsTest extends TestCase
 {
-    private TokenStream $tokens;
-
-    protected function setUp(): void
-    {
-        $lexer = new Lexer();
-        $source = new Source(
-            '{{ dump(test) }}{{ dump.test }}',
-            'my/path/file.html.twig',
-            ltrim(str_replace(getcwd(), '', 'my/path/file.html.twig'), '/')
-        );
-
-        $this->tokens = $lexer->tokenize($source);
-    }
-
     public function testCheckWithoutFunctions(): void
     {
         $rule = new ForbiddenFunctions(Violation::SEVERITY_WARNING);
-        $violations = $rule->check($this->tokens);
+        $violations = $rule->check(self::tokenStream());
 
         $this->assertCount(0, $violations);
     }
@@ -39,7 +25,7 @@ final class ForbiddenFunctionsTest extends TestCase
     public function testCheckWithFunctions(): void
     {
         $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dump']);
-        $violations = $rule->check($this->tokens);
+        $violations = $rule->check(self::tokenStream());
 
         $this->assertCount(1, $violations);
         $violation = $violations[0];
@@ -54,8 +40,20 @@ final class ForbiddenFunctionsTest extends TestCase
     public function testCheckWithFunctionsNoEquals(): void
     {
         $rule = (new ForbiddenFunctions(Violation::SEVERITY_WARNING))->setFunctions(['dum']);
-        $violations = $rule->check($this->tokens);
+        $violations = $rule->check(self::tokenStream());
 
         $this->assertCount(0, $violations);
+    }
+
+    private static function tokenStream(): TokenStream
+    {
+        $lexer = new Lexer();
+        $source = new Source(
+            '{{ dump(test) }}{{ dump.test }}',
+            'my/path/file.html.twig',
+            ltrim(str_replace(getcwd(), '', 'my/path/file.html.twig'), '/')
+        );
+
+        return $lexer->tokenize($source);
     }
 }

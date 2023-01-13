@@ -12,26 +12,26 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 final class CorpusTest extends TestCase
 {
-    private CommandTester $commandTester;
+    public function testExecute(): void
+    {
+        $commandTester = self::commandTester();
 
-    protected function setUp(): void
+        $commandTester->execute([
+            'paths' => ['tests/Fixture/valid_corpus'],
+        ]);
+
+        $output = $commandTester->getDisplay();
+        $statusCode = $commandTester->getStatusCode();
+        $this->assertSame($statusCode, 0);
+        $this->assertStringContainsString('No violation found.', $output);
+    }
+
+    private static function commandTester(): CommandTester
     {
         $container = new Container();
         $command = new LintCommand();
         $command->setContainer($container);
 
-        $this->commandTester = new CommandTester($command);
-    }
-
-    public function testExecute(): void
-    {
-        $this->commandTester->execute([
-            'paths' => ['tests/Fixture/valid_corpus'],
-        ]);
-
-        $output = $this->commandTester->getDisplay();
-        $statusCode = $this->commandTester->getStatusCode();
-        $this->assertSame($statusCode, 0);
-        $this->assertStringContainsString('No violation found.', $output);
+        return new CommandTester($command);
     }
 }
