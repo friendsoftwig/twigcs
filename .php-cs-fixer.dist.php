@@ -49,6 +49,25 @@ return $config
         'no_useless_else' => true,
         'no_useless_return' => true,
         'non_printable_character' => false,
+        'ordered_class_elements' => [
+            'order' => [
+                'use_trait',
+                'constant_public',
+                'constant_protected',
+                'constant_private',
+                'property_public',
+                'property_protected',
+                'property_private',
+                'construct',
+                'destruct',
+                'magic',
+                'phpunit',
+                'method_public',
+                'method_protected',
+                'method_private',
+            ],
+            'sort_algorithm' => 'none',
+        ],
         'ordered_imports' => [
             'imports_order' => [
                 'class',
