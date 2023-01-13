@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests\Rule;
+namespace FriendsOfTwig\Twigcs\Tests\Unit\Rule;
 
 use FriendsOfTwig\Twigcs\Lexer;
 use FriendsOfTwig\Twigcs\Rule\ForbiddenFunctions;

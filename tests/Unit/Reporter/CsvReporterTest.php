@@ -1,22 +1,19 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests\Reporter;
+namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 
-use FriendsOfTwig\Twigcs\Reporter\GithubActionReporter;
-use FriendsOfTwig\Twigcs\Reporter\ReporterInterface;
+use FriendsOfTwig\Twigcs\Reporter\CsvReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- *
- * @covers \FriendsOfTwig\Twigcs\Reporter\CsvReporter
  */
-final class GithubActionReporterTest extends TestCase
+final class CsvReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new GithubActionReporter($this->createStub(ReporterInterface::class));
+        $reporter = new CsvReporter();
         $output = $this
             ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
             ->disableOriginalConstructor()
@@ -26,7 +23,7 @@ final class GithubActionReporterTest extends TestCase
         $output
             ->expects($this->once())
             ->method('writeln')
-            ->with('::error file=template.twig,line=10,col=20::You are not allowed to do that.')
+            ->with('template.twig;10;20;error - You are not allowed to do that.')
         ;
 
         $reporter->report($output, [

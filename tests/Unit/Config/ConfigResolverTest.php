@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FriendsOfTwig\Twigcs\Tests\Config;
+namespace FriendsOfTwig\Twigcs\Tests\Unit\Config;
 
 use FriendsOfTwig\Twigcs;
 use PHPUnit\Framework;
@@ -319,6 +319,6 @@ PHP;
 
     private static function temporaryDirectory(): string
     {
-        return __DIR__.'/../../.build/test';
+        return __DIR__.'/../../../.build/test';
     }
 }

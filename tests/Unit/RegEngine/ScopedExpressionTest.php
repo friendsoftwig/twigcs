@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests\RegEngine;
+namespace FriendsOfTwig\Twigcs\Tests\Unit\RegEngine;
 
 use FriendsOfTwig\Twigcs\RegEngine\ScopedExpression;
 use PHPUnit\Framework\TestCase;
