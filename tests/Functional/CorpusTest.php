@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests;
+namespace FriendsOfTwig\Twigcs\Tests\Functional;
 
 use FriendsOfTwig\Twigcs\Console\LintCommand;
 use FriendsOfTwig\Twigcs\Container;

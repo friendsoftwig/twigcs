@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests\Reporter;
+namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 
 use FriendsOfTwig\Twigcs\Reporter\JsonReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;

@@ -170,5 +170,8 @@ jobs:
       - name: "Install dependencies with composer"
         run: "composer install --ansi --no-progress"
 
-      - name: "Run tests with phpunit/phpunit"
-        run: "vendor/bin/phpunit --colors=always"
+      - name: "Run unit tests with phpunit/phpunit"
+        run: "vendor/bin/phpunit --colors=always --testsuite=unit"
+
+      - name: "Run functional tests with phpunit/phpunit"
+        run: "vendor/bin/phpunit --colors=always --testsuite=functional"

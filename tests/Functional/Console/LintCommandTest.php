@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests\Console;
+namespace FriendsOfTwig\Twigcs\Tests\Functional\Console;
 
 use FriendsOfTwig\Twigcs\Config\ConfigInterface;
 use FriendsOfTwig\Twigcs\Console\LintCommand;
@@ -242,11 +242,11 @@ l.1 c.17 : ERROR Unexpected "}".
 
     public function testConfigFileSamePathWithRulesetOverrides(): void
     {
-        chdir(__DIR__.'/../Fixture/config/local');
+        chdir(__DIR__.'/../../Fixture/config/local');
         $this->commandTester->execute([
             'paths' => null,
         ]);
-        chdir(__DIR__.'/../..');
+        chdir(__DIR__.'/../../..');
 
         $output = $this->commandTester->getDisplay();
         $statusCode = $this->commandTester->getStatusCode();

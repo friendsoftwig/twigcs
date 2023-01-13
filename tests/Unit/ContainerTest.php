@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FriendsOfTwig\Twigcs\Tests;
+namespace FriendsOfTwig\Twigcs\Tests\Unit;
 
 use FriendsOfTwig\Twigcs;
 use PHPUnit\Framework;

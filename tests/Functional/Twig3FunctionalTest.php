@@ -1,6 +1,6 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests;
+namespace FriendsOfTwig\Twigcs\Tests\Functional;
 
 use FriendsOfTwig\Twigcs\Lexer;
 use FriendsOfTwig\Twigcs\Rule\RegEngineRule;

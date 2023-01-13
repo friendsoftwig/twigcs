@@ -1,19 +1,21 @@
 <?php
 
-namespace FriendsOfTwig\Twigcs\Tests\Reporter;
+namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 
-use FriendsOfTwig\Twigcs\Reporter\CsvReporter;
+use FriendsOfTwig\Twigcs\Reporter\CheckstyleReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
+ *
+ * @covers \FriendsOfTwig\Twigcs\Reporter\CheckstyleReporter
  */
-final class CsvReporterTest extends TestCase
+final class CheckstyleReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new CsvReporter();
+        $reporter = new CheckstyleReporter();
         $output = $this
             ->getMockBuilder('Symfony\Component\Console\Output\ConsoleOutput')
             ->disableOriginalConstructor()
@@ -23,7 +25,13 @@ final class CsvReporterTest extends TestCase
         $output
             ->expects($this->once())
             ->method('writeln')
-            ->with('template.twig;10;20;error - You are not allowed to do that.')
+            ->with(
+                <<<EOF
+<?xml version="1.0"?>
+<checkstyle version="1.0.0"><file name="template.twig"><error column="20" line="10" severity="error" message="You are not allowed to do that." source="unknown"/></file></checkstyle>
+
+EOF
+            )
         ;
 
         $reporter->report($output, [

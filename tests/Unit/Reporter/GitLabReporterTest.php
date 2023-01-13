@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FriendsOfTwig\Twigcs\Tests\Reporter;
+namespace FriendsOfTwig\Twigcs\Tests\Unit\Reporter;
 
 use FriendsOfTwig\Twigcs\Reporter\GitLabReporter;
 use FriendsOfTwig\Twigcs\Validator\Violation;
