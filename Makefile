@@ -1,6 +1,10 @@
 .PHONY: it
 it: coding-standards static-code-analysis tests ## Runs the coding-standards, static-code-analysis, and tests targets
 
+.PHONY: code-coverage
+code-coverage: vendor ## Collects coverage from running tests with phpunit/phpunit
+	vendor/bin/phpunit --coverage-text
+
 .PHONY: coding-standards
 coding-standards: vendor ## Fixes code style issues with friendsofphp/php-cs-fixer
 	.phive/php-cs-fixer fix --diff --verbose
