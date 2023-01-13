@@ -12,7 +12,7 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 final class CorpusTest extends TestCase
 {
-    private $commandTester;
+    private CommandTester $commandTester;
 
     protected function setUp(): void
     {

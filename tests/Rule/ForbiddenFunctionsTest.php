@@ -5,6 +5,7 @@ namespace FriendsOfTwig\Twigcs\Tests\Rule;
 use FriendsOfTwig\Twigcs\Lexer;
 use FriendsOfTwig\Twigcs\Rule\ForbiddenFunctions;
 use FriendsOfTwig\Twigcs\TwigPort\Source;
+use FriendsOfTwig\Twigcs\TwigPort\TokenStream;
 use FriendsOfTwig\Twigcs\Validator\Violation;
 use PHPUnit\Framework\TestCase;
 
@@ -13,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ForbiddenFunctionsTest extends TestCase
 {
-    private $tokens;
+    private TokenStream $tokens;
 
     protected function setUp(): void
     {

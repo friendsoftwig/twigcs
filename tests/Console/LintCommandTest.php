@@ -14,8 +14,7 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 final class LintCommandTest extends TestCase
 {
-    /** @var CommandTester */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     protected function setUp(): void
     {

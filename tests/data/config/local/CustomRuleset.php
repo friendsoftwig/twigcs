@@ -10,7 +10,7 @@ use FriendsOfTwig\Twigcs\Validator\Violation;
 
 class CustomRuleset implements RulesetInterface
 {
-    private $twigMajorVersion;
+    private int $twigMajorVersion;
 
     public function __construct(int $twigMajorVersion)
     {
