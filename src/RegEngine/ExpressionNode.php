@@ -35,6 +35,7 @@ class ExpressionNode
                 ++$offsetCounter;
             } else {
                 $kind = $item->getKind();
+
                 for ($i = 0; $i < strlen($kind); ++$i) {
                     $offsets[] = $offsetCounter;
                 }
@@ -51,7 +52,9 @@ class ExpressionNode
         switch ($scoped->getKind()) {
             case '__ARRAY__':
                 $this->type = 'arrayOrSlice';
+
                 break;
+
             case '__PARENTHESES__':
             case '__HASH__':
             default:

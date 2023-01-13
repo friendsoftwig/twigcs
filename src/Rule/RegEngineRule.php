@@ -60,6 +60,7 @@ class RegEngineRule extends AbstractRule implements RuleInterface
                 $currentExpression['value'] .= $toAppend;
 
                 $col = 0;
+
                 foreach (str_split($toAppend) as $char) {
                     $currentExpression['map'][] = ['line' => $token->getLine(), 'column' => $token->getColumn() + $col];
                     ++$col;

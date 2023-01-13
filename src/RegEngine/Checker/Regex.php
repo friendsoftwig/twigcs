@@ -30,6 +30,7 @@ class Regex
         if (preg_match($this->regex, $text, $matches, \PREG_OFFSET_CAPTURE)) {
             $whole = array_shift($matches);
             $captures = [];
+
             foreach (array_values($matches) as $key => $match) {
                 $captures[] = new Capture($this->captureTypes[$key], $match[0], $match[1], $this);
             }

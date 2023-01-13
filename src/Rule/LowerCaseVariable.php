@@ -20,6 +20,7 @@ class LowerCaseVariable extends AbstractRule implements RuleInterface
                 Token::WHITESPACE_TYPE === $tokens->look(Lexer::PREVIOUS_TOKEN)->getType()
             ) {
                 $hasViolation = false;
+
                 if (in_array($tokens->look(-2)->getValue(), ['set', 'for'], true)) {
                     $hasViolation = true;
                 } elseif (',' === $tokens->look(-2)->getValue() &&

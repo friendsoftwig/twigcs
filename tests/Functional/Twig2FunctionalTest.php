@@ -31,6 +31,7 @@ final class Twig2FunctionalTest extends TestCase
         if ($expectedViolation) {
             self::assertCount(1, $violations, sprintf("There should be one violation in:\n %s", $expression));
             self::assertSame($expectedViolation, $violations[0]->getReason());
+
             if ($expectedViolationPosition) {
                 self::assertSame($expectedViolationPosition[0], $violations[0]->getColumn());
                 self::assertSame($expectedViolationPosition[1], $violations[0]->getLine());

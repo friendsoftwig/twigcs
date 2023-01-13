@@ -50,6 +50,7 @@ class ForbiddenFunctions extends AbstractRule implements RuleInterface
         }
 
         $violations = [];
+
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 

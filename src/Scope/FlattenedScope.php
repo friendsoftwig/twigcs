@@ -43,6 +43,7 @@ class FlattenedScope
         foreach ($queue as $item) {
             if ($item instanceof BlockReference) {
                 $block = $this->blocks[$item->getName()] ?? null;
+
                 if ($block) {
                     $this->queue = array_merge($this->queue, $block->flatten()->getQueue());
                 }

@@ -27,12 +27,17 @@ final class GitLabReporter implements ReporterInterface
             switch ($violation->getSeverity()) {
                 case Violation::SEVERITY_INFO:
                     $severity = 'info';
+
                     break;
+
                 case Violation::SEVERITY_WARNING:
                     $severity = 'minor';
+
                     break;
+
                 default:
                     $severity = 'major';
+
                     break;
             }
 

@@ -17,6 +17,7 @@ class StringSanitizer
             if ('\\' === $char) {
                 $escaped = true;
                 $result .= self::NEUTRAL_CHAR;
+
                 continue;
             }
 
@@ -25,6 +26,7 @@ class StringSanitizer
                     $insideString = true;
                     $stringOpener = $char;
                     $result .= $char;
+
                     continue;
                 }
             }
@@ -32,6 +34,7 @@ class StringSanitizer
             if ($insideString && ($char === $stringOpener) && !$escaped) {
                 $result .= $char;
                 $insideString = false;
+
                 continue;
             }
 

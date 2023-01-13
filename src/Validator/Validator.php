@@ -25,6 +25,7 @@ class Validator
     public function validate(RulesetInterface $ruleset, TokenStream $tokens)
     {
         $violations = [];
+
         foreach ($ruleset->getRules() as $rule) {
             $violations = array_merge($violations, $rule->check(clone $tokens));
 

@@ -94,6 +94,7 @@ class StreamNavigator
         while (!$tokens->isEOF()) {
             --$amount;
             $tokens->next();
+
             if (0 === $amount) {
                 return;
             }

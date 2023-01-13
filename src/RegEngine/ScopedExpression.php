@@ -59,6 +59,7 @@ class ScopedExpression
             if ($this->shouldRollback($char)) {
                 $this->rollback($char);
             }
+
             if ($this->shouldClose($char, $prev, $next)) {
                 $this->push($char);
                 $this->close();
@@ -82,12 +83,15 @@ class ScopedExpression
         if (($head instanceof self) && ('__PARENTHESES__' === $head->kind) && ')' === $char) {
             return true;
         }
+
         if (($head instanceof self) && ('__HASH__' === $head->kind) && '}' === $char) {
             return '%' !== $prev;
         }
+
         if (($head instanceof self) && ('__ARRAY__' === $head->kind) && ']' === $char) {
             return true;
         }
+
         if (($head instanceof self) && ('__TERNARY__' === $head->kind) && ':' === $char) {
             return true;
         }

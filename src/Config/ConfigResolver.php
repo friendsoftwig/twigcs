@@ -61,6 +61,7 @@ final class ConfigResolver
     public function getReporter()
     {
         $reporterServiceName = "reporter.{$this->config->getReporter()}";
+
         if ($this->options['reporter-service-name']) {
             $reporterServiceName = "reporter.{$this->options['reporter-service-name']}";
         }
@@ -74,6 +75,7 @@ final class ConfigResolver
 
         if (null === $rulesetClassName) {
             $rulesetClassName = $this->config->getRuleset();
+
             if ($this->options['ruleset-class-name']) {
                 $rulesetClassName = $this->options['ruleset-class-name'];
             }
@@ -101,12 +103,16 @@ final class ConfigResolver
         switch ($this->getSeverity()) {
             case 'ignore':
                 return Violation::SEVERITY_IGNORE - 1;
+
             case 'info':
                 return Violation::SEVERITY_INFO - 1;
+
             case 'warning':
                 return Violation::SEVERITY_WARNING - 1;
+
             case 'error':
                 return Violation::SEVERITY_ERROR - 1;
+
             default:
                 throw new \InvalidArgumentException('Invalid severity limit provided. Valid values are: ignore, info, warning, or error');
         }
@@ -200,8 +206,10 @@ final class ConfigResolver
         }
 
         $file = $this->normalizePath($file);
+
         foreach ($this->specificRulesets as $pattern => $rulesetClassName) {
             $pattern = $this->normalizePath($pattern);
+
             if ($file === $pattern || \fnmatch($pattern, $file)) {
                 return $rulesetClassName;
             }

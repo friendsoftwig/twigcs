@@ -203,18 +203,27 @@ class TwigLexer
             switch ($this->state) {
                 case self::STATE_DATA:
                     $this->lexData();
+
                     break;
+
                 case self::STATE_BLOCK:
                     $this->lexBlock();
+
                     break;
+
                 case self::STATE_VAR:
                     $this->lexVar();
+
                     break;
+
                 case self::STATE_STRING:
                     $this->lexString();
+
                     break;
+
                 case self::STATE_INTERPOLATION:
                     $this->lexInterpolation();
+
                     break;
             }
         }
@@ -223,6 +232,7 @@ class TwigLexer
 
         if (!empty($this->brackets)) {
             list($expect, $lineno) = array_pop($this->brackets);
+
             throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->columnno, $this->source);
         }
 
@@ -241,6 +251,7 @@ class TwigLexer
 
         // Find the first token after the current cursor
         $position = $this->positions[0][++$this->position];
+
         while ($position[1] < $this->cursor) {
             if ($this->position === \count($this->positions[0]) - 1) {
                 return;
@@ -268,7 +279,9 @@ class TwigLexer
         switch ($this->positions[1][$this->position][0]) {
             case $this->options['tag_comment'][0]:
                 $this->lexComment();
+
                 break;
+
             case $this->options['tag_block'][0]:
                 // raw data?
                 if (preg_match($this->regexes['lex_block_raw'], $this->code, $match, 0, $this->cursor)) {
@@ -283,11 +296,14 @@ class TwigLexer
                     $this->pushState(self::STATE_BLOCK);
                     $this->currentVarBlockLine = $this->lineno;
                 }
+
                 break;
+
             case $this->options['tag_variable'][0]:
                 $this->pushToken(/* Token::VAR_START_TYPE */ 2);
                 $this->pushState(self::STATE_VAR);
                 $this->currentVarBlockLine = $this->lineno;
+
                 break;
         }
     }
@@ -343,6 +359,7 @@ class TwigLexer
         // numbers
         elseif (preg_match(self::REGEX_NUMBER, $this->code, $match, 0, $this->cursor)) {
             $number = (float) $match[0];  // floats
+
             if (ctype_digit($match[0]) && $number <= \PHP_INT_MAX) {
                 $number = (int) $match[0]; // integers lower than the maximum
             }
@@ -362,6 +379,7 @@ class TwigLexer
                 }
 
                 list($expect, $lineno) = array_pop($this->brackets);
+
                 if ($this->code[$this->cursor] !== strtr($expect, '([{', ')]}')) {
                     throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->columnno, $this->source);
                 }
@@ -432,6 +450,7 @@ class TwigLexer
             $this->moveCursor($match[0]);
         } elseif (preg_match(self::REGEX_DQ_STRING_DELIM, $this->code, $match, 0, $this->cursor)) {
             list($expect, $lineno) = array_pop($this->brackets);
+
             if ('"' !== $this->code[$this->cursor]) {
                 throw new SyntaxError(sprintf('Unclosed "%s".', $expect), $lineno, $this->columnno, $this->source);
             }
@@ -447,6 +466,7 @@ class TwigLexer
     protected function lexInterpolation()
     {
         $bracket = end($this->brackets);
+
         if ($this->options['interpolation'][0] === $bracket[0] && preg_match($this->regexes['interpolation_end'], $this->code, $match, 0, $this->cursor)) {
             array_pop($this->brackets);
             $this->pushToken(/* Token::INTERPOLATION_END_TYPE */ 11);
@@ -485,6 +505,7 @@ class TwigLexer
         arsort($operators);
 
         $regex = [];
+
         foreach ($operators as $operator => $length) {
             // an operator that ends with a character must be followed by
             // a whitespace or a parenthesis

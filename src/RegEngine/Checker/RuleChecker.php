@@ -58,6 +58,7 @@ class RuleChecker
         foreach ($this->rules[$ruleset] as $rule) {
             if ($matches = $rule->match($text)) {
                 $grouped = [];
+
                 foreach ($matches as $match) {
                     $match->increaseOffset($offset);
                     $match->setOffsetsMap($offsetsMap);
