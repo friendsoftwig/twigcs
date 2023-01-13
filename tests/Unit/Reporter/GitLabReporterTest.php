@@ -18,7 +18,6 @@ final class GitLabReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new GitLabReporter();
         $output = $this->createMock(ConsoleOutput::class);
 
         $output
@@ -64,6 +63,8 @@ final class GitLabReporterTest extends TestCase
 EOF
             );
 
+        $reporter = new GitLabReporter();
+
         $reporter->report(
             $output,
             [
@@ -76,8 +77,9 @@ EOF
 
     public function testReportWithJsonException(): void
     {
-        $reporter = new GitLabReporter();
         $output = $this->createMock(ConsoleOutput::class);
+
+        $reporter = new GitLabReporter();
 
         $this->expectException(\JsonException::class);
 

@@ -17,8 +17,6 @@ final class GithubActionReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new GithubActionReporter($this->createStub(ReporterInterface::class));
-
         $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
@@ -26,6 +24,8 @@ final class GithubActionReporterTest extends TestCase
             ->method('writeln')
             ->with('::error file=template.twig,line=10,col=20::You are not allowed to do that.')
         ;
+
+        $reporter = new GithubActionReporter($this->createStub(ReporterInterface::class));
 
         $reporter->report(
             $output,

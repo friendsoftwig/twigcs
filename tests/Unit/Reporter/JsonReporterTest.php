@@ -16,8 +16,6 @@ final class JsonReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new JsonReporter();
-
         $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
@@ -46,6 +44,8 @@ EOF
             )
         ;
 
+        $reporter = new JsonReporter();
+
         $reporter->report(
             $output,
             [
@@ -56,8 +56,6 @@ EOF
 
     public function testReportMultiple(): void
     {
-        $reporter = new JsonReporter();
-
         $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
@@ -97,6 +95,8 @@ EOF
 EOF
             )
         ;
+
+        $reporter = new JsonReporter();
 
         $reporter->report(
             $output,

@@ -16,8 +16,6 @@ final class ConsoleReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new ConsoleReporter();
-
         $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
@@ -35,6 +33,8 @@ final class ConsoleReporterTest extends TestCase
                 ]
             )
         ;
+
+        $reporter = new ConsoleReporter();
 
         $reporter->report(
             $output,

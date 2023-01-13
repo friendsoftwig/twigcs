@@ -16,8 +16,6 @@ final class CheckstyleReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new CheckstyleReporter();
-
         $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
@@ -31,6 +29,8 @@ final class CheckstyleReporterTest extends TestCase
 EOF
             )
         ;
+
+        $reporter = new CheckstyleReporter();
 
         $reporter->report(
             $output,

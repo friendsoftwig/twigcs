@@ -14,8 +14,6 @@ final class CsvReporterTest extends TestCase
 {
     public function testReport(): void
     {
-        $reporter = new CsvReporter();
-
         $output = $this->createMock(Console\Output\ConsoleOutputInterface::class);
 
         $output
@@ -23,6 +21,8 @@ final class CsvReporterTest extends TestCase
             ->method('writeln')
             ->with('template.twig;10;20;error - You are not allowed to do that.')
         ;
+
+        $reporter = new CsvReporter();
 
         $reporter->report(
             $output,
