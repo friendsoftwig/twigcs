@@ -25,9 +25,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 0);
+        self::assertSame($commandTester->getStatusCode(), 0);
         self::assertStringContainsString('No violation found.', $output);
     }
 
@@ -43,9 +42,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringStartsWith('tests/Fixture/basepaths/a/bad.html.twig', $output);
         self::assertStringContainsString("\ntests/Fixture/basepaths/b/bad.html.twig", $output);
     }
@@ -61,9 +59,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('ERROR', $output);
     }
 
@@ -79,9 +76,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 0);
+        self::assertSame($commandTester->getStatusCode(), 0);
         self::assertStringContainsString('ERROR', $output);
     }
 
@@ -97,9 +93,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 0);
+        self::assertSame($commandTester->getStatusCode(), 0);
         self::assertStringContainsString('WARNING', $output);
 
         $commandTester->execute([
@@ -110,9 +105,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('WARNING', $output);
     }
 
@@ -130,9 +124,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 0);
+        self::assertSame($commandTester->getStatusCode(), 0);
         self::assertStringContainsString('No violation found.', $output);
     }
 
@@ -149,9 +142,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringNotContainsString('l.1 c.7 : WARNING Unused variable "foo".', $output);
         self::assertStringContainsString('l.2 c.2 : ERROR A print statement should start with 1 space.', $output);
         self::assertStringContainsString('l.2 c.13 : ERROR There should be 0 space between the closing parenthese and its content.', $output);
@@ -171,9 +163,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('l.1 c.7 : WARNING Unused variable "foo".', $output);
         self::assertStringContainsString('l.2 c.2 : ERROR A print statement should start with 1 space.', $output);
         self::assertStringContainsString('l.2 c.13 : ERROR There should be 0 space between the closing parenthese and its content.', $output);
@@ -195,9 +186,7 @@ final class LintCommandTest extends TestCase
             ],
         ]);
 
-        $statusCode = $commandTester->getStatusCode();
-
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
     }
 
     public function testSyntaxErrorNotThrow(): void
@@ -214,9 +203,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('1 violation(s) found', $output);
         self::assertStringContainsString('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
@@ -234,9 +222,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('1 violation(s) found', $output);
         self::assertStringContainsString('l.1 c.17 : ERROR Unexpected "}"', $output);
     }
@@ -251,9 +238,8 @@ final class LintCommandTest extends TestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('tests/Fixture/basepaths/a/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
 tests/Fixture/basepaths/b/bad.html.twig
@@ -273,9 +259,8 @@ l.1 c.8 : WARNING Unused variable "foo".
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('tests/Fixture/basepaths/a/bad.html.twig
 l.1 c.8 : WARNING Unused variable "foo".
 tests/Fixture/basepaths/b/bad.html.twig
@@ -294,9 +279,8 @@ l.1 c.17 : ERROR Unexpected "}".
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('tests/Fixture/syntax_error/syntax_errors.html.twig
 l.1 c.17 : ERROR Unexpected "}".
 1 violation(s) found', $output);
@@ -314,9 +298,8 @@ l.1 c.17 : ERROR Unexpected "}".
         chdir(__DIR__.'/../../..');
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('{
     "failures": 1,
     "files": [
@@ -345,9 +328,8 @@ l.1 c.17 : ERROR Unexpected "}".
         ]);
 
         $output = $commandTester->getDisplay();
-        $statusCode = $commandTester->getStatusCode();
 
-        self::assertSame($statusCode, 1);
+        self::assertSame($commandTester->getStatusCode(), 1);
         self::assertStringContainsString('tests/Fixture/config/loaders/src/embed/child.html.twig
 l.3 c.7 : WARNING Unused variable "unused_child".
 tests/Fixture/config/loaders/src/embed/parent.html.twig
