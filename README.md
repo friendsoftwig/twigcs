@@ -7,6 +7,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/friendsoftwig/twigcs/v/stable)](https://packagist.org/packages/friendsoftwig/twigcs)
 [![Total Downloads](https://poser.pugx.org/friendsoftwig/twigcs/downloads)](https://packagist.org/packages/friendsoftwig/twigcs)
+[![Monthly Downloads](http://poser.pugx.org/friendsoftwig/twigcs/d/monthly)](https://packagist.org/packages/friendsoftwig/twigcs)
 
 The missing checkstyle for twig!
 
