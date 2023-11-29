@@ -217,6 +217,7 @@ class ScopeBuilder
                 if ($isFunctionCall && 'block' === $token->getValue()) {
                     $i = 0;
                     $blockNameToken = $tokens->look($i);
+
                     // Scans for the name of the nested block.
                     while (Token::BLOCK_END_TYPE !== $blockNameToken->getType() && Token::STRING_TYPE !== $blockNameToken->getType()) {
                         $blockNameToken = $tokens->look($i);
@@ -239,7 +240,7 @@ class ScopeBuilder
 
                 $tokens->next();
             } elseif (Token::COMMENT_TYPE === $token->getType()) {
-                if (0 === strpos($token->getValue(), 'twigcs use-var ')) {
+                if (str_starts_with($token->getValue(), 'twigcs use-var ')) {
                     $names = explode(',', str_replace('twigcs use-var ', '', $token->getValue()));
 
                     foreach ($names as $name) {

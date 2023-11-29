@@ -29,7 +29,7 @@ class Validator
         foreach ($ruleset->getRules() as $rule) {
             $violations = array_merge($violations, $rule->check(clone $tokens));
 
-            $this->collectedData[get_class($rule)] = $rule->collect();
+            $this->collectedData[$rule::class] = $rule->collect();
         }
 
         usort($violations, function (Violation $a, Violation $b) {

@@ -20,8 +20,8 @@ class TrailingSpace extends AbstractRule implements RuleInterface
         while (!$tokens->isEOF()) {
             $token = $tokens->getCurrent();
 
-            if (Token::NEWLINE_TYPE === $token->getType() && Token::WHITESPACE_TYPE === $tokens->look(-1)->getType() ||
-                Token::TEXT_TYPE === $token->getType()
+            if (Token::NEWLINE_TYPE === $token->getType() && Token::WHITESPACE_TYPE === $tokens->look(-1)->getType()
+                || Token::TEXT_TYPE === $token->getType()
             ) {
                 if (preg_match("/[[:blank:]]+\n/", $token->getValue())) {
                     $line = $token->getLine();

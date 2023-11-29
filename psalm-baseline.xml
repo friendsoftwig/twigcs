@@ -1517,7 +1517,7 @@
       <code>pushToken</code>
       <code>tokenize</code>
     </MissingReturnType>
-    <MixedArgument occurrences="115">
+    <MixedArgument occurrences="118">
       <code>$expect</code>
       <code>$expect</code>
       <code>$expect</code>
@@ -1555,6 +1555,9 @@
       <code>$this-&gt;code</code>
       <code>$this-&gt;code</code>
       <code>$this-&gt;code</code>
+      <code>$this-&gt;code[$this-&gt;cursor]</code>
+      <code>$this-&gt;code[$this-&gt;cursor]</code>
+      <code>$this-&gt;code[$this-&gt;cursor]</code>
       <code>$this-&gt;code[$this-&gt;cursor]</code>
       <code>$this-&gt;code[$this-&gt;cursor]</code>
       <code>$this-&gt;code[$this-&gt;cursor]</code>

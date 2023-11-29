@@ -55,7 +55,7 @@ class Config implements ConfigInterface
     public function setFinder($finder): self
     {
         if (false === \is_array($finder) && false === $finder instanceof \Traversable) {
-            throw new \InvalidArgumentException(sprintf('Argument must be an array or a Traversable, got "%s".', \is_object($finder) ? \get_class($finder) : \gettype($finder)));
+            throw new \InvalidArgumentException(sprintf('Argument must be an array or a Traversable, got "%s".', \is_object($finder) ? $finder::class : \gettype($finder)));
         }
 
         $this->finders = [$finder];
@@ -66,7 +66,7 @@ class Config implements ConfigInterface
     public function addFinder($finder): self
     {
         if (false === \is_array($finder) && false === $finder instanceof \Traversable) {
-            throw new \InvalidArgumentException(sprintf('Argument must be an array or a Traversable, got "%s".', \is_object($finder) ? \get_class($finder) : \gettype($finder)));
+            throw new \InvalidArgumentException(sprintf('Argument must be an array or a Traversable, got "%s".', \is_object($finder) ? $finder::class : \gettype($finder)));
         }
 
         $this->finders[] = $finder;
