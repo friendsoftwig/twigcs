@@ -158,6 +158,7 @@ For a full diff see [`b139b06...1.0.0`][b139b06...1.0.0].
 [6.2.0...main]: https://github.com/friendsoftwig/twigcs/compare/6.2.0...main
 
 [#270]: https://github.com/friendsoftwig/twigcs/pull/270
+[#296]: https://github.com/friendsoftwig/twigcs/pull/296
 
 [@localheinz]: https://github.com/localheinz
 [@rajeshreeputra]: https://github.com/rajeshreeputra
