@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="dev-master@">
+<files psalm-version="5.16.0@2897ba636551a8cb61601cc26f6ccfbba6c36591">
   <file src="src/Config/Config.php">
-    <DocblockTypeContradiction occurrences="1">
+    <DocblockTypeContradiction>
       <code>\gettype($finder)</code>
     </DocblockTypeContradiction>
-    <InvalidNullableReturnType occurrences="1">
+    <InvalidNullableReturnType>
       <code>TemplateResolverInterface</code>
     </InvalidNullableReturnType>
-    <MissingParamType occurrences="1">
+    <MissingParamType>
       <code>$finder</code>
     </MissingParamType>
-    <NullableReturnStatement occurrences="1">
-      <code>$this-&gt;loader</code>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->loader]]></code>
     </NullableReturnStatement>
-    <RedundantConditionGivenDocblockType occurrences="1">
+    <RedundantConditionGivenDocblockType>
       <code>\is_object($finder)</code>
     </RedundantConditionGivenDocblockType>
-    <UnsafeInstantiation occurrences="1">
+    <UnsafeInstantiation>
       <code>new static()</code>
     </UnsafeInstantiation>
   </file>
   <file src="src/Config/ConfigResolver.php">
-    <MissingClosureParamType occurrences="2">
+    <MissingClosureParamType>
       <code>$path</code>
       <code>$path</code>
     </MissingClosureParamType>
-    <MissingParamType occurrences="3">
+    <MissingParamType>
       <code>$cwd</code>
       <code>$path</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="4">
+    <MissingPropertyType>
       <code>$cwd</code>
       <code>$finders</code>
       <code>$path</code>
       <code>$specificRulesets</code>
     </MissingPropertyType>
-    <MissingReturnType occurrences="8">
+    <MissingReturnType>
       <code>getFinders</code>
       <code>getPath</code>
       <code>getReporter</code>
@@ -46,7 +46,7 @@
       <code>separatedContextLessInclude</code>
       <code>setOption</code>
     </MissingReturnType>
-    <MixedArgument occurrences="14">
+    <MixedArgument>
       <code>$configFile</code>
       <code>$configFile</code>
       <code>$configFile</code>
@@ -55,20 +55,20 @@
       <code>$pattern</code>
       <code>$rulesetClassName</code>
       <code>$rulesetClassName</code>
-      <code>$this-&gt;cwd</code>
-      <code>$this-&gt;getPath()</code>
-      <code>$this-&gt;options['exclude']</code>
-      <code>$this-&gt;options['exclude']</code>
-      <code>$this-&gt;options['path']</code>
-      <code>$this-&gt;options['path']</code>
+      <code><![CDATA[$this->cwd]]></code>
+      <code><![CDATA[$this->getPath()]]></code>
+      <code><![CDATA[$this->options['exclude']]]></code>
+      <code><![CDATA[$this->options['exclude']]]></code>
+      <code><![CDATA[$this->options['path']]]></code>
+      <code><![CDATA[$this->options['path']]]></code>
     </MixedArgument>
-    <MixedArgumentTypeCoercion occurrences="1">
+    <MixedArgumentTypeCoercion>
       <code>$name</code>
     </MixedArgumentTypeCoercion>
-    <MixedArrayAccess occurrences="1">
-      <code>$this-&gt;options['path'][0]</code>
+    <MixedArrayAccess>
+      <code><![CDATA[$this->options['path'][0]]]></code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="6">
+    <MixedAssignment>
       <code>$configDir</code>
       <code>$cwd</code>
       <code>$pattern</code>
@@ -76,65 +76,65 @@
       <code>$rulesetClassName</code>
       <code>$value</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedOperand occurrences="5">
+    <MixedOperand>
       <code>$configDir</code>
       <code>$configDir</code>
       <code>$configDir</code>
       <code>$configDir</code>
       <code>$cwd</code>
     </MixedOperand>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;options['display']</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->options['display']]]></code>
     </MixedReturnStatement>
-    <MixedReturnTypeCoercion occurrences="2">
+    <MixedReturnTypeCoercion>
       <code>[$configFile]</code>
       <code>string[]</code>
     </MixedReturnTypeCoercion>
-    <PossiblyNullReference occurrences="3">
+    <PossiblyNullReference>
       <code>getReporter</code>
       <code>getRuleset</code>
       <code>getTemplateResolver</code>
     </PossiblyNullReference>
-    <UnresolvableInclude occurrences="1">
+    <UnresolvableInclude>
       <code>include $path</code>
     </UnresolvableInclude>
   </file>
   <file src="src/Console/Application.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$command-&gt;getName()</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$command->getName()]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="src/Console/ContainerAwareCommand.php">
-    <InvalidNullableReturnType occurrences="1">
+    <InvalidNullableReturnType>
       <code>Container</code>
     </InvalidNullableReturnType>
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>setContainer</code>
     </MissingReturnType>
-    <NullableReturnStatement occurrences="1">
-      <code>$this-&gt;container</code>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->container]]></code>
     </NullableReturnStatement>
   </file>
   <file src="src/Console/LintCommand.php">
-    <InvalidMethodCall occurrences="1">
+    <InvalidMethodCall>
       <code>getRealPath</code>
     </InvalidMethodCall>
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>configure</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
+    <MixedArgument>
       <code>$file</code>
       <code>$finder</code>
       <code>$realPath</code>
       <code>$realPath</code>
       <code>$realPath</code>
       <code>$severityLimit</code>
-      <code>$validator-&gt;validate($ruleset, $tokens)</code>
+      <code><![CDATA[$validator->validate($ruleset, $tokens)]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="10">
+    <MixedAssignment>
       <code>$file</code>
       <code>$finder</code>
       <code>$finders</code>
@@ -146,40 +146,43 @@
       <code>$validator</code>
       <code>$violation</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="4">
+    <MixedMethodCall>
       <code>getSeverity</code>
       <code>report</code>
       <code>tokenize</code>
       <code>validate</code>
     </MixedMethodCall>
+    <PossiblyInvalidArgument>
+      <code>str_replace(getcwd(), '', $realPath)</code>
+    </PossiblyInvalidArgument>
   </file>
   <file src="src/Console/RegDebugCommand.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>configure</code>
     </MissingReturnType>
-    <MixedArgument occurrences="13">
-      <code>$error-&gt;getColumn()</code>
-      <code>$error-&gt;getReason()</code>
+    <MixedArgument>
+      <code><![CDATA[$error->getColumn()]]></code>
+      <code><![CDATA[$error->getReason()]]></code>
       <code>$expr</code>
-      <code>$input-&gt;getOption('twig-version')</code>
-      <code>$node-&gt;getExpr()</code>
-      <code>$node-&gt;getExpr()</code>
-      <code>$node-&gt;getOffset()</code>
-      <code>$node-&gt;getOffset()</code>
-      <code>$node-&gt;getOffsetsMap()</code>
-      <code>$node-&gt;getType()</code>
+      <code><![CDATA[$input->getOption('twig-version')]]></code>
+      <code><![CDATA[$node->getExpr()]]></code>
+      <code><![CDATA[$node->getExpr()]]></code>
+      <code><![CDATA[$node->getOffset()]]></code>
+      <code><![CDATA[$node->getOffset()]]></code>
+      <code><![CDATA[$node->getOffsetsMap()]]></code>
+      <code><![CDATA[$node->getType()]]></code>
       <code>$path</code>
-      <code>$rootNode-&gt;getTrace()</code>
-      <code>$ruleChecker-&gt;getLog()</code>
+      <code><![CDATA[$rootNode->getTrace()]]></code>
+      <code><![CDATA[$ruleChecker->getLog()]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
+    <MixedAssignment>
       <code>$expr</code>
       <code>$node</code>
       <code>$nodes</code>
       <code>$path</code>
       <code>$rootNode</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="10">
+    <MixedMethodCall>
       <code>flatten</code>
       <code>getColumn</code>
       <code>getExpr</code>
@@ -193,7 +196,7 @@
     </MixedMethodCall>
   </file>
   <file src="src/Container.php">
-    <MissingClosureReturnType occurrences="9">
+    <MissingClosureReturnType>
       <code>function () {</code>
       <code>function () {</code>
       <code>function () {</code>
@@ -204,18 +207,18 @@
       <code>function () {</code>
       <code>function () {</code>
     </MissingClosureReturnType>
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>get</code>
     </MissingReturnType>
-    <MissingTemplateParam occurrences="1">
+    <MissingTemplateParam>
       <code>Container</code>
     </MissingTemplateParam>
-    <MixedFunctionCall occurrences="1">
+    <MixedFunctionCall>
       <code>call_user_func($this[$key])</code>
     </MixedFunctionCall>
   </file>
   <file src="src/Lexer.php">
-    <MissingReturnType occurrences="6">
+    <MissingReturnType>
       <code>lexBlock</code>
       <code>lexComment</code>
       <code>lexExpression</code>
@@ -223,76 +226,76 @@
       <code>moveCursor</code>
       <code>pushToken</code>
     </MissingReturnType>
-    <MixedArgument occurrences="19">
-      <code>$match[0][1] - $this-&gt;cursor</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;regexes['lex_block']</code>
-      <code>$this-&gt;regexes['lex_comment']</code>
-      <code>$this-&gt;regexes['lex_var']</code>
-      <code>$this-&gt;source</code>
+    <MixedArgument>
+      <code><![CDATA[$match[0][1] - $this->cursor]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->regexes['lex_block']]]></code>
+      <code><![CDATA[$this->regexes['lex_comment']]]></code>
+      <code><![CDATA[$this->regexes['lex_var']]]></code>
+      <code><![CDATA[$this->source]]></code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="3">
-      <code>$this-&gt;regexes['lex_block']</code>
-      <code>$this-&gt;regexes['lex_comment']</code>
-      <code>$this-&gt;regexes['lex_var']</code>
+    <MixedArrayAccess>
+      <code><![CDATA[$this->regexes['lex_block']]]></code>
+      <code><![CDATA[$this->regexes['lex_comment']]]></code>
+      <code><![CDATA[$this->regexes['lex_var']]]></code>
     </MixedArrayAccess>
-    <MixedArrayAssignment occurrences="1">
-      <code>$this-&gt;tokens[]</code>
+    <MixedArrayAssignment>
+      <code><![CDATA[$this->tokens[]]]></code>
     </MixedArrayAssignment>
-    <MixedOperand occurrences="5">
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;lineno</code>
+    <MixedOperand>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->lineno]]></code>
     </MixedOperand>
-    <PossiblyFalseOperand occurrences="1">
-      <code>strrpos($text, "\n")</code>
+    <PossiblyFalseOperand>
+      <code><![CDATA[strrpos($text, "\n")]]></code>
     </PossiblyFalseOperand>
   </file>
   <file src="src/RegEngine/Checker/Capture.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>getRealOffset</code>
     </MissingReturnType>
   </file>
   <file src="src/RegEngine/Checker/Handler.php">
-    <InvalidArgument occurrences="2">
+    <InvalidArgument>
       <code>$size</code>
       <code>$size</code>
     </InvalidArgument>
-    <MixedArgument occurrences="7">
-      <code>$capture-&gt;getRealOffset()</code>
-      <code>$capture-&gt;getRealOffset()</code>
-      <code>$capture-&gt;getSource()</code>
-      <code>$capture-&gt;getSource()</code>
-      <code>$capture-&gt;getText()</code>
+    <MixedArgument>
+      <code><![CDATA[$capture->getRealOffset()]]></code>
+      <code><![CDATA[$capture->getRealOffset()]]></code>
+      <code><![CDATA[$capture->getSource()]]></code>
+      <code><![CDATA[$capture->getSource()]]></code>
+      <code><![CDATA[$capture->getText()]]></code>
       <code>$subExpr</code>
       <code>$text</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="1">
+    <MixedArrayAccess>
       <code>$text[0]</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="5">
+    <MixedAssignment>
       <code>$capture</code>
       <code>$capture</code>
       <code>$errors</code>
       <code>$subExpr</code>
       <code>$text</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="6">
+    <MixedMethodCall>
       <code>getRealOffset</code>
       <code>getRealOffset</code>
       <code>getSource</code>
@@ -300,40 +303,39 @@
       <code>getText</code>
       <code>getText</code>
     </MixedMethodCall>
-    <PropertyNotSetInConstructor occurrences="1">
+    <PropertyNotSetInConstructor>
       <code>$callback</code>
     </PropertyNotSetInConstructor>
-    <UnusedClosureParam occurrences="2">
-      <code>$ruleChecker</code>
-      <code>$ruleChecker</code>
-    </UnusedClosureParam>
-    <UnusedVariable occurrences="1">
+    <UnusedVariable>
       <code>$errors</code>
     </UnusedVariable>
   </file>
   <file src="src/RegEngine/Checker/Regex.php">
-    <MissingReturnType occurrences="1">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$this->regex]]></code>
+    </ArgumentTypeCoercion>
+    <MissingReturnType>
       <code>match</code>
     </MissingReturnType>
-    <MixedArgument occurrences="1">
-      <code>$this-&gt;captureTypes[$key]</code>
+    <MixedArgument>
+      <code><![CDATA[$this->captureTypes[$key]]]></code>
     </MixedArgument>
-    <UnusedVariable occurrences="1">
+    <UnusedVariable>
       <code>$whole</code>
     </UnusedVariable>
   </file>
   <file src="src/RegEngine/Checker/Report.php">
-    <MixedMethodCall occurrences="2">
+    <MixedMethodCall>
       <code>getColumn</code>
       <code>getColumn</code>
     </MixedMethodCall>
   </file>
   <file src="src/RegEngine/Checker/RuleChecker.php">
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$len</code>
       <code>$str</code>
     </MissingParamType>
-    <MissingReturnType occurrences="6">
+    <MissingReturnType>
       <code>check</code>
       <code>compute</code>
       <code>explain</code>
@@ -341,29 +343,29 @@
       <code>split</code>
       <code>subCheck</code>
     </MissingReturnType>
-    <MixedArgument occurrences="8">
+    <MixedArgument>
       <code>$i</code>
       <code>$len</code>
-      <code>$rule-&gt;getRule()</code>
+      <code><![CDATA[$rule->getRule()]]></code>
       <code>$rule[0]</code>
       <code>$rule[1]</code>
       <code>$rule[2]</code>
       <code>$str</code>
       <code>$str</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="3">
+    <MixedArrayAccess>
       <code>$rule[0]</code>
       <code>$rule[1]</code>
       <code>$rule[2]</code>
     </MixedArrayAccess>
-    <MixedArrayOffset occurrences="3">
-      <code>$grouped[$match-&gt;getType()]</code>
+    <MixedArrayOffset>
+      <code><![CDATA[$grouped[$match->getType()]]]></code>
       <code>$vars[$char]</code>
       <code>$vars[$char]</code>
     </MixedArrayOffset>
-    <MixedAssignment occurrences="9">
+    <MixedAssignment>
       <code>$char</code>
-      <code>$grouped[$match-&gt;getType()][]</code>
+      <code><![CDATA[$grouped[$match->getType()][]]]></code>
       <code>$i</code>
       <code>$match</code>
       <code>$matches</code>
@@ -372,10 +374,10 @@
       <code>$ruleset</code>
       <code>$types[]</code>
     </MixedAssignment>
-    <MixedFunctionCall occurrences="1">
-      <code>call_user_func($rule-&gt;getCallback(), $this, $report, $grouped)</code>
+    <MixedFunctionCall>
+      <code><![CDATA[call_user_func($rule->getCallback(), $this, $report, $grouped)]]></code>
     </MixedFunctionCall>
-    <MixedMethodCall occurrences="6">
+    <MixedMethodCall>
       <code>getCallback</code>
       <code>getRule</code>
       <code>getType</code>
@@ -383,36 +385,36 @@
       <code>match</code>
       <code>setOffsetsMap</code>
     </MixedMethodCall>
-    <MixedOperand occurrences="3">
+    <MixedOperand>
       <code>$char</code>
       <code>$len</code>
       <code>$vars[$char]</code>
     </MixedOperand>
   </file>
   <file src="src/RegEngine/ExpressionNode.php">
-    <InvalidOperand occurrences="1">
-      <code>$this-&gt;offset</code>
+    <InvalidOperand>
+      <code><![CDATA[$this->offset]]></code>
     </InvalidOperand>
-    <MissingParamType occurrences="4">
+    <MissingParamType>
       <code>$delegateChildren</code>
       <code>$expr</code>
       <code>$i</code>
       <code>$offset</code>
     </MissingParamType>
-    <MissingReturnType occurrences="3">
+    <MissingReturnType>
       <code>fromString</code>
       <code>getOffsetAt</code>
       <code>getOffsetsMap</code>
     </MissingReturnType>
-    <MixedArgument occurrences="3">
-      <code>$child-&gt;getTrace()</code>
+    <MixedArgument>
+      <code><![CDATA[$child->getTrace()]]></code>
       <code>$item</code>
       <code>$kind</code>
     </MixedArgument>
-    <MixedArrayOffset occurrences="1">
-      <code>$this-&gt;offsetsMap[$i]</code>
+    <MixedArrayOffset>
+      <code><![CDATA[$this->offsetsMap[$i]]]></code>
     </MixedArrayOffset>
-    <MixedAssignment occurrences="12">
+    <MixedAssignment>
       <code>$child</code>
       <code>$children</code>
       <code>$expressions</code>
@@ -424,34 +426,34 @@
       <code>$offsets[]</code>
       <code>$offsets[]</code>
       <code>$result[]</code>
-      <code>$this-&gt;offset</code>
+      <code><![CDATA[$this->offset]]></code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="3">
+    <MixedMethodCall>
       <code>flatten</code>
       <code>getKind</code>
       <code>getTrace</code>
     </MixedMethodCall>
-    <MixedOperand occurrences="3">
+    <MixedOperand>
       <code>$kind</code>
       <code>$offsetCounter</code>
       <code>$offsetCounter</code>
     </MixedOperand>
   </file>
   <file src="src/RegEngine/Linter.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>explain</code>
     </MissingReturnType>
-    <MixedArgument occurrences="3">
-      <code>$node-&gt;getExpr()</code>
-      <code>$node-&gt;getOffsetsMap()</code>
-      <code>$node-&gt;getType()</code>
+    <MixedArgument>
+      <code><![CDATA[$node->getExpr()]]></code>
+      <code><![CDATA[$node->getOffsetsMap()]]></code>
+      <code><![CDATA[$node->getType()]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="3">
+    <MixedAssignment>
       <code>$expr</code>
       <code>$node</code>
       <code>$nodes</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="4">
+    <MixedMethodCall>
       <code>flatten</code>
       <code>getExpr</code>
       <code>getOffsetsMap</code>
@@ -459,517 +461,517 @@
     </MixedMethodCall>
   </file>
   <file src="src/RegEngine/RulesetBuilder.php">
-    <MissingClosureReturnType occurrences="1">
+    <MissingClosureReturnType>
       <code>function ($rule) use ($vars) {</code>
     </MissingClosureReturnType>
-    <MissingParamType occurrences="1">
+    <MissingParamType>
       <code>$vars</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="1">
+    <MissingPropertyType>
       <code>$config</code>
     </MissingPropertyType>
-    <MixedArgument occurrences="161">
+    <MixedArgument>
       <code>$rule</code>
-      <code>$this-&gt;config['array']['after_opening']</code>
-      <code>$this-&gt;config['array']['after_opening']</code>
-      <code>$this-&gt;config['array']['before_closing']</code>
-      <code>$this-&gt;config['array']['before_closing']</code>
-      <code>$this-&gt;config['array']['empty']</code>
-      <code>$this-&gt;config['array']['empty']</code>
-      <code>$this-&gt;config['arrow_function']['after_arrow']</code>
-      <code>$this-&gt;config['arrow_function']['before_arrow']</code>
-      <code>$this-&gt;config['binary']['after_op']</code>
-      <code>$this-&gt;config['binary']['before_op']</code>
-      <code>$this-&gt;config['elseif']</code>
-      <code>$this-&gt;config['empty_list_whitespaces']</code>
-      <code>$this-&gt;config['empty_list_whitespaces']</code>
-      <code>$this-&gt;config['for']['after_coma']</code>
-      <code>$this-&gt;config['for']['after_coma']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_if']</code>
-      <code>$this-&gt;config['for']['after_if']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_key_var']</code>
-      <code>$this-&gt;config['for']['after_key_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['before_if']</code>
-      <code>$this-&gt;config['for']['before_if']</code>
-      <code>$this-&gt;config['from']['after_as']</code>
-      <code>$this-&gt;config['from']['after_source']</code>
-      <code>$this-&gt;config['from']['after_source']</code>
-      <code>$this-&gt;config['from']['after_source']</code>
-      <code>$this-&gt;config['from']['before_as']</code>
-      <code>$this-&gt;config['from']['before_names']</code>
-      <code>$this-&gt;config['from']['before_names']</code>
-      <code>$this-&gt;config['from']['before_names']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['func']['before_parentheses']</code>
-      <code>$this-&gt;config['hash']['after_coma']</code>
-      <code>$this-&gt;config['hash']['after_coma']</code>
-      <code>$this-&gt;config['hash']['after_coma']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_opening']</code>
-      <code>$this-&gt;config['hash']['after_value']</code>
-      <code>$this-&gt;config['hash']['after_value']</code>
-      <code>$this-&gt;config['hash']['after_value']</code>
-      <code>$this-&gt;config['hash']['before_closing']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['empty']</code>
-      <code>$this-&gt;config['hash']['empty']</code>
-      <code>$this-&gt;config['if']</code>
-      <code>$this-&gt;config['import']['after_as']</code>
-      <code>$this-&gt;config['import']['after_as']</code>
-      <code>$this-&gt;config['import']['after_as']</code>
-      <code>$this-&gt;config['import']['after_coma']</code>
-      <code>$this-&gt;config['import']['after_source']</code>
-      <code>$this-&gt;config['import']['after_source']</code>
-      <code>$this-&gt;config['import']['after_source']</code>
-      <code>$this-&gt;config['import']['before_coma']</code>
-      <code>$this-&gt;config['import']['before_source']</code>
-      <code>$this-&gt;config['list']['after_coma']</code>
-      <code>$this-&gt;config['list']['after_coma']</code>
-      <code>$this-&gt;config['list']['after_value']</code>
-      <code>$this-&gt;config['list']['after_value']</code>
-      <code>$this-&gt;config['macro']['after_macro']</code>
-      <code>$this-&gt;config['macro']['after_name']</code>
-      <code>$this-&gt;config['named_args']['after_=']</code>
-      <code>$this-&gt;config['named_args']['after_=']</code>
-      <code>$this-&gt;config['named_args']['after_value']</code>
-      <code>$this-&gt;config['named_args']['before_=']</code>
-      <code>$this-&gt;config['named_args']['before_=']</code>
-      <code>$this-&gt;config['parentheses']['after_value']</code>
-      <code>$this-&gt;config['parentheses']['before_value']</code>
-      <code>$this-&gt;config['parentheses']['empty']</code>
-      <code>$this-&gt;config['print']['after']</code>
-      <code>$this-&gt;config['print']['before']</code>
-      <code>$this-&gt;config['property']['after_.']</code>
-      <code>$this-&gt;config['property']['after_|']</code>
-      <code>$this-&gt;config['property']['before_.']</code>
-      <code>$this-&gt;config['property']['before_|']</code>
-      <code>$this-&gt;config['range']['after_op']</code>
-      <code>$this-&gt;config['range']['before_op']</code>
-      <code>$this-&gt;config['set']['after_equal']</code>
-      <code>$this-&gt;config['set']['after_set']</code>
-      <code>$this-&gt;config['set']['after_var_name']</code>
-      <code>$this-&gt;config['slice']['after_:']</code>
-      <code>$this-&gt;config['slice']['after_[']</code>
-      <code>$this-&gt;config['slice']['before_:']</code>
-      <code>$this-&gt;config['slice']['before_]']</code>
-      <code>$this-&gt;config['tag']['after']</code>
-      <code>$this-&gt;config['tag']['after']</code>
-      <code>$this-&gt;config['tag']['after']</code>
-      <code>$this-&gt;config['tag']['before']</code>
-      <code>$this-&gt;config['tag']['before']</code>
-      <code>$this-&gt;config['tag']['before']</code>
-      <code>$this-&gt;config['tag_default_arg_spacing']</code>
-      <code>$this-&gt;config['ternary']['after_:']</code>
-      <code>$this-&gt;config['ternary']['after_?']</code>
-      <code>$this-&gt;config['ternary']['after_?:']</code>
-      <code>$this-&gt;config['ternary']['before_:']</code>
-      <code>$this-&gt;config['ternary']['before_?']</code>
-      <code>$this-&gt;config['ternary']['before_?:']</code>
-      <code>$this-&gt;config['unary']['between']</code>
+      <code><![CDATA[$this->config['array']['after_opening']]]></code>
+      <code><![CDATA[$this->config['array']['after_opening']]]></code>
+      <code><![CDATA[$this->config['array']['before_closing']]]></code>
+      <code><![CDATA[$this->config['array']['before_closing']]]></code>
+      <code><![CDATA[$this->config['array']['empty']]]></code>
+      <code><![CDATA[$this->config['array']['empty']]]></code>
+      <code><![CDATA[$this->config['arrow_function']['after_arrow']]]></code>
+      <code><![CDATA[$this->config['arrow_function']['before_arrow']]]></code>
+      <code><![CDATA[$this->config['binary']['after_op']]]></code>
+      <code><![CDATA[$this->config['binary']['before_op']]]></code>
+      <code><![CDATA[$this->config['elseif']]]></code>
+      <code><![CDATA[$this->config['empty_list_whitespaces']]]></code>
+      <code><![CDATA[$this->config['empty_list_whitespaces']]]></code>
+      <code><![CDATA[$this->config['for']['after_coma']]]></code>
+      <code><![CDATA[$this->config['for']['after_coma']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_if']]]></code>
+      <code><![CDATA[$this->config['for']['after_if']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_key_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_key_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['before_if']]]></code>
+      <code><![CDATA[$this->config['for']['before_if']]]></code>
+      <code><![CDATA[$this->config['from']['after_as']]]></code>
+      <code><![CDATA[$this->config['from']['after_source']]]></code>
+      <code><![CDATA[$this->config['from']['after_source']]]></code>
+      <code><![CDATA[$this->config['from']['after_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_as']]]></code>
+      <code><![CDATA[$this->config['from']['before_names']]]></code>
+      <code><![CDATA[$this->config['from']['before_names']]]></code>
+      <code><![CDATA[$this->config['from']['before_names']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['func']['before_parentheses']]]></code>
+      <code><![CDATA[$this->config['hash']['after_coma']]]></code>
+      <code><![CDATA[$this->config['hash']['after_coma']]]></code>
+      <code><![CDATA[$this->config['hash']['after_coma']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_opening']]]></code>
+      <code><![CDATA[$this->config['hash']['after_value']]]></code>
+      <code><![CDATA[$this->config['hash']['after_value']]]></code>
+      <code><![CDATA[$this->config['hash']['after_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_closing']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['empty']]]></code>
+      <code><![CDATA[$this->config['hash']['empty']]]></code>
+      <code><![CDATA[$this->config['if']]]></code>
+      <code><![CDATA[$this->config['import']['after_as']]]></code>
+      <code><![CDATA[$this->config['import']['after_as']]]></code>
+      <code><![CDATA[$this->config['import']['after_as']]]></code>
+      <code><![CDATA[$this->config['import']['after_coma']]]></code>
+      <code><![CDATA[$this->config['import']['after_source']]]></code>
+      <code><![CDATA[$this->config['import']['after_source']]]></code>
+      <code><![CDATA[$this->config['import']['after_source']]]></code>
+      <code><![CDATA[$this->config['import']['before_coma']]]></code>
+      <code><![CDATA[$this->config['import']['before_source']]]></code>
+      <code><![CDATA[$this->config['list']['after_coma']]]></code>
+      <code><![CDATA[$this->config['list']['after_coma']]]></code>
+      <code><![CDATA[$this->config['list']['after_value']]]></code>
+      <code><![CDATA[$this->config['list']['after_value']]]></code>
+      <code><![CDATA[$this->config['macro']['after_macro']]]></code>
+      <code><![CDATA[$this->config['macro']['after_name']]]></code>
+      <code><![CDATA[$this->config['named_args']['after_=']]]></code>
+      <code><![CDATA[$this->config['named_args']['after_=']]]></code>
+      <code><![CDATA[$this->config['named_args']['after_value']]]></code>
+      <code><![CDATA[$this->config['named_args']['before_=']]]></code>
+      <code><![CDATA[$this->config['named_args']['before_=']]]></code>
+      <code><![CDATA[$this->config['parentheses']['after_value']]]></code>
+      <code><![CDATA[$this->config['parentheses']['before_value']]]></code>
+      <code><![CDATA[$this->config['parentheses']['empty']]]></code>
+      <code><![CDATA[$this->config['print']['after']]]></code>
+      <code><![CDATA[$this->config['print']['before']]]></code>
+      <code><![CDATA[$this->config['property']['after_.']]]></code>
+      <code><![CDATA[$this->config['property']['after_|']]]></code>
+      <code><![CDATA[$this->config['property']['before_.']]]></code>
+      <code><![CDATA[$this->config['property']['before_|']]]></code>
+      <code><![CDATA[$this->config['range']['after_op']]]></code>
+      <code><![CDATA[$this->config['range']['before_op']]]></code>
+      <code><![CDATA[$this->config['set']['after_equal']]]></code>
+      <code><![CDATA[$this->config['set']['after_set']]]></code>
+      <code><![CDATA[$this->config['set']['after_var_name']]]></code>
+      <code><![CDATA[$this->config['slice']['after_:']]]></code>
+      <code><![CDATA[$this->config['slice']['after_[']]]></code>
+      <code><![CDATA[$this->config['slice']['before_:']]]></code>
+      <code><![CDATA[$this->config['slice']['before_]']]]></code>
+      <code><![CDATA[$this->config['tag']['after']]]></code>
+      <code><![CDATA[$this->config['tag']['after']]]></code>
+      <code><![CDATA[$this->config['tag']['after']]]></code>
+      <code><![CDATA[$this->config['tag']['before']]]></code>
+      <code><![CDATA[$this->config['tag']['before']]]></code>
+      <code><![CDATA[$this->config['tag']['before']]]></code>
+      <code><![CDATA[$this->config['tag_default_arg_spacing']]]></code>
+      <code><![CDATA[$this->config['ternary']['after_:']]]></code>
+      <code><![CDATA[$this->config['ternary']['after_?']]]></code>
+      <code><![CDATA[$this->config['ternary']['after_?:']]]></code>
+      <code><![CDATA[$this->config['ternary']['before_:']]]></code>
+      <code><![CDATA[$this->config['ternary']['before_?']]]></code>
+      <code><![CDATA[$this->config['ternary']['before_?:']]]></code>
+      <code><![CDATA[$this->config['unary']['between']]]></code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="321">
-      <code>$this-&gt;config['array']</code>
-      <code>$this-&gt;config['array']</code>
-      <code>$this-&gt;config['array']</code>
-      <code>$this-&gt;config['array']</code>
-      <code>$this-&gt;config['array']</code>
-      <code>$this-&gt;config['array']</code>
-      <code>$this-&gt;config['array']['after_opening']</code>
-      <code>$this-&gt;config['array']['after_opening']</code>
-      <code>$this-&gt;config['array']['before_closing']</code>
-      <code>$this-&gt;config['array']['before_closing']</code>
-      <code>$this-&gt;config['array']['empty']</code>
-      <code>$this-&gt;config['array']['empty']</code>
-      <code>$this-&gt;config['arrow_function']</code>
-      <code>$this-&gt;config['arrow_function']</code>
-      <code>$this-&gt;config['arrow_function']['after_arrow']</code>
-      <code>$this-&gt;config['arrow_function']['before_arrow']</code>
-      <code>$this-&gt;config['binary']</code>
-      <code>$this-&gt;config['binary']</code>
-      <code>$this-&gt;config['binary']['after_op']</code>
-      <code>$this-&gt;config['binary']['before_op']</code>
-      <code>$this-&gt;config['elseif']</code>
-      <code>$this-&gt;config['empty_list_whitespaces']</code>
-      <code>$this-&gt;config['empty_list_whitespaces']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']</code>
-      <code>$this-&gt;config['for']['after_coma']</code>
-      <code>$this-&gt;config['for']['after_coma']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_for']</code>
-      <code>$this-&gt;config['for']['after_if']</code>
-      <code>$this-&gt;config['for']['after_if']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_in']</code>
-      <code>$this-&gt;config['for']['after_key_var']</code>
-      <code>$this-&gt;config['for']['after_key_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['after_value_var']</code>
-      <code>$this-&gt;config['for']['before_if']</code>
-      <code>$this-&gt;config['for']['before_if']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']</code>
-      <code>$this-&gt;config['from']['after_as']</code>
-      <code>$this-&gt;config['from']['after_source']</code>
-      <code>$this-&gt;config['from']['after_source']</code>
-      <code>$this-&gt;config['from']['after_source']</code>
-      <code>$this-&gt;config['from']['before_as']</code>
-      <code>$this-&gt;config['from']['before_names']</code>
-      <code>$this-&gt;config['from']['before_names']</code>
-      <code>$this-&gt;config['from']['before_names']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['from']['before_source']</code>
-      <code>$this-&gt;config['func']</code>
-      <code>$this-&gt;config['func']['before_parentheses']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']</code>
-      <code>$this-&gt;config['hash']['after_coma']</code>
-      <code>$this-&gt;config['hash']['after_coma']</code>
-      <code>$this-&gt;config['hash']['after_coma']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_key']</code>
-      <code>$this-&gt;config['hash']['after_opening']</code>
-      <code>$this-&gt;config['hash']['after_value']</code>
-      <code>$this-&gt;config['hash']['after_value']</code>
-      <code>$this-&gt;config['hash']['after_value']</code>
-      <code>$this-&gt;config['hash']['before_closing']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['before_value']</code>
-      <code>$this-&gt;config['hash']['empty']</code>
-      <code>$this-&gt;config['hash']['empty']</code>
-      <code>$this-&gt;config['if']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']</code>
-      <code>$this-&gt;config['import']['after_as']</code>
-      <code>$this-&gt;config['import']['after_as']</code>
-      <code>$this-&gt;config['import']['after_as']</code>
-      <code>$this-&gt;config['import']['after_coma']</code>
-      <code>$this-&gt;config['import']['after_source']</code>
-      <code>$this-&gt;config['import']['after_source']</code>
-      <code>$this-&gt;config['import']['after_source']</code>
-      <code>$this-&gt;config['import']['before_coma']</code>
-      <code>$this-&gt;config['import']['before_source']</code>
-      <code>$this-&gt;config['list']</code>
-      <code>$this-&gt;config['list']</code>
-      <code>$this-&gt;config['list']</code>
-      <code>$this-&gt;config['list']</code>
-      <code>$this-&gt;config['list']['after_coma']</code>
-      <code>$this-&gt;config['list']['after_coma']</code>
-      <code>$this-&gt;config['list']['after_value']</code>
-      <code>$this-&gt;config['list']['after_value']</code>
-      <code>$this-&gt;config['macro']</code>
-      <code>$this-&gt;config['macro']</code>
-      <code>$this-&gt;config['macro']['after_macro']</code>
-      <code>$this-&gt;config['macro']['after_name']</code>
-      <code>$this-&gt;config['named_args']</code>
-      <code>$this-&gt;config['named_args']</code>
-      <code>$this-&gt;config['named_args']</code>
-      <code>$this-&gt;config['named_args']</code>
-      <code>$this-&gt;config['named_args']</code>
-      <code>$this-&gt;config['named_args']['after_=']</code>
-      <code>$this-&gt;config['named_args']['after_=']</code>
-      <code>$this-&gt;config['named_args']['after_value']</code>
-      <code>$this-&gt;config['named_args']['before_=']</code>
-      <code>$this-&gt;config['named_args']['before_=']</code>
-      <code>$this-&gt;config['parentheses']</code>
-      <code>$this-&gt;config['parentheses']</code>
-      <code>$this-&gt;config['parentheses']</code>
-      <code>$this-&gt;config['parentheses']['after_value']</code>
-      <code>$this-&gt;config['parentheses']['before_value']</code>
-      <code>$this-&gt;config['parentheses']['empty']</code>
-      <code>$this-&gt;config['print']</code>
-      <code>$this-&gt;config['print']</code>
-      <code>$this-&gt;config['print']['after']</code>
-      <code>$this-&gt;config['print']['before']</code>
-      <code>$this-&gt;config['property']</code>
-      <code>$this-&gt;config['property']</code>
-      <code>$this-&gt;config['property']</code>
-      <code>$this-&gt;config['property']</code>
-      <code>$this-&gt;config['property']['after_.']</code>
-      <code>$this-&gt;config['property']['after_|']</code>
-      <code>$this-&gt;config['property']['before_.']</code>
-      <code>$this-&gt;config['property']['before_|']</code>
-      <code>$this-&gt;config['range']</code>
-      <code>$this-&gt;config['range']</code>
-      <code>$this-&gt;config['range']['after_op']</code>
-      <code>$this-&gt;config['range']['before_op']</code>
-      <code>$this-&gt;config['set']</code>
-      <code>$this-&gt;config['set']</code>
-      <code>$this-&gt;config['set']</code>
-      <code>$this-&gt;config['set']['after_equal']</code>
-      <code>$this-&gt;config['set']['after_set']</code>
-      <code>$this-&gt;config['set']['after_var_name']</code>
-      <code>$this-&gt;config['slice']</code>
-      <code>$this-&gt;config['slice']</code>
-      <code>$this-&gt;config['slice']</code>
-      <code>$this-&gt;config['slice']</code>
-      <code>$this-&gt;config['slice']['after_:']</code>
-      <code>$this-&gt;config['slice']['after_[']</code>
-      <code>$this-&gt;config['slice']['before_:']</code>
-      <code>$this-&gt;config['slice']['before_]']</code>
-      <code>$this-&gt;config['tag']</code>
-      <code>$this-&gt;config['tag']</code>
-      <code>$this-&gt;config['tag']</code>
-      <code>$this-&gt;config['tag']</code>
-      <code>$this-&gt;config['tag']</code>
-      <code>$this-&gt;config['tag']</code>
-      <code>$this-&gt;config['tag']['after']</code>
-      <code>$this-&gt;config['tag']['after']</code>
-      <code>$this-&gt;config['tag']['after']</code>
-      <code>$this-&gt;config['tag']['before']</code>
-      <code>$this-&gt;config['tag']['before']</code>
-      <code>$this-&gt;config['tag']['before']</code>
-      <code>$this-&gt;config['tag_default_arg_spacing']</code>
-      <code>$this-&gt;config['ternary']</code>
-      <code>$this-&gt;config['ternary']</code>
-      <code>$this-&gt;config['ternary']</code>
-      <code>$this-&gt;config['ternary']</code>
-      <code>$this-&gt;config['ternary']</code>
-      <code>$this-&gt;config['ternary']</code>
-      <code>$this-&gt;config['ternary']['after_:']</code>
-      <code>$this-&gt;config['ternary']['after_?']</code>
-      <code>$this-&gt;config['ternary']['after_?:']</code>
-      <code>$this-&gt;config['ternary']['before_:']</code>
-      <code>$this-&gt;config['ternary']['before_?']</code>
-      <code>$this-&gt;config['ternary']['before_?:']</code>
-      <code>$this-&gt;config['twigMajorVersion']</code>
-      <code>$this-&gt;config['twigMajorVersion']</code>
-      <code>$this-&gt;config['twigMajorVersion']</code>
-      <code>$this-&gt;config['twigMajorVersion']</code>
-      <code>$this-&gt;config['twigMajorVersion']</code>
-      <code>$this-&gt;config['twigMajorVersion']</code>
-      <code>$this-&gt;config['unary']</code>
-      <code>$this-&gt;config['unary']['between']</code>
+    <MixedArrayAccess>
+      <code><![CDATA[$this->config['array']]]></code>
+      <code><![CDATA[$this->config['array']]]></code>
+      <code><![CDATA[$this->config['array']]]></code>
+      <code><![CDATA[$this->config['array']]]></code>
+      <code><![CDATA[$this->config['array']]]></code>
+      <code><![CDATA[$this->config['array']]]></code>
+      <code><![CDATA[$this->config['array']['after_opening']]]></code>
+      <code><![CDATA[$this->config['array']['after_opening']]]></code>
+      <code><![CDATA[$this->config['array']['before_closing']]]></code>
+      <code><![CDATA[$this->config['array']['before_closing']]]></code>
+      <code><![CDATA[$this->config['array']['empty']]]></code>
+      <code><![CDATA[$this->config['array']['empty']]]></code>
+      <code><![CDATA[$this->config['arrow_function']]]></code>
+      <code><![CDATA[$this->config['arrow_function']]]></code>
+      <code><![CDATA[$this->config['arrow_function']['after_arrow']]]></code>
+      <code><![CDATA[$this->config['arrow_function']['before_arrow']]]></code>
+      <code><![CDATA[$this->config['binary']]]></code>
+      <code><![CDATA[$this->config['binary']]]></code>
+      <code><![CDATA[$this->config['binary']['after_op']]]></code>
+      <code><![CDATA[$this->config['binary']['before_op']]]></code>
+      <code><![CDATA[$this->config['elseif']]]></code>
+      <code><![CDATA[$this->config['empty_list_whitespaces']]]></code>
+      <code><![CDATA[$this->config['empty_list_whitespaces']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']]]></code>
+      <code><![CDATA[$this->config['for']['after_coma']]]></code>
+      <code><![CDATA[$this->config['for']['after_coma']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_for']]]></code>
+      <code><![CDATA[$this->config['for']['after_if']]]></code>
+      <code><![CDATA[$this->config['for']['after_if']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_in']]]></code>
+      <code><![CDATA[$this->config['for']['after_key_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_key_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['after_value_var']]]></code>
+      <code><![CDATA[$this->config['for']['before_if']]]></code>
+      <code><![CDATA[$this->config['for']['before_if']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']]]></code>
+      <code><![CDATA[$this->config['from']['after_as']]]></code>
+      <code><![CDATA[$this->config['from']['after_source']]]></code>
+      <code><![CDATA[$this->config['from']['after_source']]]></code>
+      <code><![CDATA[$this->config['from']['after_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_as']]]></code>
+      <code><![CDATA[$this->config['from']['before_names']]]></code>
+      <code><![CDATA[$this->config['from']['before_names']]]></code>
+      <code><![CDATA[$this->config['from']['before_names']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['from']['before_source']]]></code>
+      <code><![CDATA[$this->config['func']]]></code>
+      <code><![CDATA[$this->config['func']['before_parentheses']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']]]></code>
+      <code><![CDATA[$this->config['hash']['after_coma']]]></code>
+      <code><![CDATA[$this->config['hash']['after_coma']]]></code>
+      <code><![CDATA[$this->config['hash']['after_coma']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_key']]]></code>
+      <code><![CDATA[$this->config['hash']['after_opening']]]></code>
+      <code><![CDATA[$this->config['hash']['after_value']]]></code>
+      <code><![CDATA[$this->config['hash']['after_value']]]></code>
+      <code><![CDATA[$this->config['hash']['after_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_closing']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['before_value']]]></code>
+      <code><![CDATA[$this->config['hash']['empty']]]></code>
+      <code><![CDATA[$this->config['hash']['empty']]]></code>
+      <code><![CDATA[$this->config['if']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']]]></code>
+      <code><![CDATA[$this->config['import']['after_as']]]></code>
+      <code><![CDATA[$this->config['import']['after_as']]]></code>
+      <code><![CDATA[$this->config['import']['after_as']]]></code>
+      <code><![CDATA[$this->config['import']['after_coma']]]></code>
+      <code><![CDATA[$this->config['import']['after_source']]]></code>
+      <code><![CDATA[$this->config['import']['after_source']]]></code>
+      <code><![CDATA[$this->config['import']['after_source']]]></code>
+      <code><![CDATA[$this->config['import']['before_coma']]]></code>
+      <code><![CDATA[$this->config['import']['before_source']]]></code>
+      <code><![CDATA[$this->config['list']]]></code>
+      <code><![CDATA[$this->config['list']]]></code>
+      <code><![CDATA[$this->config['list']]]></code>
+      <code><![CDATA[$this->config['list']]]></code>
+      <code><![CDATA[$this->config['list']['after_coma']]]></code>
+      <code><![CDATA[$this->config['list']['after_coma']]]></code>
+      <code><![CDATA[$this->config['list']['after_value']]]></code>
+      <code><![CDATA[$this->config['list']['after_value']]]></code>
+      <code><![CDATA[$this->config['macro']]]></code>
+      <code><![CDATA[$this->config['macro']]]></code>
+      <code><![CDATA[$this->config['macro']['after_macro']]]></code>
+      <code><![CDATA[$this->config['macro']['after_name']]]></code>
+      <code><![CDATA[$this->config['named_args']]]></code>
+      <code><![CDATA[$this->config['named_args']]]></code>
+      <code><![CDATA[$this->config['named_args']]]></code>
+      <code><![CDATA[$this->config['named_args']]]></code>
+      <code><![CDATA[$this->config['named_args']]]></code>
+      <code><![CDATA[$this->config['named_args']['after_=']]]></code>
+      <code><![CDATA[$this->config['named_args']['after_=']]]></code>
+      <code><![CDATA[$this->config['named_args']['after_value']]]></code>
+      <code><![CDATA[$this->config['named_args']['before_=']]]></code>
+      <code><![CDATA[$this->config['named_args']['before_=']]]></code>
+      <code><![CDATA[$this->config['parentheses']]]></code>
+      <code><![CDATA[$this->config['parentheses']]]></code>
+      <code><![CDATA[$this->config['parentheses']]]></code>
+      <code><![CDATA[$this->config['parentheses']['after_value']]]></code>
+      <code><![CDATA[$this->config['parentheses']['before_value']]]></code>
+      <code><![CDATA[$this->config['parentheses']['empty']]]></code>
+      <code><![CDATA[$this->config['print']]]></code>
+      <code><![CDATA[$this->config['print']]]></code>
+      <code><![CDATA[$this->config['print']['after']]]></code>
+      <code><![CDATA[$this->config['print']['before']]]></code>
+      <code><![CDATA[$this->config['property']]]></code>
+      <code><![CDATA[$this->config['property']]]></code>
+      <code><![CDATA[$this->config['property']]]></code>
+      <code><![CDATA[$this->config['property']]]></code>
+      <code><![CDATA[$this->config['property']['after_.']]]></code>
+      <code><![CDATA[$this->config['property']['after_|']]]></code>
+      <code><![CDATA[$this->config['property']['before_.']]]></code>
+      <code><![CDATA[$this->config['property']['before_|']]]></code>
+      <code><![CDATA[$this->config['range']]]></code>
+      <code><![CDATA[$this->config['range']]]></code>
+      <code><![CDATA[$this->config['range']['after_op']]]></code>
+      <code><![CDATA[$this->config['range']['before_op']]]></code>
+      <code><![CDATA[$this->config['set']]]></code>
+      <code><![CDATA[$this->config['set']]]></code>
+      <code><![CDATA[$this->config['set']]]></code>
+      <code><![CDATA[$this->config['set']['after_equal']]]></code>
+      <code><![CDATA[$this->config['set']['after_set']]]></code>
+      <code><![CDATA[$this->config['set']['after_var_name']]]></code>
+      <code><![CDATA[$this->config['slice']]]></code>
+      <code><![CDATA[$this->config['slice']]]></code>
+      <code><![CDATA[$this->config['slice']]]></code>
+      <code><![CDATA[$this->config['slice']]]></code>
+      <code><![CDATA[$this->config['slice']['after_:']]]></code>
+      <code><![CDATA[$this->config['slice']['after_[']]]></code>
+      <code><![CDATA[$this->config['slice']['before_:']]]></code>
+      <code><![CDATA[$this->config['slice']['before_]']]]></code>
+      <code><![CDATA[$this->config['tag']]]></code>
+      <code><![CDATA[$this->config['tag']]]></code>
+      <code><![CDATA[$this->config['tag']]]></code>
+      <code><![CDATA[$this->config['tag']]]></code>
+      <code><![CDATA[$this->config['tag']]]></code>
+      <code><![CDATA[$this->config['tag']]]></code>
+      <code><![CDATA[$this->config['tag']['after']]]></code>
+      <code><![CDATA[$this->config['tag']['after']]]></code>
+      <code><![CDATA[$this->config['tag']['after']]]></code>
+      <code><![CDATA[$this->config['tag']['before']]]></code>
+      <code><![CDATA[$this->config['tag']['before']]]></code>
+      <code><![CDATA[$this->config['tag']['before']]]></code>
+      <code><![CDATA[$this->config['tag_default_arg_spacing']]]></code>
+      <code><![CDATA[$this->config['ternary']]]></code>
+      <code><![CDATA[$this->config['ternary']]]></code>
+      <code><![CDATA[$this->config['ternary']]]></code>
+      <code><![CDATA[$this->config['ternary']]]></code>
+      <code><![CDATA[$this->config['ternary']]]></code>
+      <code><![CDATA[$this->config['ternary']]]></code>
+      <code><![CDATA[$this->config['ternary']['after_:']]]></code>
+      <code><![CDATA[$this->config['ternary']['after_?']]]></code>
+      <code><![CDATA[$this->config['ternary']['after_?:']]]></code>
+      <code><![CDATA[$this->config['ternary']['before_:']]]></code>
+      <code><![CDATA[$this->config['ternary']['before_?']]]></code>
+      <code><![CDATA[$this->config['ternary']['before_?:']]]></code>
+      <code><![CDATA[$this->config['twigMajorVersion']]]></code>
+      <code><![CDATA[$this->config['twigMajorVersion']]]></code>
+      <code><![CDATA[$this->config['twigMajorVersion']]]></code>
+      <code><![CDATA[$this->config['twigMajorVersion']]]></code>
+      <code><![CDATA[$this->config['twigMajorVersion']]]></code>
+      <code><![CDATA[$this->config['twigMajorVersion']]]></code>
+      <code><![CDATA[$this->config['unary']]]></code>
+      <code><![CDATA[$this->config['unary']['between']]]></code>
     </MixedArrayAccess>
   </file>
   <file src="src/RegEngine/RulesetConfigurator.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>getProcessedConfiguration</code>
     </MissingReturnType>
   </file>
   <file src="src/RegEngine/Sanitizer/StringSanitizer.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>sanitize</code>
     </MissingReturnType>
   </file>
   <file src="src/RegEngine/ScopedExpression.php">
-    <InvalidArrayOffset occurrences="1">
+    <InvalidArrayOffset>
       <code>$array[$i - 1]</code>
     </InvalidArrayOffset>
-    <MissingParamType occurrences="9">
+    <MissingParamType>
       <code>$char</code>
       <code>$char</code>
       <code>$char</code>
@@ -980,7 +982,7 @@
       <code>$prev</code>
       <code>$string</code>
     </MissingParamType>
-    <MissingReturnType occurrences="10">
+    <MissingReturnType>
       <code>close</code>
       <code>debug</code>
       <code>enqueue</code>
@@ -992,199 +994,185 @@
       <code>shouldRollback</code>
       <code>strlen</code>
     </MissingReturnType>
-    <MixedArgument occurrences="2">
+    <MixedArgument>
       <code>$char</code>
       <code>$string</code>
     </MixedArgument>
-    <MixedAssignment occurrences="8">
+    <MixedAssignment>
       <code>$content</code>
       <code>$head</code>
       <code>$head</code>
       <code>$i</code>
       <code>$item</code>
       <code>$item</code>
-      <code>$previousHead-&gt;head</code>
-      <code>$this-&gt;head</code>
+      <code><![CDATA[$previousHead->head]]></code>
+      <code><![CDATA[$this->head]]></code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
+    <MixedMethodCall>
       <code>debug</code>
       <code>strlen</code>
     </MixedMethodCall>
-    <MixedOperand occurrences="2">
-      <code>$content-&gt;debug()</code>
-      <code>is_string($item) ? 1 : ($item-&gt;strlen())</code>
+    <MixedOperand>
+      <code><![CDATA[$content->debug()]]></code>
+      <code><![CDATA[is_string($item) ? 1 : ($item->strlen())]]></code>
     </MixedOperand>
-    <PropertyNotSetInConstructor occurrences="1">
+    <PropertyNotSetInConstructor>
       <code>$head</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/Reporter/CheckstyleReporter.php">
-    <InvalidScalarArgument occurrences="2">
-      <code>$violation-&gt;getColumn()</code>
-      <code>$violation-&gt;getLine()</code>
+    <InvalidScalarArgument>
+      <code><![CDATA[$violation->getColumn()]]></code>
+      <code><![CDATA[$violation->getLine()]]></code>
     </InvalidScalarArgument>
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
-    <PossiblyFalseArgument occurrences="1">
-      <code>$checkstyle-&gt;asXML()</code>
-    </PossiblyFalseArgument>
-    <PossiblyNullReference occurrences="3">
-      <code>addAttribute</code>
-      <code>addAttribute</code>
-      <code>addChild</code>
-    </PossiblyNullReference>
   </file>
   <file src="src/Reporter/ConsoleReporter.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
   </file>
   <file src="src/Reporter/CsvReporter.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
   </file>
   <file src="src/Reporter/EmacsReporter.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
   </file>
   <file src="src/Reporter/GithubActionReporter.php">
-    <DocblockTypeContradiction occurrences="2">
+    <DocblockTypeContradiction>
       <code>0</code>
       <code>1</code>
     </DocblockTypeContradiction>
-    <InvalidScalarArgument occurrences="2">
-      <code>$violation-&gt;getColumn() ?? 0</code>
-      <code>$violation-&gt;getLine() ?? 1</code>
+    <InvalidScalarArgument>
+      <code><![CDATA[$violation->getColumn() ?? 0]]></code>
+      <code><![CDATA[$violation->getLine() ?? 1]]></code>
     </InvalidScalarArgument>
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
-    <RedundantConditionGivenDocblockType occurrences="2">
-      <code>$violation-&gt;getColumn()</code>
-      <code>$violation-&gt;getLine()</code>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[$violation->getColumn()]]></code>
+      <code><![CDATA[$violation->getLine()]]></code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Reporter/JUnitReporter.php">
-    <ImplicitToStringCast occurrences="1">
+    <ImplicitToStringCast>
       <code>$failure[0]</code>
     </ImplicitToStringCast>
-    <InvalidOperand occurrences="2">
-      <code>$violation-&gt;getColumn()</code>
-      <code>$violation-&gt;getLine()</code>
+    <InvalidOperand>
+      <code><![CDATA[$violation->getColumn()]]></code>
+      <code><![CDATA[$violation->getLine()]]></code>
     </InvalidOperand>
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
-    <PossiblyFalseArgument occurrences="1">
-      <code>$testsuites-&gt;asXML()</code>
-    </PossiblyFalseArgument>
-    <PossiblyNullReference occurrences="4">
-      <code>addAttribute</code>
-      <code>addAttribute</code>
-      <code>addAttribute</code>
-      <code>addChild</code>
-    </PossiblyNullReference>
+    <PossiblyNullArgument>
+      <code>$failure[0]</code>
+    </PossiblyNullArgument>
   </file>
   <file src="src/Reporter/JsonReporter.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
-    <MixedArrayAssignment occurrences="2">
-      <code>$entry-&gt;violations[]</code>
-      <code>$result-&gt;files[]</code>
+    <MixedArrayAssignment>
+      <code><![CDATA[$entry->violations[]]]></code>
+      <code><![CDATA[$result->files[]]]></code>
     </MixedArrayAssignment>
-    <MixedPropertyAssignment occurrences="1">
+    <MixedPropertyAssignment>
       <code>$entry</code>
     </MixedPropertyAssignment>
-    <MixedPropertyFetch occurrences="1">
-      <code>$entry-&gt;violations</code>
+    <MixedPropertyFetch>
+      <code><![CDATA[$entry->violations]]></code>
     </MixedPropertyFetch>
-    <PossiblyUndefinedVariable occurrences="1">
+    <PossiblyUndefinedVariable>
       <code>$entry</code>
     </PossiblyUndefinedVariable>
   </file>
   <file src="src/Reporter/ReporterInterface.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>report</code>
     </MissingReturnType>
   </file>
   <file src="src/Rule/AbstractRule.php">
-    <MissingReturnType occurrences="3">
+    <MissingReturnType>
       <code>skip</code>
       <code>skipTo</code>
       <code>skipToOneOf</code>
     </MissingReturnType>
   </file>
   <file src="src/Rule/ForbiddenFunctions.php">
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$functions</code>
       <code>$severity</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="1">
+    <MissingPropertyType>
       <code>$functions</code>
     </MissingPropertyType>
-    <MixedArgument occurrences="4">
+    <MixedArgument>
       <code>$severity</code>
-      <code>$this-&gt;functions</code>
-      <code>$this-&gt;functions</code>
-      <code>$token-&gt;getValue()</code>
+      <code><![CDATA[$this->functions]]></code>
+      <code><![CDATA[$this->functions]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
     </MixedArgument>
-    <MixedArrayAssignment occurrences="1">
-      <code>$this-&gt;functions[]</code>
+    <MixedArrayAssignment>
+      <code><![CDATA[$this->functions[]]]></code>
     </MixedArrayAssignment>
   </file>
   <file src="src/Rule/LowerCaseVariable.php">
-    <MixedArgument occurrences="2">
-      <code>$token-&gt;getValue()</code>
-      <code>$token-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[$token->getValue()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
     </MixedArgument>
   </file>
   <file src="src/Rule/RegEngineRule.php">
-    <MixedArgument occurrences="2">
-      <code>$error-&gt;getReason()</code>
-      <code>$token-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[$error->getReason()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
     </MixedArgument>
-    <MixedArrayOffset occurrences="2">
-      <code>$expression['map'][$error-&gt;getColumn()]</code>
-      <code>$expression['map'][$error-&gt;getColumn()]</code>
+    <MixedArrayOffset>
+      <code><![CDATA[$expression['map'][$error->getColumn()]]]></code>
+      <code><![CDATA[$expression['map'][$error->getColumn()]]]></code>
     </MixedArrayOffset>
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$error</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="3">
+    <MixedMethodCall>
       <code>getColumn</code>
       <code>getColumn</code>
       <code>getReason</code>
     </MixedMethodCall>
-    <RedundantCondition occurrences="1">
+    <RedundantCondition>
       <code>null !== $toAppend</code>
     </RedundantCondition>
-    <UnusedForeachValue occurrences="1">
+    <UnusedForeachValue>
       <code>$char</code>
     </UnusedForeachValue>
   </file>
   <file src="src/Rule/TrailingSpace.php">
-    <MixedArgument occurrences="2">
-      <code>$token-&gt;getValue()</code>
-      <code>$token-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[$token->getValue()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
     </MixedArgument>
   </file>
   <file src="src/Rule/UnusedMacro.php">
-    <MixedArgument occurrences="3">
-      <code>$token-&gt;getColumn()</code>
-      <code>$token-&gt;getLine()</code>
-      <code>$token-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[$token->getColumn()]]></code>
+      <code><![CDATA[$token->getLine()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="4">
+    <MixedAssignment>
       <code>$builder</code>
       <code>$declaration</code>
       <code>$root</code>
       <code>$token</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="7">
+    <MixedMethodCall>
       <code>build</code>
       <code>flatten</code>
       <code>getColumn</code>
@@ -1195,18 +1183,18 @@
     </MixedMethodCall>
   </file>
   <file src="src/Rule/UnusedVariable.php">
-    <MixedArgument occurrences="3">
-      <code>$token-&gt;getColumn()</code>
-      <code>$token-&gt;getLine()</code>
-      <code>$token-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[$token->getColumn()]]></code>
+      <code><![CDATA[$token->getLine()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="4">
+    <MixedAssignment>
       <code>$builder</code>
       <code>$declaration</code>
       <code>$root</code>
       <code>$token</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="7">
+    <MixedMethodCall>
       <code>build</code>
       <code>flatten</code>
       <code>getColumn</code>
@@ -1217,37 +1205,37 @@
     </MixedMethodCall>
   </file>
   <file src="src/Ruleset/Official.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>setTemplateResolver</code>
     </MissingReturnType>
   </file>
   <file src="src/Ruleset/TemplateResolverAwareInterface.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>setTemplateResolver</code>
     </MissingReturnType>
   </file>
   <file src="src/Scope/BlockReference.php">
-    <MissingParamType occurrences="1">
+    <MissingParamType>
       <code>$name</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="1">
+    <MissingPropertyType>
       <code>$name</code>
     </MissingPropertyType>
-    <MixedArgument occurrences="1">
-      <code>$this-&gt;name</code>
+    <MixedArgument>
+      <code><![CDATA[$this->name]]></code>
     </MixedArgument>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;name</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->name]]></code>
     </MixedReturnStatement>
   </file>
   <file src="src/Scope/FlattenedScope.php">
-    <MixedArgument occurrences="1">
-      <code>$block-&gt;flatten()-&gt;getQueue()</code>
+    <MixedArgument>
+      <code><![CDATA[$block->flatten()->getQueue()]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="7">
+    <MixedAssignment>
       <code>$block</code>
       <code>$item</code>
       <code>$item</code>
@@ -1256,72 +1244,75 @@
       <code>$item</code>
       <code>$queue[]</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
+    <MixedMethodCall>
       <code>flatten</code>
       <code>getQueue</code>
     </MixedMethodCall>
-    <MixedOperand occurrences="1">
+    <MixedOperand>
       <code>$item</code>
     </MixedOperand>
   </file>
   <file src="src/Scope/Scope.php">
-    <DuplicateArrayKey occurrences="1">
-      <code>$this-&gt;queue</code>
+    <DuplicateArrayKey>
+      <code><![CDATA[$this->queue]]></code>
     </DuplicateArrayKey>
-    <InvalidNullableReturnType occurrences="1">
+    <InvalidNullableReturnType>
       <code>self</code>
     </InvalidNullableReturnType>
-    <MissingReturnType occurrences="4">
+    <MissingReturnType>
       <code>declare</code>
       <code>isolate</code>
       <code>referenceBlock</code>
       <code>use</code>
     </MissingReturnType>
-    <NullableReturnStatement occurrences="1">
-      <code>$this-&gt;parent</code>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->parent]]></code>
     </NullableReturnStatement>
   </file>
   <file src="src/Scope/ScopeBuilder.php">
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$depth</code>
       <code>$name</code>
     </MissingParamType>
-    <MissingReturnType occurrences="5">
+    <MissingReturnType>
       <code>build</code>
       <code>createMacroScopeBuilder</code>
       <code>createVariableScopeBuilder</code>
       <code>handleMacros</code>
       <code>handleVariables</code>
     </MissingReturnType>
-    <MixedArgument occurrences="19">
-      <code>$blockNameToken-&gt;getValue()</code>
+    <MixedArgument>
+      <code><![CDATA[$blockNameToken->getValue()]]></code>
       <code>$depth</code>
       <code>$depth</code>
       <code>$file</code>
       <code>$file</code>
-      <code>$from-&gt;getValue()</code>
+      <code><![CDATA[$from->getValue()]]></code>
       <code>$name</code>
-      <code>$next-&gt;getValue()</code>
-      <code>$next-&gt;getValue()</code>
-      <code>$templateName-&gt;getValue()</code>
-      <code>$templateName-&gt;getValue()</code>
-      <code>$token-&gt;getValue()</code>
-      <code>$token-&gt;getValue()</code>
-      <code>$token-&gt;getValue()</code>
-      <code>$token-&gt;getValue()</code>
+      <code><![CDATA[$next->getValue()]]></code>
+      <code><![CDATA[$next->getValue()]]></code>
+      <code><![CDATA[$templateName->getValue()]]></code>
+      <code><![CDATA[$templateName->getValue()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
       <code>$tokens</code>
-      <code>$tokens-&gt;look(4)-&gt;getValue()</code>
-      <code>$tokens-&gt;look(4)-&gt;getValue()</code>
-      <code>$tokens-&gt;look(4)-&gt;getValue()</code>
+      <code><![CDATA[$tokens->look(4)->getValue()]]></code>
+      <code><![CDATA[$tokens->look(4)->getValue()]]></code>
+      <code><![CDATA[$tokens->look(4)->getValue()]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
+    <MixedAssignment>
       <code>$blockType</code>
       <code>$blockType</code>
       <code>$file</code>
       <code>$file</code>
       <code>$tokens</code>
     </MixedAssignment>
-    <PossiblyNullReference occurrences="5">
+    <PossiblyInvalidArgument>
+      <code><![CDATA[str_replace('twigcs use-var ', '', $token->getValue())]]></code>
+    </PossiblyInvalidArgument>
+    <PossiblyNullReference>
       <code>getType</code>
       <code>getValue</code>
       <code>getValue</code>
@@ -1330,82 +1321,82 @@
     </PossiblyNullReference>
   </file>
   <file src="src/Scope/Usage.php">
-    <MissingParamType occurrences="1">
+    <MissingParamType>
       <code>$name</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="1">
+    <MissingPropertyType>
       <code>$name</code>
     </MissingPropertyType>
-    <MixedArgument occurrences="1">
-      <code>$this-&gt;name</code>
+    <MixedArgument>
+      <code><![CDATA[$this->name]]></code>
     </MixedArgument>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;name</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->name]]></code>
     </MixedReturnStatement>
   </file>
   <file src="src/TemplateResolver/ChainResolver.php">
-    <MixedAssignment occurrences="2">
+    <MixedAssignment>
       <code>$loader</code>
       <code>$loader</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>Source</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="3">
+    <MixedMethodCall>
       <code>exists</code>
       <code>exists</code>
       <code>load</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="1">
-      <code>$loader-&gt;load($path)</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$loader->load($path)]]></code>
     </MixedReturnStatement>
   </file>
   <file src="src/TemplateResolver/NamespacedResolver.php">
-    <MissingParamType occurrences="1">
+    <MissingParamType>
       <code>$path</code>
     </MissingParamType>
-    <MixedArgument occurrences="1">
+    <MixedArgument>
       <code>$path</code>
     </MixedArgument>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>Source</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="2">
+    <MixedMethodCall>
       <code>exists</code>
       <code>load</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;namespaces[$namespace]-&gt;load($subPath)</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->namespaces[$namespace]->load($subPath)]]></code>
     </MixedReturnStatement>
-    <PossiblyNullArgument occurrences="2">
+    <PossiblyNullArgument>
       <code>$namespace</code>
       <code>$namespace</code>
     </PossiblyNullArgument>
   </file>
   <file src="src/TwigPort/Token.php">
-    <MissingParamType occurrences="3">
+    <MissingParamType>
       <code>$type</code>
       <code>$value</code>
       <code>$values</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="1">
+    <MissingPropertyType>
       <code>$value</code>
     </MissingPropertyType>
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>getValue</code>
     </MissingReturnType>
-    <MixedArgument occurrences="1">
-      <code>$this-&gt;value</code>
+    <MixedArgument>
+      <code><![CDATA[$this->value]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$values</code>
     </MixedAssignment>
   </file>
   <file src="src/TwigPort/TokenStream.php">
-    <MissingParamType occurrences="6">
+    <MissingParamType>
       <code>$primary</code>
       <code>$primary</code>
       <code>$secondary</code>
@@ -1413,26 +1404,26 @@
       <code>$type</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingReturnType occurrences="2">
+    <MissingReturnType>
       <code>injectTokens</code>
       <code>nextIf</code>
     </MissingReturnType>
-    <MixedArgument occurrences="10">
+    <MixedArgument>
       <code>$column</code>
       <code>$column</code>
       <code>$column</code>
       <code>$line</code>
       <code>$line</code>
       <code>$line</code>
-      <code>$token-&gt;getType()</code>
-      <code>$token-&gt;getValue()</code>
+      <code><![CDATA[$token->getType()]]></code>
+      <code><![CDATA[$token->getValue()]]></code>
       <code>$type</code>
       <code>$value</code>
     </MixedArgument>
-    <MixedArgumentTypeCoercion occurrences="1">
-      <code>$this-&gt;tokens</code>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$this->tokens]]></code>
     </MixedArgumentTypeCoercion>
-    <MixedAssignment occurrences="9">
+    <MixedAssignment>
       <code>$column</code>
       <code>$column</code>
       <code>$column</code>
@@ -1443,14 +1434,14 @@
       <code>$token</code>
       <code>$token</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="5">
+    <MixedInferredReturnType>
       <code>Token</code>
       <code>Token</code>
       <code>Token</code>
       <code>Token</code>
       <code>bool</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="13">
+    <MixedMethodCall>
       <code>getColumn</code>
       <code>getColumn</code>
       <code>getColumn</code>
@@ -1465,26 +1456,26 @@
       <code>test</code>
       <code>test</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="5">
-      <code>$this-&gt;tokens[$this-&gt;current + $number]</code>
-      <code>$this-&gt;tokens[$this-&gt;current - 1]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]</code>
-      <code>$this-&gt;tokens[$this-&gt;current]-&gt;test($primary, $secondary)</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->tokens[$this->current + $number]]]></code>
+      <code><![CDATA[$this->tokens[$this->current - 1]]]></code>
+      <code><![CDATA[$this->tokens[$this->current]]]></code>
+      <code><![CDATA[$this->tokens[$this->current]->test($primary, $secondary)]]></code>
       <code>$token</code>
     </MixedReturnStatement>
   </file>
   <file src="src/TwigPort/TwigLexer.php">
-    <InvalidLiteralArgument occurrences="2">
+    <InvalidLiteralArgument>
       <code>'([{'</code>
       <code>')]}'</code>
     </InvalidLiteralArgument>
-    <MissingParamType occurrences="4">
+    <MissingParamType>
       <code>$state</code>
       <code>$text</code>
       <code>$type</code>
       <code>$value</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="15">
+    <MissingPropertyType>
       <code>$brackets</code>
       <code>$code</code>
       <code>$columnno</code>
@@ -1501,7 +1492,7 @@
       <code>$states</code>
       <code>$tokens</code>
     </MissingPropertyType>
-    <MissingReturnType occurrences="14">
+    <MissingReturnType>
       <code>getOperatorRegex</code>
       <code>lexBlock</code>
       <code>lexComment</code>
@@ -1517,7 +1508,7 @@
       <code>pushToken</code>
       <code>tokenize</code>
     </MissingReturnType>
-    <MixedArgument occurrences="118">
+    <MixedArgument>
       <code>$expect</code>
       <code>$expect</code>
       <code>$expect</code>
@@ -1525,119 +1516,119 @@
       <code>$lineno</code>
       <code>$lineno</code>
       <code>$lineno</code>
-      <code>$match[0][1] - $this-&gt;cursor</code>
-      <code>$match[0][1] - $this-&gt;cursor</code>
+      <code><![CDATA[$match[0][1] - $this->cursor]]></code>
+      <code><![CDATA[$match[0][1] - $this->cursor]]></code>
       <code>$operator[$length - 1]</code>
-      <code>$position[1] - $this-&gt;cursor</code>
+      <code><![CDATA[$position[1] - $this->cursor]]></code>
       <code>$text</code>
       <code>$text</code>
-      <code>$this-&gt;brackets</code>
-      <code>$this-&gt;brackets</code>
-      <code>$this-&gt;brackets</code>
-      <code>$this-&gt;brackets</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;columnno</code>
-      <code>$this-&gt;currentVarBlockLine</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;options['interpolation'][0]</code>
-      <code>$this-&gt;options['interpolation'][1]</code>
-      <code>$this-&gt;options['tag_block'][0]</code>
-      <code>$this-&gt;options['tag_block'][0]</code>
-      <code>$this-&gt;options['tag_block'][1]</code>
-      <code>$this-&gt;options['tag_block'][1]</code>
-      <code>$this-&gt;options['tag_block'][1]</code>
-      <code>$this-&gt;options['tag_block'][1]</code>
-      <code>$this-&gt;options['tag_comment'][0]</code>
-      <code>$this-&gt;options['tag_comment'][1]</code>
-      <code>$this-&gt;options['tag_comment'][1]</code>
-      <code>$this-&gt;options['tag_variable'][0]</code>
-      <code>$this-&gt;options['tag_variable'][1]</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;positions[0]</code>
-      <code>$this-&gt;positions[0]</code>
-      <code>$this-&gt;regexes['interpolation_end']</code>
-      <code>$this-&gt;regexes['interpolation_start']</code>
-      <code>$this-&gt;regexes['lex_block']</code>
-      <code>$this-&gt;regexes['lex_block_line']</code>
-      <code>$this-&gt;regexes['lex_block_raw']</code>
-      <code>$this-&gt;regexes['lex_comment']</code>
-      <code>$this-&gt;regexes['lex_raw_data']</code>
-      <code>$this-&gt;regexes['lex_tokens_start']</code>
-      <code>$this-&gt;regexes['lex_var']</code>
-      <code>$this-&gt;regexes['operator']</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;source</code>
-      <code>$this-&gt;states</code>
-      <code>$this-&gt;states</code>
+      <code><![CDATA[$this->brackets]]></code>
+      <code><![CDATA[$this->brackets]]></code>
+      <code><![CDATA[$this->brackets]]></code>
+      <code><![CDATA[$this->brackets]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->columnno]]></code>
+      <code><![CDATA[$this->currentVarBlockLine]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->options['interpolation'][0]]]></code>
+      <code><![CDATA[$this->options['interpolation'][1]]]></code>
+      <code><![CDATA[$this->options['tag_block'][0]]]></code>
+      <code><![CDATA[$this->options['tag_block'][0]]]></code>
+      <code><![CDATA[$this->options['tag_block'][1]]]></code>
+      <code><![CDATA[$this->options['tag_block'][1]]]></code>
+      <code><![CDATA[$this->options['tag_block'][1]]]></code>
+      <code><![CDATA[$this->options['tag_block'][1]]]></code>
+      <code><![CDATA[$this->options['tag_comment'][0]]]></code>
+      <code><![CDATA[$this->options['tag_comment'][1]]]></code>
+      <code><![CDATA[$this->options['tag_comment'][1]]]></code>
+      <code><![CDATA[$this->options['tag_variable'][0]]]></code>
+      <code><![CDATA[$this->options['tag_variable'][1]]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->positions[0]]]></code>
+      <code><![CDATA[$this->positions[0]]]></code>
+      <code><![CDATA[$this->regexes['interpolation_end']]]></code>
+      <code><![CDATA[$this->regexes['interpolation_start']]]></code>
+      <code><![CDATA[$this->regexes['lex_block']]]></code>
+      <code><![CDATA[$this->regexes['lex_block_line']]]></code>
+      <code><![CDATA[$this->regexes['lex_block_raw']]]></code>
+      <code><![CDATA[$this->regexes['lex_comment']]]></code>
+      <code><![CDATA[$this->regexes['lex_raw_data']]]></code>
+      <code><![CDATA[$this->regexes['lex_tokens_start']]]></code>
+      <code><![CDATA[$this->regexes['lex_var']]]></code>
+      <code><![CDATA[$this->regexes['operator']]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->source]]></code>
+      <code><![CDATA[$this->states]]></code>
+      <code><![CDATA[$this->states]]></code>
       <code>$type</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="68">
+    <MixedArrayAccess>
       <code>$bracket[0]</code>
       <code>$expect</code>
       <code>$expect</code>
@@ -1648,93 +1639,93 @@
       <code>$position[0]</code>
       <code>$position[1]</code>
       <code>$position[1]</code>
-      <code>$this-&gt;code[$this-&gt;cursor + 1]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;options['interpolation']</code>
-      <code>$this-&gt;options['interpolation']</code>
-      <code>$this-&gt;options['interpolation'][0]</code>
-      <code>$this-&gt;options['interpolation'][0]</code>
-      <code>$this-&gt;options['interpolation'][0]</code>
-      <code>$this-&gt;options['interpolation'][1]</code>
-      <code>$this-&gt;options['tag_block']</code>
-      <code>$this-&gt;options['tag_block'][0]</code>
-      <code>$this-&gt;options['tag_block'][0]</code>
-      <code>$this-&gt;options['tag_block'][1]</code>
-      <code>$this-&gt;options['tag_comment']</code>
-      <code>$this-&gt;options['tag_comment'][0]</code>
-      <code>$this-&gt;options['tag_comment'][0]</code>
-      <code>$this-&gt;options['tag_comment'][1]</code>
-      <code>$this-&gt;options['tag_variable']</code>
-      <code>$this-&gt;options['tag_variable'][0]</code>
-      <code>$this-&gt;options['tag_variable'][0]</code>
-      <code>$this-&gt;options['tag_variable'][1]</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;positions[0]</code>
-      <code>$this-&gt;positions[0]</code>
-      <code>$this-&gt;positions[0]</code>
-      <code>$this-&gt;positions[0]</code>
-      <code>$this-&gt;positions[0][++$this-&gt;position]</code>
-      <code>$this-&gt;positions[0][++$this-&gt;position]</code>
-      <code>$this-&gt;positions[1]</code>
-      <code>$this-&gt;positions[1][$this-&gt;position]</code>
-      <code>$this-&gt;positions[1][$this-&gt;position][0]</code>
-      <code>$this-&gt;positions[2]</code>
-      <code>$this-&gt;positions[2]</code>
-      <code>$this-&gt;positions[2][$this-&gt;position]</code>
-      <code>$this-&gt;positions[2][$this-&gt;position]</code>
-      <code>$this-&gt;positions[2][$this-&gt;position][0]</code>
-      <code>$this-&gt;positions[2][$this-&gt;position][0]</code>
-      <code>$this-&gt;regexes['interpolation_end']</code>
-      <code>$this-&gt;regexes['interpolation_start']</code>
-      <code>$this-&gt;regexes['lex_block']</code>
-      <code>$this-&gt;regexes['lex_block_line']</code>
-      <code>$this-&gt;regexes['lex_block_raw']</code>
-      <code>$this-&gt;regexes['lex_comment']</code>
-      <code>$this-&gt;regexes['lex_raw_data']</code>
-      <code>$this-&gt;regexes['lex_tokens_start']</code>
-      <code>$this-&gt;regexes['lex_var']</code>
-      <code>$this-&gt;regexes['operator']</code>
+      <code><![CDATA[$this->code[$this->cursor + 1]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->options['interpolation']]]></code>
+      <code><![CDATA[$this->options['interpolation']]]></code>
+      <code><![CDATA[$this->options['interpolation'][0]]]></code>
+      <code><![CDATA[$this->options['interpolation'][0]]]></code>
+      <code><![CDATA[$this->options['interpolation'][0]]]></code>
+      <code><![CDATA[$this->options['interpolation'][1]]]></code>
+      <code><![CDATA[$this->options['tag_block']]]></code>
+      <code><![CDATA[$this->options['tag_block'][0]]]></code>
+      <code><![CDATA[$this->options['tag_block'][0]]]></code>
+      <code><![CDATA[$this->options['tag_block'][1]]]></code>
+      <code><![CDATA[$this->options['tag_comment']]]></code>
+      <code><![CDATA[$this->options['tag_comment'][0]]]></code>
+      <code><![CDATA[$this->options['tag_comment'][0]]]></code>
+      <code><![CDATA[$this->options['tag_comment'][1]]]></code>
+      <code><![CDATA[$this->options['tag_variable']]]></code>
+      <code><![CDATA[$this->options['tag_variable'][0]]]></code>
+      <code><![CDATA[$this->options['tag_variable'][0]]]></code>
+      <code><![CDATA[$this->options['tag_variable'][1]]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->positions[0]]]></code>
+      <code><![CDATA[$this->positions[0]]]></code>
+      <code><![CDATA[$this->positions[0]]]></code>
+      <code><![CDATA[$this->positions[0]]]></code>
+      <code><![CDATA[$this->positions[0][++$this->position]]]></code>
+      <code><![CDATA[$this->positions[0][++$this->position]]]></code>
+      <code><![CDATA[$this->positions[1]]]></code>
+      <code><![CDATA[$this->positions[1][$this->position]]]></code>
+      <code><![CDATA[$this->positions[1][$this->position][0]]]></code>
+      <code><![CDATA[$this->positions[2]]]></code>
+      <code><![CDATA[$this->positions[2]]]></code>
+      <code><![CDATA[$this->positions[2][$this->position]]]></code>
+      <code><![CDATA[$this->positions[2][$this->position]]]></code>
+      <code><![CDATA[$this->positions[2][$this->position][0]]]></code>
+      <code><![CDATA[$this->positions[2][$this->position][0]]]></code>
+      <code><![CDATA[$this->regexes['interpolation_end']]]></code>
+      <code><![CDATA[$this->regexes['interpolation_start']]]></code>
+      <code><![CDATA[$this->regexes['lex_block']]]></code>
+      <code><![CDATA[$this->regexes['lex_block_line']]]></code>
+      <code><![CDATA[$this->regexes['lex_block_raw']]]></code>
+      <code><![CDATA[$this->regexes['lex_comment']]]></code>
+      <code><![CDATA[$this->regexes['lex_raw_data']]]></code>
+      <code><![CDATA[$this->regexes['lex_tokens_start']]]></code>
+      <code><![CDATA[$this->regexes['lex_var']]]></code>
+      <code><![CDATA[$this->regexes['operator']]]></code>
     </MixedArrayAccess>
-    <MixedArrayAssignment occurrences="5">
-      <code>$this-&gt;brackets[]</code>
-      <code>$this-&gt;brackets[]</code>
-      <code>$this-&gt;brackets[]</code>
-      <code>$this-&gt;states[]</code>
-      <code>$this-&gt;tokens[]</code>
+    <MixedArrayAssignment>
+      <code><![CDATA[$this->brackets[]]]></code>
+      <code><![CDATA[$this->brackets[]]]></code>
+      <code><![CDATA[$this->brackets[]]]></code>
+      <code><![CDATA[$this->states[]]]></code>
+      <code><![CDATA[$this->tokens[]]]></code>
     </MixedArrayAssignment>
-    <MixedArrayOffset occurrences="18">
-      <code>$this-&gt;code[$this-&gt;cursor + 1]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;code[$this-&gt;cursor]</code>
-      <code>$this-&gt;positions[0][++$this-&gt;position]</code>
-      <code>$this-&gt;positions[0][++$this-&gt;position]</code>
-      <code>$this-&gt;positions[1][$this-&gt;position]</code>
-      <code>$this-&gt;positions[2][$this-&gt;position]</code>
-      <code>$this-&gt;positions[2][$this-&gt;position]</code>
-      <code>$this-&gt;positions[2][$this-&gt;position]</code>
+    <MixedArrayOffset>
+      <code><![CDATA[$this->code[$this->cursor + 1]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->code[$this->cursor]]]></code>
+      <code><![CDATA[$this->positions[0][++$this->position]]]></code>
+      <code><![CDATA[$this->positions[0][++$this->position]]]></code>
+      <code><![CDATA[$this->positions[1][$this->position]]]></code>
+      <code><![CDATA[$this->positions[2][$this->position]]]></code>
+      <code><![CDATA[$this->positions[2][$this->position]]]></code>
+      <code><![CDATA[$this->positions[2][$this->position]]]></code>
     </MixedArrayOffset>
-    <MixedAssignment occurrences="6">
+    <MixedAssignment>
       <code>$bracket</code>
       <code>$position</code>
       <code>$position</code>
@@ -1742,42 +1733,42 @@
       <code>list($expect, $lineno)</code>
       <code>list($expect, $lineno)</code>
     </MixedAssignment>
-    <MixedOperand occurrences="27">
+    <MixedOperand>
       <code>$position[0]</code>
       <code>$position[1]</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;cursor</code>
-      <code>$this-&gt;lineno</code>
-      <code>$this-&gt;options['whitespace_line_chars']</code>
-      <code>$this-&gt;options['whitespace_line_chars']</code>
-      <code>$this-&gt;options['whitespace_line_chars']</code>
-      <code>$this-&gt;options['whitespace_line_chars']</code>
-      <code>$this-&gt;options['whitespace_line_chars']</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_line_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;options['whitespace_trim']</code>
-      <code>$this-&gt;position</code>
-      <code>$this-&gt;position</code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->cursor]]></code>
+      <code><![CDATA[$this->lineno]]></code>
+      <code><![CDATA[$this->options['whitespace_line_chars']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_chars']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_chars']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_chars']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_chars']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_line_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->options['whitespace_trim']]]></code>
+      <code><![CDATA[$this->position]]></code>
+      <code><![CDATA[$this->position]]></code>
     </MixedOperand>
-    <NoValue occurrences="1">
-      <code>$this-&gt;brackets</code>
+    <NoValue>
+      <code><![CDATA[$this->brackets]]></code>
     </NoValue>
-    <PossiblyInvalidArrayOffset occurrences="1">
+    <PossiblyInvalidArrayOffset>
       <code>$operator[$length - 1]</code>
     </PossiblyInvalidArrayOffset>
-    <TypeDoesNotContainType occurrences="4">
+    <TypeDoesNotContainType>
       <code>self::STATE_BLOCK</code>
       <code>self::STATE_INTERPOLATION</code>
       <code>self::STATE_STRING</code>
@@ -1785,45 +1776,45 @@
     </TypeDoesNotContainType>
   </file>
   <file src="src/Util/StreamNavigator.php">
-    <InvalidOperand occurrences="3">
+    <InvalidOperand>
       <code>$continue</code>
       <code>$found</code>
-      <code>$tokenValue === $tokens-&gt;getCurrent()-&gt;getValue()</code>
+      <code><![CDATA[$tokenValue === $tokens->getCurrent()->getValue()]]></code>
     </InvalidOperand>
-    <MissingReturnType occurrences="3">
+    <MissingReturnType>
       <code>skip</code>
       <code>skipTo</code>
       <code>skipToOneOf</code>
     </MissingReturnType>
-    <MixedArrayAccess occurrences="2">
+    <MixedArrayAccess>
       <code>$possibility['type']</code>
       <code>$possibility['value']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="3">
+    <MixedAssignment>
       <code>$possibility</code>
       <code>$tokenType</code>
       <code>$tokenValue</code>
     </MixedAssignment>
-    <PossiblyInvalidOperand occurrences="1">
+    <PossiblyInvalidOperand>
       <code>$found</code>
     </PossiblyInvalidOperand>
-    <UnusedVariable occurrences="2">
+    <UnusedVariable>
       <code>$token</code>
       <code>$token</code>
     </UnusedVariable>
   </file>
   <file src="src/Validator/Violation.php">
-    <MissingParamType occurrences="4">
+    <MissingParamType>
       <code>$column</code>
       <code>$filename</code>
       <code>$line</code>
       <code>$reason</code>
     </MissingParamType>
-    <MixedAssignment occurrences="4">
-      <code>$this-&gt;column</code>
-      <code>$this-&gt;filename</code>
-      <code>$this-&gt;line</code>
-      <code>$this-&gt;reason</code>
+    <MixedAssignment>
+      <code><![CDATA[$this->column]]></code>
+      <code><![CDATA[$this->filename]]></code>
+      <code><![CDATA[$this->line]]></code>
+      <code><![CDATA[$this->reason]]></code>
     </MixedAssignment>
   </file>
 </files>
