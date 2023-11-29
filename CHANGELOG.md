@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`6.2.0...main`][6.2.0...main].
 
+### Added
+
+- Added support for PHP 8.3 ([#296]), by [@rajeshreeputra]
+
 ## [`6.2.0`][6.2.0]
 
 For a full diff see [`6.1.0...6.2.0`][6.1.0...6.2.0].
@@ -157,3 +161,4 @@ For a full diff see [`b139b06...1.0.0`][b139b06...1.0.0].
 [#270]: https://github.com/friendsoftwig/twigcs/pull/270
 
 [@localheinz]: https://github.com/localheinz
+[@rajeshreeputra]: https://github.com/rajeshreeputra
