@@ -6,7 +6,7 @@
     cacheDirectory=".build/psalm"
     errorBaseline="psalm-baseline.xml"
     errorLevel="1"
-    findUnusedBaselineEntry="false"
+    findUnusedBaselineEntry="true"
     findUnusedCode="false"
     findUnusedVariablesAndParams="true"
     resolveFromConfigFile="true"
