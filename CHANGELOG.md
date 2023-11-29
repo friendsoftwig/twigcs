@@ -108,7 +108,6 @@ For a full diff see [`1.0.0...2.0.0`][1.0.0...2.0.0].
 
 For a full diff see [`b139b06...1.0.0`][b139b06...1.0.0].
 
-
 [1.0.0]: https://github.com/friendsoftwig/twigcs/releases/tag/1.0.0
 [2.0.0]: https://github.com/friendsoftwig/twigcs/releases/tag/2.0.0
 [2.0.1]: https://github.com/friendsoftwig/twigcs/releases/tag/2.0.1
