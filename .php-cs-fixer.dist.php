@@ -50,8 +50,8 @@ return $config
                 'yield_from',
             ],
         ],
-        'braces' => [
-            'allow_single_line_closure' => true,
+        'braces_position' => [
+            'allow_single_line_anonymous_functions' => true,
         ],
         'method_argument_space' => [
             'after_heredoc' => false,
