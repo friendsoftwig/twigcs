@@ -40,7 +40,7 @@ class LintCommand extends ContainerAwareCommand
         ;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $container = $this->getContainer();
 

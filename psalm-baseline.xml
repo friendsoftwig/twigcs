@@ -122,9 +122,6 @@
     <InvalidMethodCall>
       <code>getRealPath</code>
     </InvalidMethodCall>
-    <MissingReturnType>
-      <code>configure</code>
-    </MissingReturnType>
     <MixedArgument>
       <code>$file</code>
       <code>$finder</code>
@@ -153,13 +150,10 @@
       <code>validate</code>
     </MixedMethodCall>
     <PossiblyInvalidArgument>
-      <code>str_replace(getcwd(), '', $realPath)</code>
+      <code><![CDATA[str_replace(getcwd(), '', $realPath)]]></code>
     </PossiblyInvalidArgument>
   </file>
   <file src="src/Console/RegDebugCommand.php">
-    <MissingReturnType>
-      <code>configure</code>
-    </MissingReturnType>
     <MixedArgument>
       <code><![CDATA[$error->getColumn()]]></code>
       <code><![CDATA[$error->getReason()]]></code>
@@ -1466,8 +1460,8 @@
   </file>
   <file src="src/TwigPort/TwigLexer.php">
     <InvalidLiteralArgument>
-      <code>'([{'</code>
-      <code>')]}'</code>
+      <code><![CDATA['([{']]></code>
+      <code><![CDATA[')]}']]></code>
     </InvalidLiteralArgument>
     <MissingParamType>
       <code>$state</code>
@@ -1787,8 +1781,8 @@
       <code>skipToOneOf</code>
     </MissingReturnType>
     <MixedArrayAccess>
-      <code>$possibility['type']</code>
-      <code>$possibility['value']</code>
+      <code><![CDATA[$possibility['type']]]></code>
+      <code><![CDATA[$possibility['value']]]></code>
     </MixedArrayAccess>
     <MixedAssignment>
       <code>$possibility</code>
