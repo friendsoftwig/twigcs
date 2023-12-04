@@ -24,7 +24,7 @@ class LintCommand extends ContainerAwareCommand
      */
     public const DISPLAY_ALL = 'all';
 
-    public function configure()
+    public function configure(): void
     {
         $this
             ->setName('lint')

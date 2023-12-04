@@ -16,7 +16,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class RegDebugCommand extends ContainerAwareCommand
 {
-    public function configure()
+    public function configure(): void
     {
         $this
             ->setName('reg:debug')
