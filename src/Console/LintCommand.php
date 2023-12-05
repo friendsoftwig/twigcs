@@ -24,7 +24,7 @@ class LintCommand extends ContainerAwareCommand
      */
     public const DISPLAY_ALL = 'all';
 
-    public function configure()
+    public function configure(): void
     {
         $this
             ->setName('lint')
@@ -40,7 +40,7 @@ class LintCommand extends ContainerAwareCommand
         ;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $container = $this->getContainer();
 

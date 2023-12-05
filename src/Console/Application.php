@@ -25,12 +25,12 @@ class Application extends BaseApplication
         $this->setDefaultCommand($command->getName(), $singleCommand);
     }
 
-    public function add(Command $command)
+    public function add(Command $command): ?Command
     {
-        parent::add($command);
-
         if ($command instanceof ContainerAwareCommand) {
             $command->setContainer($this->container);
         }
+
+        return parent::add($command);
     }
 }
