@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 For a full diff see [`6.3.0...main`][6.3.0...main].
 
+### Added
+
+- Added support for `symfony/console:^7.0.0`, `symfony/filesystem:^7.0.0`, and `symfony/finder:^7.0.0` ([#314]), by [@kristoftorfs]
+
 ## [`6.3.0`][6.3.0]
 
 For a full diff see [`6.2.0...6.3.0`][6.2.0...6.3.0].
@@ -165,6 +169,8 @@ For a full diff see [`b139b06...1.0.0`][b139b06...1.0.0].
 
 [#270]: https://github.com/friendsoftwig/twigcs/pull/270
 [#296]: https://github.com/friendsoftwig/twigcs/pull/296
+[#314]: https://github.com/friendsoftwig/twigcs/pull/314
 
+[@kristoftorfs]: https://github.com/kristoftorfs
 [@localheinz]: https://github.com/localheinz
 [@rajeshreeputra]: https://github.com/rajeshreeputra
