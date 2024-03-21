@@ -20,7 +20,7 @@
         "symfony/finder": "^4.4 || ^5.3 || ^6.0 || ^7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.6.17",
+        "phpunit/phpunit": "^9.6.18",
         "symfony/phpunit-bridge": "^7.0.4"
     },
     "autoload": {
