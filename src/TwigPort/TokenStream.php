@@ -15,7 +15,7 @@ final class TokenStream
     private int $current = 0;
     private Source $source;
 
-    public function __construct(array $tokens, Source $source = null)
+    public function __construct(array $tokens, ?Source $source = null)
     {
         $this->tokens = $tokens;
         $this->source = $source ?: new Source('', '');
@@ -51,7 +51,7 @@ final class TokenStream
         }
     }
 
-    public function expect($type, $value = null, string $message = null): Token
+    public function expect($type, $value = null, ?string $message = null): Token
     {
         $token = $this->tokens[$this->current];
 

@@ -45,7 +45,7 @@ abstract class AbstractRule
         return StreamNavigator::getNextSignificantToken($tokens, $skip);
     }
 
-    protected function skipTo(TokenStream $tokens, int $tokenType, string $tokenValue = null)
+    protected function skipTo(TokenStream $tokens, int $tokenType, ?string $tokenValue = null)
     {
         return StreamNavigator::skipTo($tokens, $tokenType, $tokenValue);
     }

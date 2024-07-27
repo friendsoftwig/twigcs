@@ -47,7 +47,7 @@ class StreamNavigator
         return null;
     }
 
-    public static function skipTo(TokenStream $tokens, int $tokenType, string $tokenValue = null)
+    public static function skipTo(TokenStream $tokens, int $tokenType, ?string $tokenValue = null)
     {
         while (!$tokens->isEOF()) {
             $continue = $tokens->getCurrent()->getType() !== $tokenType;

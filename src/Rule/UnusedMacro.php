@@ -11,7 +11,7 @@ class UnusedMacro extends AbstractRule implements RuleInterface
 {
     public TemplateResolverInterface $loader;
 
-    public function __construct(int $severity, TemplateResolverInterface $loader = null)
+    public function __construct(int $severity, ?TemplateResolverInterface $loader = null)
     {
         $this->loader = $loader ?: new NullResolver();
 
