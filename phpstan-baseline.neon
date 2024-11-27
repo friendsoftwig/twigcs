@@ -1,0 +1,4153 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to method setCacheFile\(\) on an unknown class PhpCsFixer\\Config\.$#'
+			identifier: class.notFound
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Call to static method create\(\) on an unknown class PhpCsFixer\\Finder\.$#'
+			identifier: class.notFound
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Cannot call method exclude\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Cannot call method ignoreDotFiles\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Cannot call method in\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Cannot call method setFinder\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Cannot call method setRiskyAllowed\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Cannot call method setRules\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Instantiated class PhpCsFixer\\Config not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: .php-cs-fixer.dist.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\Config\:\:addFinder\(\) has parameter \$finder with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\Config\:\:getFinders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\Config\:\:getSpecificRulesets\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\Config\:\:getTemplateResolver\(\) should return FriendsOfTwig\\Twigcs\\TemplateResolver\\TemplateResolverInterface but returns FriendsOfTwig\\Twigcs\\TemplateResolver\\TemplateResolverInterface\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\Config\:\:setSpecificRulesets\(\) has parameter \$ruleSet with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\Config\:\:\$finders type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\Config\:\:\$loader \(FriendsOfTwig\\Twigcs\\TemplateResolver\\TemplateResolverInterface\|null\) is never assigned null so it can be removed from the property type\.$#'
+			identifier: property.unusedType
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\Config\:\:\$specificRulesets type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: src/Config/Config.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigInterface\:\:getFinders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigInterface.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigInterface\:\:getSpecificRuleSets\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigInterface.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigInterface\:\:setSpecificRuleSets\(\) has parameter \$ruleSet with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigInterface.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''/''\|''\\\\'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 5
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Call to function method_exists\(\) with FriendsOfTwig\\Twigcs\\Config\\ConfigInterface and ''getDisplay'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Cannot call method getReporter\(\) on FriendsOfTwig\\Twigcs\\Config\\ConfigInterface\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Cannot call method getRuleset\(\) on FriendsOfTwig\\Twigcs\\Config\\ConfigInterface\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Cannot call method getTemplateResolver\(\) on FriendsOfTwig\\Twigcs\\Config\\ConfigInterface\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:__construct\(\) has parameter \$cwd with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:computeConfigFiles\(\) should return array\<string\> but returns array\<int, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getDisplay\(\) should return string but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getFinders\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getPath\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getReporter\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getRuleset\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getSeverity\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getSeverityLimit\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:iterableToTraversable\(\) has parameter \$iterable with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:iterableToTraversable\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:iterableToTraversable\(\) return type has no value type specified in iterable type Traversable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:resolveFinders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:separatedContextLessInclude\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:separatedContextLessInclude\(\) has parameter \$path with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:setOption\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:setOption\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$class of function class_exists expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$dirs of method Symfony\\Component\\Finder\\Finder\:\:in\(\) expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$file of method Symfony\\Component\\Filesystem\\Filesystem\:\:isAbsolutePath\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_exists expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function is_readable expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$path of function realpath expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$path of method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:normalizePath\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$patterns of method Symfony\\Component\\Finder\\Finder\:\:notPath\(\) expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#2 \$array of function array_map expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Part \$this\-\>options\[''reporter\-service\-name''\] \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:\$cwd has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:\$finders has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:\$options type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:\$path has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:\$specificRulesets has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Config/ConfigResolver.php
+
+		-
+			message: '#^Parameter \#1 \$commandName of method Symfony\\Component\\Console\\Application\:\:setDefaultCommand\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/Application.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Console\\ContainerAwareCommand\:\:getContainer\(\) should return FriendsOfTwig\\Twigcs\\Container but returns FriendsOfTwig\\Twigcs\\Container\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Console/ContainerAwareCommand.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Console\\ContainerAwareCommand\:\:setContainer\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Console/ContainerAwareCommand.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Cannot call method getRealPath\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Cannot call method getSeverity\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Cannot call method report\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Cannot call method tokenize\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Cannot call method validate\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Console\\LintCommand\:\:determineExitCode\(\) has parameter \$violations with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Console\\LintCommand\:\:filterDisplayViolations\(\) has parameter \$violations with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Console\\LintCommand\:\:filterDisplayViolations\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#1 \$code of class FriendsOfTwig\\Twigcs\\TwigPort\\Source constructor expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#1 \$file of method FriendsOfTwig\\Twigcs\\Config\\ConfigResolver\:\:getRuleset\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#1 \$iterator of function iterator_to_array expects Traversable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#1 \$search of function str_replace expects array\<string\>\|string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#1 \$severityLevel of method FriendsOfTwig\\Twigcs\\Console\\LintCommand\:\:determineExitCode\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function array_filter expects \(callable\(mixed\)\: bool\)\|null, Closure\(FriendsOfTwig\\Twigcs\\Validator\\Violation\)\: bool given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#2 \$name of class FriendsOfTwig\\Twigcs\\TwigPort\\Source constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#2 \$severityLevel of method FriendsOfTwig\\Twigcs\\Console\\LintCommand\:\:filterDisplayViolations\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$arrays of function array_merge expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/LintCommand.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method flatten\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method getColumn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method getExpr\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method getOffset\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method getOffsetsMap\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method getReason\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method getTrace\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Cannot call method getType\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#1 \$elements of method Symfony\\Component\\Console\\Style\\SymfonyStyle\:\:listing\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_get_contents expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#1 \$messages of method Symfony\\Component\\Console\\Style\\SymfonyStyle\:\:writeln\(\) expects iterable\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#1 \$string of function trim expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#1 \$twigMajorVersion of method FriendsOfTwig\\Twigcs\\RegEngine\\RulesetConfigurator\:\:setTwigMajorVersion\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#2 \$ruleset of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#3 \$text of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#4 \$offsetsMap of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Parameter \#5 \$offset of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Console/RegDebugCommand.php
+
+		-
+			message: '#^Class FriendsOfTwig\\Twigcs\\Container extends generic class ArrayObject but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Container.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Container\:\:get\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Container.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function call_user_func expects callable\(\)\: mixed, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Container.php
+
+		-
+			message: '#^Binary operation "\+" between mixed and int\<0, max\> results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Binary operation "\+\=" between mixed and int\<0, max\> results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 2
+			path: src/Lexer.php
+
+		-
+			message: '#^Binary operation "\-" between int\<\-1, max\> and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Cannot access an offset on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_block'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_comment'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_var'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: preInc.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Lexer\:\:lexBlock\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Lexer\:\:lexComment\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Lexer\:\:lexExpression\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Lexer\:\:lexVar\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Lexer\:\:moveCursor\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Lexer\:\:pushToken\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#1 \$pattern of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#1 \$string of function substr expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#2 \$lineno of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#2 \$offset of function substr expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#3 \$columnno of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#3 \$lineno of class FriendsOfTwig\\Twigcs\\TwigPort\\Token constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#4 \$columnno of class FriendsOfTwig\\Twigcs\\TwigPort\\Token constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#4 \$source of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects FriendsOfTwig\\Twigcs\\TwigPort\\Source\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Lexer.php
+
+		-
+			message: '#^Parameter \#5 \$offset of function preg_match expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/Lexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Capture\:\:getOffsetsMap\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Capture.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Capture\:\:getRealOffset\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/Capture.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Capture\:\:setOffsetsMap\(\) has parameter \$offsetsMap with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Capture.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Capture\:\:\$offsetsMap type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Capture.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 3
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Cannot call method getRealOffset\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Cannot call method getSource\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Cannot call method getText\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Handler\:\:__invoke\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Handler\:\:__invoke\(\) has parameter \$captures with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strlen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Parameter \#2 \$column of class FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleError constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Parameter \#2 \$replace of function str_replace expects array\<string\>\|string, int given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Parameter \#3 \$capture of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:subCheck\(\) expects FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Capture, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Parameter \#3 \$source of class FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleError constructor expects FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Regex, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/RegEngine/Checker/Handler.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Regex\:\:__construct\(\) has parameter \$captureTypes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Regex.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Regex\:\:getCaptureTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Regex.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Regex\:\:match\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/Regex.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Regex\:\:setCaptureTypes\(\) has parameter \$captureTypes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Regex.php
+
+		-
+			message: '#^Parameter \#1 \$type of class FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Capture constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/Regex.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Regex\:\:\$captureTypes type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Regex.php
+
+		-
+			message: '#^Cannot call method getColumn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/RegEngine/Checker/Report.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Report\:\:getErrors\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Report.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Report\:\:getUnrecognizedExpressions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Report.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Report\:\:\$errors type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Report.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Report\:\:\$unrecognizedExpressions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/Report.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 4
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Binary operation "\+\=" between \(float\|int\) and mixed results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Binary operation "\." between ''\('' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Binary operation "\.\=" between string and mixed results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot access offset 1 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot access offset 2 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot call method getCallback\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot call method getRule\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot call method getType\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot call method increaseOffset\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot call method match\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Cannot call method setOffsetsMap\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Function FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\split\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Function FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\split\(\) has parameter \$len with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Function FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\split\(\) has parameter \$str with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:__construct\(\) has parameter \$rulesets with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) has parameter \$offsetsMap with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:compute\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:compute\(\) has parameter \$vars with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:explain\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:getLog\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:getRules\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:getUnrecognizedExpressions\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:setLog\(\) has parameter \$log with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:setRules\(\) has parameter \$rules with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:subCheck\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function call_user_func expects callable\(\)\: mixed, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#1 \$string of function mb_strlen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#1 \$string of function mb_substr expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#1 \$vars of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:compute\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#2 \$rule of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:compute\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#3 \$callback of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:compute\(\) expects callable\(\)\: mixed, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#3 \$length of function mb_substr expects int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:\$log type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:\$rules type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:\$unrecognizedExpressions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Checker/RuleChecker.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Binary operation "\+\=" between mixed and mixed results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Binary operation "\.\=" between string and mixed results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Cannot call method flatten\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Cannot call method getKind\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Cannot call method getTrace\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Cannot call method strlen\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: preInc.type
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:__construct\(\) has parameter \$offset with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:addChild\(\) has parameter \$delegateChildren with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:flatten\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:fromString\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:fromString\(\) has parameter \$expr with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:getChildren\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:getOffsetAt\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:getOffsetAt\(\) has parameter \$i with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:getOffsetsMap\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Parameter \#1 \$scoped of class FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode constructor expects FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strlen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Parameter \#2 \$string of function explode expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:\$children type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:\$offset \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\ExpressionNode\:\:\$offsetsMap type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/ExpressionNode.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Cannot call method flatten\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Cannot call method getExpr\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Cannot call method getOffsetsMap\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Cannot call method getType\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Linter\:\:__construct\(\) has parameter \$ruleset with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Linter\:\:explain\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Parameter \#2 \$ruleset of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Parameter \#3 \$text of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Parameter \#4 \$offsetsMap of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\RuleChecker\:\:check\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/Linter.php
+
+		-
+			message: '#^Cannot access offset ''after'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\.'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\:'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\='' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\?'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\?\:'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\['' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_arrow'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_as'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_coma'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 8
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_equal'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_for'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_if'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_in'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_key_var'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_macro'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_op'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_opening'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_set'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_source'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 7
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_value_var'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_var_name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\|'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''array'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''arrow_function'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_\.'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_\:'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_\='' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_\?'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_\?\:'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_\]'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_arrow'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_as'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_closing'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_coma'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_if'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_names'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_op'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_parentheses'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_source'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 44
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 7
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''before_\|'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''between'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''binary'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''elseif'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''empty'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''empty_list_whitespaces'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''for'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 20
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''from'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 51
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''func'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''hash'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 22
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''if'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''import'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 9
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''list'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''macro'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''named_args'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''parentheses'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''print'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''property'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''range'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''set'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''slice'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''tag'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''tag_default_arg_spacing'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''ternary'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''twigMajorVersion'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''unary'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\RulesetBuilder\:\:build\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\RulesetBuilder\:\:using\(\) has parameter \$rules with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\RulesetBuilder\:\:using\(\) has parameter \$vars with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\RulesetBuilder\:\:using\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_unshift expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Parameter \#2 \$size of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Handler\:\:enforceSize\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 151
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Parameter \#2 \$size of method FriendsOfTwig\\Twigcs\\RegEngine\\Checker\\Handler\:\:enforceSpaceOrLineBreak\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 9
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\RulesetBuilder\:\:\$config has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/RegEngine/RulesetBuilder.php
+
+		-
+			message: '#^Cannot access offset ''after_\['' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''after_for'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''after_macro'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''after_opening'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''after_set'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''after_value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_\.'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_\='' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_\?'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_arrow'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_op'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_parentheses'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_source'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''before_value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Cannot access offset ''between'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\RulesetConfigurator\:\:getProcessedConfiguration\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: non\-empty\-string, 2\?\: string, 3\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string, \.\.\.\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 8
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 1 might not exist on array\{0\?\: string, 1\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 7
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: non\-empty\-string, 2\?\: string, 3\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string, \.\.\.\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 2 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 8
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 3 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string, \.\.\.\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 3 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 3 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 3 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 3 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 3 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 4 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string, \.\.\.\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 4 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 4 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 4 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 4 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 5 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string, \.\.\.\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 5 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 5 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 5 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 3
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 6 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 6 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 7 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Offset 8 might not exist on array\{0\?\: string, 1\?\: string, 2\?\: string, 3\?\: string, 4\?\: string, 5\?\: string, 6\?\: string, 7\?\: string, \.\.\.\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: src/RegEngine/RulesetConfigurator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\Sanitizer\\StringSanitizer\:\:sanitize\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/Sanitizer/StringSanitizer.php
+
+		-
+			message: '#^Binary operation "\+\=" between \(float\|int\) and mixed results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Binary operation "\." between ''\['' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Cannot call method debug\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Cannot call method strlen\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:close\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:debug\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:enqueue\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:enqueue\(\) has parameter \$char with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:enqueue\(\) has parameter \$next with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:enqueue\(\) has parameter \$prev with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:enqueueString\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:enqueueString\(\) has parameter \$string with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:getContent\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:getHead\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:push\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:push\(\) has parameter \$item with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:rollback\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:rollback\(\) has parameter \$char with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:shouldClose\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:shouldClose\(\) has parameter \$next with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:shouldClose\(\) has parameter \$prev with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:shouldRollback\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:shouldRollback\(\) has parameter \$char with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:strlen\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Parameter \#1 \$char of method FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:shouldClose\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Parameter \#1 \$string of function str_split expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:\$content type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\:\:\$head \(FriendsOfTwig\\Twigcs\\RegEngine\\ScopedExpression\|string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 2
+			path: src/RegEngine/ScopedExpression.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\CheckstyleReporter\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/CheckstyleReporter.php
+
+		-
+			message: '#^Parameter \#1 \$messages of method Symfony\\Component\\Console\\Output\\OutputInterface\:\:writeln\(\) expects iterable\|string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Reporter/CheckstyleReporter.php
+
+		-
+			message: '#^Parameter \#2 \$value of method SimpleXMLElement\:\:addAttribute\(\) expects string, int given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Reporter/CheckstyleReporter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\ConsoleReporter\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/ConsoleReporter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\CsvReporter\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/CsvReporter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\EmacsReporter\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/EmacsReporter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\GithubActionReporter\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/GithubActionReporter.php
+
+		-
+			message: '#^Parameter \#1 \$str of function strtr expects string, int given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Reporter/GithubActionReporter.php
+
+		-
+			message: '#^Cannot access offset ''failures'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Reporter/JUnitReporter.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Reporter/JUnitReporter.php
+
+		-
+			message: '#^Cannot call method addAttribute\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/Reporter/JUnitReporter.php
+
+		-
+			message: '#^Cannot call method addChild\(\) on array\<string, int\<1, max\>\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Reporter/JUnitReporter.php
+
+		-
+			message: '#^Cannot call method addChild\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Reporter/JUnitReporter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\JUnitReporter\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/JUnitReporter.php
+
+		-
+			message: '#^Parameter \#1 \$messages of method Symfony\\Component\\Console\\Output\\OutputInterface\:\:writeln\(\) expects iterable\|string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Reporter/JUnitReporter.php
+
+		-
+			message: '#^Cannot access an offset on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/Reporter/JsonReporter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\JsonReporter\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/JsonReporter.php
+
+		-
+			message: '#^Parameter \#1 \$messages of method Symfony\\Component\\Console\\Output\\OutputInterface\:\:writeln\(\) expects iterable\|string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Reporter/JsonReporter.php
+
+		-
+			message: '#^Variable \$entry might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: src/Reporter/JsonReporter.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Reporter\\ReporterInterface\:\:report\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Reporter/ReporterInterface.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:collect\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/AbstractRule.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:skip\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Rule/AbstractRule.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:skipTo\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Rule/AbstractRule.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:skipToOneOf\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Rule/AbstractRule.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:skipToOneOf\(\) has parameter \$possibilities with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/AbstractRule.php
+
+		-
+			message: '#^Cannot access an offset on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\ForbiddenFunctions\:\:__construct\(\) has parameter \$functions with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\ForbiddenFunctions\:\:__construct\(\) has parameter \$severity with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\ForbiddenFunctions\:\:setFunctions\(\) has parameter \$functions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Parameter \#1 \$severity of method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:__construct\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Rule\\ForbiddenFunctions\:\:\$functions has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Rule/ForbiddenFunctions.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/LowerCaseVariable.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/LowerCaseVariable.php
+
+		-
+			message: '#^Cannot call method getColumn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Cannot call method getReason\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\RegEngineRule\:\:__construct\(\) has parameter \$ruleset with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\RegEngineRule\:\:collect\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Parameter \#1 \$string of function mb_strlen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Parameter \#4 \$reason of method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:createViolation\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Rule\\RegEngineRule\:\:\$ruleset is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Rule\\RegEngineRule\:\:\$ruleset type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Rule\\RegEngineRule\:\:\$unrecognizedExpressions type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between null and string will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: src/Rule/RegEngineRule.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Rule\\RuleInterface\:\:collect\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Rule/RuleInterface.php
+
+		-
+			message: '#^Parameter \#2 \$string of function explode expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/TrailingSpace.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/TrailingSpace.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Cannot call method build\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Cannot call method flatten\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Cannot call method getColumn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Cannot call method getLine\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Cannot call method getRootUnusedDeclarations\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Cannot call method getToken\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Cannot call method getValue\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Parameter \#2 \$line of method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:createViolation\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Parameter \#3 \$column of method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:createViolation\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/UnusedMacro.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Cannot call method build\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Cannot call method flatten\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Cannot call method getColumn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Cannot call method getLine\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Cannot call method getRootUnusedDeclarations\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Cannot call method getToken\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Cannot call method getValue\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Parameter \#2 \$line of method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:createViolation\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Parameter \#3 \$column of method FriendsOfTwig\\Twigcs\\Rule\\AbstractRule\:\:createViolation\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Rule/UnusedVariable.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Ruleset\\Official\:\:setTemplateResolver\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Ruleset/Official.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Ruleset\\TemplateResolverAwareInterface\:\:setTemplateResolver\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Ruleset/TemplateResolverAwareInterface.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\BlockReference\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Scope/BlockReference.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\BlockReference\:\:getName\(\) should return string but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Scope/BlockReference.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/BlockReference.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Scope\\BlockReference\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Scope/BlockReference.php
+
+		-
+			message: '#^Binary operation "\." between mixed and "\\n" results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Cannot call method flatten\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Cannot call method getQueue\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:__construct\(\) has parameter \$blocks with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:getBlocks\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:getIsolatedScopes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:getQueue\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:getRootUnusedDeclarations\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:getUnusedDeclarations\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Parameter \#2 \$callback of function array_filter expects \(callable\(mixed\)\: bool\)\|null, Closure\(FriendsOfTwig\\Twigcs\\Scope\\Declaration\)\: bool given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$arrays of function array_merge expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:\$blocks type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:\$isolatedScopes type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Scope\\FlattenedScope\:\:\$queue type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Right side of && is always true\.$#'
+			identifier: booleanAnd.rightAlwaysTrue
+			count: 1
+			path: src/Scope/FlattenedScope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:declare\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/Scope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:getParent\(\) should return FriendsOfTwig\\Twigcs\\Scope\\Scope but returns FriendsOfTwig\\Twigcs\\Scope\\Scope\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Scope/Scope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:getQueue\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/Scope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:isolate\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/Scope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:referenceBlock\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/Scope.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:use\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/Scope.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:\$queue type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Scope/Scope.php
+
+		-
+			message: '#^Cannot call method getType\(\) on FriendsOfTwig\\Twigcs\\TwigPort\\Token\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Cannot call method getValue\(\) on FriendsOfTwig\\Twigcs\\TwigPort\\Token\|null\.$#'
+			identifier: method.nonObject
+			count: 10
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:build\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:createMacroScopeBuilder\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:createVariableScopeBuilder\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:doBuild\(\) has parameter \$depth with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:doBuild\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:handleMacros\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:handleVariables\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$blockName of method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:referenceBlock\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_starts_with expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$name of method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:declare\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$name of method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:use\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 5
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$tokens of method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:doBuild\(\) expects FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$twigPath of method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:subScope\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#2 \$depth of method FriendsOfTwig\\Twigcs\\Scope\\ScopeBuilder\:\:subScope\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#2 \$name of class FriendsOfTwig\\Twigcs\\Scope\\Scope constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#2 \$name of method FriendsOfTwig\\Twigcs\\Scope\\Scope\:\:spawn\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Parameter \#3 \$subject of function str_replace expects array\<string\>\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/ScopeBuilder.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Usage\:\:__construct\(\) has parameter \$name with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Scope/Usage.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Scope\\Usage\:\:getName\(\) should return string but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Scope/Usage.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Scope/Usage.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Scope\\Usage\:\:\$name has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Scope/Usage.php
+
+		-
+			message: '#^Cannot call method exists\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/TemplateResolver/ChainResolver.php
+
+		-
+			message: '#^Cannot call method load\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/TemplateResolver/ChainResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TemplateResolver\\ChainResolver\:\:__construct\(\) has parameter \$chain with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TemplateResolver/ChainResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TemplateResolver\\ChainResolver\:\:load\(\) should return FriendsOfTwig\\Twigcs\\TwigPort\\Source but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TemplateResolver/ChainResolver.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TemplateResolver\\ChainResolver\:\:\$chain type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TemplateResolver/ChainResolver.php
+
+		-
+			message: '#^Parameter \#1 \$code of class FriendsOfTwig\\Twigcs\\TwigPort\\Source constructor expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TemplateResolver/FileResolver.php
+
+		-
+			message: '#^Cannot call method exists\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Cannot call method load\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TemplateResolver\\NamespacedResolver\:\:__construct\(\) has parameter \$namespaces with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TemplateResolver\\NamespacedResolver\:\:getNamespace\(\) has parameter \$path with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TemplateResolver\\NamespacedResolver\:\:load\(\) should return FriendsOfTwig\\Twigcs\\TwigPort\\Source but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strlen expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Parameter \#2 \$string of function explode expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TemplateResolver\\NamespacedResolver\:\:\$namespaces type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TemplateResolver/NamespacedResolver.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\Token\:\:__construct\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/Token.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\Token\:\:getValue\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/Token.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\Token\:\:test\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/Token.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\Token\:\:test\(\) has parameter \$values with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/Token.php
+
+		-
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/Token.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\Token\:\:\$value has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/Token.php
+
+		-
+			message: '#^Cannot call method getColumn\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Cannot call method getLine\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Cannot call method getType\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Cannot call method getValue\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Cannot call method test\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:__construct\(\) has parameter \$tokens with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:expect\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:expect\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:expect\(\) should return FriendsOfTwig\\Twigcs\\TwigPort\\Token but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:getCurrent\(\) should return FriendsOfTwig\\Twigcs\\TwigPort\\Token but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:injectTokens\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:injectTokens\(\) has parameter \$tokens with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:look\(\) should return FriendsOfTwig\\Twigcs\\TwigPort\\Token but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:next\(\) should return FriendsOfTwig\\Twigcs\\TwigPort\\Token but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:nextIf\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:nextIf\(\) has parameter \$primary with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:nextIf\(\) has parameter \$secondary with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:test\(\) has parameter \$primary with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:test\(\) has parameter \$secondary with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:test\(\) should return bool but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Parameter \#1 \$type of static method FriendsOfTwig\\Twigcs\\TwigPort\\Token\:\:typeToEnglish\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Parameter \#2 \$lineno of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Parameter \#3 \$columnno of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream\:\:\$tokens type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TwigPort/TokenStream.php
+
+		-
+			message: '#^Binary operation "\+" between mixed and 1 results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Binary operation "\+\=" between mixed and int\<0, max\> results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 2
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Binary operation "\-" between int\<\-1, max\> and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Binary operation "\-" between mixed and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Binary operation "\." between mixed and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 9
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 7
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Binary operation "\." between string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access an offset on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''interpolation'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''interpolation_end'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''interpolation_start'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_block'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_block_line'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_block_raw'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_comment'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_raw_data'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_tokens_start'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''lex_var'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''operator'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''tag_block'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''tag_comment'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''tag_variable'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''whitespace_line_trim'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''whitespace_trim'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset \(float\|int\) on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 18
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset 1 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 19
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset 2 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset mixed on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 11
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot use \+\+ on mixed\.$#'
+			identifier: preInc.type
+			count: 3
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot use array destructuring on mixed\.$#'
+			identifier: offsetAccess.nonArray
+			count: 2
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot use array destructuring on null\.$#'
+			identifier: offsetAccess.nonArray
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:getOperatorRegex\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexBlock\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexComment\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexData\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexExpression\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexInterpolation\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexRawData\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexString\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:lexVar\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:moveCursor\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:moveCursor\(\) has parameter \$text with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:popState\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:pushState\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:pushState\(\) has parameter \$state with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:pushToken\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:pushToken\(\) has parameter \$type with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:pushToken\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:tokenize\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_pop expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$array of function end expects array\|object, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function substr_count expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$pattern of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 9
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$pattern of function preg_match_all expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$str of function preg_quote expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 16
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$str of function strtr expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strlen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$string of function substr expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$type of class FriendsOfTwig\\Twigcs\\TwigPort\\Token constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#2 \$lineno of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 9
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#2 \$needle of function str_contains expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#2 \$offset of function substr expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_match expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 16
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 6
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#3 \$columnno of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 8
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#3 \$lineno of class FriendsOfTwig\\Twigcs\\TwigPort\\Token constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#4 \$columnno of class FriendsOfTwig\\Twigcs\\TwigPort\\Token constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#4 \$source of class FriendsOfTwig\\Twigcs\\TwigPort\\SyntaxError constructor expects FriendsOfTwig\\Twigcs\\TwigPort\\Source\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 8
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Parameter \#5 \$offset of function preg_match expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 16
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$brackets has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$code has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$columnno has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$currentVarBlockLine has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$cursor has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$end has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$lineno has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$options has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$position has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$positions has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$regexes has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$source has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$state has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$states has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\TwigPort\\TwigLexer\:\:\$tokens has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/TwigPort/TwigLexer.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Util/StreamNavigator.php
+
+		-
+			message: '#^Cannot access offset ''value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Util/StreamNavigator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Util\\StreamNavigator\:\:skip\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Util/StreamNavigator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Util\\StreamNavigator\:\:skipTo\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Util/StreamNavigator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Util\\StreamNavigator\:\:skipToOneOf\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Util/StreamNavigator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Util\\StreamNavigator\:\:skipToOneOf\(\) has parameter \$possibilities with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Util/StreamNavigator.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 2
+			path: src/Util/StreamNavigator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Validator\\Validator\:\:getCollectedData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Validator/Validator.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Validator\\Validator\:\:\$collectedData type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Validator/Validator.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:__construct\(\) has parameter \$column with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:__construct\(\) has parameter \$filename with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:__construct\(\) has parameter \$line with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:__construct\(\) has parameter \$reason with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:\$column \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:\$filename \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:\$line \(int\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Property FriendsOfTwig\\Twigcs\\Validator\\Violation\:\:\$reason \(string\) does not accept mixed\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Validator/Violation.php
+
+		-
+			message: '#^Cannot access offset ''unrecognized_expressions'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig2FunctionalTest\:\:getData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig2FunctionalTest\:\:testExpressions\(\) has parameter \$expectedViolation with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig2FunctionalTest\:\:testExpressions\(\) has parameter \$expectedViolationPosition with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig2FunctionalTest\:\:testExpressions\(\) has parameter \$expression with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Parameter \#1 \$code of class FriendsOfTwig\\Twigcs\\TwigPort\\Source constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertCount\(\) expects Countable\|iterable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Parameter \#2 \$tokens of method FriendsOfTwig\\Twigcs\\Validator\\Validator\:\:validate\(\) expects FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/Functional/Twig2FunctionalTest.php
+
+		-
+			message: '#^Cannot access offset ''unrecognized_expressions'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig3FunctionalTest\:\:getData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig3FunctionalTest\:\:testExpressions\(\) has parameter \$expectedViolation with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig3FunctionalTest\:\:testExpressions\(\) has parameter \$expectedViolationPosition with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Functional\\Twig3FunctionalTest\:\:testExpressions\(\) has parameter \$expression with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Parameter \#1 \$code of class FriendsOfTwig\\Twigcs\\TwigPort\\Source constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertCount\(\) expects Countable\|iterable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Parameter \#2 \$tokens of method FriendsOfTwig\\Twigcs\\Validator\\Validator\:\:validate\(\) expects FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: tests/Functional/Twig3FunctionalTest.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: tests/Unit/RegEngine/ExpressionNodeTest.php
+
+		-
+			message: '#^Cannot call method getChildren\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: tests/Unit/RegEngine/ExpressionNodeTest.php
+
+		-
+			message: '#^Cannot call method getOffsetAt\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 11
+			path: tests/Unit/RegEngine/ExpressionNodeTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Unit\\RegEngine\\ScopedExpressionTest\:\:provideStringAndDebug\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: tests/Unit/RegEngine/ScopedExpressionTest.php
+
+		-
+			message: '#^PHPDoc tag @return has invalid value \(array\<string, array\<\{0\: string, 1\: string\}\>\)\: Unexpected token "\{", expected type at offset 39 on line 2$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: tests/Unit/RegEngine/ScopedExpressionTest.php
+
+		-
+			message: '#^Method FriendsOfTwig\\Twigcs\\Tests\\Unit\\Rule\\ForbiddenFunctionsTest\:\:tokenStream\(\) should return FriendsOfTwig\\Twigcs\\TwigPort\\TokenStream but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: tests/Unit/Rule/ForbiddenFunctionsTest.php
+
+		-
+			message: '#^Parameter \#1 \$search of function str_replace expects array\<string\>\|string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: tests/Unit/Rule/ForbiddenFunctionsTest.php
