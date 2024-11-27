@@ -27,14 +27,14 @@ phar: ## Compiles a phar with humbug/box
 	composer install --no-progress
 
 .PHONY: static-code-analysis
-static-code-analysis: vendor ## Runs a static code analysis with vimeo/psalm
-	.phive/psalm --config=psalm.xml --clear-cache
-	.phive/psalm --config=psalm.xml --show-info=false --stats
+static-code-analysis: vendor ## Runs a static code analysis with phpstan/phpstan
+	.phive/phpstan clear-result-cache --configuration=phpstan.neon
+	.phive/phpstan --configuration=phpstan.neon --memory-limit=-1
 
 .PHONY: static-code-analysis-baseline
-static-code-analysis-baseline: vendor ## Generates a baseline for static code analysis with vimeo/psalm
-	.phive/psalm --config=psalm.xml --clear-cache
-	.phive/psalm --config=psalm.xml --set-baseline=psalm-baseline.xml
+static-code-analysis-baseline: vendor ## Generates a baseline for static code analysis with phpstan/phpstan
+	.phive/phpstan clear-result-cache --configuration=phpstan.neon
+	.phive/phpstan --allow-empty-baseline --configuration=phpstan.neon --generate-baseline=phpstan-baseline.neon --memory-limit=-1
 
 .PHONY: tests
 tests: vendor ## Runs unit and functional tests with phpunit/phpunit

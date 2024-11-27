@@ -145,8 +145,8 @@ jobs:
       - name: "Install dependencies with composer"
         run: "composer install --ansi --no-progress"
 
-      - name: "Run vimeo/psalm"
-        run: ".phive/psalm --config=psalm.xml --output-format=github --shepherd --show-info=false --stats --threads=4"
+      - name: "Run phpstan/phpstan"
+        run: ".phive/phpstan --ansi --configuration=phpstan.neon --memory-limit=-1"
 
   tests:
     name: "Tests"
