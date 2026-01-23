@@ -19,16 +19,30 @@ class Application extends BaseApplication
 
         $this->container = new Container();
         $command = new LintCommand();
-        $this->add($command);
-        $this->add(new RegDebugCommand());
+        $this->addCommand($command);
+        $this->addCommand(new RegDebugCommand());
 
         $this->setDefaultCommand($command->getName(), $singleCommand);
     }
 
-    public function add(Command $command): ?Command
+    /**
+     * @param callable|Command $command
+     */
+    public function addCommand($command): ?Command
     {
         if ($command instanceof ContainerAwareCommand) {
             $command->setContainer($this->container);
+        }
+
+        // Symfony Console 8.0+ uses addCommand(), earlier versions use add()
+        if (method_exists(BaseApplication::class, 'addCommand')) {
+            // @phpstan-ignore-next-line staticMethod.notFound - addCommand method exists only on Symfony Console 8.0+
+            return parent::addCommand($command);
+        }
+
+        // For Symfony Console < 8.0, ensure we only pass Command instances
+        if (!$command instanceof Command) {
+            throw new \InvalidArgumentException('Command must be an instance of '.Command::class.' for Symfony Console < 8.0');
         }
 
         return parent::add($command);

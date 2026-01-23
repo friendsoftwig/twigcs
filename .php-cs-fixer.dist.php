@@ -1,7 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude('tests/Fixtures/app/cache')
+    ->exclude(['tests/Fixtures/app/cache', 'vendor'])
     ->ignoreDotFiles(false)
     ->in(__DIR__)
 ;
